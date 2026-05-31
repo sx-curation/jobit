@@ -1,0 +1,59 @@
+{
+  "job_id": "st_7a66c299",
+  "title": "Marketing Data Analyst – Business Banking (w/m/d)",
+  "company": "ING Deutschland",
+  "match_score": 52,
+  "summary": "Strong alignment on marketing analytics, funnel analysis and data storytelling; key gaps are SQL/Python, formal 5-year requirement, and Google Analytics / Adobe Analytics platform experience.",
+  "key_requirements": [
+    "Mindestens 5 Jahre Berufspraxis in Marketing Analytics, Business Intelligence oder quantitativem Feld",
+    "Nachgewiesenes Know-how in SQL, Datenreporting und Statistik",
+    "Erfahrung in digitalen Ökosystemen, bestenfalls im Bankenumfeld",
+    "Gute Kenntnisse von Bankprodukten und Finanzdienstleistungen",
+    "Ausgezeichnetes Verständnis von Marketing- und Analytics-Plattformen (Google Analytics, Adobe Analytics)",
+    "Multi-Channel- und Lifecycle-Daten in strategische Erkenntnisse übersetzen",
+    "Sehr gutes PowerPoint-Know-how und überzeugende Kommunikation analytischer Ergebnisse",
+    "Fließendes Englisch; Deutsch ein Plus"
+  ],
+  "matched_skills": [
+    "Marketing analytics and campaign ROI measurement (B2B product launches, trade fairs)",
+    "Funnel & conversion analysis (Hapag-Lloyd customer journey, Moli Media live-stream funnels)",
+    "Data storytelling for C-level stakeholders (HSBC programme analytics, C-suite reporting)",
+    "Financial / programme analytics in FinTech / banking context (HSBC USD 8M digital transformation)",
+    "Customer segmentation and cohort analysis",
+    "Multi-channel performance reporting (EMEA, APAC markets)",
+    "KPI framework design and dashboard development (Power BI, Qlik Sense, Looker Studio)",
+    "A/B testing and experiment design",
+    "PowerPoint / MS Office for executive presentations",
+    "English C1 proficiency",
+    "Microsoft Power BI certified (PL-300)"
+  ],
+  "missing_skills": [
+    "SQL – not mentioned in CV (core hard requirement)",
+    "Python and/or SAS – not mentioned",
+    "Google Analytics or Adobe Analytics – candidate uses Power BI / Qlik / SAP Analytics",
+    "Formal 5 years in Marketing Analytics / BI – candidate has ~4+ years total (including non-analytics roles)",
+    "Deep banking product knowledge (candidate has FinTech exposure via HSBC but not retail/business banking products)",
+    "Acquisition funnel analysis in banking context"
+  ],
+  "recommended_emphasis": [
+    "Lead with HSBC programme analytics role: USD 8M budget variance dashboards, C-suite burn-rate reports – demonstrates FinTech analytics depth",
+    "Highlight Power BI certification (PL-300) as evidence of BI tooling seriousness; bridge to analytics platform expectation",
+    "Emphasise funnel & behavioural analysis at Hapag-Lloyd as proxy for acquisition funnel analytics",
+    "Showcase customer segmentation and cohort analysis as directly matching lifecycle data requirement",
+    "Frame C-level data storytelling as the presentation / communication skill ING explicitly requires",
+    "Mention any SQL exposure (academic or project) if applicable; otherwise acknowledge as learning target"
+  ],
+  "language_requirement": "Fließendes Englisch (C1 – candidate matches); Deutsch ein Plus (candidate B1+ – acceptable)",
+  "location_notes": "Berlin oder Frankfurt am Main – candidate based in Lüneburg; relocation or remote flexibility would be needed",
+  "risk_flags": [
+    "SQL not evidenced in CV – likely a hard filter in screening",
+    "Location: Frankfurt/Berlin vs. Lüneburg – no explicit remote policy mentioned",
+    "5-year experience requirement – candidate's timeline is tight (4+ years across multiple roles)",
+    "No Google Analytics / Adobe Analytics listed – standard tools for the role"
+  ],
+  "company_info": {
+    "size": "5,001–10,000",
+    "size_source": "jd_text",
+    "size_raw": "5001-10000 Mitarbeiter"
+  }
+}

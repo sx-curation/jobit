@@ -1,0 +1,56 @@
+{
+  "job_id": "st_e2fb87b0",
+  "title": "Marketing Manager:in (w/m/d)",
+  "company": "exoIQ GmbH",
+  "match_score": 42,
+  "summary": "Generalist marketing manager role at a hardware/exoskeleton startup requiring content creation, social media, SEO/SEA and graphic design; candidate's analytical and B2B marketing background partially fits but lacks creative/content tools and German C1.",
+  "key_requirements": [
+    "Abgeschlossene Ausbildung oder Studium in Marketing, Kommunikation oder Medien",
+    "Praktische Erfahrung in Content-Erstellung und redaktioneller Arbeit",
+    "Verständnis von Analyse-Tools wie Google Analytics",
+    "Kenntnisse in SEO/SEA",
+    "Sicherer Umgang mit CMS und Social-Media-Plattformen",
+    "Grundkenntnisse in Grafikbearbeitung (Adobe Creative Suite, Canva)",
+    "Deutsch und Englisch fließend (mind. C1)"
+  ],
+  "matched_skills": [
+    "Master of Public Relations and Advertising – directly relevant degree",
+    "Master of Management & Entrepreneurship – additional qualification",
+    "B2B lead generation and new customer acquisition experience",
+    "KPI monitoring and performance reporting",
+    "Social media channel experience (LinkedIn, digital channels)",
+    "Campaign planning and execution (trade fairs, product launches)",
+    "Cross-functional coordination with internal teams and external partners",
+    "English C1 proficiency"
+  ],
+  "missing_skills": [
+    "Google Analytics or similar web analytics tool (candidate uses Power BI / Qlik / Looker, not GA)",
+    "SEO/SEA hands-on experience",
+    "CMS management (WordPress or similar)",
+    "Adobe Creative Suite / Canva graphic design",
+    "Newsletter / blog content creation and editorial workflow",
+    "German C1 (candidate: B1+)",
+    "Instagram channel management"
+  ],
+  "recommended_emphasis": [
+    "Lead with PR & Advertising master's degree as direct match for marketing communications role",
+    "Highlight KOL campaign tracking and audience engagement analytics as content performance experience",
+    "Showcase post-event performance reports and insight-to-action reporting as content/editorial analogue",
+    "Emphasise B2B lead generation work (trade fair lead funnels, pipeline conversion) for Leadgenerierung requirement",
+    "Note multi-channel campaign coordination experience across EMEA/APAC as evidence of marketing breadth"
+  ],
+  "language_requirement": "Deutsch und Englisch mind. C1 – candidate's German B1+ is below requirement",
+  "location_notes": "Hamburg-Wilhelmsburg with weekly office presence required + Homeoffice – candidate in Lüneburg, commute feasible",
+  "risk_flags": [
+    "German language level (B1+) below required C1 – significant gap",
+    "No hands-on content creation / copywriting / editorial work evidenced",
+    "No graphic design tool experience (Canva, Adobe) listed",
+    "No CMS or website management experience mentioned",
+    "Role is generalist creative + analytical; CV skews heavily analytical"
+  ],
+  "company_info": {
+    "size": "11–50",
+    "size_source": "jd_text",
+    "size_raw": "11-50 Mitarbeiter"
+  }
+}

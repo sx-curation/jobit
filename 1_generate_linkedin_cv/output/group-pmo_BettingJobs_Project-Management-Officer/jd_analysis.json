@@ -1,0 +1,95 @@
+{
+  "job_id": "4399007449",
+  "title": "Project Management Officer",
+  "company": "B2B poker network (via BettingJobs recruiter)",
+  "location": "Remote (CET timezone)",
+  "url": "https://www.linkedin.com/jobs/view/4399007449/",
+  "posted": "unknown",
+  "match_score": 72,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "required_skills": [
+    "Agile (Scrum, Kanban) and Waterfall methodologies",
+    "Tools: Jira, Trello, MS Project, Confluence, Power BI",
+    "Knowledge of iGaming compliance, platforms, and player lifecycle",
+    "Strong problem-solving and strategic thinking",
+    "Data-driven decision making",
+    "Stakeholder management",
+    "Bachelor's degree in Business / PM / CS or related field"
+  ],
+  "bonus_skills": [
+    "MBA / Master's degree",
+    "iGaming regulatory compliance (GDPR, GLI)",
+    "Hybrid Agile-Waterfall framework design",
+    "Executive dashboard maintenance"
+  ],
+  "matched_skills": [
+    "Agile sprint planning and Scrum delivery (HSBC + Hapag-Lloyd)",
+    "Power BI — certified, used for KPI reporting and data storytelling",
+    "C-level / executive reporting and dashboards (HSBC PMO)",
+    "Risk escalation and prioritisation management (HSBC USD 8M programme)",
+    "KPI framework design and performance tracking (Hapag-Lloyd)",
+    "Stakeholder coordination across cross-functional teams",
+    "Governance framework design and standardisation (HSBC)",
+    "Budget tracking and cost optimisation (USD 8M programme)",
+    "Hybrid Agile-Waterfall awareness — Agile delivery within structured programme governance",
+    "Vendor and partner management"
+  ],
+  "missing_skills": [
+    "iGaming industry knowledge (platforms, player lifecycle, GLI compliance)",
+    "iGaming-specific regulatory compliance (GDPR application in gambling context, GLI standards)",
+    "Explicit Waterfall project management experience (CV is predominantly Agile)",
+    "Jira / Confluence / MS Project — not explicitly listed in CV (inferred from context only)"
+  ],
+  "key_requirements": [
+    "Design and implement a hybrid Agile-Waterfall project management framework",
+    "Monitor risks, dependencies, and progress across all concurrent initiatives",
+    "Standardize governance templates (charters, backlogs, approval flows) and ensure iGaming regulatory compliance",
+    "Define and track KPIs (sprint velocity, completion rates, ROI) with executive dashboards",
+    "Mentor teams on Agile and Waterfall methodologies and align projects with strategic vision"
+  ],
+  "core_responsibilities": [
+    "Align projects with company vision, strategic goals, and iGaming market demands",
+    "Own centralized task management system and define workflows and accountability",
+    "Develop hybrid processes and standardize templates for project governance",
+    "Ensure iGaming regulatory compliance (GDPR, GLI)",
+    "Maintain executive dashboards and report on project health and resource utilisation"
+  ],
+  "culture_keywords": [
+    "data-driven",
+    "decisive",
+    "iterative",
+    "collaborative",
+    "innovation",
+    "strategic",
+    "mentorship",
+    "accountability"
+  ],
+  "cv_highlights": [
+    "Led PMO for USD 8M digital transformation programme at HSBC — direct match to programme governance, budget tracking, and C-suite reporting",
+    "Power BI certified — directly matches tooling requirement for executive dashboards",
+    "Agile sprint coordination at Hapag-Lloyd — demonstrates iterative delivery experience in a large corporate environment",
+    "Risk escalation and prioritisation management — explicitly listed as a core responsibility in JD",
+    "KPI framework design — matches JD requirement to define and track performance metrics",
+    "Multilingual (English, German, Chinese, Cantonese) — strong asset for international remote team",
+    "CET timezone compatible (based in Lüneburg, Germany)"
+  ],
+  "gaps": [
+    "No iGaming industry experience — this is a stated hard requirement; candidate comes from banking and logistics",
+    "iGaming compliance specifics (GLI standards, gambling-specific GDPR application) are entirely absent from CV",
+    "Waterfall methodology not explicitly evidenced — HSBC work was Agile within a structured programme, not classic Waterfall",
+    "Jira, Confluence, MS Project not explicitly named in CV — may be inferred but not verified"
+  ],
+  "recommended_emphasis": [
+    "Lead with PMO governance credentials: USD 8M HSBC programme, governance framework design, and C-suite reporting — these directly mirror the JD's governance and reporting requirements",
+    "Highlight Power BI certification prominently as it is an exact tooling match for executive dashboards",
+    "Frame HSBC programme as hybrid governance (structured phases with Agile sprints) to address the hybrid Agile-Waterfall requirement",
+    "Emphasise risk escalation and KPI framework experience — both appear verbatim as JD responsibilities",
+    "Address iGaming gap proactively in cover letter: position banking and fintech compliance experience (GDPR, regulatory reporting) as transferable to iGaming compliance context",
+    "Mention any tool experience with Jira, Confluence, or MS Project even if informal, to close the tooling gap"
+  ],
+  "recommendation": "Strong apply. Boru's PMO methodology, governance, Power BI, and executive reporting skills are an excellent structural match for this role. The primary gap is iGaming industry knowledge, which is a stated requirement but is learnable — the core PMO competencies are harder to develop and Boru clearly has them. The remote CET setup is ideal. A tailored cover letter that explicitly bridges banking/fintech regulatory experience to iGaming compliance will significantly improve conversion odds."
+}

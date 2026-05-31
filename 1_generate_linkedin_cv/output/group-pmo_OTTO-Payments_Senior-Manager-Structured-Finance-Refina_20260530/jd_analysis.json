@@ -1,0 +1,56 @@
+{
+  "job_id": "4412159289",
+  "title": "Senior Manager Structured Finance & Refinancing | OTTO Payments (w/m/d)",
+  "company": "OTTO Payments",
+  "location": "Hamburg, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4412159289/",
+  "match_score": 10.0,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Portfolio Manager",
+  "required_skills": [
+    "Completed degree in business administration/economics, ideally specialising in finance",
+    "Several years of experience and proven track record in developing and implementing various refinancing instruments",
+    "Sound knowledge of IFRS accounting",
+    "Extensive international network in refinancing (banks, institutional investors)",
+    "Extensive negotiation experience with financing partners",
+    "Strong analytical skills and strategic thinking",
+    "Fluent German and English (negotiation-level)"
+  ],
+  "bonus_skills": [
+    "Industry experience in banking or retail environment",
+    "Knowledge of specific instruments: Factoring, ABS, Mezzanine, securitisation"
+  ],
+  "matched_skills": [
+    "Completed degree (Master of Management & Entrepreneurship) — satisfies education requirement",
+    "Fluent English (C1) — satisfies English requirement",
+    "Strong analytical skills and structured thinking — generic transferable skill",
+    "Stakeholder reporting and executive communication at HSBC — very limited partial overlap"
+  ],
+  "missing_skills": [
+    "No structured finance or refinancing experience whatsoever (Factoring, ABS, Mezzanine, securitisation)",
+    "No IFRS accounting knowledge",
+    "No international banking/investor network",
+    "No negotiation experience with financing partners or banks",
+    "No experience developing refinancing strategies or instruments",
+    "No risk management in financial instrument context",
+    "German B1 is far below the negotiation-level German required",
+    "No background in payment, banking, or financial services product structuring"
+  ],
+  "core_responsibilities": [
+    "Analyse current and future refinancing needs",
+    "Develop innovative refinancing strategies and evaluate potential instruments",
+    "Design and implement refinancing instruments (Factoring, ABS, Mezzanine, securitisation)",
+    "Build and maintain relationships with banks, investors, rating agencies",
+    "Regular reporting on refinancing activities",
+    "Risk management: identify, assess and manage instrument-related risks"
+  ],
+  "recommended_emphasis": [
+    "This role is not suitable — do not apply",
+    "Structured finance and capital markets are highly specialised domains far removed from the candidate's PMO and project coordination background",
+    "German B1 is a disqualifying factor for negotiation-level German required in banking contexts",
+    "The USD 8M budget governance at HSBC does not constitute finance/treasury experience"
+  ],
+  "summary": "Poor match at 10.0%. This is a senior structured finance specialist role requiring deep expertise in ABS, securitisation, Factoring, IFRS, and bank/investor relationship management. The candidate has no structured finance, treasury, or capital markets background. German B1 vs negotiation-level German is a further disqualifying gap. Not recommended for application."
+}

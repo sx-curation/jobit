@@ -1,0 +1,44 @@
+{
+  "job_id": "4384268825",
+  "title": "Data Analyst / Data Engineer (m/w/d)",
+  "company": "DocCheck",
+  "location": "Cologne, North Rhine-Westphalia, Germany (On-site)",
+  "url": "https://www.linkedin.com/jobs/view/4384268825/",
+  "salary": "€36K/yr - €51K/yr",
+  "posted": "1 day ago",
+  "match_score": 44,
+  "matched_skills": [
+    "BI tools — Power BI (PL-300 certified), Qlik Sense, Looker Studio, SAP Analytics",
+    "Data analytics experience — 4+ years across multiple industries",
+    "Dashboard design — budget variance dashboards, performance reporting",
+    "Marketing analytics / tracking data context (campaign analytics, funnel analysis)"
+  ],
+  "missing_skills": [
+    "SQL / relational databases — not mentioned in CV (stated requirement)",
+    "ETL / Data Warehouse experience — not mentioned",
+    "Data lake / data management — not mentioned",
+    "Data engineering background — not mentioned"
+  ],
+  "key_requirements": [
+    "Understanding of data structures and relational databases",
+    "SQL experience (first experience acceptable)",
+    "BI tools familiarity",
+    "Data lake / ETL experience a plus",
+    "Analytical, communicative working style"
+  ],
+  "cv_highlights": [
+    "Power BI Microsoft Certified (PL-300), Qlik Sense, Looker Studio, SAP Analytics",
+    "4+ years data analytics across e-commerce, shipping, FinTech, IoT, manufacturing",
+    "Campaign analytics and funnel analysis (agency marketing context)",
+    "Multi-dimensional dashboard development (HSBC)",
+    "Data quality & QA (Hapag-Lloyd)"
+  ],
+  "gaps": [
+    "SQL not mentioned in CV — most important gap",
+    "No ETL or Data Warehouse experience",
+    "No data lake or data engineering background"
+  ],
+  "overqualification_flag": true,
+  "overqualification_note": "Role targets fresh graduates or ~2 years experience (€36K–€51K). Candidate has 4+ years experience and may be overqualified. Worth considering whether to apply.",
+  "recommendation": "Moderate match on BI tools and analytics experience. SQL gap is the critical missing piece. Also note overqualification risk — salary range and seniority level are below candidate's current profile."
+}

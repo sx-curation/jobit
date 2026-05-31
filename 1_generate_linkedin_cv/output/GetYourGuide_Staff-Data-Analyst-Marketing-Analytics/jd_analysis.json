@@ -1,0 +1,55 @@
+{
+  "job_id": "4383364447",
+  "company": "GetYourGuide",
+  "title": "Staff Data Analyst, Marketing Analytics",
+  "url": "https://www.linkedin.com/jobs/view/4383364447/",
+  "posted_date": "",
+  "match_score": 28.0,
+  "required_skills": [
+    "8+ years relevant experience in analytics, data science or BI",
+    "Strong SQL and Python (pandas, scikit-learn, pyspark)",
+    "Digital and performance marketing data experience (Google Ads, Meta)",
+    "Data visualization (Looker, Jupyter Notebooks, Databricks)",
+    "Excellent English"
+  ],
+  "bonus_skills": [
+    "Marketing journey modelling experience",
+    "Big data tools (Spark, Hive)",
+    "Statistical modelling / experimentation framework"
+  ],
+  "matched_skills": [
+    "Marketing analytics and attribution understanding",
+    "Looker Studio experience",
+    "Stakeholder insight communication",
+    "English C1",
+    "A/B testing and experiment design"
+  ],
+  "missing_skills": [
+    "8+ years experience — CV shows 4+ (major gap)",
+    "SQL — not in CV",
+    "Python — not in CV",
+    "Databricks / Spark / big data tools",
+    "Google Ads / Meta data-driven platform experience"
+  ],
+  "core_responsibilities": [
+    "Develop quantitative analysis and statistical models for marketing decisions",
+    "Propose and defend strategic recommendations to top marketing leads",
+    "Setup and analyse marketing experiments",
+    "Maintain attribution models, experimentation framework, CLV models",
+    "Mentor others in analytics skills"
+  ],
+  "culture_keywords": [
+    "travel", "Berlin", "international", "data science", "growth", "impact"
+  ],
+  "recommended_emphasis": [
+    "Score is below threshold (30) — strong mismatch on experience years and technical tools",
+    "SQL and Python are hard requirements — not in CV",
+    "8+ years requirement is significantly above CV's 4+ years",
+    "Recommend discussing with user whether to skip"
+  ],
+  "company_info": {
+    "size": "1,001-5,000",
+    "size_source": "jd_text",
+    "size_raw": "Berlin HQ, global offices — implied mid-large company"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "job_id": "4397268650",
+  "company": "Delivery Hero",
+  "title": "Senior Pricing Analyst, Product Operations (Global Pricing)",
+  "url": "https://www.linkedin.com/jobs/view/4397268650/",
+  "posted_date": "",
+  "match_score": 24,
+  "required_skills": [
+    "BigQuery",
+    "SQL",
+    "Python (modeling pipelines)",
+    "GitHub",
+    "A/B testing & applied statistics",
+    "Price elasticity modeling",
+    "Unit economics (CAC, LTV, GPO, Contribution Margin)",
+    "Airflow",
+    "Google Analytics / Amplitude",
+    "3+ years Product/Pricing Analyst in marketplace or e-commerce",
+    "English fluency"
+  ],
+  "bonus_skills": [
+    "Tableau",
+    "Feature impact modeling & forecasting",
+    "Data governance & catalog ownership",
+    "Stakeholder management with Marketing & Regional Ops"
+  ],
+  "matched_skills": [
+    "A/B testing & experiment design",
+    "English fluency (C1)",
+    "E-commerce & campaign ROI analytics (partial match for marketplace experience)",
+    "C-level data storytelling / stakeholder communication"
+  ],
+  "missing_skills": [
+    "BigQuery",
+    "SQL",
+    "Python",
+    "GitHub",
+    "Airflow",
+    "Price elasticity modeling",
+    "Unit economics (CAC, LTV, GPO, Contribution Margin)",
+    "Google Analytics / Amplitude",
+    "Tableau",
+    "Feature impact modeling & forecasting",
+    "Data catalog / data governance ownership"
+  ],
+  "core_responsibilities": [
+    "Build predictive models to estimate feature impact (MOV adjustments, service fees) on GPO, Conversion Rate, and Order Frequency",
+    "Lead A/B testing and rollout analysis for new pricing features; identify value leakage and recommend pivots",
+    "Partner with Global Marketing and Regional Ops to translate business visions into product requirements",
+    "Monitor global fee structure health and answer pricing strategy best-practice questions",
+    "Own data visualizations in Tableau/BigQuery and maintain the Value Tracker aggregating incremental revenue across regions"
+  ],
+  "culture_keywords": [
+    "fast-paced",
+    "pioneering",
+    "global",
+    "data-backed",
+    "accountability",
+    "strategic"
+  ],
+  "recommended_emphasis": [
+    "Highlight any SQL or database querying experience, even basic, if applicable",
+    "Emphasize A/B testing and experiment design experience prominently",
+    "Stress e-commerce funnel and conversion analytics background",
+    "Showcase data storytelling for senior stakeholders as a differentiator",
+    "Note: strong technical skill gap (SQL/BigQuery/Python) makes this role a low-match; consider deprioritizing"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": "operates in around 65 countries; listed on Frankfurt Stock Exchange since 2017, part of the MDAX — no explicit employee count found in JD text; match_score=24 below threshold for LinkedIn lookup"
+  }
+}

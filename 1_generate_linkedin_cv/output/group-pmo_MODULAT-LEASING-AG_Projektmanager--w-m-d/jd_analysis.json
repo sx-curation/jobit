@@ -1,0 +1,74 @@
+{
+  "job_id": "4396759558",
+  "title": "Projektmanager (w/m/d)",
+  "company": "MODULAT LEASING AG",
+  "location": "Hannover, Lower Saxony, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4396759558/",
+  "posted": "unknown",
+  "match_score": 68,
+  "company_size": null,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "required_skills": [
+    "Agiles Projektmanagement (Scrum/Agile)",
+    "Klassisches Projektmanagement",
+    "Jira",
+    "Confluence",
+    "Anforderungsmanagement (Requirements Management)",
+    "Sehr gute Deutschkenntnisse",
+    "Sehr gute Englischkenntnisse",
+    "Abgeschlossenes Studium Wirtschaftswissenschaften / Wirtschaftsinformatik oder vergleichbar"
+  ],
+  "bonus_skills": [
+    "KI-Tools / AI-assisted project delivery",
+    "Feature testing / portal QA"
+  ],
+  "matched_skills": [
+    "Agile sprint planning & delivery (Scrum) — Hapag-Lloyd",
+    "IT/digitalization project coordination — HSBC USD 8M digital transformation PMO",
+    "Cross-functional stakeholder coordination — HSBC & Hapag-Lloyd",
+    "Risk identification & escalation — HSBC",
+    "C-level reporting & communication of complex topics",
+    "Fluent German & English",
+    "Vendor & partner management",
+    "Technology operations & tech stack lifecycle management"
+  ],
+  "missing_skills": [
+    "Explicit Jira / Confluence proficiency (not stated in CV — likely used but not named)",
+    "Anforderungsmanagement / requirements documentation as primary role focus",
+    "Portal or software feature testing",
+    "AI-assisted project tooling"
+  ],
+  "key_requirements": [
+    "Steer IT and digitalization projects end-to-end (idea to go-live)",
+    "Translate business requirements into clear, actionable specifications for IT",
+    "Accompany IT development cycles, test new features, validate portal quality",
+    "Act as central liaison between business units and development team",
+    "Identify project risks and blockers early; propose pragmatic solutions"
+  ],
+  "cv_highlights": [
+    "PMO at HSBC: managed 6 workstreams across a USD 8M digital transformation, coordinated stakeholders, escalated risks to C-suite — directly mirrors the IT project bridging role",
+    "Project Coordination at Hapag-Lloyd: ran Agile sprint ceremonies (planning, retros, reviews), KPI reporting, cross-functional coordination between project teams, product owners, and stakeholders",
+    "Technology operations background: tech stack lifecycle management and vendor management align with the IT-facing responsibilities",
+    "Fluent German (business) and English — satisfies the 'sehr gute Deutsch- und Englischkenntnisse' requirement",
+    "Power BI Certified — demonstrates structured data and reporting mindset relevant to transparent project communication"
+  ],
+  "gaps": [
+    "Jira and Confluence not explicitly named in CV — should be added if used at Hapag-Lloyd or HSBC",
+    "Requirements management (Anforderungsmanagement) is a core duty here but not a labeled skill in CV — needs to be surfaced through HSBC/Hapag-Lloyd descriptions",
+    "No explicit portal or feature testing experience mentioned",
+    "Academic background not stated in the CV summary — if Wirtschaftsinformatik or related, should be stated clearly"
+  ],
+  "recommended_emphasis": [
+    "Lead with HSBC PMO experience as proof of end-to-end IT project ownership and stakeholder bridging",
+    "Explicitly name Jira and Confluence in skills or experience sections if used",
+    "Reframe cross-functional coordination as 'Anforderungsmanagement' — highlight gathering, structuring, and communicating business requirements to IT",
+    "Highlight Agile ceremonies at Hapag-Lloyd (sprint planning, retrospectives) as evidence of modern project methodology",
+    "Mention any experience with testing, UAT, or feature validation — even informally — to close the portal QA gap",
+    "Use CV phrasing that mirrors JD language: 'liaison between business unit and IT', 'elicit and document requirements'"
+  ],
+  "recommendation": "Good fit — apply with targeted CV. The HSBC digital transformation PMO and Hapag-Lloyd Agile coordination experience map directly to the core duties. The main gaps are cosmetic: Jira/Confluence must be named explicitly in the CV, and requirements management should be surfaced as a labeled competency. Hannover is ~60km from Lüneburg — commutable or worth relocating. Recommend applying."
+}

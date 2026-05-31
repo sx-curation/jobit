@@ -1,0 +1,36 @@
+{
+  "job_id": "st_fc9660bd",
+  "title": "Marketing Manager - Healthcare (m/w/d)",
+  "company": "ONCARE GmbH",
+  "location": "Munich",
+  "url": "https://www.stepstone.de/stellenangebote--Marketing-Manager-Healthcare-m-w-d-Munich-ONCARE-GmbH--13903901-inline.html",
+  "match_score": 42,
+  "company_size": null,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "summary": "Candidate has strong strategic product marketing credentials (positioning, competitive analysis, GTM, 4+ years B2B) that align with the role's product marketing pillar. However, the role places heavy emphasis on hands-on digital execution — HubSpot, Google/LinkedIn Ads, GA4, SEO/SEA, and marketing automation — none of which appear in the candidate's toolset. German fluency is listed as required but candidate is at B1+, representing a meaningful risk for a Munich-based HealthTech role.",
+  "recommended_emphasis": [
+    "Highlight product positioning, competitive analysis, and market segmentation experience as direct match to the strategic product marketing scope",
+    "Emphasize multi-market GTM execution (EMEA/APAC) and KPI/ROI reporting to demonstrate analytical and campaign management capability",
+    "Stress any exposure to B2B lead generation, sales enablement collateral, or demand generation workflows",
+    "Reference any CRM or marketing tool usage (even adjacent tools like Power BI for funnel analysis) to partially address the automation gap",
+    "Mention any healthcare, MedTech, or digital health adjacency from education at Leuphana or project work"
+  ],
+  "missing_skills": [
+    "HubSpot or comparable marketing automation platform (required)",
+    "Google Ads and LinkedIn Ads — paid performance marketing execution (required)",
+    "GA4 / conversion tracking and performance KPI analysis (required)",
+    "SEO and SEA hands-on experience (required)",
+    "Business-level German fluency — candidate is B1+, role requires fließend (required)"
+  ],
+  "risk_flags": [
+    "German language gap: B1+ vs. required 'fließendes Deutsch' — likely disqualifying for a Munich-based startup role",
+    "No digital marketing execution tools in CV (HubSpot, Google Ads, GA4, SEO) — role is hands-on, not purely strategic",
+    "No healthcare industry experience mentioned — listed as 'von Vorteil' but relevant for HealthTech positioning credibility",
+    "Match score below 50: company size lookup via LinkedIn skipped per policy"
+  ],
+  "_source": "stepstone"
+}

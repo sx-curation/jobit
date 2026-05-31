@@ -1,0 +1,56 @@
+{
+  "job_id": "4411964798",
+  "title": "Pricing Manager (m/w/d)",
+  "company": "Linklaters Germany",
+  "location": "Germany",
+  "url": "https://www.linkedin.com/jobs/view/4411964798/",
+  "match_score": 20.0,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Portfolio Manager",
+  "_note": "Job_id 4411968827 is a duplicate posting of this role. Scored based on 4411964798.",
+  "required_skills": [
+    "At least 5 years of leadership experience in a finance or pricing function within a global professional services or corporate environment, ideally in the legal sector",
+    "Demonstrated ability to lead a team delivering rigorous finance and audit activities, with experience in payroll functions",
+    "Proven track record in global fee negotiation and analysing competitive intelligence in the legal market",
+    "Strong commercial acumen and advanced SAP skills",
+    "Advanced analytics platform proficiency",
+    "Fluency in business English"
+  ],
+  "bonus_skills": [
+    "Legal sector industry experience",
+    "Experience with legal market competitive intelligence",
+    "Experience with pricing risk and profitability management"
+  ],
+  "matched_skills": [
+    "Fluent English (C1) — satisfies business English fluency requirement",
+    "Analytical and commercial acumen: KPI framework design, budget variance reporting, data storytelling at HSBC — limited generic overlap with commercial analysis",
+    "Stakeholder management: C-suite reporting at HSBC — very limited partial overlap with partner-facing discussions"
+  ],
+  "missing_skills": [
+    "No pricing function experience — neither in professional services, legal, nor any other sector",
+    "No 5 years leadership experience in a finance or pricing function",
+    "No global fee negotiation experience",
+    "No SAP skills (explicitly required with 'advanced' level)",
+    "No legal industry knowledge — the JD explicitly prefers legal sector experience and the entire context is law firm specific",
+    "No experience with payroll functions, audit activities, or finance team leadership",
+    "No pricing research methodology experience (win/loss analysis, willingness-to-pay, competitive intelligence)"
+  ],
+  "core_responsibilities": [
+    "Support implementation of firm pricing strategy to maximise margin and recovery",
+    "Participate in global fee deal negotiations; set and agree pricing positions with client partners",
+    "Deliver practical pricing recommendations and insights reflecting commercial considerations",
+    "Lead quantitative analysis and financial modelling for price-setting",
+    "Continuously enhance pricing processes; train lawyers and business teams",
+    "Oversee reporting systems to track pricing outcomes; manage pricing research initiatives",
+    "Lead and develop a high-performing pricing team"
+  ],
+  "recommended_emphasis": [
+    "This role is not suitable — do not apply",
+    "Law firm pricing is a highly specialised function with a specific professional services ecosystem that the candidate has no experience in",
+    "The SAP requirement (advanced level) is a hard technical gap",
+    "No amount of PMO or programme governance experience bridges the gap to partner-facing legal fee negotiation and pricing function leadership"
+  ],
+  "summary": "Poor match at 20.0%. This is a specialised law firm pricing manager role requiring 5+ years of dedicated pricing or finance function leadership, global fee negotiation experience, SAP proficiency, and ideally legal sector background. The candidate has no pricing function experience, no SAP skills, no legal industry exposure, and no team leadership in a finance function. Not recommended for application."
+}

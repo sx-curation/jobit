@@ -1,0 +1,75 @@
+{
+  "job_id": "4374892097",
+  "title": "Project Management Office - PMO (all gender)",
+  "company": "ALTEN Germany",
+  "location": "Bremen, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4374892097/",
+  "posted": "unknown",
+  "match_score": 45,
+  "company_size": "5,001–10,000",
+  "company_info": {
+    "size": "5,001–10,000",
+    "size_source": "unavailable",
+    "size_raw": "not found in JD text; orchestrator context: large engineering/IT consulting company"
+  },
+  "required_skills": [
+    "Programme/project management of complex technical programmes",
+    "Work Breakdown Structure (WBS) planning, milestones, dependencies",
+    "Risk and opportunity management, escalation templates",
+    "Steering Committee management and status reporting",
+    "Cross-functional stakeholder coordination (technical leads)",
+    "Proposal/bid management (time/cost structure, deliverables)",
+    "Project management certification (PMP/PRINCE2 or equivalent)",
+    "Management communication (C-level / executive)"
+  ],
+  "bonus_skills": [
+    "Multi-stakeholder programme management",
+    "Cost and time structure planning in bid/proposal context"
+  ],
+  "matched_skills": [
+    "Risk escalation and prioritisation management (HSBC PMO)",
+    "Steering Committee preparation and management (HSBC PMO)",
+    "C-level / C-suite reporting and data storytelling (HSBC PMO)",
+    "Cross-functional stakeholder coordination (HSBC PMO, Hapag-Lloyd)",
+    "Programme planning and multi-workstream coordination (HSBC USD 8M programme)",
+    "Agile sprint planning and delivery (Hapag-Lloyd)",
+    "KPI framework design and performance reporting (Hapag-Lloyd)"
+  ],
+  "missing_skills": [
+    "Engineering/aerospace/automotive/defense technical programme context",
+    "Formal PM certification (PMP, PRINCE2, or German equivalent — not listed in CV)",
+    "Proposal/bid management (Angebots-/Proposal-Management) experience",
+    "Work Breakdown Structure (WBS) explicit experience"
+  ],
+  "key_requirements": [
+    "Build and maintain programme planning including WBS, milestones, dependencies and resource planning",
+    "Own risk and opportunity management including escalation templates and mitigation actions",
+    "Manage Steering Committee meetings, status reporting, decision-making and escalation logic",
+    "Collaborate closely with Systems Architect, Commercial & Subcontract Manager, and Requirements & Interface Manager",
+    "Support the proposal/bid phase with time/cost structure, assumptions, process management and deliverable planning"
+  ],
+  "cv_highlights": [
+    "Led PMO operations for USD 8M digital transformation programme at HSBC — directly matches programme governance scale",
+    "Prepared Steering Committee materials and managed C-suite reporting cadence at HSBC",
+    "Risk escalation and prioritisation management cited as core skill",
+    "Cross-functional coordination across multiple workstreams at HSBC and Hapag-Lloyd",
+    "Fluent German — essential for this German-language role in Bremen",
+    "Power BI certified — strong for data-driven status reporting"
+  ],
+  "gaps": [
+    "No engineering/technical programme context (ALTEN serves aerospace, automotive, defense — Boru's background is banking/logistics digital transformation)",
+    "No PM certification listed (JD explicitly requires 'Zusatzqualifikationen im Projektmanagement')",
+    "No proposal or bid management experience (a distinct listed responsibility)",
+    "Bremen is ~130km from Lüneburg — relocation or long commute required; JD mentions 'mobiles Arbeiten nach Absprache' (hybrid by agreement only)",
+    "No mention of WBS tooling or scheduling software (MS Project, Primavera etc.)"
+  ],
+  "recommended_emphasis": [
+    "Reframe HSBC PMO as complex multi-workstream programme governance with budget accountability (USD 8M)",
+    "Highlight Steering Committee ownership and C-suite escalation management as direct experience match",
+    "Emphasise risk escalation framework design and prioritisation methodology",
+    "Stress German language proficiency prominently — this is a German-language role",
+    "If any proposal/RFP involvement exists at HSBC or Hapag-Lloyd, surface it explicitly",
+    "Consider adding PMP/PRINCE2 as in-progress or planned to address certification gap"
+  ],
+  "recommendation": "Weak match (45/100). Core PMO competencies align well — Steering Committee, risk escalation, C-suite reporting, multi-workstream coordination — but two structural gaps significantly reduce fit: (1) ALTEN's clients are in engineering/aerospace/automotive/defense and the JD requires 'fundierte Erfahrung im Programm-/Projektmanagement komplexer technischer Vorhaben', which Boru's banking and logistics background does not clearly demonstrate; (2) the JD explicitly requires PM additional qualifications (PMP/PRINCE2 or equivalent) which Boru does not list. The location gap (130km) adds further friction. Apply only if Boru can credibly address the technical programme context gap in the cover letter and has any PM certification to cite."
+}

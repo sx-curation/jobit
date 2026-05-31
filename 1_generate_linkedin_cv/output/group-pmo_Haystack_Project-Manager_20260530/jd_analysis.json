@@ -1,0 +1,45 @@
+{
+  "job_id": "4422523571",
+  "title": "Project Manager",
+  "company": "Haystack",
+  "location": "Germany",
+  "url": "https://www.linkedin.com/jobs/view/4422523571/",
+  "match_score": 14.3,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Enterprise PMO (EPMO) Director",
+  "required_skills": [
+    "Completed vocational training with craft and/or technical focus (preferably in construction or related trades)",
+    "Basic knowledge of construction cost calculation",
+    "Teamwork skills and service-oriented mindset",
+    "Strong communication and interpersonal abilities"
+  ],
+  "bonus_skills": [
+    "Master craftsman qualification"
+  ],
+  "matched_skills": [
+    "Communication and interpersonal skills: confirmed across multiple roles",
+    "Teamwork and coordination: cross-functional team coordination"
+  ],
+  "missing_skills": [
+    "Vocational training in craft/technical/construction trades (candidate has academic management degrees, not trade qualifications)",
+    "Water and fire damage restoration expertise",
+    "Construction cost calculation",
+    "Scheduling restoration technicians and subcontractors",
+    "Master craftsman qualification"
+  ],
+  "core_responsibilities": [
+    "Project management for water and fire damage restoration work",
+    "Conducting damage assessments, inspections, estimations, and oversight",
+    "Coordinating and scheduling restoration technicians and subcontractors",
+    "Ensuring client satisfaction throughout the restoration process"
+  ],
+  "recommended_emphasis": [
+    "This role is a poor match — application is not recommended",
+    "This is a skilled trades/construction project manager role, not a professional PM role",
+    "The candidate's academic and corporate background is entirely misaligned with this vocational position",
+    "No amount of reframing can bridge the gap between corporate PMO experience and restoration project management"
+  ],
+  "summary": "Match score 14.3% — poor match. This is a skilled trades project manager role for water and fire damage restoration, requiring vocational craft training and construction/damage assessment expertise. The candidate has an academic business background in corporate PMO and technology operations — a complete mismatch in domain and qualification type. Application is not recommended."
+}

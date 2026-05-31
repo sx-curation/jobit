@@ -1,0 +1,55 @@
+{
+  "job_id": "4403571670",
+  "title": "Financial Business Analyst BI & Controlling (m/w/d)",
+  "company": "Instaffo",
+  "location": "Germany (near Hamburg)",
+  "url": "https://www.linkedin.com/jobs/view/4403571670/",
+  "match_score": 50.0,
+  "grade": "moderate_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Controller",
+  "required_skills": [
+    "Degree in business administration, business informatics, industrial engineering or comparable",
+    "Professional experience in BI, controlling, or FP&A environment",
+    "High expertise in Power BI (semantic models and reporting)",
+    "Good SQL skills",
+    "Experience with AI systems for automation and openness to new technologies",
+    "Deep understanding of P&L, cost structures, and working capital; analytical and structured working style",
+    "Ability to communicate complex issues to target groups; enjoy working in interdisciplinary teams",
+    "German at minimum C1 level",
+    "Fluent English (minimum B1)"
+  ],
+  "bonus_skills": [
+    "Experience related to supply chain KPIs and Integrated Business Planning (IBP)"
+  ],
+  "matched_skills": [
+    "Power BI (PL-300 certified) — directly and strongly satisfies the Power BI expertise requirement; semantic models and DAX reporting implied by certification",
+    "Master of Management & Entrepreneurship (Leuphana) — satisfies degree requirement",
+    "BI/reporting experience: built multi-dimensional budget variance dashboards at HSBC; KPI reporting at Hapag-Lloyd — partially satisfies BI/controlling experience requirement",
+    "AI tool usage (ChatGPT, Claude) in CV — partially satisfies AI systems/automation openness",
+    "Analytical and structured working style: KPI framework design, data storytelling at HSBC — satisfies analytical style requirement",
+    "Communication of complex data to senior stakeholders: C-suite escalation, sprint review reports — satisfies communication requirement",
+    "Fluent English — satisfies B1 English minimum"
+  ],
+  "missing_skills": [
+    "German B1 falls short of the required C1 minimum — this is an explicit hard requirement",
+    "No SQL skills — explicitly required for data querying and analysis",
+    "No formal controlling or FP&A role experience (the HSBC role was PMO budget tracking, not financial accounting/controlling)",
+    "No P&L ownership, cost structure analysis, or working capital management experience",
+    "No experience with supply chain KPIs or IBP (bonus gap)"
+  ],
+  "core_responsibilities": [
+    "Build and develop Power BI reports and data/semantic models including KPI definition as unified management basis",
+    "Analyse operational and financial KPIs (costs, margins, volumes, inventories) including variance, root-cause and structural analyses",
+    "Financial valuation of analysis results (P&L, cost and working capital effects) and derivation of action recommendations",
+    "Further develop BI-supported planning and control processes in FP&A environment and standardise reporting/controlling structures"
+  ],
+  "recommended_emphasis": [
+    "Lead strongly with Power BI PL-300 certification — this is the single highest-weight requirement and the candidate has the certification",
+    "Reframe the HSBC budget tracking role: emphasise multi-dimensional variance analysis, burn-rate modelling, and dashboard design as FP&A-adjacent work",
+    "Address the German language gap in the cover letter — B1 is below C1; the candidate should indicate active improvement (e.g., enrolled in language course)",
+    "Note the SQL gap honestly — if the candidate has any SQL exposure, even basic querying, mention it; otherwise flag as a learning priority"
+  ],
+  "summary": "Moderate match at 50.0%. The Power BI PL-300 certification is a strong differentiator and directly addresses the primary technical requirement. The HSBC budget governance and dashboard work provides adjacent FP&A evidence. However, the German C1 requirement is an explicit hard barrier (candidate is B1), and the absence of SQL skills is a meaningful gap for a BI/controlling role. Worth applying with a strong cover letter addressing the German language development — the PL-300 may compensate if the hiring manager has flexibility on language level."
+}

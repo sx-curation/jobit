@@ -1,0 +1,44 @@
+{
+  "job_id": "4397710551",
+  "title": "Senior Marketing Analyst (all genders)",
+  "company": "Glow25",
+  "location": "Germany (Remote)",
+  "url": "https://www.linkedin.com/jobs/view/4397710551/",
+  "posted": "8 hours ago",
+  "match_score": 24,
+  "matched_skills": [
+    "4+ years marketing analytics experience (e-commerce, multi-sector)",
+    "Funnel and CRO analysis",
+    "Cohort analysis and CLTV modelling"
+  ],
+  "missing_skills": [
+    "GTM (client-side and server-side) — core requirement",
+    "GA4 implementation and troubleshooting — core requirement",
+    "Marketing pixels (Meta, Google Ads, TikTok, Affiliate) — core requirement",
+    "SQL — hard requirement",
+    "dbt or similar data transformation tools — hard requirement",
+    "Consent-based tracking / CMP / GDPR attribution logic"
+  ],
+  "key_requirements": [
+    "4+ years marketing analytics in DTC/e-commerce with subscription models",
+    "Deep GTM (client + server-side), GA4, marketing pixels",
+    "Strong SQL + dbt",
+    "Attribution frameworks, GDPR/CMP tracking, funnel/CRO analysis",
+    "ROAS, MER, CAC, contribution margin analysis"
+  ],
+  "cv_highlights": [
+    "4+ years international marketing analytics experience",
+    "Funnel & conversion analysis across e-commerce and B2B",
+    "Cohort analysis and customer segmentation",
+    "A/B testing & experiment design",
+    "Cross-functional stakeholder communication"
+  ],
+  "gaps": [
+    "No GTM or GA4 hands-on implementation experience mentioned",
+    "No SQL explicitly listed in tools",
+    "No dbt or data transformation tools experience",
+    "No marketing pixels (Meta, Google Ads, TikTok) experience",
+    "No DTC/subscription e-commerce background"
+  ],
+  "recommendation": "Low match. Core technical stack (GTM, GA4, SQL, dbt, pixels) is largely missing from CV. Strategic and analytical experience is relevant but role requires hands-on technical implementation expertise."
+}

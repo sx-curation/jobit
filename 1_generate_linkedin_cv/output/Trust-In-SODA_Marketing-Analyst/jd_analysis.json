@@ -1,0 +1,54 @@
+{
+  "job_id": "4389814672",
+  "company": "Trust In SODA (client: German e-commerce company)",
+  "title": "Marketing Analytics Lead",
+  "url": "https://www.linkedin.com/jobs/view/4389814672/",
+  "posted_date": "",
+  "match_score": 63.0,
+  "required_skills": [
+    "Experience in Marketing Analytics, Growth Analytics or similar data-focused roles",
+    "Proven track record of leading data initiatives or mentoring analysts",
+    "SQL and BI tools proficiency",
+    "Excellent communication skills for non-technical stakeholders",
+    "Commercial mindset with data-to-growth focus"
+  ],
+  "bonus_skills": [
+    "Analytics platforms experience",
+    "E-commerce background"
+  ],
+  "matched_skills": [
+    "Marketing Analytics experience across multiple roles (IPC, GRG Banking, Moli Media)",
+    "BI tools (Power BI PL-300, Looker Studio)",
+    "KPI design, attribution modelling, customer segmentation",
+    "Stakeholder communication and data storytelling (C-suite level at HSBC)",
+    "Commercial mindset and ROI focus",
+    "E-commerce experience (Moli Media)"
+  ],
+  "missing_skills": [
+    "SQL — not mentioned in CV (likely a soft filter here, not hard requirement)",
+    "Team leadership / mentoring analysts experience",
+    "Hamburg presence (1x/month in-office)"
+  ],
+  "core_responsibilities": [
+    "Lead and shape marketing analytics strategy across paid, CRM, lifecycle channels",
+    "Partner with marketing, product and data teams to define KPIs and measure performance",
+    "Turn complex data into actionable insights for campaign optimisation",
+    "Own and improve reporting, dashboards, and attribution models",
+    "Guide cross-functional teams and act as bridge between technical and business sides"
+  ],
+  "culture_keywords": [
+    "data-led", "growth", "ownership", "e-commerce", "scale", "Hamburg"
+  ],
+  "recommended_emphasis": [
+    "Lead with Marketing Analytics background across B2B and e-commerce sectors",
+    "Highlight Power BI (PL-300) and Looker Studio as explicit BI tools match",
+    "HSBC C-suite data storytelling is a strong 'bridge between technical and business' signal",
+    "Customer segmentation and attribution from CV are direct matches",
+    "SQL gap is a risk — frame as 'comfortable working with data tools, learning SQL'"
+  ],
+  "company_info": {
+    "size": "51-200",
+    "size_source": "jd_text",
+    "size_raw": "Trust In SODA: 51-200 employees (recruitment agency); client is a German e-commerce company"
+  }
+}

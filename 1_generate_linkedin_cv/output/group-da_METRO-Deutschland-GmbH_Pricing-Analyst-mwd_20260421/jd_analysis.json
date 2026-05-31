@@ -1,0 +1,65 @@
+{
+  "job_id": "4394673321",
+  "company": "METRO Deutschland GmbH",
+  "title": "Pricing Analyst (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4394673321/",
+  "posted_date": "2 weeks ago",
+  "match_score": 42,
+  "required_skills": [
+    "SQL / BigQuery / Datenbankstrukturen",
+    "Master- oder Diplomstudium mit quantitativem Schwerpunkt (Statistik, BWL, VWL, Wirtschaftsmathematik, Wirtschaftsinformatik)",
+    "MS Office / Excel",
+    "Hohe analytische Fähigkeiten und strukturierte Arbeitsweise",
+    "Sehr gute Problemlösungsfähigkeiten",
+    "Sehr gute Deutschkenntnisse",
+    "Sehr gute Englischkenntnisse"
+  ],
+  "bonus_skills": [
+    "Google Looker Studio (implied from dashboard responsibility)",
+    "Google BigQuery (listed as Erfahrung von Vorteil alongside Excel)"
+  ],
+  "matched_skills": [
+    "Hohe analytische Fähigkeiten (matched via data-driven analytics background)",
+    "Problemlösungsfähigkeiten (matched via cross-functional analytics roles)",
+    "Sehr gute Englischkenntnisse (matched)",
+    "Dashboard creation / C-level data storytelling (partial match to Looker Studio responsibility)",
+    "Cross-functional collaboration with Sales/Category stakeholders (matched via Hapag-Lloyd and Minth experience)"
+  ],
+  "missing_skills": [
+    "SQL / BigQuery / database query proficiency (not mentioned in CV)",
+    "Google Looker Studio (not mentioned in CV)",
+    "Excel / MS Office advanced proficiency (not explicitly stated in CV)",
+    "Pricing strategy or pricing analytics domain experience",
+    "German language proficiency (not confirmed in CV)",
+    "Quantitative Master/Diplom degree in Statistics, Economics, or Informatics"
+  ],
+  "core_responsibilities": [
+    "Write complex SQL and Google BigQuery queries; analyse large and complex datasets; build dashboards in Google Looker Studio",
+    "Contribute to the development and further refinement of pricing strategy",
+    "Execute tool-supported pricing processes (price editing, review, and import)",
+    "Collaborate with Category Management and Sales to address pricing-specific issues",
+    "Provide ad-hoc economic feasibility studies"
+  ],
+  "culture_keywords": [
+    "Leidenschaft (passion)",
+    "Kompetenz (competence)",
+    "Empathie (empathy)",
+    "Teamfähigkeit (teamwork)",
+    "Kommunikationsstärke (communication)",
+    "Verantwortungsbewusstsein (accountability)",
+    "prozessorientiertes unternehmerisches Denken (process-oriented entrepreneurial thinking)",
+    "Durchsetzungsvermögen (assertiveness)"
+  ],
+  "recommended_emphasis": [
+    "Highlight any SQL or data querying experience, even if from academic or side projects",
+    "Emphasise dashboard-building experience (HSBC budget dashboards, Minth executive dashboards) and connect it explicitly to BI/reporting tools",
+    "Frame the Minth and HSBC analytics work in terms of large-dataset analysis and structured reporting",
+    "Stress cross-functional stakeholder collaboration with commercial/sales teams from Hapag-Lloyd CX role",
+    "Mention any pricing, margin, or revenue analysis experience, even if indirect (e-commerce ROI, campaign ROI)"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

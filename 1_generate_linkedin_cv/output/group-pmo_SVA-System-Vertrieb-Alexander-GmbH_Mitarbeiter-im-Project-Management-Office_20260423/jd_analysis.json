@@ -1,0 +1,61 @@
+{
+  "job_id": "4392845844",
+  "company": "SVA System Vertrieb Alexander GmbH",
+  "title": "Mitarbeiter im Project Management Office (PMO) (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4392845844/",
+  "posted_date": "",
+  "match_score": 52,
+  "required_skills": [
+    "Betriebswirtschaftliches Studium oder kaufmännische Ausbildung",
+    "Microsoft Office (Word, Excel)",
+    "Sehr gute Deutschkenntnisse C1 oder höher",
+    "Englischkenntnisse B2 oder höher",
+    "Strukturierte und selbstständige Arbeitsweise"
+  ],
+  "bonus_skills": [
+    "Kenntnisse im IT-Umfeld"
+  ],
+  "matched_skills": [
+    "Business Administration background (BWL-equivalent experience, HSBC PMO, ECE Business Development)",
+    "Microsoft Office — Excel (listed in tools; Power BI certified)",
+    "English C1 (exceeds B2 requirement)",
+    "Strukturierte Arbeitsweise — evidenced across PMO, agile delivery, and reporting roles",
+    "IT-Umfeld Kenntnisse — Hapag-Lloyd tech project coordination, IoT/IT sector experience (bonus)"
+  ],
+  "missing_skills": [
+    "German C1 — candidate is B1; role is at a German-language Systemhaus and explicitly requires C1 or higher (hard gap)",
+    "Recruitment / staff search and pre-screening — no direct experience sourcing or pre-screening staff for client projects",
+    "Mitarbeiterprofile Pflege — no direct experience managing employee profile databases",
+    "Skill-Datenbank Management — no explicit experience maintaining skill/competency databases"
+  ],
+  "core_responsibilities": [
+    "Eigenständige Suche und Vorauswahl von Mitarbeitenden für Kundenprojekte",
+    "Pflege und Verwaltung von Mitarbeiterprofilen",
+    "Management der Skill-Datenbank und Sicherstellung deren Aktualität",
+    "Proaktive Kommunikation als Schnittstelle mit Consultants, Vertrieb und Führungskräften",
+    "Weiterentwicklung des PMO regional und überregional"
+  ],
+  "culture_keywords": [
+    "Eigeninitiative",
+    "Zuverlässigkeit",
+    "Diskretion",
+    "Qualitätsbewusstsein",
+    "Service- und Kundenorientierung",
+    "Lösungskompetenz",
+    "Proaktive Kommunikation"
+  ],
+  "recommended_emphasis": [
+    "PMO Operations at HSBC — budget tracking, cross-functional coordination, and programme governance directly maps to PMO support role",
+    "Cross-functional stakeholder interface experience (Product, Engineering, C-suite, Consultants) — mirrors Schnittstelle requirement",
+    "Excel and data reporting skills (Power BI, dashboards, burn-rate reports) — demonstrates structured data management capability",
+    "Agile delivery coordination at Hapag-Lloyd — sprint ceremonies, documentation, and reporting relevant to PMO support context",
+    "IT-Umfeld exposure across Hapag-Lloyd and IoT/IT sector roles — addresses the wünschenswert IT knowledge criterion"
+  ],
+  "company_info": {
+    "size": "1,001–5,000",
+    "size_source": "jd_text",
+    "size_raw": "eines der führenden Systemhäuser in Deutschland"
+  },
+  "_score_notes": "Raw skill/responsibility match ~78% before language penalty. German C1 is a hard stated requirement; candidate's B1 is a significant gap for a German-language Systemhaus role with daily communication duties. Hard gap penalty applied (-26 points). Part-time 20h/week is a structural note but does not affect skill scoring.",
+  "_source": "linkedin"
+}

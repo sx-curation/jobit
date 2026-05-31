@@ -1,0 +1,73 @@
+{
+  "job_id": "st_606f2992",
+  "title": "Brand Marketing Lead (m/w/d)",
+  "company": "bonify - Made by Forteil GmbH",
+  "location": "Berlin",
+  "url": "https://www.stepstone.de/stellenangebote--Brand-Marketing-Lead-m-w-d-Berlin-bonify-Made-by-Forteil-GmbH--13914469-inline.html",
+  "match_score": 28,
+  "company_size": null,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "summary": "Candidate has relevant FinTech and campaign analytics experience that partially aligns with the role, but the position is fundamentally a brand leadership role requiring native German, 5+ years of brand-specific experience, and team management — areas where the CV shows significant gaps. The profile is analytics- and data-oriented rather than brand-creative, and German proficiency at B1+ falls well short of the native-level requirement.",
+  "required_skills": [
+    "5+ years in brand, marketing or campaign roles (strategic + operational)",
+    "Proven brand building track record",
+    "Cross-channel campaign planning and orchestration",
+    "Media planning knowledge",
+    "Brand storytelling and content development",
+    "Team leadership / mentoring",
+    "Project management and prioritization",
+    "Native-level German communication"
+  ],
+  "bonus_skills": [
+    "FinTech / Tech / D2C background",
+    "Agency experience"
+  ],
+  "matched_skills": [
+    "Campaign performance and ROI analytics",
+    "Cross-functional team coordination",
+    "Project management (Scrum, SAFe)",
+    "FinTech background (HSBC)",
+    "Marketing KPI framework design",
+    "Multi-market campaign coverage (EMEA, APAC)"
+  ],
+  "missing_skills": [
+    "Native-level German (role explicitly requires Muttersprache Deutsch; CV shows B1+)",
+    "Brand strategy ownership and positioning experience",
+    "Team leadership or people management",
+    "Media planning knowledge",
+    "Brand governance and brand guidelines management"
+  ],
+  "core_responsibilities": [
+    "Own brand strategy, positioning and messaging",
+    "Develop and execute cross-channel campaigns (web, social, CRM, paid)",
+    "Maintain brand consistency across all touchpoints",
+    "Measure and optimize brand KPIs (awareness, engagement, consideration, conversion)",
+    "Lead a small team and collaborate with performance, CRM, product and data functions"
+  ],
+  "culture_keywords": [
+    "fast-growing environment",
+    "hands-on execution",
+    "cross-functional collaboration",
+    "messbaren Impact",
+    "klare Story"
+  ],
+  "recommended_emphasis": [
+    "Highlight FinTech experience at HSBC (digital transformation, C-suite reporting) to demonstrate industry familiarity",
+    "Emphasize campaign analytics and ROI measurement work at Intelligent Power and GRG Banking as evidence of campaign execution understanding",
+    "Showcase cross-functional collaboration skills and project management credentials (Scrum, SAFe)",
+    "Frame Marketing Manager and Product Marketing Manager roles as brand-adjacent experience with strategic input",
+    "Stress any multilingual content or cross-market communication work to partially address the language dimension"
+  ],
+  "risk_flags": [
+    "German language gap: role requires native-level German (Muttersprache), CV shows B1+ — likely a hard screening filter",
+    "Experience shortfall: JD requires 5+ years in brand/marketing roles; CV total is ~4 years and not primarily brand-focused",
+    "No team leadership evidence: JD requires leading a small team; CV shows no people management experience",
+    "Brand vs. analytics mismatch: candidate profile is data/analytics-oriented, not brand-creative; this is a core brand leadership role",
+    "No media planning background evident in CV"
+  ],
+  "_source": "stepstone"
+}

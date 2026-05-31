@@ -1,0 +1,60 @@
+{
+  "job_id": "4412166277",
+  "title": "Technical Program Manager",
+  "company": "ECS",
+  "location": "Wiesbaden, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4412166277/",
+  "match_score": 6.3,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Program Management Officer",
+  "required_skills": [
+    "U.S. Citizenship",
+    "Bachelor's degree in Computer Science, Information Security, STEM, or Business/Management with 8+ years IT experience",
+    "Active Secret security clearance (or ability to obtain TS/SCI)",
+    "Active DoD 8140 IAT Level II certification (Security+ or higher)",
+    "Azure cloud architecture knowledge",
+    "Experience with NIST 800-53 security controls, STIG hardening, DISA requirements, RMF lifecycle",
+    "CI/CD pipelines, infrastructure-as-code, automated deployment practices",
+    "DoD/federal environment program management",
+    "Advanced Microsoft Office proficiency"
+  ],
+  "bonus_skills": [
+    "Active DoD Top Secret clearance",
+    "PMP or CAPM certification",
+    "DoD 8140 IAT Level III certification",
+    "Scrum Master experience / Agile methodology",
+    "JIRA or ServiceNow workflow design"
+  ],
+  "matched_skills": [
+    "Microsoft Office proficiency: confirmed across multiple roles",
+    "Cross-functional stakeholder management and program coordination: HSBC and Hapag-Lloyd",
+    "JIRA experience (bonus skill partial): listed as tool in CV"
+  ],
+  "missing_skills": [
+    "U.S. Citizenship (candidate is Germany-based, not a US citizen — absolute disqualifier)",
+    "Active Secret security clearance (not obtainable without US citizenship)",
+    "DoD 8140 IAT certifications (Security+, CASP+, CISSP) — no security certifications",
+    "Azure cloud architecture (no cloud infrastructure experience)",
+    "NIST 800-53, STIG, DISA, RMF lifecycle (no cybersecurity compliance experience)",
+    "CI/CD pipelines and infrastructure-as-code (no engineering background)",
+    "DoD or federal government program experience",
+    "8+ years IT experience with increasing PM responsibility"
+  ],
+  "core_responsibilities": [
+    "Support IL5/IL6 programs in operational DoD environment",
+    "Lead phased program initiation, planning, execution, and monitoring",
+    "Manage teams implementing NIST 800-53 security controls and RMF lifecycle",
+    "Translate mission requirements into technical implementation roadmaps",
+    "Interface with government stakeholders to communicate system status and risks",
+    "Oversee program-related contract actions and financial tasks"
+  ],
+  "recommended_emphasis": [
+    "This role is entirely inappropriate — application is impossible",
+    "US Citizenship is an absolute requirement that cannot be met",
+    "Security clearance requirements further disqualify the candidate",
+    "The technical cybersecurity domain is completely outside the candidate's background"
+  ],
+  "summary": "Match score 6.3% — poor match. This role requires US Citizenship, active DoD security clearance, and deep cybersecurity/cloud infrastructure expertise. The candidate is Germany-based, not a US citizen, and has zero cybersecurity or cloud engineering background. This is an absolute disqualifier — application is impossible and should not be pursued."
+}

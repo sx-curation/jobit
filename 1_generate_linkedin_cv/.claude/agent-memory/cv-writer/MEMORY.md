@@ -1,0 +1,1 @@
+- [Candidate profile — Boru Lai](user_candidate_profile.md) — confirmed skills, tools, verified numbers, and experience timeline; use to prevent fabrication in any CV rewrite

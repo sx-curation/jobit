@@ -1,0 +1,35 @@
+{
+  "eval_timestamp": "2026-04-07T00:00:00",
+  "folder": "Bionorica-SE_Marketing-Analyst-Sales-Analyst-mwd",
+  "overall": "WARN",
+  "fabrication": {
+    "status": "warn",
+    "issues": [
+      {
+        "type": "ADDED_SKILL",
+        "severity": "medium",
+        "detail": "cv_draft Skills 列出「Strategic annual and budget planning support」，cv_parsed skills 列表中无此精确词条，但该能力来自 HSBC 经历 bullets（budget variance dashboards, burn-rate reports），有实际工作依据。",
+        "location": "Skills > Core Competencies"
+      },
+      {
+        "type": "ADDED_SKILL",
+        "severity": "medium",
+        "detail": "cv_draft Skills 列出「Cost monitoring & financial performance reporting」，cv_parsed skills 列表中无此词条，但来源于 HSBC 经历（cost attribution, weekly burn-rate reports），有实际工作依据。",
+        "location": "Skills > Core Competencies"
+      }
+    ]
+  },
+  "word_count": {
+    "status": "PASS",
+    "count": 230,
+    "limit": 400,
+    "language": "English"
+  },
+  "jd_coverage": {
+    "required_hit_rate": 100,
+    "responsibility_hit_rate": 100,
+    "missing_required": [],
+    "missing_responsibilities": []
+  },
+  "summary": "CV 无捏造公司或职位，所有量化数字可溯源。Skills 列表新增 2 项措辞（budget planning support / cost monitoring）均有 HSBC 经历实际支撑，severity 为 medium。Cover Letter 约 230 词，在限额内。JD 必需技能与核心职责命中率均为 100%。整体评级 WARN（因 2 个 medium ADDED_SKILL），人工确认这 2 项技能措辞是否可接受后即可批准。"
+}

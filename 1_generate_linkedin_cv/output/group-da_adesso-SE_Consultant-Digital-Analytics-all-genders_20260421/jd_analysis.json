@@ -1,0 +1,63 @@
+{
+  "job_id": "4373087888",
+  "company": "adesso SE",
+  "title": "Consultant Digital Analytics (all genders)",
+  "url": "https://www.linkedin.com/jobs/view/4373087888/",
+  "posted_date": "Reposted 2 weeks ago",
+  "match_score": 36,
+  "required_skills": [
+    "Analytics tools (Piwik PRO, Matomo, Google Analytics)",
+    "Tag Management Systems",
+    "Dashboard systems",
+    "Web technologies (HTML, CSS, JavaScript)",
+    "Online Marketing / data-driven campaigns",
+    "German language (sehr gute Deutschkenntnisse)",
+    "3+ years of relevant experience"
+  ],
+  "bonus_skills": [
+    "Holistic data strategies for enterprises",
+    "AI tools in digital analytics domain"
+  ],
+  "matched_skills": [
+    "Dashboard systems (executive dashboards, budget variance dashboards)",
+    "Campaign performance optimisation / data-driven campaigns",
+    "Marketing KPI framework design (partial match: holistic data strategy)"
+  ],
+  "missing_skills": [
+    "Piwik PRO / Matomo / Google Analytics (explicit tool experience)",
+    "Tag Management Systems (GTM or equivalent)",
+    "Consent Management Platforms",
+    "Web technologies: HTML, CSS, JavaScript",
+    "Client-facing consulting / Beratung experience in analytics",
+    "Cookie compliance / legal-technical requirements",
+    "Training / knowledge transfer delivery"
+  ],
+  "core_responsibilities": [
+    "Develop analytics strategies and individual solutions for web and app projects",
+    "Implement analytics tools including tag management, tracking, and consent management systems",
+    "Create reports and interactive dashboards; interpret results with online marketing teams",
+    "Support clients in meeting technical and legal compliance requirements (e.g. cookie compliance)",
+    "Conduct internal and external training sessions on analytics topics"
+  ],
+  "culture_keywords": [
+    "Top-Adresse IT-Welt",
+    "smarter Einsatz",
+    "maßgeschneidert",
+    "Wissensvermittlung",
+    "vertriebsorientiert",
+    "KI Kompetenz",
+    "strategische Beratung"
+  ],
+  "recommended_emphasis": [
+    "Highlight dashboard creation experience (Hapag-Lloyd, HSBC) as concrete evidence of reporting capability",
+    "Emphasise data-driven campaign analytics and campaign performance optimisation",
+    "If any exposure to GA / GTM / tag management exists, surface it explicitly",
+    "Frame marketing KPI framework design as strategic analytics consulting experience",
+    "Add any self-directed or coursework knowledge of HTML/CSS/JS to bridge technical gap"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

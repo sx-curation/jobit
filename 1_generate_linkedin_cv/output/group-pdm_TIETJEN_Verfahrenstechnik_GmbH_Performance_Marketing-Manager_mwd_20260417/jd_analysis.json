@@ -1,0 +1,76 @@
+{
+  "job_id": "st_2448989e",
+  "title": "Performance Marketing-Manager (m/w/d)",
+  "company": "TIETJEN Verfahrenstechnik GmbH",
+  "location": "Hemdingen (bei Hamburg)",
+  "url": "https://www.stepstone.de/stellenangebote--Performance-Marketing-Manager-m-w-d-Hemdingen-TIETJEN-Verfahrenstechnik-GmbH--13899085-inline.html",
+  "match_score": 35,
+  "company_size": "51-500",
+  "company_info": {
+    "size": "51–500",
+    "size_source": "jd_text",
+    "size_raw": "mittelständisches Unternehmen im Maschinen- und Anlagenbau"
+  },
+  "required_skills": [
+    "Min. 2 Jahre B2B Online-Marketing Erfahrung",
+    "Google Analytics",
+    "Google Ads",
+    "WordPress",
+    "Mailchimp",
+    "Canva",
+    "SEO / SEA",
+    "Fließende Deutschkenntnisse",
+    "Fließende Englischkenntnisse"
+  ],
+  "bonus_skills": [
+    "Bild- und Videobearbeitung",
+    "Kreativität und Textkompetenz",
+    "Performance-Analyse",
+    "Content-Erstellung (Social Media, Newsletter)",
+    "Agentursteuerung"
+  ],
+  "matched_skills": [
+    "B2B marketing experience (4+ years)",
+    "English C1 (meets fluency requirement)",
+    "KPI dashboards and performance reporting",
+    "B2B GTM strategy and product positioning",
+    "Sales enablement and collateral development",
+    "Competitive analysis and market intelligence"
+  ],
+  "missing_skills": [
+    "Google Analytics (not listed in CV tools)",
+    "Google Ads / SEA hands-on experience",
+    "WordPress website management",
+    "Mailchimp or equivalent email marketing tool",
+    "Canva or equivalent design tool"
+  ],
+  "core_responsibilities": [
+    "Develop and execute digital B2B marketing and sales concepts",
+    "Own and maintain company website (SEO, SEA, performance analysis)",
+    "Create and manage content for website, social media, and newsletters",
+    "Coordinate marketing materials (digital/print) with external agencies",
+    "Plan and control PR/marketing activities and budget"
+  ],
+  "culture_keywords": [
+    "mittelständisch",
+    "international",
+    "Maschinen- und Anlagenbau",
+    "digitale Neuausrichtung",
+    "eigenverantwortlich"
+  ],
+  "recommended_emphasis": [
+    "Highlight B2B marketing experience in industrial/international context to align with machinery and plant engineering focus",
+    "Emphasize any KPI reporting or performance tracking work as a proxy for analytics experience",
+    "Showcase collateral and content development work (brochures, datasheets) to address print/digital materials requirement",
+    "Mention any website or digital touchpoint ownership, even indirectly",
+    "Stress German language proficiency and willingness to develop further (B1+ may be borderline)"
+  ],
+  "risk_flags": [
+    "German proficiency B1+ falls short of 'fließend' (fluent) requirement — high risk of early screening rejection",
+    "Core martech stack (Google Analytics, Google Ads, WordPress, Mailchimp, Canva) entirely absent from CV — likely disqualifying for a hands-on Performance Marketing role",
+    "Role is operational/executional (SEO, SEA, content creation) whereas candidate profile is strategic (GTM, PMM) — significant scope mismatch",
+    "Location (Hemdingen bei Hamburg) is a rural area — likely requires on-site presence, adding a commute/relocation risk from Lüneburg"
+  ],
+  "summary": "The candidate has strong B2B marketing strategy credentials and international experience, but lacks the hands-on digital marketing tools (Google Analytics, Google Ads, WordPress, Mailchimp, Canva) that are explicitly required for this performance marketing role. Additionally, the German language requirement ('fließend') exceeds the candidate's stated B1+ level, posing a material screening risk. The role is execution-focused rather than strategy-focused, representing a meaningful scope mismatch.",
+  "_source": "stepstone"
+}

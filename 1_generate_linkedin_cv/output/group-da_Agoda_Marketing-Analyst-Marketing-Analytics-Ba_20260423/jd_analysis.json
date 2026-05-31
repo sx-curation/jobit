@@ -1,0 +1,71 @@
+{
+  "job_id": "4299760807",
+  "company": "Agoda",
+  "title": "Marketing Analyst (Marketing Analytics, Bangkok Based, Relocation provided)",
+  "url": "https://www.linkedin.com/jobs/view/4299760807/",
+  "posted_date": "",
+  "match_score": 72,
+  "required_skills": [
+    "Bachelor's Degree in quantitative subject (CS, mathematics, economics, engineering, statistics)",
+    "English fluency",
+    "Data analysis tools: SAS / R / SPSS / Python / VBA / SQL / Tableau",
+    "Numerical reasoning",
+    "Excel proficiency",
+    "Analytical and intellectual curiosity"
+  ],
+  "bonus_skills": [
+    "Digital marketing experience",
+    "Academic research experience",
+    "R Studio / data modeling / hypothesis testing"
+  ],
+  "matched_skills": [
+    "English fluency (C1)",
+    "Python scripting",
+    "SQL & data modelling",
+    "Excel proficiency",
+    "Analytical skills (demonstrated across multiple roles)",
+    "Digital marketing experience (IoT, e-commerce, ATM manufacturing campaigns)",
+    "A/B & multivariate testing (maps to hypothesis testing)",
+    "Dashboard / data modeling (Power BI PL-300, Looker Studio, Qlik Sense)",
+    "E-commerce & campaign ROI analytics",
+    "Funnel & conversion analysis"
+  ],
+  "missing_skills": [
+    "R / R Studio (not listed in tools)",
+    "SAS / SPSS (not listed)",
+    "Search engine marketing hands-on (Google Ads, Bing, Baidu, Naver bidding)",
+    "Paid social campaign management (Facebook Ads, Twitter Ads)",
+    "Degree in strictly quantitative field (CS, mathematics, statistics, engineering)"
+  ],
+  "core_responsibilities": [
+    "Experiment with text ads, bidding strategies, and campaign structures across search engines (Google, Bing, Baidu, Naver)",
+    "Test, analyze, and optimize display campaigns on Facebook, Twitter, Instagram",
+    "Analyze large-scale experiment data and develop optimization models",
+    "Build dashboards for account managers",
+    "Roll out changes from successful A/B tests across marketing programs"
+  ],
+  "culture_keywords": [
+    "data-driven",
+    "at-scale",
+    "experimentation",
+    "analytical",
+    "quantitative",
+    "intellectual curiosity",
+    "multi-national (90 countries)",
+    "technology at heart of culture"
+  ],
+  "recommended_emphasis": [
+    "Lead with Python and SQL experience — these are the two matched required tools; mention specific use cases (data modeling, funnel analysis)",
+    "Highlight A/B testing and experiment design work — directly maps to JD's core experimentation focus",
+    "Emphasize dashboard-building experience (Power BI, Looker Studio) for the 'build dashboards for account managers' responsibility",
+    "Showcase e-commerce and campaign ROI analytics experience (Moli Media, Intelligent Power) as proxy for performance marketing analytics",
+    "Frame multi-market campaign analytics (EMEA, APAC) to signal readiness for Agoda's global scale",
+    "Mention any exposure to paid search or social channels, even if indirect (campaign performance tracking, bid/spend analysis)"
+  ],
+  "company_info": {
+    "size": "5,001–10,000",
+    "size_source": "jd_text",
+    "size_raw": "7,000+ people from 90 countries"
+  },
+  "_source": "linkedin"
+}

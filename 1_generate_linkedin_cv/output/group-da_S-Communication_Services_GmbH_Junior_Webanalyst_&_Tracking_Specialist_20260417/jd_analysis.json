@@ -1,0 +1,54 @@
+{
+  "job_id": "st_53ef55c6",
+  "title": "Junior Webanalyst & Tracking Specialist (m/w/d)",
+  "company": "S-Communication Services GmbH",
+  "match_score": 22,
+  "summary": "Technically-oriented web analytics and tracking implementation role requiring JavaScript, Google Tag Manager, and Google Analytics proficiency — Boru's profile is analytics and BI-focused with no web tracking or front-end development background.",
+  "key_requirements": [
+    "Degree in Informatics, Business Informatics, or Media Informatics, or equivalent (required)",
+    "Web development knowledge including JavaScript; TypeScript a plus (required)",
+    "Google Tag Manager and Google Analytics proficiency (required)",
+    "Client-side and server-side tag management configuration and implementation (required)",
+    "Data privacy-compliant tracking solution implementation (required)",
+    "Up to 2 years relevant experience or internships/projects in the field (required)",
+    "Google Ads or other tracking/campaign tool experience (bonus)",
+    "Strong communication and consulting skills, ability to explain technical topics (required)"
+  ],
+  "matched_skills": [
+    "Data quality tracking and QA experience (Hapag-Lloyd agile sprint data artefact tracking)",
+    "Analytical reporting and stakeholder communication",
+    "Structured performance reporting and insight delivery",
+    "Cross-functional coordination with technical teams",
+    "A/B testing and experiment design (conceptual)",
+    "German and English communication"
+  ],
+  "missing_skills": [
+    "JavaScript / TypeScript programming skills",
+    "Google Tag Manager (GTM) — client-side and server-side",
+    "Google Analytics (GA4) implementation and configuration",
+    "Web tracking strategy development and deployment",
+    "Informatics, Business Informatics, or Media Informatics degree background",
+    "Tracking library development support",
+    "Data privacy / GDPR-compliant tracking implementation",
+    "Google Ads or campaign tracking tools"
+  ],
+  "recommended_emphasis": [
+    "Data quality and tracking QA work at Hapag-Lloyd (closest relevant experience)",
+    "Analytical reporting and translating technical data into stakeholder-ready insights",
+    "Willingness to learn new technologies quickly (position is junior/entry-level)",
+    "Project coordination and cross-team collaboration with development teams"
+  ],
+  "language_requirement": "German (primary working language, no explicit level stated) + English assumed; German B1+ should be sufficient for a junior role in an agency context",
+  "location_notes": "Berlin, Stuttgart, or Duesseldorf with mobile/hybrid work options; Boru is in Lüneburg — relocation may be needed",
+  "risk_flags": [
+    "Core technical stack (JavaScript, GTM, GA4) absent from Boru's CV — this is the primary job function",
+    "Degree mismatch: role targets Informatics/Business Informatics; Boru's background is Management and PR/Advertising",
+    "Boru has no web analytics or tag management project history",
+    "Role is highly technical and implementation-focused, not analytics/strategy-focused"
+  ],
+  "company_info": {
+    "size": "251–1,000",
+    "size_source": "jd_text",
+    "size_raw": "251-1000 Mitarbeiter"
+  }
+}

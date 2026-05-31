@@ -1,0 +1,35 @@
+{
+  "job_id": "st_e48f0ea2",
+  "title": "Marketing Consultant | Automation (m/w/d)",
+  "company": "advalyze GmbH",
+  "location": "Berlin",
+  "url": "https://www.stepstone.de/stellenangebote--Marketing-Consultant-Automation-m-w-d-Berlin-advalyze-GmbH--12792678-inline.html",
+  "match_score": 62,
+  "company_size": "11–50",
+  "summary": "Boru brings 4+ years of marketing management and project coordination experience with strong analytical skills, dashboard design (Power BI, Looker Studio), funnel analysis, and agile methods (Scrum/SAFe) that align well with the role's reporting and project management demands. However, there are two notable gaps: German proficiency is B1+ versus the required fluent (C1/C2) level, and hands-on Marketing Automation tool experience (e.g. HubSpot, Marketo, Salesforce Marketing Cloud) is absent from the CV. The lead generation and CRM campaign execution experience required is only partially evidenced.",
+  "recommended_emphasis": [
+    "Highlight funnel & conversion analysis experience at Intelligent Power Corporation and GRG Banking as direct evidence of lead funnel ownership",
+    "Emphasise Power BI and Looker Studio dashboard design as alignment with the KPI reporting dashboard responsibility",
+    "Showcase Scrum and SAFe agile experience (JIRA/Confluence) to match the explicit agile methods requirement",
+    "Frame HSBC PMO role's budget controlling, timing management, and stakeholder reporting as project management credibility",
+    "Position the Marketing Manager and Product Marketing Manager titles to match the seniority and scope (3-5 years) the JD requires"
+  ],
+  "missing_skills": [
+    "Hands-on Marketing Automation platform experience (e.g. HubSpot, Marketo, ActiveCampaign, Salesforce Marketing Cloud)",
+    "Technical CRM implementation or configuration (not just analytical use)",
+    "Customer Journey mapping and automation workflow design",
+    "Lead magnet conception and lead nurturing campaign execution",
+    "German fluency at C1/C2 level — current B1+ is below the 'fließend' requirement"
+  ],
+  "risk_flags": [
+    "German language gap: JD requires 'fließend Deutsch in Wort und Schrift' — B1+ is likely insufficient for client-facing consultancy in Germany",
+    "No Marketing Automation tooling listed in CV — this is a core technical competency for the role, not merely a nice-to-have",
+    "Role appears client-facing and agency-based; candidate's agency experience is limited"
+  ],
+  "company_info": {
+    "size": "11–50",
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "_source": "stepstone"
+}

@@ -1,0 +1,61 @@
+{
+  "job_id": "4391744704",
+  "company": "Kuro",
+  "title": "Customer Success Manager (Junior)",
+  "url": "https://www.linkedin.com/jobs/view/4391744704/",
+  "posted_date": "",
+  "match_score": 68,
+  "required_skills": [
+    "Strong communication skills",
+    "Customer-facing experience",
+    "Organized and detail-oriented",
+    "Ability to manage multiple customers simultaneously",
+    "Comfortable with ambiguity and early-stage environments",
+    "English fluency"
+  ],
+  "bonus_skills": [
+    "B2B SaaS customer success or account management experience",
+    "Familiarity with construction tech or enterprise software"
+  ],
+  "matched_skills": [
+    "Strong communication skills (C-level reporting, trade fair & meeting presentation, sales demo & user training)",
+    "Customer-facing experience (Futu Holdings: sales demo & user training; Leyard: 20+ channel partners training)",
+    "Organized and detail-oriented (Agile project management, milestone tracking at Hapag-Lloyd)",
+    "English fluency (English fluent per cv)",
+    "Voice-of-customer research (maps to gathering user feedback for product team)",
+    "KPI dashboards and data analysis (maps to monitoring usage patterns)"
+  ],
+  "missing_skills": [
+    "Comfortable with ambiguity and early-stage startup environments (not directly evidenced)",
+    "B2B SaaS customer success or CSM tooling experience",
+    "Familiarity with construction tech or enterprise software",
+    "Support ticket / live chat operations experience"
+  ],
+  "core_responsibilities": [
+    "Onboard new customers and guide users through first steps with the product",
+    "Monitor support requests across tickets and live chat, ensuring timely responses",
+    "Create onboarding materials and maintain knowledge base for new feature releases",
+    "Monitor usage patterns and derive insights to drive adoption and user value",
+    "Gather customer feedback and synthesize insights for the product team"
+  ],
+  "culture_keywords": [
+    "early-stage",
+    "ambiguity",
+    "small team (10 people)",
+    "AI-powered",
+    "construction industry",
+    "startup-backed"
+  ],
+  "recommended_emphasis": [
+    "Highlight customer-facing roles at Futu Holdings and Leyard: user training, demo delivery, and partner enablement directly map to onboarding responsibilities",
+    "Emphasize voice-of-customer research and translating user insights to product teams (Hapag-Lloyd KPI analysis, cross-functional interface at HSBC)",
+    "Showcase ability to create structured materials: sales collateral, demo scripts, training content at Leyard for 20+ partners",
+    "Stress comfort with fast-moving, ambiguous environments — MBA + multi-industry background signals adaptability",
+    "Mention HubSpot/Salesforce and Jira/Confluence as tools relevant to CS operations and knowledge base management"
+  ],
+  "company_info": {
+    "size": "1–10",
+    "size_source": "jd_text",
+    "size_raw": "10 people in Berlin"
+  }
+}

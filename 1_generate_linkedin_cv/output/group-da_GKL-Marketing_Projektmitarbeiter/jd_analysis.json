@@ -1,0 +1,78 @@
+{
+  "job_id": "4399313909",
+  "company": "GKL Marketing-Marktforschung GmbH & Co. KG",
+  "title": "Projektmitarbeiter*in Organisation & Prozessoptimierung Marktforschung",
+  "url": "https://www.linkedin.com/jobs/view/4399313909/",
+  "posted_date": "",
+  "match_score": 58,
+  "required_skills": [
+    "kaufmännische Ausbildung oder Studium (Organisations-/Technikschwerpunkt)",
+    "Erfahrung im Organisations-, Projekt- oder Back-Office-Umfeld",
+    "Analytisches Denken und strukturierte Arbeitsweise",
+    "Sicherer Umgang mit MS Excel",
+    "Ausgeprägte Kommunikations- und Teamfähigkeit",
+    "Hohe Lernbereitschaft und Hands-on-Mentalität",
+    "Wunsch nach langfristiger Zusammenarbeit"
+  ],
+  "bonus_skills": [
+    "Erfahrung mit ClickUp",
+    "Erfahrung mit ChatGPT / KI-Anwendungen"
+  ],
+  "matched_skills": [
+    "MS Excel",
+    "Analytisches Denken / strukturierte Arbeitsweise (via data analysis & reporting background)",
+    "Kommunikations- und Teamfähigkeit (cross-functional coordination, C-level storytelling)",
+    "Projekt-/Organisationserfahrung (Hapag-Lloyd Project Coordination, HSBC Strategy PMO)",
+    "Lernbereitschaft (PL-300 Zertifizierung, diverse Tool-Stack)"
+  ],
+  "missing_skills": [
+    "ClickUp",
+    "ChatGPT / AI tools (explicitly required)",
+    "German B2+ (working language is German; candidate only B1+)",
+    "Back-office / operational organisation management (direct order processing)",
+    "In-house software experience in a market research environment"
+  ],
+  "core_responsibilities": [
+    "Operatives Organisationsmanagement: Aufträge anlegen, ausschreiben, abrechnen; Termine und Ressourcen planen",
+    "Prozessanalyse und -optimierung: bestehende Abläufe dokumentieren, Verbesserungspotenziale identifizieren und mit IT umsetzen",
+    "Digitale Weiterentwicklung: Einführung und Ausbau moderner Tools (ClickUp, In-house-Software, KI-Anwendungen)",
+    "Schnittstelle zwischen Fachbereichen und IT",
+    "Wissenstransfer und Team-Enablement: Kolleg*innen bei Tool-Nutzung unterstützen, Best Practices und Trainings mitgestalten"
+  ],
+  "culture_keywords": [
+    "Familienunternehmen",
+    "langfristige Zusammenarbeit",
+    "verlässlicher Partner",
+    "leidenschaftlich",
+    "Hands-on-Mentalität",
+    "enge Abstimmung",
+    "Berliner Unternehmen",
+    "30+ Jahre Erfahrung"
+  ],
+  "recommended_emphasis": [
+    "Highlight project and coordination experience at Hapag-Lloyd and HSBC (operational alignment, resource planning)",
+    "Explicitly mention Excel proficiency (PivotTables, data preparation)",
+    "Emphasise process optimisation experience (data quality & tracking from Hapag-Lloyd role)",
+    "Address interface role between business and IT (BI tools as a bridge)",
+    "Highlight willingness to learn and tool adaptability (PL-300, Qlik, Looker, SAP Analytics)",
+    "Present German language level realistically (B1+); optionally mention motivation to improve",
+    "Signal long-term career perspective and interest in family-owned companies"
+  ],
+  "scoring_notes": {
+    "required_skills_score": 16,
+    "required_skills_max": 21,
+    "bonus_skills_score": 0,
+    "bonus_skills_max": 2,
+    "responsibilities_score": 1.5,
+    "responsibilities_max": 2.5,
+    "raw_ratio_pct": 78,
+    "language_penalty": -15,
+    "role_fit_note": "Role is operational org/process/IT coordination; candidate profile is analytics-heavy. Overlap in project coordination and structured work, but core focus diverges.",
+    "language_note": "JD is entirely in German; working language is German. Candidate's B1+ is likely below threshold for effective daily work in a small German family business."
+  },
+  "company_info": {
+    "size": "11-50",
+    "size_source": "jd_text",
+    "size_raw": "Market Research  11-50 employees"
+  }
+}

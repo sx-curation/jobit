@@ -1,0 +1,133 @@
+{
+  "name": "Boru Lai",
+  "email": "Leonlai0524@outlook.com",
+  "phone": "+49 15236845456",
+  "location": "Lüneburg, Germany",
+  "linkedin": "https://www.linkedin.com/in/leon-lai92/",
+  "summary": "B2B Product Marketing Manager with 4+ years of international experience owning go-to-market strategy, product lifecycle management, and sales enablement across e-commerce, manufacturing, shipping, FinTech, and IoT. Skilled in product positioning, value proposition development, and market segmentation with a track record of translating voice-of-customer research, competitive intelligence, and product KPIs into executive-ready insights (MS Power BI certified). Proven cross-functional influencer across multi-markets.",
+  "skills": [
+    "GTM strategy",
+    "Product launch execution",
+    "Portfolio gap analysis",
+    "Product positioning",
+    "Multi-market promotion (EMEA, Asia)",
+    "Competitive analysis",
+    "Voice-of-customer research",
+    "Market segmentation",
+    "KPI dashboards, ROI reporting",
+    "Sales demo & user training",
+    "Trade fair & meeting presentation",
+    "C-level reporting",
+    "Project management (Agile: Scrum, SAFe)",
+    "Cross-functional influence",
+    "Sales enablement & collateral development",
+    "Product lifecycle management"
+  ],
+  "experience": [
+    {
+      "company": "ECE Group Hamburg",
+      "sector": "Marketplace / Real Estate",
+      "title": "Working Student in Business Development",
+      "duration": "2024",
+      "bullets": [
+        "Competitive & Market Analysis: Conducted competitive analysis and market research to support strategic planning and identify business development opportunities, e.g. automotive, furniture sector."
+      ]
+    },
+    {
+      "company": "Hapag-Lloyd AG, Hamburg",
+      "sector": "Shipping / Logistics",
+      "title": "Working Student in Project Coordination Customer Experience",
+      "duration": "2024 – 2025",
+      "bullets": [
+        "Stakeholder Management & Agile Project Delivery: Coordinated deliverables across cross-functional teams; tracked project milestones, tickets, and dependencies across agile sprints.",
+        "KPI Reporting: Analysed customer data and user research; translated findings into structured performance summaries and sprint review updates."
+      ]
+    },
+    {
+      "company": "Hongkong and Shanghai Banking Corporation Limited (HSBC)",
+      "sector": "FinTech / Banking",
+      "title": "Strategy Project Management Officer (PMO)",
+      "duration": "2021 – 2022",
+      "bullets": [
+        "Budget Management: Owned budget tracking across a $8M digital transformation programme, monitored spend and burn rate by producing weekly financial variance reports and escalated budget risks to C-level leadership.",
+        "Cross-functional Influence: Acted as central interface between Product, Engineering, Marketing, and C-suite on a USD 8M digital transformation, aligned priorities and gained buy-in across teams without direct authority using structured business reasoning and stakeholder reporting."
+      ]
+    },
+    {
+      "company": "Intelligent Power Corporation Limited",
+      "sector": "IoT / IT",
+      "title": "Marketing Manager",
+      "duration": "2020",
+      "bullets": [
+        "Go-to-Market Strategy: Developed and executed B2B go-to-market strategy across 4 major product launches — event activations, sales collateral, and channel engagement directly contributed to 4.6M CNY in signed contracts.",
+        "Product Positioning & Value Proposition: Defined product positioning, key messages, and value propositions for IoT solutions; created argumentation guides and competitive comparison materials for the sales team.",
+        "Sales Enablement & Training: Developed SOPs, sales training materials, and product guides to standardise GTM delivery; onboarded and upskilled sales and channel partners on new product launches.",
+        "Trade Fair / Messe: Represented the company at B2B industry trade fairs covering exhibition booth operations, live product demonstrations, and coordinated lead capture for the sales team.",
+        "Market & Competitive Intelligence: Monitored competitor activity and market trends to inform product positioning and pricing strategy."
+      ]
+    },
+    {
+      "company": "GRG Banking Corporation Limited",
+      "sector": "ATM Manufacturing",
+      "title": "Product Marketing Manager",
+      "duration": "2019",
+      "bullets": [
+        "Go-to-Market Strategy: Defined and executed go-to-market plans across multiple product lines, aligning Marketing, Sales, and Engineering on launch timelines, positioning, and channel strategy.",
+        "Account Management & Sales Enablement: Developed product collateral, competitive comparison materials, and demo scripts; delivered pre-sales support and product demonstrations to 100+ B2B clients at trade fairs and customer visits, directly supporting pipeline development."
+      ]
+    },
+    {
+      "company": "Moli Media Corporation Limited",
+      "sector": "E-commerce / Live-stream Agency",
+      "title": "Marketing & Project Coordinator",
+      "duration": "2019",
+      "bullets": [
+        "Product Marketing & Storytelling: Developed and delivered product marketing campaigns and content strategy for an e-commerce platform — translating product features into audience-relevant messaging across digital and live-event channels.",
+        "Partnership & Channel Management: Curated and managed KOL (Key Opinion Leader) participation across corporate and virtual events, handling outreach, briefings, scheduling, and on-event support to maximise audience engagement and brand reach.",
+        "ROI Analysis: Analysed operational and audience data post-campaign; reported insights and recommendations to senior management to improve future event performance."
+      ]
+    }
+  ],
+  "student_consulting": [
+    {
+      "organization": "VfB Stuttgart",
+      "location": "Lüneburg & Stuttgart",
+      "bullets": [
+        "KPI Design: Developed an impact measurement framework and cost-benefit tracking methodology for sustainability projects, presenting findings and recommendations to club management.",
+        "Data-Driven Post-Event Evaluation: Delivered structured analysis that enabled evidence-based post-event evaluation across the club's sustainability programme."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Management & Entrepreneurship",
+      "school": "Leuphana University",
+      "year": "2022 – 2025"
+    },
+    {
+      "degree": "Master of Public Relations and Advertising",
+      "school": "Shih Hsin University",
+      "year": "2015 – 2018"
+    }
+  ],
+  "tools": [
+    "Power BI (Microsoft Certified: Power BI Data Analyst Associate PL-300)",
+    "Google Looker Studio",
+    "SAP Analytics",
+    "JIRA",
+    "Confluence",
+    "MS PowerPoint",
+    "MS Excel",
+    "ChatGPT",
+    "Claude"
+  ],
+  "certifications": [
+    "Microsoft Certified: Power BI Data Analyst Associate (PL-300)"
+  ],
+  "languages": [
+    {"language": "English", "level": "C1"},
+    {"language": "German", "level": "B1+"},
+    {"language": "Chinese", "level": "C2"},
+    {"language": "Japanese", "level": "B1"}
+  ]
+}

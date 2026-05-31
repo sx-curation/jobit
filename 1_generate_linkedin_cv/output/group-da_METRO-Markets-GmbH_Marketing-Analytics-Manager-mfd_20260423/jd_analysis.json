@@ -1,0 +1,80 @@
+{
+  "job_id": "4400406284",
+  "company": "METRO Markets GmbH",
+  "title": "Marketing Analytics Manager (m/f/d)",
+  "url": "https://www.linkedin.com/jobs/view/4400406284/",
+  "posted_date": "",
+  "match_score": 52,
+  "_source": "linkedin",
+  "required_skills": [
+    "Attribution modeling (multi-touch, data-driven, Markov chain, Shapley value)",
+    "LTV / cohort analysis",
+    "Incrementality / uplift testing",
+    "Advanced SQL",
+    "Data modeling tools (dbt / Dataform)",
+    "GA4 / GTM",
+    "BigQuery or similar cloud database",
+    "BI tools (Looker Studio or similar)",
+    "Statistical methods & probabilistic models",
+    "3–5 years marketing analytics experience"
+  ],
+  "bonus_skills": [
+    "ClickHouse",
+    "CRM analytics collaboration",
+    "Customer journey analysis",
+    "Media mix / channel mix optimization"
+  ],
+  "matched_skills": [
+    "Attribution modelling (explicitly listed in CV skills)",
+    "Cohort analysis (listed as 'customer segmentation & cohort analysis')",
+    "GA4 (listed in tools)",
+    "Looker Studio (listed in tools and experience)",
+    "4+ years marketing analytics experience",
+    "KPI reporting & performance analytics",
+    "Stakeholder reporting & data storytelling",
+    "CRM analytics (listed in CV skills)",
+    "Customer journey analysis (Hapag-Lloyd experience)",
+    "SQL (listed in skills and tools)"
+  ],
+  "missing_skills": [
+    "dbt / Dataform — no mention of SQL-based data modeling frameworks",
+    "BigQuery / ClickHouse — no cloud data warehouse experience mentioned",
+    "GTM (Google Tag Manager) — not listed despite GA4 presence",
+    "Incrementality / uplift testing — not mentioned anywhere in CV",
+    "LTV modeling — cohort analysis present but LTV not explicit",
+    "Probabilistic / statistical modeling (Markov chain, Shapley value) — not evidenced",
+    "Advanced SQL / data modeling — SQL listed but no advanced qualifier or modeling depth shown",
+    "Python for analytics — listed but no analytical use-case demonstrated in bullets"
+  ],
+  "core_responsibilities": [
+    "Develop and improve marketing measurement frameworks (multi-touch attribution, incrementality testing, LTV modeling, cohort analysis)",
+    "Build and maintain SQL-based data models (dbt / BigQuery) for channel performance and business reporting",
+    "Design and evaluate attribution models including probabilistic approaches (Markov chain, Shapley value)",
+    "Develop and automate dashboards and performance reports in Looker Studio for key stakeholders",
+    "Partner with marketing, media, CRM, and product teams to translate insights into strategic decisions"
+  ],
+  "culture_keywords": [
+    "70+ nationalities",
+    "hybrid working",
+    "flexible working hours",
+    "data-informed decisions",
+    "cross-functional collaboration",
+    "wellbeing support",
+    "sustainable business growth"
+  ],
+  "recommended_emphasis": [
+    "Lead with attribution modelling — explicitly name multi-touch attribution and any model types used (even rule-based) in CV bullets",
+    "Reframe cohort analysis bullets to include LTV framing — e.g. 'cohort-based retention and lifetime value analysis'",
+    "Highlight any SQL complexity — reference joins, window functions, CTEs, or data pipeline work to signal advanced SQL capability",
+    "Quantify Looker Studio / BI dashboard impact in bullets — audience size, decision cadence, or business outcome driven",
+    "Add a brief mention of GA4 in an experience bullet (not just tools list) to show hands-on application",
+    "If any A/B or test-and-learn work exists, frame it as incrementality or uplift testing language",
+    "Emphasize cross-functional stakeholder management with marketing, media, and product — directly mirrors JD language",
+    "Cover letter should address BigQuery/dbt gap honestly but signal fast ramp-up via SQL proficiency and cloud analytics mindset"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

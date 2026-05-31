@@ -1,0 +1,160 @@
+import json
+
+cv_data = {
+    "name": "Boru Lai",
+    "email": "Leonlai0524@outlook.com",
+    "summary": (
+        "Internationally experienced B2B event specialist and project coordinator with 4+ years delivering "
+        "corporate events, virtual promotion, marketing campaigns and messe activities across e-commerce, "
+        "manufacturing, shipping, FinTech, and IoT. Skilled in event planning, brand campaign, vendor coordination "
+        "and cross-functional delivery for audiences up to 4,000 with a track record of translating event data "
+        "into actionable insights and executive-ready dashboards (MS Power BI certified)."
+    ),
+    "skills": [
+        "Event Planning & Delivery",
+        "B2B Virtual & Hybrid Events",
+        "Trade Fairs & Messe",
+        "Large-Scale Corporate Event Management",
+        "Vendor & Partnership Management",
+        "KOL / Influencer Coordination",
+        "Stakeholder Management",
+        "Agile Project Delivery",
+        "Scrum",
+        "SAFe",
+        "Sprint Management",
+        "KPI Reporting & Dashboard Design",
+        "Budget Management & Financial Variance Reporting",
+        "Event ROI Analysis",
+        "Attendance & Lead Generation Tracking",
+        "Post-Event Evaluation & Insights",
+        "Market Research & Competitive Analysis",
+        "Strategic Planning Support",
+        "Cross-Functional Coordination",
+        "Internal Marketing & PR Communication",
+        "C-Level Reporting",
+        "Content Management",
+        "SOP Development & Training",
+        "Run-of-Show Management",
+        "Speaker Management",
+        "Venue & Logistics Coordination",
+        "Digital Event Production",
+        "Power BI (PL-300 Certified)",
+        "Google Looker Studio",
+        "SAP Analytics",
+        "JIRA",
+        "Confluence",
+        "MS Excel",
+        "MS PowerPoint",
+        "ChatGPT",
+        "Claude",
+        "AI-assisted Planning & Reporting",
+        "Multi-market Promotion (EMEA, Asia)",
+        "B2B Account Management & Pre-sales Support",
+        "Product Demonstration",
+        "Event Strategy & Lead Generation"
+    ],
+    "experience": [
+        {
+            "company": "Hapag-Lloyd AG, Hamburg [Shipping / Logistics sector]",
+            "title": "Working Student in Project Coordination Customer Experience",
+            "duration": "2024 - 2025",
+            "bullets": [
+                "Stakeholder Management & Agile Project Delivery: Coordinated deliverables across cross-functional teams; tracked project milestones, tickets, and dependencies across agile sprints.",
+                "KPI Reporting: Analysed customer data and user research; translated findings into structured performance summaries and sprint review updates."
+            ]
+        },
+        {
+            "company": "ECE Group Hamburg [Marketplace / Real Estate sector]",
+            "title": "Working Student in Business Development",
+            "duration": "2024",
+            "bullets": [
+                "Market Research & Insights: Conducted competitive analysis and market research to support strategic planning and identify business development opportunities (e.g. automotive, furniture sector).",
+                "Event Coordination: Managed travel logistics and scheduling coordination for client visits and external meetings."
+            ]
+        },
+        {
+            "company": "Hongkong and Shanghai Banking Corporation Limited (HSBC)",
+            "title": "Strategy Project Management Officer (PMO)",
+            "duration": "2021 - 2022",
+            "bullets": [
+                "Budget Management: Owned budget tracking across a $8M digital transformation programme, monitored spend and burn rate by producing weekly financial variance reports and escalated budget risks to C-level leadership.",
+                "Virtual Events & Speaker Management: Planned and delivered hybrid town hall events (300+ attendees per session), covering employee engagement, run-of-show, speaker management, and post-event communication with company-wide newsletter and promotion video."
+            ]
+        },
+        {
+            "company": "Intelligent Power Corporation Limited [IoT / IT sector]",
+            "title": "Marketing Manager",
+            "duration": "2020",
+            "bullets": [
+                "Event Strategy & Lead Generation: Developed promotional event strategies across 4 major promotional events end-to-end, contributed to 4.6M CNY in signed contracts, demonstrating clear event-to-revenue impact.",
+                "Trade Fair / Messe: Represented the company at industry trade fairs (Messe), managing exhibition booth operations, delivering live product demonstrations, and coordinating lead capture for the sales team.",
+                "Cross-functional Coordination: Developed SOPs and training materials for event operations, standardising delivery processes and onboarding new team members."
+            ]
+        },
+        {
+            "company": "GRG Banking Corporation Limited [ATM Manufacturing sector]",
+            "title": "Product Manager",
+            "duration": "2019",
+            "bullets": [
+                "On-site Event Operations & Brand Consistency: Developed and executed event strategy, coordinated cross-functional product launch events across 6 product lines and multiple markets, aligning marketing, sales, and technical teams on timelines, materials, and on-site delivery.",
+                "Trade Fair / Messe: Attended and represented GRG at industry trade fairs, managing exhibition presence, product showcasing, and client engagement to generate qualified leads.",
+                "Account Management & Pre-sale Marketing: Delivered product demonstrations and pre-sales event support to 100+ clients at trade fairs and client visits, supporting pipeline development.",
+                "Vendor Management: Created marketing collateral, event assets, and product materials for trade fair activations and client-facing events."
+            ]
+        },
+        {
+            "company": "Moli Media Corporation Limited [E-commerce live-stream agency]",
+            "title": "Event Specialist & Project Coordinator",
+            "duration": "2019",
+            "bullets": [
+                "Corporate Events: Planned and delivered large-scale corporate events for 4,000+ attendees, overseeing end-to-end coordination, covering venue management, vendor negotiation, run-of-show, and on-site operations, managing digital production, platform setup, and live-event logistics.",
+                "Event Strategy & Partnership Management: Managed relationships with KOLs, corporate partners, and internal teams, ensuring seamless coordination across all partner touchpoints and digital channels.",
+                "Content Management & Influencer Coordination: Curated and managed KOL (Key Opinion Leader) participation across corporate and virtual events - handling outreach, briefings, scheduling, and on-event support to maximise audience engagement and brand reach.",
+                "ROI Analysis: Analysed operational and audience data post-event; reported insights and recommendations to senior management to improve future event performance."
+            ]
+        },
+        {
+            "company": "VfB Stuttgart (Student Consulting Project) - Lueneburg & Stuttgart",
+            "title": "Student Consultant",
+            "duration": "2022 - 2025",
+            "bullets": [
+                "KPI Design: Developed an impact measurement framework and cost-benefit tracking methodology for sustainability projects, presenting findings and recommendations to club management.",
+                "Data-Driven Post-Event Evaluation: Delivered structured analysis that enabled evidence-based post-event evaluation across the club's sustainability programme."
+            ]
+        }
+    ],
+    "education": [
+        {
+            "degree": "Master of Management & Entrepreneurship",
+            "school": "Leuphana University",
+            "year": "2022 - 2025"
+        },
+        {
+            "degree": "Master of Public Relations and Advertising",
+            "school": "Shih Hsin University",
+            "year": "2015 - 2018"
+        },
+        {
+            "degree": "Bachelor of Management Administration",
+            "school": "South China University of Technology",
+            "year": "2011 - 2015"
+        }
+    ],
+    "languages": [
+        "English (C1)",
+        "German (B1+)",
+        "Chinese (C2)",
+        "Japanese (B1)"
+    ],
+    "certifications": [
+        "Microsoft Certified: Power BI Data Analyst Associate (PL-300)"
+    ]
+}
+
+output_path = r"D:\JobIt\1_generate_linkedin_cv\1_generate_linkedin_cv\output\cv_parsed_group-event-management.json"
+with open(output_path, "w", encoding="utf-8") as f:
+    json.dump(cv_data, f, ensure_ascii=False, indent=2)
+
+print("Saved to:", output_path)
+print("Experience entries:", len(cv_data["experience"]))
+print("Skills count:", len(cv_data["skills"]))

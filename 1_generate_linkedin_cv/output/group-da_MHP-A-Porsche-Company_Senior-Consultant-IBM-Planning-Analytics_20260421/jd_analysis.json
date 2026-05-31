@@ -1,0 +1,63 @@
+{
+  "job_id": "4387854353",
+  "company": "MHP – A Porsche Company",
+  "title": "(Senior) Consultant IBM Planning Analytics (all genders)",
+  "url": "https://www.linkedin.com/jobs/view/4387854353/",
+  "posted_date": "Reposted 1 week ago",
+  "match_score": 12,
+  "required_skills": [
+    "IBM Planning Analytics (TM1)",
+    "Planning Analytics Workspace (PAW)",
+    "Planning Analytics for Excel (PAfE)",
+    "Frontend development (HTML, CSS, JavaScript, React/Angular)",
+    "Backend: TM1 models, Cubes, Rules, TurboIntegrator",
+    "ETL / APIs / Middleware integration",
+    "SQL Server / Oracle databases",
+    "German (proficient)"
+  ],
+  "bonus_skills": [
+    "Dashboard design / UX/UI",
+    "Performance tuning for large-scale TM1 applications",
+    "Analytical thinking and customer orientation"
+  ],
+  "matched_skills": [
+    "Dashboard design (CV: Built dashboards at HSBC and Minth Group)",
+    "Stakeholder collaboration / cross-functional coordination",
+    "Data-driven decision support"
+  ],
+  "missing_skills": [
+    "IBM Planning Analytics (TM1) — core requirement, no experience",
+    "Planning Analytics Workspace (PAW)",
+    "Planning Analytics for Excel (PAfE)",
+    "TurboIntegrator scripting",
+    "TM1 Cubes and Rules development",
+    "ETL pipeline development",
+    "SQL Server / Oracle database integration",
+    "Frontend development (HTML, CSS, JavaScript, React/Angular)",
+    "German language proficiency (not confirmed in CV)"
+  ],
+  "core_responsibilities": [
+    "Develop frontend solutions in PAW and PAfE to support data-driven decisions",
+    "Build and extend backend TM1 models, Cubes, Rules, and TurboIntegrator processes",
+    "Develop and integrate data pipelines and interfaces (ETL, APIs, Middleware) with databases (SQL Server, Oracle)",
+    "Collaborate with stakeholders to capture and translate requirements into technical specifications"
+  ],
+  "culture_keywords": [
+    "analytischem Denken",
+    "pragmatischem Vorgehen",
+    "Teamfähigkeit",
+    "Kundenorientierung",
+    "internationale Projekte",
+    "Flexibilität & Reisebereitschaft"
+  ],
+  "recommended_emphasis": [
+    "Emphasize any data modeling or structured data work (dashboards at HSBC/Minth)",
+    "Highlight cross-functional stakeholder collaboration and requirements translation",
+    "Stress analytical thinking and structured problem-solving from PMO and Market Intelligence roles"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

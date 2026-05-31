@@ -1,0 +1,77 @@
+{
+  "job_id": "4348700607",
+  "title": "Project Management Business Partner (all gender)",
+  "company": "ALTEN Germany",
+  "location": "Hamburg, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4348700607/",
+  "posted": "unknown",
+  "match_score": 78,
+  "company_info": {
+    "size": "5,001–10,000",
+    "size_source": "unavailable",
+    "size_raw": "large company (noted by orchestrator; no explicit employee count in JD text)"
+  },
+  "required_skills": [
+    "Projektmanagement experience",
+    "Projektkennzahlen analysis & reporting",
+    "Risiko- und Chancenmanagement",
+    "Änderungsmanagement / configuration control",
+    "Stakeholder communication (all levels)",
+    "Zeit-, Kosten-, Ressourcen- und Qualitätsdaten integration"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Project management experience (PMO @ HSBC, Project Coordination @ Hapag-Lloyd)",
+    "KPI / project metrics analysis & reporting (Power BI dashboards, C-suite reporting)",
+    "Risk management & escalation (HSBC USD 8M programme risk management)",
+    "Stakeholder communication at all levels (Steering Committee, C-level, cross-functional)",
+    "Budget & cost tracking (USD 8M programme)",
+    "Milestone monitoring & progress reporting (Hapag-Lloyd Agile delivery)",
+    "Agile sprint planning & delivery (Scrum)"
+  ],
+  "missing_skills": [
+    "Formal engineering background (Wirtschaftsingenieurwesen or comparable — degree not confirmed)",
+    "Configuration control / contract-based change management (Konfigurationskontrolle mit Vertragsdaten)",
+    "Aerospace / automotive / defense sector PM experience",
+    "Willingness to travel within Germany monthly (Customer Services variant)"
+  ],
+  "core_responsibilities": [
+    "Integrate and analyze time, cost, resource, and quality data across projects",
+    "Plan programs/projects including scheduling (Zeitplanung) and work breakdown structure",
+    "Conduct risk and opportunity management",
+    "Monitor deliverables, milestones, and phase-gate reviews",
+    "Implement PM processes and tools; report on progress, status, and results to stakeholders"
+  ],
+  "culture_keywords": [
+    "forward thinker",
+    "engineering consulting",
+    "client-facing (Customer Services variant)",
+    "mobile working",
+    "unbefristeter Arbeitsvertrag",
+    "attraktive Vergütung",
+    "monthly domestic travel (Customer Services)"
+  ],
+  "cv_highlights": [
+    "PMO @ HSBC: USD 8M digital transformation programme — risk management, KPI dashboards, Steering Committee reporting across 6 workstreams",
+    "Project Coordination @ Hapag-Lloyd: Agile/Scrum sprint planning, KPI tracking, milestone monitoring, stakeholder management",
+    "Power BI Certified — directly supports Projektkennzahlen analysis & data storytelling requirement",
+    "Fluent German — JD is entirely in German; full communication capability with German-speaking clients and stakeholders",
+    "Cross-functional coordination & C-level reporting experience maps to 'kommunizierst klar und sicher mit Stakeholdern auf allen Ebenen'"
+  ],
+  "gaps": [
+    "No confirmed engineering degree (Wirtschaftsingenieurwesen); may need to emphasise transferable analytical/technical skills",
+    "No explicit aerospace/automotive/defense sector experience — ALTEN's core client base",
+    "Contract-based configuration control is a specialised competency not evidenced in CV",
+    "Customer Services variant requires monthly travel within Germany — should confirm availability"
+  ],
+  "recommended_emphasis": [
+    "Highlight USD 8M programme governance and cost tracking as direct evidence of Zeit/Kosten/Qualität data integration",
+    "Lead with risk management and milestone tracking achievements from HSBC (quantified: 6 workstreams, steering committee)",
+    "Emphasise KPI framework design and Power BI reporting as Projektkennzahlen analysis capability",
+    "Showcase German language fluency prominently — JD is fully in German, client communication will be in German",
+    "For PM Office Operations variant: stress internal PMO process implementation and tool deployment",
+    "For Customer Services variant: stress cross-functional stakeholder management and adaptability across project types",
+    "Frame Hapag-Lloyd Agile delivery experience as evidence of PM process implementation and progress reporting"
+  ],
+  "recommendation": "Strong apply — match score 78. Boru's HSBC PMO and Hapag-Lloyd project coordination experience aligns well with all core requirements: risk management, KPI reporting, milestone tracking, and stakeholder communication at all levels. The engineering sector gap (ALTEN serves aerospace/automotive clients) is a moderate risk but not a blocker, as the JD focuses on PM competencies rather than domain expertise. The PM Office Operations variant is the stronger fit given Boru's internal PMO background. Tailor CV to emphasise programme governance, cost tracking, and German communication capability."
+}

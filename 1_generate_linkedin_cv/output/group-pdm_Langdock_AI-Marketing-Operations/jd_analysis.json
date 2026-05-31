@@ -1,0 +1,65 @@
+{
+  "job_id": "4398500658",
+  "company": "Langdock",
+  "title": "AI Marketing Operations",
+  "url": "https://www.linkedin.com/jobs/view/4398500658/",
+  "posted_date": "",
+  "match_score": 13,
+  "required_skills": [
+    "Build production AI workflows and tools (not demos)",
+    "Write code",
+    "Connect APIs",
+    "Debug workflows",
+    "Marketing operations experience (campaign workflows, content pipelines)",
+    "GitHub / structured documentation for AI agents",
+    "Content workflow automation"
+  ],
+  "bonus_skills": [
+    "AI-generated slide workflow for sales decks and presentations",
+    "Build custom internal interfaces and dashboards",
+    "Team enablement and internal documentation sharing"
+  ],
+  "matched_skills": [
+    "Marketing operations experience (campaign workflows via PMM roles at Futu Holdings and Leyard Europe)",
+    "Sales enablement and collateral development",
+    "Cross-functional documentation (Confluence, Jira)"
+  ],
+  "missing_skills": [
+    "Building real AI workflows or tools in production (no evidence in CV)",
+    "Writing code / software development",
+    "Connecting and integrating APIs",
+    "Debugging automated workflows",
+    "GitHub usage for structured documentation",
+    "Content pipeline automation with AI tooling",
+    "Langdock platform or equivalent AI platform hands-on experience"
+  ],
+  "core_responsibilities": [
+    "Build and maintain marketing AI skills on the Langdock platform (brand voice assistants, research tools, brief generators, campaign reviewers)",
+    "Automate content workflows end-to-end, removing repetitive steps from draft to published output",
+    "Keep documentation AI-ready: structured in GitHub, written for AI agent consumption",
+    "Maintain AI-generated slide workflow for sales decks, workshop material, and customer presentations",
+    "Build custom internal interfaces, dashboards, and tools as needed; enable team by sharing and documenting what is built"
+  ],
+  "culture_keywords": [
+    "AI-aggressive",
+    "small teams, high impact",
+    "systems builder",
+    "model-agnostic",
+    "production-focused (not demos)",
+    "autonomous",
+    "documentation culture",
+    "multiplying team impact"
+  ],
+  "recommended_emphasis": [
+    "Any hands-on experience with AI tools or automation platforms (even personal/side projects)",
+    "Marketing operations process design and campaign workflow management",
+    "Technical adjacent skills: SQL, API familiarity, HubSpot/Salesforce automation rules",
+    "Structured documentation practices (Confluence, Jira, GitHub if applicable)",
+    "Ability to learn and apply new technical tools rapidly"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": "JD mentions 6,000+ customer companies; no employee headcount found in JD text"
+  }
+}

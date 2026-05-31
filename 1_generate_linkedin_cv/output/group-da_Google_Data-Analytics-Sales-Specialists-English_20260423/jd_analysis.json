@@ -1,0 +1,63 @@
+{
+  "job_id": "4397624032",
+  "company": "Google",
+  "title": "Data Analytics Sales Specialists (English)",
+  "url": "https://www.linkedin.com/jobs/view/4397624032/",
+  "posted_date": "",
+  "match_score": 18,
+  "required_skills": [
+    "Bachelor's degree or equivalent practical experience",
+    "10 years experience in enterprise software or cloud sales",
+    "Experience selling data analytics or data management technologies",
+    "English fluency"
+  ],
+  "bonus_skills": [
+    "Exceeding business goals in a sales role",
+    "Executive relationship management and new territory development",
+    "Cross-functional team collaboration to close enterprise agreements",
+    "Sales activity planning aligned to data and analytics cycles",
+    "German fluency"
+  ],
+  "matched_skills": [
+    "Bachelor's degree (plus two Masters degrees)",
+    "English fluency (C1)",
+    "Go-to-market strategy support (partial — analytics/marketing context, not sales)",
+    "Cross-functional stakeholder management (partial — not in enterprise sales closing context)",
+    "C-level data storytelling (partial — reporting context, not sales)"
+  ],
+  "missing_skills": [
+    "10 years enterprise software or cloud sales experience (CRITICAL — CV has 0 years direct sales)",
+    "Quota-carrying or revenue-closing sales track record",
+    "Experience selling data analytics / data management products",
+    "Enterprise account development and territory management",
+    "Sales cycle planning and pipeline management",
+    "German fluency (only B1+, not fluent)"
+  ],
+  "core_responsibilities": [
+    "Grow Google Cloud Data Analytics business by acquiring and expanding customer relationships",
+    "Deliver product demos and articulate business value to enterprise clients",
+    "Lead cross-functional GTM strategies, sales plays and campaigns",
+    "Manage day-to-day relationships as solution sales lead",
+    "Provide feedback to product and global solutions teams based on field insights"
+  ],
+  "culture_keywords": [
+    "Google Cloud",
+    "Customer transformation",
+    "Cross-functional collaboration",
+    "Solution selling",
+    "Enterprise relationships"
+  ],
+  "recommended_emphasis": [
+    "Go-to-market strategy support experience (IoT/B2B product launches at Intelligent Power Corporation)",
+    "C-level stakeholder communication and data storytelling (HSBC PMO role)",
+    "Cross-functional team coordination across technical and business stakeholders",
+    "Data analytics expertise as a differentiator in client conversations (if pivoting into sales support/overlay role)"
+  ],
+  "role_fit_flag": "MISMATCH: This is a quota-carrying enterprise sales role requiring 10 years of cloud/software sales experience. CV profile is a marketing analytics professional (~4-5 years, no direct sales quota ownership). Fundamental role-type mismatch — not recommended for application.",
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "Google — publicly known large enterprise; no explicit headcount in JD; size inferred from company identity"
+  },
+  "_source": "linkedin"
+}

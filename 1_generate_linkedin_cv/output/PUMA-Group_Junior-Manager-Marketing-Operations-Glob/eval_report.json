@@ -1,0 +1,32 @@
+{
+  "overall": "WARN",
+  "score": 67,
+  "dimensions": {
+    "jd_alignment": "PASS",
+    "factual_integrity": "PASS",
+    "cover_letter_format": "PASS",
+    "internal_consistency": "PASS",
+    "gaps_risk": "WARN"
+  },
+  "flags": [
+    {
+      "level": "WARN",
+      "code": "LOCATION_GAP",
+      "detail": "Role requires on-site presence in Herzogenaurach (near Nuremberg). Candidate is based in Lüneburg (~600 km). Cover letter does not address relocation willingness."
+    },
+    {
+      "level": "WARN",
+      "code": "SCORE_BELOW_THRESHOLD",
+      "detail": "Match score 67 is below recommended threshold of 70. Primary gaps: Asana/Notion/Monday.com, sportswear/retail industry context."
+    }
+  ],
+  "strengths": [
+    "JD 'connective tissue' language echoed precisely in CV summary and cover letter",
+    "JIRA surfaced as credible project tool substitute for Asana",
+    "SOP/process documentation placed as Bullet 1 at IPC — direct JD match",
+    "E-commerce background (Moli Media) and C-suite reporting (HSBC) both present",
+    "All figures and dates factually preserved — no fabrication"
+  ],
+  "cover_letter_word_count": 342,
+  "cover_letter_paragraphs": 4
+}

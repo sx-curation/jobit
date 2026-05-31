@@ -1,0 +1,50 @@
+{
+  "job_id": "4412131761",
+  "title": "Project Manager (m/f/d)",
+  "company": "Exyte",
+  "location": "Germany",
+  "url": "https://www.linkedin.com/jobs/view/4412131761/",
+  "match_score": 18.8,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Controller",
+  "required_skills": [
+    "Degree in Construction Management, Engineering, or related field",
+    "Demonstrated experience in project management with focus on Data Centers or large-scale projects",
+    "Proven experience delivering complex industrial construction projects (high-tech, data center, semiconductor)",
+    "Strong technical understanding of Electrical, Mechanical, and CSA (Civil, Structural, Architectural) components",
+    "Fluent English (written and spoken)",
+    "Very good German skills"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Project management fundamentals: cross-functional team coordination and milestone tracking at HSBC and Hapag-Lloyd",
+    "Communication and presentation skills: executive reporting, stakeholder communications",
+    "English fluency C1 confirmed",
+    "German B1 (partial — JD requires very good German)"
+  ],
+  "missing_skills": [
+    "Construction management or engineering degree (candidate has business/management degrees)",
+    "Data center or industrial construction project management experience (no construction industry background)",
+    "Technical understanding of Electrical, Mechanical, and CSA/structural components",
+    "EHS (Environmental, Health & Safety) compliance management",
+    "Contractor and subcontractor management in construction context",
+    "Very good German (B1 vs. required very good)"
+  ],
+  "core_responsibilities": [
+    "Lead planning, execution, and delivery of data center construction projects",
+    "Own and manage project budgets, timelines, and quality benchmarks",
+    "Ensure EHS compliance",
+    "Coordinate and oversee external planning partners, contractors, and suppliers",
+    "Prepare and present monthly performance reports",
+    "Serve as primary contact for clients, suppliers, and subcontractors"
+  ],
+  "recommended_emphasis": [
+    "This role is a poor match — application is not recommended",
+    "The role requires construction/engineering domain expertise that the candidate entirely lacks",
+    "Technical understanding of MEP and CSA components cannot be substituted with programme governance experience",
+    "The candidate should focus on pure PMO and programme management roles in service/technology sectors"
+  ],
+  "summary": "Match score 18.8% — poor match. This is a construction project management role for data center and high-tech facility projects, requiring engineering domain expertise, EHS compliance, and contractor management. The candidate's background is in FinTech/shipping PMO coordination with no construction, engineering, or technical facility management experience. Application is not recommended."
+}

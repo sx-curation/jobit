@@ -1,0 +1,56 @@
+{
+  "job_id": "4418314819",
+  "title": "Operational Excellence & Strategy Manager (m/w/d)",
+  "company": "yoummday",
+  "location": "Munich / Berlin, Germany (hybrid)",
+  "url": "https://www.linkedin.com/jobs/view/4418314819/",
+  "match_score": 38.9,
+  "grade": "weak_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Strategic Planning Manager",
+  "required_skills": [
+    "Above-average Master's degree in business administration, economics, engineering or comparable field — ideally from a renowned university",
+    "Several years of experience in a Top Tier 1 or Tier 2 strategy consulting firm (e.g. MBB or Tier-2), or comparable high-dynamic environment with clear track record in strategic and operational topics",
+    "Entrepreneurial and strategic thinking: structured complex problem solving, pragmatic solutions",
+    "End-to-end project ownership and data-driven working style",
+    "Excellent PowerPoint and Excel skills for management presentations and complex models",
+    "Fluent German and English at minimum C1 level",
+    "Strong communication, executive presence, and stakeholder management"
+  ],
+  "bonus_skills": [
+    "Experience with Power BI or comparable BI tools",
+    "M&A, due diligence, or corporate finance touchpoints",
+    "First experience with AI tool integration"
+  ],
+  "matched_skills": [
+    "Master of Management & Entrepreneurship (Leuphana) — satisfies degree requirement",
+    "Fluent English (C1) — satisfies English C1 requirement",
+    "Stakeholder management and C-level reporting: HSBC programme interface across C-suite, Product, Engineering, Marketing — satisfies stakeholder management requirement",
+    "End-to-end project coordination and data-driven reporting at HSBC and Hapag-Lloyd — partial match for project ownership requirement",
+    "Executive PowerPoint and presentation skills: sprint review reports, town halls, C-suite escalation at HSBC — satisfies PowerPoint/communication requirement",
+    "Power BI (PL-300 certified) — directly satisfies BI tools bonus requirement",
+    "AI tool usage (ChatGPT, Claude) mentioned in CV — partial match for AI tools bonus"
+  ],
+  "missing_skills": [
+    "No strategy consulting background (MBB or Tier-2) — this is the core required experience; the JD explicitly calls for this",
+    "German B1 falls short of the required C1 minimum — this is flagged explicitly in the JD",
+    "No track record in strategic transformation, operational excellence, or Lean/process improvement methodologies",
+    "No hypothesis-driven problem structuring or management consulting analytical frameworks",
+    "No M&A or corporate finance experience"
+  ],
+  "core_responsibilities": [
+    "Develop and drive strategic initiatives end-to-end; translate strategy into operational implementation",
+    "Analyse and optimise processes across the entire value chain; identify efficiency and quality levers",
+    "Conduct deep data analyses and derive clear, actionable recommendations",
+    "Accompany change and transformation processes; foster continuous improvement culture",
+    "Work closely with leadership team; prepare C-level decision templates; present results to management"
+  ],
+  "recommended_emphasis": [
+    "The German C1 gap is a hard disqualifier as stated explicitly — flag to the candidate before applying",
+    "Highlight the HSBC C-suite interface, USD 8M programme governance, and multi-workstream coordination as the strongest evidence of operational strategy work",
+    "Lead with Power BI PL-300 certification for the BI bonus requirement",
+    "If applying speculatively, frame the Hapag-Lloyd and HSBC experience as internal strategy execution and operational excellence rather than external consulting"
+  ],
+  "summary": "Weak match at 38.9%. The role explicitly requires strategy consulting background (MBB/Tier-2) and German at C1 level — both hard requirements the candidate does not meet. The candidate's PMO and programme governance experience demonstrates some strategic execution capability, and the Power BI certification covers the BI bonus. However, without a consulting pedigree and with German B1 explicitly disqualifying, this is a high-risk application. Not recommended unless the candidate can demonstrate a compelling alternative narrative."
+}

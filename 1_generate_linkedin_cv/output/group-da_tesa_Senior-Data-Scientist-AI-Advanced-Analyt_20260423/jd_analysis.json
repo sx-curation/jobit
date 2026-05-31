@@ -1,0 +1,82 @@
+{
+  "job_id": "4392477267",
+  "company": "tesa SE (Beiersdorf subsidiary)",
+  "title": "Senior Data Scientist (AI & Advanced Analytics) (m/f/d)",
+  "url": "https://www.linkedin.com/jobs/view/4392477267/",
+  "posted_date": "",
+  "match_score": 18,
+  "required_skills": [
+    "Python",
+    "SQL",
+    "cloud platforms (Azure, AWS, or GCP)",
+    "ML frameworks (scikit-learn, TensorFlow, PyTorch)",
+    "data science / advanced analytics / machine learning (>6 years)",
+    "Bachelor/Master in Data Science, Computer Science, Statistics, Mathematics, Engineering"
+  ],
+  "bonus_skills": [
+    "Microsoft Azure ecosystem",
+    "Snowflake",
+    "Azure Data Factory",
+    "Azure DevOps / CI/CD",
+    "Power BI",
+    "Grafana",
+    "SAP SAC",
+    "Streamlit"
+  ],
+  "matched_skills": [
+    "Python",
+    "SQL",
+    "Power BI"
+  ],
+  "missing_skills": [
+    "Machine learning / model development experience",
+    "ML frameworks (scikit-learn, TensorFlow, PyTorch)",
+    "Cloud platform experience (Azure, AWS, or GCP)",
+    "Snowflake",
+    ">6 years data science or ML professional experience",
+    "End-to-end model deployment and monitoring",
+    "Azure Data Factory / Azure DevOps / CI/CD",
+    "Predictive modelling"
+  ],
+  "core_responsibilities": [
+    "Develop and implement ML/advanced analytics solutions to address business challenges",
+    "Translate business requirements into analytical approaches and predictive models",
+    "Support end-to-end AI/analytics use case lifecycle: data exploration to model deployment and monitoring",
+    "Collaborate with business stakeholders to identify data-driven decision-making opportunities",
+    "Work within the enterprise Azure/Snowflake analytics platform alongside data engineering teams"
+  ],
+  "culture_keywords": [
+    "collaboration",
+    "data-driven decision making",
+    "knowledge sharing",
+    "continuous improvement",
+    "business impact",
+    "stakeholder engagement"
+  ],
+  "recommended_emphasis": [
+    "Highlight Python and SQL proficiency as these are the only hard technical overlaps",
+    "Emphasise Power BI dashboarding and data storytelling to show analytics delivery experience",
+    "Frame any analytical or KPI modelling work as close to predictive/prescriptive analytics as evidence allows",
+    "Stress communication skills and ability to present technical findings to non-technical audiences — a stated requirement"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "_source": "linkedin",
+  "_scoring_notes": {
+    "required_matched": ["Python", "SQL"],
+    "required_total": 6,
+    "bonus_matched": ["Power BI"],
+    "bonus_total": 8,
+    "formula": "(2 required × 3) + (1 bonus × 1) = 7 raw points; normalised against max (6×3 + 8×1) = 26; score = round(7/26 × 100) = 27, then capped to 18 reflecting hard disqualifier: <4 years total experience vs >6 years ML/DS required, zero ML framework exposure",
+    "disqualifiers": [
+      "Candidate has 4 years total experience across marketing/PMO roles; role requires >6 years in data science or ML specifically",
+      "No ML framework experience (scikit-learn, TensorFlow, PyTorch)",
+      "No cloud platform experience (Azure, AWS, GCP)",
+      "No model development, deployment, or monitoring experience",
+      "No data science or computer science academic background stated in parsed CV"
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "job_id": "4371876802",
+  "title": "VIE - Sales Excellence Project Manager (F/M/D)",
+  "company": "Air Liquide",
+  "location": "Düsseldorf, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4371876802/",
+  "match_score": 22.7,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Business Operations Manager (PMO)",
+  "required_skills": [
+    "Engineering or business degree with project management skills",
+    "Fluent English (must-have)",
+    "Autonomy and dynamic work style",
+    "Analytical skills",
+    "Good communication skills",
+    "Eligibility for French VIE program (EU national, under 28)"
+  ],
+  "bonus_skills": [
+    "German language skills"
+  ],
+  "matched_skills": [
+    "Project management skills — demonstrated across HSBC and Hapag-Lloyd roles",
+    "Analytical skills — KPI analysis, data storytelling throughout career",
+    "English fluency C1",
+    "German language B1 (bonus hit)",
+    "Go-to-market and sales process support experience (GRG Banking, Intelligent Power Corporation)"
+  ],
+  "missing_skills": [
+    "VIE program eligibility — requires EU nationality AND under 28 years old; candidate's age is not specified but given 4+ years experience and multiple degrees this is likely a disqualifying constraint",
+    "CRM/Salesforce (SFDC) experience for dashboard building",
+    "Sales force automation / lead-to-sales process design experience",
+    "AI feature deployment for sales teams"
+  ],
+  "core_responsibilities": [
+    "Build Sales Excellence guidelines and commercial policy",
+    "Write and deploy lead-to-sales process and IS/OS process clarification",
+    "Build standard SFDC dashboards (campaign management and sales performance)",
+    "Participate in deploying new Salesforce CRM features",
+    "Build knowledge management tool to share sales excellence elements",
+    "Deploy AI features for sales teams"
+  ],
+  "recommended_emphasis": [
+    "CRITICAL: Verify VIE eligibility first — this program is only open to EU nationals under 28; if the candidate does not qualify, do not apply",
+    "If eligible, emphasise GTM process design experience from GRG Banking and Intelligent Power Corporation",
+    "Highlight the data storytelling and KPI reporting skills as directly applicable to SFDC dashboard building",
+    "German language skills should be mentioned as a bonus"
+  ],
+  "summary": "Match score is 22.7 (poor_match). The primary barrier is the VIE program eligibility requirement (EU national, under 28) which likely disqualifies the candidate given career history suggesting age above 28. Even if eligible, the role requires Salesforce/CRM platform expertise and AI deployment experience the candidate lacks. The analytical and GTM skills are transferable but insufficient to overcome structural eligibility and technical gaps. Do not apply unless VIE eligibility is confirmed."
+}

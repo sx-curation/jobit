@@ -1,0 +1,71 @@
+{
+  "job_id": "4404095669",
+  "company": "Deutsche Post und DHL Group (Post & Paket Deutschland)",
+  "title": "Senior Product Owner Data & AI (Customer Analytics) (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4404095669/",
+  "posted_date": "",
+  "match_score": 22,
+  "required_skills": [
+    "Abgeschlossenes Studium in Data Science, Informatik, Statistik",
+    "Erfahrung mit großen, auch unstrukturierten Datenmengen",
+    "Python",
+    "SQL",
+    "Machine Learning",
+    "NLP",
+    "LLMs / Embeddings",
+    "Data-/ML-Pipelines (z. B. Kubeflow)",
+    "Datenplattformen",
+    "Sehr gute Deutschkenntnisse",
+    "Agiles Arbeiten / Product Owner Erfahrung"
+  ],
+  "bonus_skills": [
+    "Erfahrung in NLP",
+    "LLMs",
+    "Conversational AI"
+  ],
+  "matched_skills": [
+    "Python",
+    "SQL",
+    "Power BI",
+    "Agile (sprint ceremonies, cross-functional coordination)"
+  ],
+  "missing_skills": [
+    "Machine Learning (no demonstrated ML experience)",
+    "NLP / LLMs / Embeddings",
+    "Conversational AI",
+    "ML pipelines (Kubeflow or equivalent)",
+    "Large-scale / unstructured data platforms",
+    "Product Owner role or data product ownership",
+    "Strong German skills (candidate is B1, role requires near-native proficiency)",
+    "Roadmap and backlog management",
+    "Use case identification and prioritisation at senior level"
+  ],
+  "core_responsibilities": [
+    "Identifikation, Bewertung und Priorisierung daten- und KI-getriebener Use Cases",
+    "Übersetzung fachlicher Anforderungen in Epics, User Stories, Roadmaps und Backlogs",
+    "Steuerung cross-funktionaler Teams (Data Science, Data Engineering, BI, Fachbereiche)",
+    "Stakeholder-Management und transparente Kommunikation",
+    "Explorative Analysen, Prototypen und KPIs (Python, SQL, Power BI); Begleitung von Data Products im produktiven Betrieb"
+  ],
+  "culture_keywords": [
+    "cross-funktional",
+    "agil",
+    "datengetrieben",
+    "messbarer Kundennutzen",
+    "transparente Kommunikation",
+    "Hands-on"
+  ],
+  "recommended_emphasis": [
+    "Highlight SQL and Python usage with concrete project examples to demonstrate hands-on data work",
+    "Emphasise any cross-functional coordination and stakeholder communication experience (Hapag-Lloyd, HSBC)",
+    "Frame HSBC PMO role in terms of backlog/prioritisation to approximate Product Owner adjacent skills",
+    "Mention Power BI and KPI reporting as evidence of data product delivery mindset",
+    "Acknowledge German language improvement efforts if applicable; B1 is a significant gap for this role"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "Deutsche Post DHL Group — globally known enterprise; 10,001+ employees inferred from brand recognition and group structure"
+  },
+  "_source": "linkedin"
+}

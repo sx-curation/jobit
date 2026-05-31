@@ -1,0 +1,80 @@
+{
+  "job_id": "4414674862",
+  "company": "JD.COM",
+  "title": "Category Strategy Analyst",
+  "url": "https://www.linkedin.com/jobs/view/4414674862/",
+  "posted_date": "",
+  "_source": "linkedin",
+  "match_score": 72,
+  "required_skills": [
+    "Market demand analysis",
+    "Competitive dynamics analysis",
+    "Category strategy development",
+    "Product portfolio management",
+    "Pricing strategy design",
+    "Promotional campaign design",
+    "Supply chain collaboration",
+    "Inventory management / scheduling",
+    "Data monitoring framework",
+    "Sales performance analytics",
+    "Cost structure & profit margin analysis",
+    "Cross-functional team coordination",
+    "Business intelligence & data-driven decision making",
+    "E-commerce / retail domain knowledge",
+    "Business model innovation"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Market demand analysis",
+    "Competitive dynamics analysis",
+    "Category strategy development",
+    "Product portfolio management",
+    "Data monitoring framework",
+    "Sales performance analytics",
+    "Cross-functional team coordination",
+    "Business intelligence & data-driven decision making",
+    "E-commerce / retail domain knowledge",
+    "Promotional campaign design"
+  ],
+  "missing_skills": [
+    "Pricing strategy design",
+    "Supply chain collaboration",
+    "Inventory management / scheduling",
+    "Cost structure & profit margin analysis",
+    "Business model innovation"
+  ],
+  "core_responsibilities": [
+    "Analyze market demand and competitive dynamics to develop category strategies and product portfolios; coordinate procurement and supply chain resources to optimize product structure and inventory efficiency.",
+    "Research industry trends and consumer behavior to design pricing strategies and promotional campaigns; enhance product competitiveness and achieve profitability targets.",
+    "Collaborate with cross-functional teams across the supply chain to optimize product scheduling and launch plans, ensuring efficient inventory turnover and operational agility.",
+    "Establish a data monitoring framework to analyze sales performance, cost structures, and profit margins; provide actionable insights for decision-making and drive data-driven operational precision.",
+    "Leverage industry best practices to pioneer new collaborative scenarios and innovative business models, expanding market share and strengthening industry leadership."
+  ],
+  "culture_keywords": [
+    "customer first",
+    "innovation",
+    "dedication",
+    "ownership",
+    "gratitude",
+    "integrity",
+    "data-driven",
+    "cross-border",
+    "digitally intelligent",
+    "supply chain-based technology",
+    "Retail as a Service",
+    "operational agility"
+  ],
+  "recommended_emphasis": [
+    "Highlight product portfolio gap analysis experience at GRG Banking (6 product lines, competitive benchmarking shaping roadmap)",
+    "Emphasize competitive intelligence and market segmentation work (ECE Group, IoT/GRG roles)",
+    "Showcase data monitoring and KPI framework design skills (Power BI PL-300, campaign analytics, budget dashboards)",
+    "Leverage e-commerce funnel analytics at Moli Media and cross-border retail context (Joybuy/JD Europe) to signal domain fit",
+    "Stress cross-functional coordination experience (Hapag-Lloyd agile delivery, HSBC PMO bridging technical and C-level)",
+    "Add any pricing or inventory exposure (even indirect, e.g., trade fair ROI, budget variance) to partially address pricing strategy gaps"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "Ranked 44th on the Fortune Global 500; China's largest retailer by revenue; serving over 600 million annual active customers"
+  }
+}

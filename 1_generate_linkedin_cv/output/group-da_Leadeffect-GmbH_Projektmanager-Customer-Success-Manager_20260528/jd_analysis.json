@@ -1,0 +1,136 @@
+{
+  "job_id": "st_3e598bbf7e501aba",
+  "company": "Leadeffect GmbH",
+  "title": "Projektmanager / Customer Success Manager im Online Marketing",
+  "url": "https://www.stepstone.de/stellenangebote--Projektmanager-Customer-Success-Manager-im-Online-Marketing-Hamburg-Deutschland-Leadeffect-GmbH--12639857-inline.html",
+  "location": "Hamburg, Deutschland",
+  "source": "stepstone",
+  "analyzed_at": "2026-05-28",
+  "company_info": {
+    "company_size": "small",
+    "size_note": "Kleine Agentur, Hamburg-basiert, spezialisiert auf B2B Online Marketing (Webdesign, SEO, SEA, LinkedIn, Email Marketing)",
+    "headcount_estimate": "<20",
+    "remote_policy": "Remote möglich oder Hamburg (mind. 4 Tage/Monat vor Ort)"
+  },
+  "required_skills": [
+    {
+      "skill": "Online Marketing & Projektmanagement (min. 2 Jahre Berufserfahrung)",
+      "type": "required",
+      "candidate_match": true,
+      "match_note": "Mehrere relevante Rollen: Marketing Manager (IPC, GRG Banking, Moli Media), Project Coordination (Hapag-Lloyd), Scrum/SAFe, JIRA/Confluence"
+    },
+    {
+      "skill": "Strukturiertes und organisiertes Arbeiten",
+      "type": "required",
+      "candidate_match": true,
+      "match_note": "Projektmanagement-Hintergrund mit Scrum/SAFe-Methodik, strukturierte Reporting- und Analyseprozesse belegt"
+    },
+    {
+      "skill": "Kontaktfreudig (kommunikativ, kundenorientiert)",
+      "type": "required",
+      "candidate_match": false,
+      "match_note": "Keine direkte Evidenz für Kontaktfreudigkeit oder Vertriebsstärke in den CV-Bullets; Kundenkontakt implizit vorhanden (Hapag-Lloyd Customer Experience) aber nicht explizit hervorgehoben"
+    },
+    {
+      "skill": "Fähigkeit, sich in Zielgruppen und komplexe Produkte reinzudenken",
+      "type": "required",
+      "candidate_match": true,
+      "match_note": "Market Segmentation & Intelligence, Customer Segmentation & Cohort Analysis, Competitive Intelligence belegt in mehreren Rollen"
+    },
+    {
+      "skill": "Deutsche und englische Sprachkenntnisse",
+      "type": "required",
+      "candidate_match": true,
+      "match_note": "Deutsch B1+, Englisch C1 – beide Anforderungen erfüllt"
+    }
+  ],
+  "bonus_skills": [],
+  "core_responsibilities": [
+    {
+      "responsibility": "Projektplanung und Projektmanagement",
+      "candidate_match": true,
+      "match_note": "Project management (Scrum, SAFe) explizit in Skills, JIRA/Confluence, Working Student in Project Coordination (Hapag-Lloyd)"
+    },
+    {
+      "responsibility": "Kundensupport: Onboarding-Meetings, Reporting-Meetings, E-Mails",
+      "candidate_match": true,
+      "match_note": "Hapag-Lloyd Customer Experience-Rolle, Stakeholder Data Storytelling (HSBC), Reporting-Erfahrung mit Power BI/Looker Studio"
+    },
+    {
+      "responsibility": "Strategische Planung von Leadgenerierungs- und Marketingmaßnahmen",
+      "candidate_match": true,
+      "match_note": "Funnel & Lead Analytics (IPC), Go-to-market strategy support, Campaign Analytics & ROI Measurement, Segmentation & Channel Strategy"
+    },
+    {
+      "responsibility": "Monitoring der Kundenprojekte",
+      "candidate_match": true,
+      "match_note": "Campaign performance optimisation, Marketing KPI framework design, Funnel & conversion analysis in mehreren Rollen"
+    },
+    {
+      "responsibility": "Managen von Fachkräften und Freelancern im Projekt",
+      "candidate_match": true,
+      "match_note": "Cross-functional team coordination in Skills, KOL Performance Tracking (Moli Media – impliziert Freelancer-Management)"
+    },
+    {
+      "responsibility": "Vertragsverlängerung und Upsales von Kundenprojekten",
+      "candidate_match": false,
+      "match_note": "Keine direkte Vertriebserfahrung oder Upselling-Evidenz im CV"
+    }
+  ],
+  "scoring": {
+    "required_total": 5,
+    "required_hits": 4,
+    "bonus_total": 0,
+    "bonus_hits": 0,
+    "responsibility_total": 6,
+    "responsibility_hits": 5,
+    "raw": 14.5,
+    "max": 15.0,
+    "match_score": 96.7,
+    "match_level": "强匹配",
+    "recommendation": "优先处理，正常生成材料"
+  },
+  "gaps": [
+    {
+      "gap": "Kontaktfreudigkeit / Vertriebsstärke",
+      "severity": "medium",
+      "note": "Keine explizite Evidenz für Kundenakquise oder Vertriebsstärke. CV betont eher Analyse und Strategy – sollte im Cover Letter durch konkrete Kundenkontakt-Beispiele adressiert werden."
+    },
+    {
+      "gap": "Upsales / Vertragsverlängerung",
+      "severity": "medium",
+      "note": "Customer Success mit Upsell-Fokus ist nicht direkt im CV belegt. Empfehlung: In CV/Cover Letter auf Revenue-Impact oder Kundenbindungs-Metriken hinweisen."
+    },
+    {
+      "gap": "Deutschkenntnisse B1+",
+      "severity": "low",
+      "note": "Stelle erfordert Arbeit auf Deutsch (Kundenkommunikation). B1+ ist Grundanforderung; höheres Niveau wäre vorteilhaft für Onboarding-Meetings auf Deutsch."
+    }
+  ],
+  "strengths": [
+    "Breite Online-Marketing-Erfahrung über mehrere Unternehmen und Märkte (EMEA, APAC)",
+    "Starke Projektmanagement-Kompetenz mit Scrum/SAFe-Methodik und JIRA/Confluence",
+    "Fundierte Erfahrung in Leadgenerierung, Funnel-Analyse und Campaign-ROI-Messung",
+    "Zweisprachigkeit Englisch C1 + Deutsch B1+ erfüllt sprachliche Anforderungen",
+    "Analytische Stärke (Power BI, Google Looker Studio) für Reporting-Meetings nutzbar",
+    "Cross-functional coordination und KOL/Freelancer-Management nachgewiesen"
+  ],
+  "cv_tailoring_hints": [
+    "Highlight Kundenkontakt-Erfahrungen aus Hapag-Lloyd Customer Experience expliziter",
+    "Betone Lead-Generierungs-KPIs und konkrete Conversion-Ergebnisse aus IPC/GRG-Rollen",
+    "Ergänze Upsell-/Retention-relevante Metriken falls vorhanden",
+    "Positioniere SEO/SEA/LinkedIn-Kenntnisse sofern vorhanden (JD-spezifische Tools der Agentur)",
+    "Erwähne B2B-Marketing-Erfahrung prominent – passt direkt zum Leadeffect-Fokus auf B2B-Neukundengewinnung"
+  ],
+  "match_score": 96.7,
+  "missing_skills": [
+    "Kontaktfreudigkeit / Vertriebsstärke",
+    "Upsales / Vertragsverlängerung",
+    "German level B1+"
+  ],
+  "recommended_emphasis": [
+    "Highlight customer contact experience from Hapag-Lloyd Customer Experience more explicitly",
+    "Emphasize lead generation KPIs and concrete conversion results from IPC/GRG roles",
+    "Ergänze Upsell-/Retention-relevante Metriken falls vorhanden"
+  ]
+}

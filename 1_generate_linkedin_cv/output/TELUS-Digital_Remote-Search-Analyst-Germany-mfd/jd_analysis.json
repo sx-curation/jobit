@@ -1,0 +1,44 @@
+{
+  "job_id": "4384318021",
+  "company": "TELUS Digital",
+  "title": "Remote Search Analyst Germany m,f,d",
+  "url": "https://www.linkedin.com/jobs/view/4384318021/",
+  "posted_date": "",
+  "match_score": 18.0,
+  "required_skills": [
+    "Full professional proficiency in German and English",
+    "Germany resident for at least 1 year",
+    "Apple ID and Apple product experience",
+    "Cultural knowledge of German media and trends"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "German B1+ (partial, not full professional proficiency)",
+    "English C1",
+    "Germany resident (Lüneburg)"
+  ],
+  "missing_skills": [
+    "German full professional proficiency (C1+) — CV shows B1+",
+    "Apple product ecosystem experience — not mentioned in CV",
+    "No professional analytics scope — this is a gig/crowdsourcing role"
+  ],
+  "core_responsibilities": [
+    "Assess diverse media categories: music, books, podcasts, videos",
+    "Evaluate app store content search result accuracy",
+    "Apply cultural knowledge to validate query intent"
+  ],
+  "culture_keywords": [
+    "flexible", "community", "AI training", "extra income", "gig work"
+  ],
+  "recommended_emphasis": [
+    "NOTE: This is a gig/crowdsourcing role (1M+ contributors), not a professional analytics position",
+    "Score is below threshold (30) — recommend skipping",
+    "German B1+ may not meet 'full professional proficiency' requirement",
+    "Not aligned with career goals implied by CV"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "42,849 total employees"
+  }
+}

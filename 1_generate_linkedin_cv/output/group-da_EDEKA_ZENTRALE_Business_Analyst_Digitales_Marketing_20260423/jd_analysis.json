@@ -1,0 +1,80 @@
+{
+  "job_id": "st_66c3be9310ae4c5a",
+  "company": "EDEKA ZENTRALE Stiftung & Co. KG",
+  "title": "Business Analyst - Digitales Marketing (m/w/d)",
+  "url": "https://www.stepstone.de/stellenangebote--Business-Analyst-Digitales-Marketing-m-w-d-Hamburg-EDEKA-ZENTRALE-Stiftung-Co-KG--13787982-inline.html",
+  "posted_date": "",
+  "match_score": 67,
+  "required_skills": [
+    "SQL",
+    "Excel",
+    "Power BI",
+    "Python",
+    "Jira",
+    "Confluence",
+    "GitHub",
+    "Performance data / E-Commerce / Commercial Analytics experience",
+    "A/B testing & experiment design",
+    "Degree in (Wirtschafts-)Informatik, Data Science, Digital Business, Mathematik, E-Commerce, Wirtschaftspsychologie or comparable"
+  ],
+  "bonus_skills": [
+    "Understanding of digital architectures and software development",
+    "CRM analytics",
+    "Loyalty programme experience",
+    "Personalisation / multivariate testing",
+    "Customer journey optimisation"
+  ],
+  "matched_skills": [
+    "Excel / MS Excel",
+    "Power BI (Microsoft Certified PL-300)",
+    "Jira",
+    "Confluence",
+    "E-commerce analytics experience (Moli Media)",
+    "A/B testing & experiment design",
+    "CRM analytics",
+    "Customer journey analysis (Hapag-Lloyd funnel & UX work)",
+    "C-level data storytelling / stakeholder communication",
+    "Relevant academic degree (Master of Management & Entrepreneurship)"
+  ],
+  "missing_skills": [
+    "SQL",
+    "Python",
+    "GitHub",
+    "Loyalty programme / app feature analytics",
+    "Personalisation mechanics / multivariate test design at scale"
+  ],
+  "core_responsibilities": [
+    "Analyse transaction, response and interaction data to derive deep customer behaviour and offer-effectiveness insights",
+    "Design, execute and evaluate A/B and multivariate tests to measurably improve personalisation, CRM and offer communication",
+    "Continuously develop digital customer interactions (EDEKA App) and loyalty programmes",
+    "Identify optimisation and innovation potentials across the full customer journey (digital and analogue)",
+    "End-to-end ownership from analysis through concept to implementation; translate complex findings into clear decision bases for operational and strategic stakeholders"
+  ],
+  "culture_keywords": [
+    "Ownership",
+    "Eigeninitiative",
+    "Neugier (curiosity)",
+    "Cross-functional collaboration (IT, Marketing, CRM, App)",
+    "Analytischer Scharfsinn (analytical sharpness)",
+    "Datengetrieben (data-driven)",
+    "Innovation",
+    "Digitale Transformation",
+    "Teamgeist"
+  ],
+  "recommended_emphasis": [
+    "Highlight Power BI certification (PL-300) and hands-on dashboard/reporting work prominently in the skills section",
+    "Lead with A/B testing & experiment design experience — align with JD language around 'Hypothesen testen'",
+    "Emphasise e-commerce funnel analytics and audience/behavioural data work from Moli Media",
+    "Frame Hapag-Lloyd funnel & UX analysis as customer journey and app-adjacent analytics experience",
+    "Showcase C-level data storytelling (HSBC USD 8M programme) to address the stakeholder communication requirement",
+    "Mention Jira and Confluence usage in agile delivery context (Hapag-Lloyd sprint work)",
+    "If any SQL or Python exposure exists (even basic/coursework), surface it explicitly — these are hard-required",
+    "Use 'Ownership', 'data-driven', and 'cross-functional' in the professional summary to match culture keywords"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "rund 413.000 Mitarbeiter:innen (2024); rund 10.900 Märkte; Umsatz 75,3 Mrd. Euro"
+  },
+  "raw_jd_text": "(removed due to encoding issue)"
+}

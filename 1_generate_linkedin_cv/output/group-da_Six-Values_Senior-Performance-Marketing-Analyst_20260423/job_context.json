@@ -1,0 +1,156 @@
+{
+  "jd": "Who We Are:\n\nOur company has a vision to change people’s mood for the better. Our mission is to be a fast-moving, highly efficient tech services business that engages people, partners, and players and delivers great experiences.\n\nWe provide B2B support services across multiple brands, partners, and markets. We operate in a scale-up environment and value people who are commercially aware, fast-moving, collaborative, and motivated by impact.\n\n\n\n\nRole Overview:\n\nWe are looking for a Senior Performance Marketing Analyst to take ownership of channel performance analytics across multiple brands.\n\nThis role sits at the intersection of marketing, data, and commercial decision-making - with a focus on understanding where growth comes from, how it performs, and how to scale it profitably.\n\nYou will be responsible for building a clear view of the acquisition funnel, linking marketing spend to customer behaviour and value, and enabling the business to make data-driven budget decisions.\n\n\n\n\nKey Responsibilities:\n\n1. Channel Performance & Acquisition Analytics\n\nBuild and maintain a full view of the top-of-funnel acquisition funnel\nAnalyse performance across Meta, affiliates, SEO, and other channels\nIdentify high-performing vs underperforming campaigns, sources, and geos\nPartner with marketing teams to optimise budget allocation and campaign strategy\n\n\n\n\n2. Marketing Attribution & Measurement\n\nEnsure accurate tracking of:\nCampaigns (UTMs, gclid/fbclid)\nTraffic sources\nConversion events\nTranslate marketing activity into CPA, ROAS, and payback insights\nOwn and develop attribution models (starting with last-touch, evolving over time)\n\n\n\n\n3. Data Integration & Modelling\n\nWork with BigQuery and internal data sources to:\nCombine marketing data with customer behaviour and revenue\nBuild datasets that connect spend → user → value\nCollaborate with BI/engineering to ensure clean, scalable data pipelines\nDefine and maintain consistent KPI definitions across the business\n\n\n\n\n4. Stakeholder Collaboration\n\nWork closely with:\nPerformance Marketing\nCRM\nProduct / CRO\nBI & Data Engineering\nTranslate business questions into analytical frameworks and outputs\nChallenge stakeholders on what “good” looks like and align on success metrics\n\n\n\n\n5. Reporting & Insights\n\nBuild and maintain dashboards (Tableau / similar) for:\nCPA, ROAS, conversion rates\nFunnel performance\nChannel comparisons\nDeliver clear, actionable insights, not just reporting\nSupport weekly/monthly performance reviews with data-driven narratives\n\n\n\n\nWhat We’re Looking For:\n\nExperience\n\n5+ years in performance marketing analytics, growth analytics, or marketing data\nStrong experience with paid media data and acquisition funnel analysis\nExperience working in multi-channel environments\n\nTechnical Skills\n\nStrong SQL skills (BigQuery or similar)\nExperience working with large-scale marketing datasets\nGood understanding of:\nAttribution modelling\nGA4, GTM, UTMs\nCPA, ROAS, LTV\nMarketing data pipelines (Fivetran or similar is a plus)\n\nMindset\n\nCommercially driven - understands what drives revenue, not just metrics\nAble to work with imperfect data and still produce insight\nStrong ownership - able to define problems and solutions independently\nClear communicator - able to explain complex data to non-technical stakeholders\n\n\n\n\nWhat Success Looks Like (3-6 months):\n\nA clear, trusted view of channel performance across key brands\nReliable CPA and ROAS reporting by campaign/source\nA working acquisition funnel from click to revenue\nStakeholders using data to make budget and campaign decisions confidently\n\n\n\n\nWhy Join Us:\n\nThis is an opportunity to play a key role in shaping how marketing performance is measured across multiple brands.\n\nYou will have visibility across spend, performance, and customer value, and your work will directly support better investment decisions, stronger campaign performance, and smarter growth.\n\nIf you want a role where you can combine analytics, commercial thinking, and real business impact, this is a strong opportunity to do it.",
+  "company": "Six Values",
+  "title": "Senior Performance Marketing Analyst",
+  "location": "European Union",
+  "url": "https://www.linkedin.com/jobs/view/4399749848/",
+  "_source": "linkedin",
+  "cv_parsed": {
+    "name": "Boru Lai",
+    "email": "Leonlai0524@outlook.com",
+    "phone": "+49 15236845456",
+    "location": "Lüneburg, Germany",
+    "linkedin": "https://www.linkedin.com/in/leon-lai92/",
+    "summary": "Data-driven marketing analytics professional with 4+ years of international experience across e-commerce, manufacturing, shipping, FinTech, and IoT. Skilled in data analysis, reporting, and customer insights. Experienced in turning complex datasets into actionable recommendations and supporting digital transformation. Seeking roles in marketing or data analytics to leverage analytical skills and business acumen for strategic impact.",
+    "skills": [
+      "Market Strategy & Insights",
+      "Campaign performance optimisation",
+      "Market segmentation & intelligence",
+      "Go-to-market strategy support",
+      "C-level data storytelling",
+      "Multi-market coverage (EMEA, APAC)",
+      "Marketing KPI framework design",
+      "Customer segmentation & cohort analysis",
+      "E-commerce & campaign ROI analytics",
+      "Funnel & conversion analysis",
+      "A/B testing & experiment design",
+      "Data quality, tracking & QA",
+      "Cross-functional team coordination",
+      "Project management (Scrum, SAFe)"
+    ],
+    "experience": [
+      {
+        "company": "ECE Group Hamburg",
+        "sector": "Marketplace / Real Estate",
+        "title": "Working Student in Business Development",
+        "duration": "2024",
+        "bullets": [
+          "Market Segmentation & Intelligence: Conducted competitive analysis and market sizing across automotive and furniture retail segments; built structured benchmarking frameworks translating market data into opportunity scoring for strategic planning.",
+          "Insight Delivery: Packaged analytical findings into executive-ready reports influencing channel prioritisation and business development pipeline decisions."
+        ]
+      },
+      {
+        "company": "Hapag-Lloyd AG, Hamburg",
+        "sector": "Shipping / Logistics",
+        "title": "Working Student in Project Coordination Customer Experience",
+        "duration": "2024 – 2025",
+        "bullets": [
+          "Funnel & Behavioural Analysis: Analysed booking-related customer journey and user research data to identify friction points and drop-off patterns; translated findings into structured performance summaries that directly influenced product backlog prioritisation.",
+          "Data Quality & Agile Delivery: Tracked data artefacts across agile sprints, ensured measurement consistency, and QA'd reporting outputs before executive sprint reviews."
+        ]
+      },
+      {
+        "company": "Hongkong and Shanghai Banking Corporation Limited (HSBC)",
+        "sector": "FinTech / Banking",
+        "title": "Strategy Project Management Officer (PMO)",
+        "duration": "2021 – 2022",
+        "bullets": [
+          "Programme Analytics & Attribution: Owned financial performance analytics for a USD 8M digital transformation programme; built multi-dimensional budget variance dashboards, tracked spend attribution across 6 workstreams, and produced weekly burn-rate reports escalated to C-suite.",
+          "Stakeholder Data Storytelling: Acted as bridge between technical data teams and C-level decision-makers — translated complex programme status into structured insight narratives that drove investment and prioritisation decisions at executive reviews."
+        ]
+      },
+      {
+        "company": "Intelligent Power Corporation Limited",
+        "sector": "IoT / IT",
+        "title": "Marketing Manager",
+        "duration": "2020",
+        "bullets": [
+          "Campaign Analytics & ROI Measurement: Tracked and reported marketing performance KPIs across 4 B2B product launch campaigns; ROI analysis evidenced direct event-to-revenue impact of 4.6M CNY in signed contracts.",
+          "Funnel Optimisation & Lead Analytics: Analysed lead capture and pipeline conversion data from trade fair activations; identified drop-off stages and recommended targeting adjustments that improved qualified lead rate.",
+          "Competitive Intelligence: Built recurring competitor monitoring reports covering pricing, positioning, and channel activity; delivered strategic insights informing product go-to-market adjustments.",
+          "Segmentation & Channel Strategy: Developed customer segmentation models to differentiate messaging across B2B verticals; supported channel selection decisions with data-driven audience analysis."
+        ]
+      },
+      {
+        "company": "GRG Banking Corporation Limited",
+        "sector": "ATM Manufacturing",
+        "title": "Product Marketing Manager",
+        "duration": "2019",
+        "bullets": [
+          "Portfolio Gap & Market Analysis: Identified product portfolio gaps across 6 lines through structured customer needs analysis and competitor benchmarking; findings directly shaped engineering development priorities and roadmap planning.",
+          "Sales Funnel & Conversion Tracking: Analysed trade fair lead pipelines and pre-sales conversion data for 100+ B2B client interactions; built performance summaries that optimised sales team targeting and follow-up sequencing.",
+          "Multi-market Campaign Performance: Monitored marketing performance across EMEA and APAC markets; translated channel and audience data into actionable recommendations for campaign spend allocation."
+        ]
+      },
+      {
+        "company": "Moli Media Corporation Limited",
+        "sector": "E-commerce / Live-stream Agency",
+        "title": "Marketing & Project Coordinator",
+        "duration": "2019",
+        "bullets": [
+          "E-commerce Funnel & Audience Analytics: Analysed user behaviour, audience engagement, and conversion data across live-stream e-commerce events for 4,000+ attendees; produced post-event performance reports covering funnel drop-off, retention signals, and revenue attribution.",
+          "KOL Performance Tracking: Measured and reported KOL campaign effectiveness — tracking reach, engagement rate, and audience cohort behaviour across digital and live-event channels to optimise influencer spend allocation.",
+          "Insight-to-Action Reporting: Delivered structured analytical reports to senior management with data-backed recommendations that demonstrably improved targeting and format decisions for subsequent campaigns."
+        ]
+      }
+    ],
+    "student_consulting": [
+      {
+        "organization": "VfB Stuttgart",
+        "location": "Lüneburg & Stuttgart",
+        "bullets": [
+          "KPI Design: Developed an impact measurement framework and cost-benefit tracking methodology for sustainability projects, presenting findings and recommendations to club management.",
+          "Data-Driven Post-Event Evaluation: Delivered structured analysis that enabled evidence-based post-event evaluation across the club's sustainability programme."
+        ]
+      }
+    ],
+    "education": [
+      {
+        "degree": "Master of Management & Entrepreneurship",
+        "school": "Leuphana University",
+        "year": "2022 – 2025"
+      },
+      {
+        "degree": "Master of Public Relations and Advertising",
+        "school": "Shih Hsin University",
+        "year": "2015 – 2018"
+      },
+      {
+        "degree": "Bachelor of Management Administration",
+        "school": "South China University of Technology",
+        "year": "2011 – 2015"
+      }
+    ],
+    "tools": [
+      "Power BI (Microsoft Certified: Power BI Data Analyst Associate PL-300)",
+      "Qlik Sense",
+      "Google Looker Studio",
+      "SAP Analytics",
+      "MS Excel",
+      "JIRA",
+      "Confluence",
+      "MS PowerPoint"
+    ],
+    "certifications": [
+      "Microsoft Certified: Power BI Data Analyst Associate (PL-300)"
+    ],
+    "languages": [
+      {
+        "language": "English",
+        "level": "C1"
+      },
+      {
+        "language": "German",
+        "level": "B1+"
+      },
+      {
+        "language": "Chinese",
+        "level": "C2"
+      },
+      {
+        "language": "Japanese",
+        "level": "B1"
+      }
+    ]
+  }
+}

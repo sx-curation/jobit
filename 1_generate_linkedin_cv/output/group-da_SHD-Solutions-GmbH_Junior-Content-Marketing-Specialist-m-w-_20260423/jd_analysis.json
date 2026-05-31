@@ -1,0 +1,59 @@
+{
+  "job_id": "4391864374",
+  "company": "SHD Solutions GmbH",
+  "title": "(Junior) Content Marketing Specialist (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4391864374/",
+  "posted_date": "",
+  "match_score": 30,
+  "required_skills": [
+    "CRM / marketing automation tools (Zoho preferred)",
+    "Email marketing campaign execution",
+    "German fluency (DACH market)",
+    "Structured marketing communication approach"
+  ],
+  "bonus_skills": [
+    "Zoho CRM hands-on experience",
+    "Entry-level / first professional experience"
+  ],
+  "matched_skills": [
+    "Customer segmentation & cohort analysis",
+    "Campaign performance optimisation (analytics side)",
+    "Go-to-market strategy support (partial — product launches)",
+    "B2B marketing experience (IoT, ATM, ERP-adjacent sectors)"
+  ],
+  "missing_skills": [
+    "CRM platform hands-on operation (Zoho or equivalent)",
+    "Email marketing execution (campaign builds, templates, flows)",
+    "German language fluency (CV shows B1+; role requires DACH-level fluency)",
+    "Marketing copywriting / content creation",
+    "Marketing automation / customer journey configuration"
+  ],
+  "core_responsibilities": [
+    "Implement email campaigns and communication flows in CRM (Zoho)",
+    "Maintain and segment contacts and target groups in CRM",
+    "Support automated campaigns and customer journey workflows",
+    "Create and maintain email templates and campaign modules for international markets",
+    "Create and adapt marketing texts for products and campaigns"
+  ],
+  "culture_keywords": [
+    "B2B software",
+    "DACH market",
+    "International markets",
+    "Structured communication",
+    "Junior / entry level"
+  ],
+  "recommended_emphasis": [
+    "Highlight customer segmentation experience as the strongest transferable skill",
+    "Reference B2B campaign analytics work (IPC, GRG) to show marketing context",
+    "Mention any hands-on tool usage adjacent to CRM (e.g., Confluence/JIRA for workflow management)",
+    "Emphasise German language progress and willingness to operate in German-language market"
+  ],
+  "overqualified_flag": true,
+  "overqualified_note": "Candidate has 4+ years of international marketing analytics and PMO experience across FinTech, IoT, and shipping sectors. This is a junior/entry-level content-ops role focused on CRM execution and email marketing. The seniority mismatch is significant. Additionally, the role requires German fluency (DACH-facing) while CV indicates B1+ only. Recommend deprioritising unless candidate is specifically targeting a career pivot into hands-on CRM/content marketing.",
+  "company_info": {
+    "size": "51–200",
+    "size_source": "jd_text",
+    "size_raw": "~100-200 employees (B2B ERP/software provider for furniture industry)"
+  },
+  "_source": "linkedin"
+}

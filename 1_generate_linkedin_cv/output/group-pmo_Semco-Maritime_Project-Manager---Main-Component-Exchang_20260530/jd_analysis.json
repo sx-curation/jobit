@@ -1,0 +1,57 @@
+{
+  "job_id": "4421219191",
+  "title": "Project Manager - Main Component Exchanges (m/f/d)",
+  "company": "Semco Maritime",
+  "location": "Northern/Central Europe (offshore wind, travel required)",
+  "url": "https://www.linkedin.com/jobs/view/4421219191/",
+  "match_score": 27.3,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Delivery Manager",
+  "required_skills": [
+    "Bachelor's degree in STEM, commerce, or project management",
+    "Proven and demonstrable experience planning and executing complex offshore wind projects in Northern and Central Europe with multiple interfaces and subcontractors",
+    "Sound practical knowledge of UK regulatory and safety frameworks: CDM 2015 and Wind Turbine Safety Rules (WTSR)",
+    "Understanding of quality systems including structured project documentation management",
+    "Understanding of vessel mobilisation, POB planning, and offshore logistics",
+    "Strong planning and coordination skills; tool proficiency in MS Office, ideally MS Project and SharePoint",
+    "Fluency in English (German is an advantage)",
+    "Strong HSEQ mindset and ability to drive safe execution in offshore environments"
+  ],
+  "bonus_skills": [
+    "German language skills",
+    "Experience in offshore environments"
+  ],
+  "matched_skills": [
+    "Master degree (Leuphana, Master of Management & Entrepreneurship) — satisfies degree requirement",
+    "Fluent English (C1) — satisfies English fluency requirement",
+    "MS Office proficiency — satisfies MS Office requirement",
+    "Project planning and coordination: sprint planning at Hapag-Lloyd, 6-workstream programme coordination at HSBC — limited generic match for planning/coordination skills",
+    "German B1 — partially satisfies German advantage bonus"
+  ],
+  "missing_skills": [
+    "No offshore wind project management experience — this is the core requirement and is explicitly required as 'proven and demonstrable'",
+    "No knowledge of CDM 2015 or Wind Turbine Safety Rules (WTSR) — regulatory/safety frameworks required",
+    "No vessel mobilisation, POB planning, or offshore logistics experience",
+    "No HSEQ mindset or offshore safety execution experience",
+    "No MS Project or SharePoint experience (ideally required)",
+    "No subcontractor management in engineering/construction context",
+    "No STEM background or technical engineering knowledge"
+  ],
+  "core_responsibilities": [
+    "Lead MCE projects from handover and planning through execution and close-out",
+    "Build and maintain integrated project plans (scope, milestones, resources, logistics, marine/weather windows)",
+    "Coordinate interfaces across internal teams, customers and subcontractors; ensure clear governance and communication",
+    "Present projects to steering committee with structure, coherence, and transparency",
+    "Manage project risk, change and decision-making to secure predictable delivery",
+    "Ensure robust project documentation, reporting, cost tracking and lessons learned",
+    "Support and adhere to HSEQ standards in all activities"
+  ],
+  "recommended_emphasis": [
+    "This role is not suitable — do not apply",
+    "Offshore wind project management requires domain-specific technical knowledge (CDM, WTSR, vessel ops, HSEQ) that cannot be bridged from PMO/coordination experience",
+    "The JD explicitly requires 'proven and demonstrable' offshore wind experience in Northern/Central Europe — this is a hard gate"
+  ],
+  "summary": "Poor match at 27.3%. This is a technical offshore wind project management role requiring proven experience delivering main component exchange projects offshore, with specific regulatory knowledge (CDM 2015, WTSR), vessel logistics, and HSEQ expertise. The candidate's PMO and agile coordination background has no meaningful overlap with offshore engineering project execution. Not recommended for application."
+}

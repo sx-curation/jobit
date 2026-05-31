@@ -1,0 +1,64 @@
+{
+  "job_id": "4382936702",
+  "company": "Heidelberger Druckmaschinen AG",
+  "title": "Solution Expert – Planning & Analytics (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4382936702/",
+  "posted_date": "Reposted 3 weeks ago",
+  "match_score": 46,
+  "required_skills": [
+    "IBM Planning Analytics (TM1/PAW)",
+    "Degree in Wirtschaftsinformatik / Business Analytics / Data Science / BWL",
+    "Corporate planning (Unternehmensplanung)",
+    "IT-Affinität and understanding of complex IT processes",
+    "Business English (verhandlungssicher)",
+    "Independent working style, team capability, communication skills"
+  ],
+  "bonus_skills": [
+    "Qlik (reporting systems)",
+    "Python / TM1py",
+    "Predictive Analytics and AI-based pattern recognition"
+  ],
+  "matched_skills": [
+    "Business English (international experience implied)",
+    "Team capability and cross-functional collaboration",
+    "Communication and stakeholder management",
+    "Self-directed / independent working"
+  ],
+  "missing_skills": [
+    "IBM Planning Analytics (TM1/PAW) – core technical requirement, not in CV",
+    "Corporate financial planning / Controlling domain knowledge",
+    "SAP / Qlik integration experience",
+    "Python / TM1py scripting",
+    "Predictive Analytics / AI pattern recognition",
+    "ERP-to-reporting (Record-to-Report) process knowledge"
+  ],
+  "core_responsibilities": [
+    "Lead development of global integrated corporate planning system on IBM Planning Analytics (TM1/PAW)",
+    "Technical design and implementation of new planning concepts in project environments",
+    "Continuous optimization of the existing corporate planning system",
+    "Develop and maintain interfaces between TM1, SAP, Qlik, and AI/Python solutions via oData standards",
+    "Act as technical point of contact for planning topics; support Controlling in planning and forecasting processes"
+  ],
+  "culture_keywords": [
+    "Innovation mit Tradition",
+    "Teamarbeit",
+    "Eigenverantwortung",
+    "Qualitätsanspruch",
+    "Nachhaltigkeit",
+    "interdisziplinäre Zusammenarbeit",
+    "KI / AI-Begeisterung",
+    "175 Jahre Geschichte"
+  ],
+  "recommended_emphasis": [
+    "Dashboard and KPI framework design for executive audiences (closest to planning analytics outputs)",
+    "Cross-functional coordination with finance and controlling stakeholders",
+    "C-level data storytelling and translating complex data into decisions",
+    "Project management in complex, cross-system IT environments (Scrum/SAFe)",
+    "International exposure across EMEA/APAC to support global planning context"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

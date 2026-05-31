@@ -1,0 +1,60 @@
+{
+  "job_id": "4412186145",
+  "title": "Product Manager (m/f/d) OR Solutions",
+  "company": "Getinge",
+  "location": "Germany (with business travel)",
+  "url": "https://www.linkedin.com/jobs/view/4412186145/",
+  "match_score": 35.7,
+  "grade": "weak_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Strategy Implementation Manager",
+  "required_skills": [
+    "Bachelor's degree and/or 3+ years equivalent experience in product management",
+    "Strong understanding of clinical workflows, preferably in the operating room environment",
+    "Experience with IT Solutions in hospitals or operating room area is an advantage",
+    "Experience implementing roadmaps",
+    "Experience presenting in larger forums",
+    "Fluency in English (company language)"
+  ],
+  "bonus_skills": [
+    "Strategic marketing experience",
+    "Technical/IT background",
+    "Experience with OR scheduling, media management, OR integration, or patient flow management solutions"
+  ],
+  "matched_skills": [
+    "Completed degree (Master, Leuphana) — satisfies degree requirement",
+    "Fluent English (C1) — satisfies English fluency requirement (company language)",
+    "Experience presenting in larger forums: 300+ attendee town halls at HSBC, C-suite sprint reviews at Hapag-Lloyd — satisfies presentation requirement",
+    "Go-to-market strategy and product operations: 4 product launches at Intelligent Power Corporation, 6 product lines at GRG Banking — satisfies roadmap implementation experience",
+    "Cross-functional stakeholder coordination: Product, Engineering, Marketing interface at HSBC — partially satisfies product management cross-functional requirement",
+    "Market and competitive intelligence: competitive analysis at ECE Group, market trends analysis at Hapag-Lloyd — partially satisfies marketing bonus"
+  ],
+  "missing_skills": [
+    "No clinical workflow knowledge or healthcare IT experience — the core domain of this role",
+    "No OR (operating room) environment knowledge whatsoever",
+    "No experience with hospital IT solutions, OR scheduling, media management, or patient flow management",
+    "No product lifecycle management in a regulated medical device or healthcare software context",
+    "No regulatory requirements experience (MDR, CE marking for medical devices)",
+    "No cloud application or SaaS product management for healthcare platforms",
+    "No user research or usability studies in clinical environments"
+  ],
+  "core_responsibilities": [
+    "Own entire product lifecycle from strategy and development to launch and continuous improvement",
+    "Manage business performance of OR Solutions product portfolio",
+    "Collaborate with R&D, Marketing, Sales, Regulatory, and clinical experts",
+    "Identify and prioritise market and customer needs; translate into differentiated offerings",
+    "Lead user research and usability studies with designers, developers, and research teams",
+    "Support go-to-market activities and sales for digital solutions",
+    "Drive roadmap and release planning for digital products",
+    "Monitor market trends and regulatory requirements for competitiveness and compliance",
+    "Develop commercial guidelines and pricing frameworks"
+  ],
+  "recommended_emphasis": [
+    "The OR/clinical domain knowledge gap is a significant barrier — Getinge sells to hospitals and clinical teams",
+    "The strongest CV evidence is the GTM and product launch experience at IoT (IPC) and GRG Banking — frame as product operations and roadmap execution capability",
+    "Highlight the cross-functional coordination at HSBC as evidence of managing product, engineering, and marketing interfaces",
+    "A cover letter should acknowledge the healthcare domain as new but position B2B tech product experience (IPC, GRG) as the closest analogue"
+  ],
+  "summary": "Weak match at 35.7%. The candidate has genuine product operations and GTM experience (4 product launches at IPC, 6 product lines at GRG) and strong cross-functional coordination skills, but lacks any clinical or healthcare IT domain knowledge. Getinge's OR Solutions portfolio is specialised medical software requiring clinical workflow understanding. The English fluency and presentation experience are positive, but the domain gap is material. Low-probability application — worth only if the candidate is genuinely interested in a healthcare pivot and can articulate this credibly."
+}

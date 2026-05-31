@@ -1,0 +1,54 @@
+{
+  "job_id": "st_2423ca1f",
+  "title": "Marketing Manager B2B (m/w/d) – Growth & Performance",
+  "company": "Indicium Technologies",
+  "match_score": 30,
+  "summary": "Early-stage B2B growth marketing role focused on hands-on SEO/SEA/HubSpot execution; candidate's analytical background partially fits but lacks key technical channels, HubSpot proficiency, and native-level German.",
+  "key_requirements": [
+    "Nachweisbare B2B Growth Marketing-Erfahrung (SaaS, RegTech, HR-Tech)",
+    "Hands-on SEO, SEA & Paid Social – selbst aufsetzen und optimieren",
+    "Performance-Denken in CAC, LTV und Pipeline",
+    "HubSpot als Daily Tool (Daily Driver, kein Onboarding-Projekt)",
+    "GEO / AI Search Expertise (ChatGPT, Perplexity, Gemini)",
+    "Deutsch auf Muttersprachniveau & Englisch sicher in Wort und Schrift",
+    "Ownership-Mentalität: eigenständig, schnell, macher-orientiert"
+  ],
+  "matched_skills": [
+    "B2B marketing experience (Intelligent Power Corporation, GRG Banking – product launches, trade fairs)",
+    "Campaign analytics & ROI measurement",
+    "Lead pipeline and funnel analysis",
+    "Competitive intelligence & market segmentation",
+    "C-level data storytelling and reporting",
+    "English C1 proficiency"
+  ],
+  "missing_skills": [
+    "HubSpot (not mentioned in CV)",
+    "Hands-on SEO / SEA / Google Ads execution",
+    "Paid Social campaign management (Meta, LinkedIn Ads)",
+    "GEO / AI Search optimisation",
+    "SaaS or startup environment experience",
+    "German at native / C2 level (candidate: B1+)",
+    "Framer / Webflow / No-code tools"
+  ],
+  "recommended_emphasis": [
+    "Highlight B2B campaign ROI results (4.6M CNY contract revenue, qualified lead rate improvement)",
+    "Emphasise full-funnel thinking: lead magnets → conversion → revenue attribution",
+    "Showcase competitive intelligence and go-to-market strategy support as proxy for growth marketing mindset",
+    "Position Power BI dashboards as performance-measurement capability transferable to CAC/LTV tracking",
+    "Mention any SEO/content exposure, even if indirect"
+  ],
+  "language_requirement": "Deutsch Muttersprachniveau + Englisch – candidate's German B1+ is a critical gap",
+  "location_notes": "Hamburg hybrid/remote – candidate is based in Lüneburg, feasible for hybrid",
+  "risk_flags": [
+    "German language level (B1+) well below required native level – likely disqualifying",
+    "No HubSpot experience listed – core daily tool for the role",
+    "No hands-on SEO/SEA/Paid Social execution experience evidenced",
+    "No SaaS or startup background – role is first marketing hire at early-stage company",
+    "Company size 1–10 employees – very high ambiguity and autonomy required"
+  ],
+  "company_info": {
+    "size": "1–10",
+    "size_source": "jd_text",
+    "size_raw": "1-10 Mitarbeiter"
+  }
+}

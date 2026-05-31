@@ -1,0 +1,59 @@
+{
+  "job_id": "4385268000",
+  "company": "trivago",
+  "title": "Data Analyst - Marketing Intelligence",
+  "url": "https://www.linkedin.com/jobs/view/4385268000/",
+  "posted_date": "",
+  "match_score": 48.0,
+  "required_skills": [
+    "5+ years experience as Data Analyst (ideally in marketing/e-commerce/digital growth)",
+    "Degree in Statistics, Mathematics, Physics, Computer Science or quantitative field",
+    "SQL proficiency — hands-on",
+    "BI/dashboarding tools (Tableau, Looker)",
+    "Marketing metrics, attribution, and campaign performance understanding",
+    "Data storytelling for technical and non-technical audiences",
+    "English fluency"
+  ],
+  "bonus_skills": [
+    "Travel, e-commerce or digital marketing industry experience",
+    "A/B testing, geo testing, causal inference",
+    "BigQuery experience",
+    "Python or R"
+  ],
+  "matched_skills": [
+    "Power BI (certified PL-300) and Looker Studio as BI/dashboarding tools",
+    "Marketing analytics and attribution understanding",
+    "Campaign performance analysis and KPI tracking",
+    "Data storytelling — C-level reporting across all roles",
+    "English C1",
+    "A/B testing experience"
+  ],
+  "missing_skills": [
+    "SQL — critical hard requirement, not mentioned in CV",
+    "Quantitative degree (Stats/Math/Physics/CS) — CV has Management/Marketing degrees",
+    "5+ years experience (CV shows 4+)",
+    "BigQuery / big data platforms"
+  ],
+  "core_responsibilities": [
+    "Translate data into actionable insights shaping marketing strategy and investments",
+    "Build dashboards and reports highlighting trends",
+    "Partner with marketing stakeholders to define KPIs and measure success",
+    "Conduct deep dives on performance drivers and anomalies",
+    "Ensure marketing data quality and consistency"
+  ],
+  "culture_keywords": [
+    "data-driven", "growth", "innovation", "storytelling", "personalized development"
+  ],
+  "recommended_emphasis": [
+    "Lead with Power BI (PL-300) and Looker Studio as strong BI tool match",
+    "Emphasise marketing attribution and multi-source data analysis experience",
+    "Highlight HSBC financial analytics and dashboard building as data quality/consistency work",
+    "Be transparent about SQL gap — this may be a hard filter",
+    "Frame degree as business analytics-adjacent (Management & Entrepreneurship with analytical focus)"
+  ],
+  "company_info": {
+    "size": "1,001-5,000",
+    "size_source": "jd_text",
+    "size_raw": "not explicitly stated, estimated from company knowledge"
+  }
+}

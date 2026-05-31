@@ -1,0 +1,65 @@
+{
+  "job_id": "4398605255",
+  "company": "traide AI",
+  "title": "Marketing Manager (Performance & Automation) (f/m/x)",
+  "url": "https://www.linkedin.com/jobs/view/4398605255/",
+  "posted_date": "",
+  "match_score": 37,
+  "required_skills": [
+    "4+ years hands-on marketing experience with paid advertising campaigns",
+    "Google Ads proficiency",
+    "Analytics tools (GA4 or similar)",
+    "Automation platforms (n8n, Zapier, Claude Code or equivalent)",
+    "HubSpot or similar CRM",
+    "Analytical mindset / data-driven decision making"
+  ],
+  "bonus_skills": [
+    "Bing Ads experience",
+    "Design tools (Canva or Figma)",
+    "LinkedIn Ads experience"
+  ],
+  "matched_skills": [
+    "4+ years marketing experience (multiple Marketing Manager roles, 4+ years total)",
+    "Analytical mindset and data-driven decision making (core of CV profile)",
+    "Analytics tools - partial match (Power BI, Looker Studio, Qlik Sense; no GA4 explicitly)",
+    "Campaign performance optimisation and A/B testing (listed skills)",
+    "Customer segmentation (listed skill, partially maps to CRM audience segmentation)"
+  ],
+  "missing_skills": [
+    "Google Ads (not mentioned anywhere in CV)",
+    "GA4 (no explicit mention; general analytics tools present)",
+    "Automation platforms: n8n, Zapier, Claude Code (not mentioned)",
+    "HubSpot or CRM platforms (not mentioned)",
+    "Bing Ads (not mentioned)",
+    "Design tools: Canva or Figma (not mentioned)",
+    "LinkedIn Ads management (not mentioned)"
+  ],
+  "core_responsibilities": [
+    "Manage and optimise Google Ads, Bing Ads, and LinkedIn paid campaigns via A/B testing and bid management",
+    "Build automated marketing workflows and integrations using n8n, Zapier, Claude Code",
+    "Set up and interpret analytics dashboards in GA4 and HubSpot, turning data into actionable insights",
+    "Maintain CRM hygiene and audience segmentation in HubSpot for targeted, personalised campaigns",
+    "Create or manage landing pages, ad copy, email sequences, and other marketing assets"
+  ],
+  "culture_keywords": [
+    "real ownership from day one",
+    "flat hierarchies",
+    "VC-backed B2B SaaS startup",
+    "scaling fast",
+    "small team environment",
+    "flexible working",
+    "wear multiple hats"
+  ],
+  "recommended_emphasis": [
+    "Highlight any analytics tools experience that overlaps with GA4 (Looker Studio is Google-native — emphasise this connection)",
+    "Emphasise campaign performance optimisation and A/B testing experience from IPC and GRG roles",
+    "Stress data-driven decision making and ROI measurement from B2B product launch campaigns",
+    "If any automation or workflow tooling experience exists (even adjacent), surface it prominently",
+    "Note: significant skill gaps in Google Ads, HubSpot, and automation tools — consider whether to apply"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": "VC-backed startup (no employee count found in JD text)"
+  }
+}

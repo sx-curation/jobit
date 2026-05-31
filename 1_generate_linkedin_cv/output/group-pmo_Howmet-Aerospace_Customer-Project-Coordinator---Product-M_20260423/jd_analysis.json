@@ -1,0 +1,67 @@
+{
+  "job_id": "4356183819",
+  "company": "Howmet Aerospace",
+  "title": "Customer Project Coordinator - Product Management",
+  "url": "https://www.linkedin.com/jobs/view/4356183819/",
+  "posted_date": "",
+  "match_score": 48,
+  "_source": "linkedin",
+  "required_skills": [
+    "CRM system maintenance and data management",
+    "Order processing and order confirmation",
+    "Quotation and price calculation preparation",
+    "Cross-functional coordination (sales, logistics, production)",
+    "Customer support — telephone and written",
+    "Statistics and report generation for management",
+    "Complaint handling"
+  ],
+  "bonus_skills": [
+    "Bachelor's degree in Business Administration, Marketing, or Economics",
+    "Sales training or negotiation workshops",
+    "CRM software certifications",
+    "Product-specific certifications"
+  ],
+  "matched_skills": [
+    "Cross-functional stakeholder coordination (Hapag-Lloyd: project teams, stakeholders, product owners; HSBC: Product, Engineering, Marketing, C-suite)",
+    "Statistics and reporting (Power BI dashboards, KPI reports, burn-rate reports, executive sprint review reports)",
+    "Written communication and documentation (meeting facilitation, presentation preparation, newsletters)",
+    "Support of sales projects and marketing campaigns (IoT GTM strategy, B2B campaign operations at Intelligent Power Corporation)",
+    "Forecast/planning support (agile sprint planning, programme status tracking)",
+    "Data entry and system maintenance (booking reports, project data updates at ECE Group)"
+  ],
+  "missing_skills": [
+    "CRM system experience (e.g., Salesforce, SAP CRM, HubSpot) — not listed in CV tools",
+    "Order processing and order confirmation workflows",
+    "Price checks and price determination in a sales/manufacturing context",
+    "Quotation preparation in a B2B product/manufacturing environment",
+    "Direct customer-facing support role (telephone/written helpdesk experience)",
+    "Complaint management and escalation handling"
+  ],
+  "core_responsibilities": [
+    "Process customer inquiries and incoming orders; prepare quotations, calculations, and order confirmations",
+    "Provide telephone and written support for existing and new customers",
+    "Coordinate with field sales, logistics, and production teams",
+    "Maintain and update customer data in the CRM system; generate statistics and reports for sales management",
+    "Handle complaints and support sales projects and marketing campaigns"
+  ],
+  "culture_keywords": [
+    "customer-focused",
+    "cross-functional teamwork",
+    "aerospace manufacturing",
+    "sales support",
+    "operational coordination"
+  ],
+  "recommended_emphasis": [
+    "Highlight cross-functional coordination experience from Hapag-Lloyd (agile sprints, product owners, logistics dependencies) and HSBC (6-workstream programme coordination) — directly maps to coordinating sales, logistics, and production teams",
+    "Emphasise report generation and data management skills (Power BI, Excel dashboards, KPI tracking) as proxy for CRM-based statistics and sales reporting",
+    "Surface the ECE Group role's project data updates and spreadsheet optimisation as evidence of data maintenance discipline, closest analogue to CRM data upkeep",
+    "Reframe Intelligent Power Corporation GTM and campaign operations experience to demonstrate familiarity with sales cycle support and marketing campaign coordination",
+    "Lead with multilingual capability (English, German, Chinese) — a tangible asset for customer support in a global aerospace manufacturer serving international clients",
+    "Mention B2B stakeholder communication and written documentation (HSBC newsletters, Hapag-Lloyd executive reports) to cover the written customer support requirement"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "unavailable",
+    "size_raw": "Howmet Aerospace is a publicly traded global aerospace components manufacturer (NYSE: HWM) with approximately 22,000+ employees — inferred from public knowledge; not extractable from JD text and LinkedIn profile not fetched (match_score < 50)"
+  }
+}

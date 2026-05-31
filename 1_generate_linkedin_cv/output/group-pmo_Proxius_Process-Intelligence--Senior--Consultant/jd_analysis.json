@@ -1,0 +1,60 @@
+{
+  "job_id": "4382134101",
+  "title": "Process Intelligence (Senior) Consultant (m/w/d)",
+  "company": "Proxius",
+  "location": "North Rhine-Westphalia, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4382134101/",
+  "posted": "",
+  "match_score": 41,
+  "company_size": "startup",
+  "company_info": {
+    "size": "startup",
+    "size_source": "jd_text",
+    "size_raw": "dynamisches Start-up"
+  },
+  "matched_skills": [
+    "Business Intelligence / BI (Power BI PL-300 certified)",
+    "Fluent German and English",
+    "KPI reporting and data storytelling",
+    "Dashboard creation and performance reporting",
+    "Project ownership and delivery"
+  ],
+  "missing_skills": [
+    "SQL",
+    "Celonis platform (Process Mining)",
+    "ETL / data modeling",
+    "Process automation",
+    "AI solutions development",
+    "Consulting experience in client-facing data/process projects"
+  ],
+  "key_requirements": [
+    "Strong SQL, BI, and database skills — Celonis experience strongly preferred",
+    "Minimum 1 year in data, process, or automation domain",
+    "Degree in Business Informatics, Computer Science, Mathematics or related field",
+    "Ability to work independently in client projects with professional communication",
+    "Fluent German and English (both mandatory)"
+  ],
+  "cv_highlights": [
+    "Microsoft Power BI Certified (PL-300) — covers BI and dashboard requirements partially",
+    "KPI framework design and data storytelling at HSBC and Hapag-Lloyd",
+    "Cross-functional project delivery and governance across complex programmes",
+    "Fluent in German, English, Chinese, and Cantonese — language requirement fully met",
+    "Technology operations and tech stack lifecycle management background"
+  ],
+  "gaps": [
+    "No SQL or database skills demonstrated in CV",
+    "No Celonis or any Process Mining platform experience",
+    "No ETL or data pipeline/modeling experience",
+    "No consulting or client-facing advisory role experience",
+    "No automation (RPA, workflow automation) background",
+    "Degree field not confirmed to be in a technical/STEM discipline"
+  ],
+  "recommended_emphasis": [
+    "Highlight Power BI certification and any dashboard/analytics work prominently",
+    "Emphasise process analysis and KPI reporting work as adjacent to process intelligence",
+    "Stress German fluency and cross-cultural communication skills",
+    "Frame PMO governance work as process transparency and optimisation experience",
+    "Consider adding any SQL exposure even if limited (e.g. ad-hoc queries, BI tool data connections)"
+  ],
+  "recommendation": "Weak match. The role is highly technical, centred on Celonis Process Mining, SQL, ETL, and automation — none of which appear in Boru's CV. While Power BI certification and data storytelling experience provide partial overlap on the BI/dashboard dimension, the core platform and programming requirements are unmet. Applying would require significant upskilling messaging or is likely to be screened out at resume review. Not recommended unless Boru can credibly demonstrate SQL and process mining interest/coursework."
+}

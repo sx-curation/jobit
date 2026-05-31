@@ -1,0 +1,1 @@
+- [scripts/check.py semicolon bug — fixed](project_checkpy_bug_fixed.md) — continue/return were inside `if verbose:` same-line; fixed Session #4 2026-04-06

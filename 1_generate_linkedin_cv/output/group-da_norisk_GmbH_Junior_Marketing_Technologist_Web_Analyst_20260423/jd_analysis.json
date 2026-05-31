@@ -1,0 +1,71 @@
+{
+  "job_id": "st_54dbbbdcf2fed94d",
+  "company": "norisk GmbH",
+  "title": "Junior Marketing Technologist / Web Analyst (m/w/d)",
+  "url": "https://www.stepstone.de/stellenangebote--Junior-Marketing-Technologist-Web-Analyst-m-w-d-Muenchen-norisk-GmbH--13542989-inline.html",
+  "posted_date": "",
+  "match_score": 32,
+  "required_skills": [
+    "Degree in Informatik / BWL / Marketing",
+    "JavaScript (basics)",
+    "Python (basics)",
+    "Analytical thinking",
+    "HTML & web technologies",
+    "Google BigQuery",
+    "Google Analytics",
+    "Google Cloud Functions"
+  ],
+  "bonus_skills": [
+    "Automation solutions development",
+    "Logical data modelling",
+    "Quantitative data evaluation",
+    "Passion for programming"
+  ],
+  "matched_skills": [
+    "Degree in Management & Marketing (Master of Management & Entrepreneurship; Master of PR & Advertising)",
+    "Analytical thinking (core CV skill; KPI frameworks, cohort analysis, funnel analysis)",
+    "Quantitative data evaluation (budget variance dashboards, ROI analytics, conversion tracking)",
+    "E-commerce domain experience (Moli Media e-commerce/live-stream agency)"
+  ],
+  "missing_skills": [
+    "JavaScript",
+    "Python",
+    "Google BigQuery / Cloud SQL",
+    "Google Cloud Functions",
+    "Google Analytics / GA4",
+    "Google Tag Manager (GTM)",
+    "HTML / web technologies",
+    "Web tracking setup and tag management",
+    "Database migration and interface design",
+    "Automation scripting"
+  ],
+  "core_responsibilities": [
+    "Monitoring, analysis and optimisation of online shops using web analytics tools",
+    "Setup and continuous improvement of web tracking systems via tag management tools",
+    "Conception and implementation of automation solutions in JavaScript and Python",
+    "Implementation of database connections via Google BigQuery and Google Cloud SQL",
+    "Data migrations, interface design and database analysis in e-commerce projects"
+  ],
+  "culture_keywords": [
+    "selbstständig (autonomous working)",
+    "Performance-Optimierung",
+    "E-Commerce Agentur",
+    "Leidenschaft für Programmierung",
+    "kontinuierliche Verbesserung",
+    "Multichannel",
+    "Tech & Data team"
+  ],
+  "recommended_emphasis": [
+    "Highlight e-commerce domain knowledge from Moli Media (live-stream e-commerce, funnel analytics, conversion tracking)",
+    "Emphasise data quality and tracking QA work at Hapag-Lloyd to signal affinity with measurement accuracy",
+    "Stress quantitative analytical mindset and KPI framework design to align with 'analytisches Denken' requirement",
+    "Mention any exposure to web analytics tools (Looker Studio as a lightweight proxy for GA ecosystem)",
+    "If any self-study or coursework in Python/JavaScript exists, surface it explicitly — even beginner level counts as 'Grundlagen'"
+  ],
+  "company_info": {
+    "size": "51–500",
+    "size_source": "jd_text",
+    "size_raw": "51-500 Mitarbeiter"
+  },
+  "raw_jd_text": "Junior Marketing Technologist / Web Analyst (m/w/d). norisk GmbH. München (Hybrid/Remote).\n\nDie norisk Group ist eine der führenden Online und E-Commerce Agenturen, bestehend aus vier Spezialagenturen. Wir konzipieren, kreieren und entwickeln Online Shops für Multichannel-Händler und Online Pure Player.\n\nDeine Aufgaben:\nAls Junior Marketing Technologist / Junior Web Analyst im Bereich Tech & Data arbeitest Du selbstständig an der kontinuierlichen Performance-Optimierung unserer Kunden:\n- Monitoring, Analyse & Optimierung von Onlineshops mit Web Analyse Tools\n- Setup und kontinuierliche Verbesserung von Web Tracking Systemen über Tag Management Tools\n- Konzeption und Umsetzung neuer Automatisierungslösungen in JavaScript und Python\n- Implementierung von Datenbankanbindungen über Google BigQuery und Google Cloud SQL\n- Datenmigrationen, Schnittstellenkonzeption und Datenbankanalysen in E-Commerce-Projekten\n\nDein Profil:\n- Abgeschlossenes Studium der Informatik, BWL oder Marketing\n- Bereits Erfahrung im Programmier- oder Onlinemarketing-Umfeld gesammelt, Grundlagen in JavaScript oder Python\n- Ausgeprägtes analytisches Denken\n- Spaß an logischen Datenmodellen und quantitativer Datenauswertung\n- Grundlegende Kenntnisse in HTML und Web-Technologien\n- Technische Grundkenntnisse & Affinität gepaart mit Leidenschaft für Programmierung und Automatisierung\n- Google Tool Welt: Cloud Functions, BigQuery, Analytics\n\nnorisk GmbH: E-Commerce Agentur, 51-500 Mitarbeiter (München)"
+}

@@ -1,0 +1,53 @@
+{
+  "job_id": "4421320497",
+  "title": "Business Analyst",
+  "company": "TTC Group (Tech Talent Consulting)",
+  "location": "Europe (Remote), 6-month contract",
+  "url": "https://www.linkedin.com/jobs/view/4421320497/",
+  "match_score": 16.7,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "PMO Analyst",
+  "required_skills": [
+    "Minimum 3-5 years of experience as Business Analyst within the supply chain domain",
+    "Strong SQL proficiency for data querying and analysis",
+    "Prior working experience with SAP S/4HANA (MM, SD modules)",
+    "Exceptional communication and interpersonal skills; ability to gather complex business requirements and translate into technical data needs",
+    "Demonstrated ability to translate business use cases into data visualisation prototypes (dashboard design)",
+    "Proficiency in creating detailed requirements documents, user stories, use cases, and functional specifications",
+    "3+ years of work experience with SAP Products",
+    "3+ years of work experience with SQL"
+  ],
+  "bonus_skills": [
+    "UX/UI design sensitivity for dashboards",
+    "Experience with SAP S/4HANA validation and data quality"
+  ],
+  "matched_skills": [
+    "Exceptional communication and interpersonal skills — satisfies communication requirement (HSBC C-suite interface, stakeholder coordination)",
+    "Data visualisation: Power BI PL-300 certified; built C-suite dashboards at HSBC — partially satisfies dashboard design requirement",
+    "Requirements gathering and concept development: coordinated deliverables with stakeholders at Hapag-Lloyd — partial, non-technical match"
+  ],
+  "missing_skills": [
+    "No supply chain domain experience — explicitly required as primary domain context (3-5 years)",
+    "No SQL skills — hard requirement (3+ years explicitly listed as mandatory)",
+    "No SAP S/4HANA experience — hard requirement (3+ years, MM and SD modules explicitly required)",
+    "No business requirements documentation, user stories, or functional specifications experience in a technical BA context",
+    "No UAT coordination or test case definition for IT solutions",
+    "No dashboard wireframe/mock-up design experience (UX/UI focus)"
+  ],
+  "core_responsibilities": [
+    "Business requirements elicitation: collaborate with supply chain stakeholders to understand requirements and identify data needed for dashboards",
+    "Prioritise business requirements and dashboard features for maximum business impact",
+    "Partner with Data Analysts and SAP Functional consultants to validate data sources in SAP S/4HANA",
+    "Design professional dashboard mock-ups with UX/UI focus",
+    "Facilitate development, testing, and deployment of dashboards alongside Analytical Engineers",
+    "Define test cases and coordinate User Acceptance Testing (UAT)"
+  ],
+  "recommended_emphasis": [
+    "This role is not suitable — do not apply",
+    "The three hard requirements — supply chain domain, SQL (3+ years), and SAP S/4HANA (3+ years) — are all absent from the CV with no bridging experience",
+    "This is a technical BA role in a specific SAP ecosystem, not a generalist PMO or coordination role"
+  ],
+  "summary": "Poor match at 16.7%. This contract Business Analyst role has three hard technical requirements: supply chain domain expertise, 3+ years of SQL, and 3+ years of SAP S/4HANA (MM/SD) — none of which appear in the candidate's background. The candidate's communication and dashboard experience provide minimal generic overlap. Not recommended for application."
+}

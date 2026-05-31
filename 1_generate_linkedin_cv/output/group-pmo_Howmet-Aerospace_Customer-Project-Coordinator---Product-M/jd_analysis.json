@@ -1,0 +1,57 @@
+{
+  "job_id": "4356183819",
+  "title": "Customer Project Coordinator - Product Management",
+  "company": "Howmet Aerospace",
+  "location": "Kelkheim, Hesse, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4356183819/",
+  "posted": "unknown",
+  "match_score": 18,
+  "company_size": null,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "matched_skills": [
+    "Cross-functional stakeholder coordination (maps to coordinating with sales, logistics, production teams)",
+    "Report generation / data storytelling (maps to generating statistics and reports for sales management)",
+    "Budget tracking (partial match to forecast preparation support)"
+  ],
+  "missing_skills": [
+    "CRM system maintenance (e.g., Salesforce, SAP CRM)",
+    "Order processing and order management",
+    "Price determination and quotation preparation",
+    "Customer complaint handling",
+    "Sales support and marketing campaign support",
+    "Vocational/commercial training background (office management, industrial clerk)"
+  ],
+  "key_requirements": [
+    "Process customer inquiries and incoming orders",
+    "Carry out price checks and prepare quotations and order confirmations",
+    "Maintain and update customer data in CRM system",
+    "Coordinate with field sales, logistics, and production teams",
+    "Handle complaints and customer inquiries",
+    "Generate statistics and reports for sales management",
+    "Support sales projects and marketing campaigns"
+  ],
+  "cv_highlights": [
+    "Cross-functional stakeholder coordination at HSBC and Hapag-Lloyd",
+    "KPI tracking and reporting (Power BI certified)",
+    "Documentation and process support experience",
+    "Multilingual: English, German, Chinese, Cantonese — useful for international customer communications"
+  ],
+  "gaps": [
+    "Role is fundamentally a customer service / sales order management position — not PMO or project management",
+    "No CRM system experience mentioned in CV",
+    "No order processing, pricing, or quotation background",
+    "Significant overqualification: Boru has 4+ years international PMO/coordination experience vs. entry-level vocational requirement",
+    "Location gap: ~500km from Lüneburg to Kelkheim — relocation or long commute required",
+    "'Product Management' in title is misleading; actual work is customer support and order administration"
+  ],
+  "recommended_emphasis": [
+    "If applying: emphasize CRM-adjacent documentation skills and stakeholder communication",
+    "Highlight multilingual capabilities for customer-facing communications",
+    "Downplay PMO and governance framing; reframe as coordination and support experience"
+  ],
+  "recommendation": "Not recommended. This is a customer service / sales support / order processing role requiring vocational-level qualifications. It does not align with Boru's PMO and project coordination background, offers no career progression in the target direction, and the ~500km distance adds a significant practical barrier. Match score 18/100."
+}

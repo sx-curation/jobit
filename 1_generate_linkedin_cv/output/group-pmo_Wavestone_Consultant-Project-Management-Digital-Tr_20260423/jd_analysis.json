@@ -1,0 +1,82 @@
+{
+  "job_id": "4394899762",
+  "company": "Wavestone",
+  "title": "Consultant Project Management & Digital Transformation (all genders)",
+  "url": "https://www.linkedin.com/jobs/view/4394899762/",
+  "posted_date": "",
+  "_source": "linkedin",
+  "match_score": 52,
+  "required_skills": [
+    "Project management experience in consulting",
+    "PMO operations",
+    "Agile methods (Scrum, Kanban)",
+    "Analytical thinking / structuring complex challenges",
+    "Negotiation-level German (verhandlungssicher)",
+    "Negotiation-level English",
+    "Digital tools and AI in project context",
+    "University degree (Business / Informatics / related)",
+    "Travel willingness within Europe"
+  ],
+  "bonus_skills": [
+    "Generative AI responsible use",
+    "Data analysis and automation",
+    "Scrum Master role",
+    "Business development support (proposals, topic development)",
+    "Coaching and leading mindset"
+  ],
+  "matched_skills": [
+    "PMO operations (HSBC USD 8M digital transformation programme)",
+    "Agile / Scrum (sprint planning, stand-ups, retrospectives at Hapag-Lloyd)",
+    "Negotiation-level English (C1)",
+    "Digital tools and AI (Power BI PL-300, JIRA, Confluence, ChatGPT/Claude)",
+    "Analytical thinking and executive reporting",
+    "Business development support (ECE Group, HSBC)",
+    "Generative AI responsible use",
+    "Data analysis and automation (Power BI dashboards, burn-rate reports)",
+    "Cross-functional stakeholder coordination and communication"
+  ],
+  "missing_skills": [
+    "Consulting firm experience (required: 'proven experience in a consulting firm') — candidate has no consulting background",
+    "Negotiation-level German (verhandlungssicher / C1+) — candidate is B1, a hard filter for German consulting",
+    "Formal PM certification (PMP, PRINCE2, or equivalent) — not held",
+    "Scrum Master certification or confirmed SM delivery role",
+    "Travel willingness within Europe — not stated in CV"
+  ],
+  "core_responsibilities": [
+    "Lead or support project management, PMO, or Scrum Master role in complex transformation programmes (classic, hybrid, or agile)",
+    "Own workstreams from conception through delivery, including planning, steering, and reporting",
+    "Apply digital tools and AI-driven approaches to make project work more efficient and data-driven",
+    "Facilitate agile ceremonies, promote team collaboration, and ensure adherence to agile principles",
+    "Support business development activities such as proposal writing and topic development"
+  ],
+  "culture_keywords": [
+    "Teamplayer",
+    "hands-on Mentalität",
+    "kontinuierliche Weiterentwicklung",
+    "Wertekompass",
+    "proaktive Persönlichkeit",
+    "Verantwortungsbewusstsein",
+    "Performance und Wachstum",
+    "kundenorientiert",
+    "ergebnisfokussiert"
+  ],
+  "recommended_emphasis": [
+    "Lead with HSBC PMO role: USD 8M programme governance, C-suite reporting, 6-workstream coordination — directly mirrors the PMO and programme steering responsibilities",
+    "Quantify agile delivery at Hapag-Lloyd: sprint ceremonies, cross-functional coordination, product owner interface — position as de facto Scrum support role",
+    "Highlight Power BI PL-300 certification and AI tool usage (ChatGPT/Claude) as evidence of digital-tools-in-project-context requirement",
+    "Frame ECE Group and HSBC business development work (competitive analysis, proposal support) to address BD contribution expectation",
+    "Address German language gap proactively — note active improvement (e.g., coursework or test enrollment) if applicable; do not overstate current level",
+    "Add any European travel experience or explicit willingness statement to the CV summary or cover letter"
+  ],
+  "company_info": {
+    "size": "1,001–5,000",
+    "size_source": "jd_text",
+    "size_raw": "Wavestone is an international management consultancy; LinkedIn company profile indicates 1,001–5,000 employees (inferred from JD context: 'internationale Unternehmensberatung' with European footprint)"
+  },
+  "_scoring_notes": {
+    "method": "required×3 + bonus×1 + responsibility×0.5; penalties applied for hard knockout criteria",
+    "raw_score_pct": 68.8,
+    "penalty_reason": "Two hard-filter misses: (1) consulting firm experience explicitly required — candidate has none; (2) German B1 vs verhandlungssicher (C1+) requirement — standard knockout in German consulting hiring. Score adjusted from 69 to 52.",
+    "knockout_risk": "HIGH — consulting background and German fluency are typically non-negotiable screening criteria at Tier-1/2 consultancies"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "job_id": "4404595959",
+  "company": "The Quality Group",
+  "title": "Working Student CRM Analytics (gn)",
+  "url": "https://www.linkedin.com/jobs/view/4404595959/",
+  "posted_date": "",
+  "_source": "linkedin",
+  "match_score": 68,
+  "required_skills": [
+    "Analytical understanding / data analysis",
+    "Data extraction, preparation and cleaning",
+    "CRM or Marketing Analytics experience",
+    "Databricks"
+  ],
+  "bonus_skills": [
+    "Databricks",
+    "Excel / Google Sheets",
+    "BI tools",
+    "Klaviyo",
+    "CRM tools"
+  ],
+  "matched_skills": [
+    "CRM analytics",
+    "Marketing campaign analytics",
+    "Performance analytics & KPI reporting",
+    "Customer segmentation & cohort analysis",
+    "Data extraction and preparation (SQL, Python)",
+    "Excel (MS Excel)",
+    "BI tools (Power BI, Looker Studio)",
+    "Data-driven insights and recommendations"
+  ],
+  "missing_skills": [
+    "Databricks",
+    "Klaviyo"
+  ],
+  "core_responsibilities": [
+    "Analyse and evaluate performance of CRM campaigns and lifecycle measures (Open Rate, Click Rate, etc.)",
+    "Support data analyses in Databricks including data extraction, preparation and cleaning",
+    "Derive data-driven insights and concrete recommendations for campaign and segmentation optimisation",
+    "Support automation and further development of CRM reporting"
+  ],
+  "culture_keywords": [
+    "lösungsorientiert",
+    "neugierig",
+    "lernbereit",
+    "Teamarbeit",
+    "strukturiert",
+    "sorgfältig",
+    "Mission: Ernährung neu denken",
+    "health & nutrition e-commerce"
+  ],
+  "recommended_emphasis": [
+    "Lead with CRM analytics and campaign performance analysis experience — directly maps to the core role",
+    "Highlight customer segmentation and cohort analysis work to reinforce lifecycle campaign context",
+    "Emphasise SQL and Python for data extraction/preparation as a functional substitute for Databricks experience",
+    "Reference Power BI and Looker Studio dashboards to demonstrate BI reporting capability",
+    "Frame prior working-student and internship experience to match the Werkstudent seniority level — avoid signalling overqualification",
+    "Mention any recurring or automated reporting work to align with the reporting automation responsibility"
+  ],
+  "company_info": {
+    "size": "1,001–5,000",
+    "size_source": "jd_text",
+    "size_raw": "über 1.200 Menschen"
+  }
+}
