@@ -27,6 +27,8 @@ OUTPUT_DIR  = PROJECT_DIR / 'output'
 MY_CV_DIR   = PROJECT_DIR / 'my_cv'
 JOB_SUMMARY = OUTPUT_DIR / 'job_summary.md'
 CONFIG_PATH = PROJECT_DIR / 'config.json'
+USERS_DIR   = PROJECT_DIR / '1_generate_linkedin_cv' / 'users'
+USERS_JSON  = PROJECT_DIR / '1_generate_linkedin_cv' / 'users.json'
 HTML_PATH   = Path("C:/Users/Leon/Desktop/job_tracker/index.html")
 PORT        = 8080
 _write_lock      = threading.Lock()
@@ -34,9 +36,42 @@ ANSI_RE          = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 _search_proc     = None
 _search_log      = []
 _search_lock     = threading.Lock()
-_jobs_cache      = []
-_jobs_cache_mtime: float = 0.0
+_jobs_cache:       dict[str, list]  = {}
+_jobs_cache_mtime: dict[str, float] = {}
 _jobs_cache_lock = threading.Lock()
+
+# ── Multi-user state ──────────────────────────────────────────────────────────
+_current_user      = 'leon'
+_current_user_lock = threading.Lock()
+
+def _user_paths(uid: str) -> dict:
+    user_dir = USERS_DIR / uid
+    out_dir  = user_dir / 'output'
+    # leon: users/leon/output is a junction to PROJECT_DIR/output — fall back if needed
+    if uid == 'leon' and not out_dir.exists():
+        out_dir  = OUTPUT_DIR
+        user_dir = PROJECT_DIR
+    return {
+        'output_dir':  out_dir,
+        'my_cv_dir':   user_dir / 'my_cv',
+        'config_path': user_dir / 'config.json',
+        'job_summary': out_dir / 'job_summary.md',
+    }
+
+def _get_current_uid() -> str:
+    with _current_user_lock:
+        return _current_user
+
+def _set_current_uid(uid: str):
+    global _current_user
+    with _current_user_lock:
+        _current_user = uid
+
+def _valid_uids() -> list:
+    try:
+        return [u['id'] for u in json.loads(USERS_JSON.read_text(encoding='utf-8')).get('users', [])]
+    except Exception:
+        return ['leon']
 
 # ── Location inference from Stepstone URL ─────────────────────────────────────
 _CITY_SLUG_MAP = {
@@ -57,27 +92,33 @@ def infer_location(job: dict) -> str:
 
 
 # ── Parse + merge job data ────────────────────────────────────────────────────
-def parse_jobs():
+def parse_jobs(uid=None):
     """Parse job_summary.md + jd_analysis.json files.
     Returns cached result when job_summary.md mtime is unchanged."""
     global _jobs_cache, _jobs_cache_mtime
+    if uid is None:
+        uid = _get_current_uid()
+    paths         = _user_paths(uid)
+    JOB_SUMMARY_U = paths['job_summary']
+    OUTPUT_DIR_U  = paths['output_dir']
+    CONFIG_PATH_U = paths['config_path']
     try:
-        mtime = JOB_SUMMARY.stat().st_mtime if JOB_SUMMARY.exists() else 0.0
+        mtime = JOB_SUMMARY_U.stat().st_mtime if JOB_SUMMARY_U.exists() else 0.0
     except OSError:
         mtime = 0.0
     with _jobs_cache_lock:
-        if mtime and mtime == _jobs_cache_mtime and _jobs_cache:
-            return list(_jobs_cache)  # shallow copy so callers can't mutate cache
+        if mtime and mtime == _jobs_cache_mtime.get(uid, 0.0) and _jobs_cache.get(uid):
+            return list(_jobs_cache[uid])  # shallow copy so callers can't mutate cache
 
     jobs = []
     header_done = False
 
     # Build group_id → group_label lookup from config
-    cfg = read_config()
+    cfg = read_config(CONFIG_PATH_U)
     _, kgs, _ = get_keyword_groups(cfg)
     group_label_map = {g.get('group_id',''): g.get('group_label', g.get('group_id','')) for g in kgs}
 
-    with open(JOB_SUMMARY, encoding='utf-8') as f:
+    with open(JOB_SUMMARY_U, encoding='utf-8') as f:
         lines = f.readlines()
 
     for line in lines:
@@ -150,7 +191,7 @@ def parse_jobs():
     for job in jobs:
         if not job['jd_path']:
             continue
-        jd_file = OUTPUT_DIR / job['jd_path']
+        jd_file = OUTPUT_DIR_U / job['jd_path']
         if not jd_file.exists():
             continue
         try:
@@ -176,16 +217,16 @@ def parse_jobs():
     for job in jobs:
         if not job['jd_path']:
             continue
-        job_dir = OUTPUT_DIR / Path(job['jd_path']).parent
+        job_dir = OUTPUT_DIR_U / Path(job['jd_path']).parent
         job['materials_ready'] = (job_dir / 'cv_final.pdf').exists()
 
     # ── Load raw (unanalyzed) candidates from temp raw_results files ────────────
-    TEMP_DIR = OUTPUT_DIR / 'temp'
+    TEMP_DIR = OUTPUT_DIR_U / 'temp'
     analyzed_keys: set[tuple] = set()
     for job in jobs:
         analyzed_keys.add((job['company'].strip().lower(), job['title'].strip().lower()[:60]))
 
-    cfg_for_raw = read_config()
+    cfg_for_raw = read_config(CONFIG_PATH_U)
     _, kgs_raw, _ = get_keyword_groups(cfg_for_raw)
     group_label_map_raw = {g.get('group_id', ''): g.get('group_label', g.get('group_id', '')) for g in kgs_raw}
 
@@ -255,21 +296,20 @@ def parse_jobs():
 
     # 更新 mtime 缓存
     with _jobs_cache_lock:
-        _jobs_cache = jobs
-        _jobs_cache_mtime = mtime
+        _jobs_cache[uid] = jobs
+        _jobs_cache_mtime[uid] = mtime
 
     return jobs
 
 
 # ── Config helpers ────────────────────────────────────────────────────────────
-def read_config():
-    return json.loads(CONFIG_PATH.read_text(encoding='utf-8'))
+def read_config(config_path=None):
+    return json.loads((config_path or CONFIG_PATH).read_text(encoding='utf-8'))
 
-def write_config(data):
+def write_config(data, config_path=None):
+    p = config_path or CONFIG_PATH
     with _write_lock:
-        CONFIG_PATH.write_text(
-            json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8'
-        )
+        p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
 
 def _set_nested(obj, path_keys, value):
     for k in path_keys[:-1]:
@@ -289,9 +329,10 @@ def get_keyword_groups(data=None):
 
 
 # ── Group stats ────────────────────────────────────────────────────────────────
-def _load_search_batches():
+def _load_search_batches(uid=None):
     """Return batches list from search_history.json, or [] if missing/invalid."""
-    history_file = OUTPUT_DIR / 'search_history.json'
+    if uid is None: uid = _get_current_uid()
+    history_file = _user_paths(uid)['output_dir'] / 'search_history.json'
     if not history_file.exists():
         return []
     try:
@@ -300,16 +341,18 @@ def _load_search_batches():
         return []
 
 
-def compute_group_stats():
-    cfg, groups, _ = get_keyword_groups()
+def compute_group_stats(uid=None):
+    if uid is None: uid = _get_current_uid()
+    paths = _user_paths(uid)
+    cfg, groups, _ = get_keyword_groups(read_config(paths['config_path']))
     result = []
     now = time.time()
-    all_batches = _load_search_batches()
+    all_batches = _load_search_batches(uid)
 
     for grp in groups:
         gid = grp.get('group_id', '')
         prefix = gid + '_'
-        folders = [d for d in OUTPUT_DIR.iterdir()
+        folders = [d for d in paths['output_dir'].iterdir()
                    if d.is_dir() and d.name.startswith(prefix)]
 
         scores, missing_all, matched_all, latest_mtime = [], [], [], None
@@ -372,9 +415,11 @@ def compute_group_stats():
     return result
 
 
-def compute_search_analysis() -> dict:
+def compute_search_analysis(uid=None) -> dict:
     """Return per-group keyword search analysis aggregated across ALL batches."""
-    history_file = OUTPUT_DIR / 'search_history.json'
+    if uid is None: uid = _get_current_uid()
+    paths = _user_paths(uid)
+    history_file = paths['output_dir'] / 'search_history.json'
     if not history_file.exists():
         return {"error": "no search history", "groups": []}
     try:
@@ -392,6 +437,7 @@ def compute_search_analysis() -> dict:
     for b in batches:
         for kw, cnt in b.get("fetched_per_keyword", {}).items():
             all_kw_counts[kw] = all_kw_counts.get(kw, 0) + cnt
+    print(f"[DEBUG search-analysis] uid={uid} history={history_file} all_kw_counts={dict(list(all_kw_counts.items())[:3])} seen_jobs_len={len(seen_jobs)}", flush=True)
 
     # ② fallback_triggered = any batch that had this group in groups_with_fallback
     groups_with_fallback: set[str] = set()
@@ -401,11 +447,11 @@ def compute_search_analysis() -> dict:
 
     # ③a — Precise match_score from all jd_analysis.json files
     exact_scores: dict[str, float] = {}   # job_id → match_score
-    for jd_file in OUTPUT_DIR.glob("*/jd_analysis.json"):
+    for jd_file in paths['output_dir'].glob("*/jd_analysis.json"):
         try:
             jd = json.loads(jd_file.read_text(encoding='utf-8'))
             jid = str(jd.get("job_id", ""))
-            score = jd.get("match_score")
+            score = jd.get("score") or jd.get("match_score")
             if jid and score is not None:
                 exact_scores[jid] = float(score)
         except Exception:
@@ -426,7 +472,7 @@ def compute_search_analysis() -> dict:
             kw_exact_scores.setdefault(kw, []).append(exact_scores[jid])
 
     # ④ keyword → (group_id, type) purely from config
-    cfg, groups_cfg, _ = get_keyword_groups()
+    cfg, groups_cfg, _ = get_keyword_groups(read_config(paths['config_path']))
     kw_type_map: dict[str, tuple] = {}
     for g in groups_cfg:
         gid = g.get("group_id", "")
@@ -450,7 +496,7 @@ def compute_search_analysis() -> dict:
 
         scores_list = kw_exact_scores.get(kw, [])
         sources     = sorted(kw_sources.get(kw, {default_src}))
-        distinct    = kw_distinct.get(kw, 0)
+        distinct    = kw_distinct.get(kw, _fetch_count)
         high     = sum(1 for s in scores_list if s >= 70)
         good     = sum(1 for s in scores_list if 50 <= s < 70)
         moderate = sum(1 for s in scores_list if 30 <= s < 50)
@@ -545,6 +591,7 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         path = urlparse(self.path).path
+        uid  = _get_current_uid()
 
         if path in ('/', '/index.html'):
             if HTML_PATH.exists():
@@ -557,33 +604,35 @@ class Handler(BaseHTTPRequestHandler):
 
         elif path == '/api/jobs':
             try:
-                jobs = parse_jobs()
+                jobs = parse_jobs(uid)
                 self._send(json.dumps(jobs, ensure_ascii=False))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
 
         elif path == '/api/status':
             try:
-                mtime = JOB_SUMMARY.stat().st_mtime
+                summary = _user_paths(uid)['job_summary']
+                mtime = summary.stat().st_mtime if summary.exists() else 0.0
                 self._send(json.dumps({'mtime': mtime}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
 
         elif path == '/api/group-stats':
             try:
-                self._send(json.dumps(compute_group_stats(), ensure_ascii=False))
+                self._send(json.dumps(compute_group_stats(uid), ensure_ascii=False))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
 
         elif path == '/api/search-analysis':
             try:
-                self._send(json.dumps(compute_search_analysis(), ensure_ascii=False))
+                self._send(json.dumps(compute_search_analysis(uid), ensure_ascii=False))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
 
         elif path == '/api/cvfiles':
             try:
-                files = sorted(p.name for p in MY_CV_DIR.glob('*.pdf')) if MY_CV_DIR.exists() else []
+                cv_dir = _user_paths(uid)['my_cv_dir']
+                files = sorted(p.name for p in cv_dir.glob('*.pdf')) if cv_dir.exists() else []
                 self._send(json.dumps(files))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -594,13 +643,28 @@ class Handler(BaseHTTPRequestHandler):
                 if not name or '/' in name or '\\' in name or '..' in name:
                     self._send(b'Bad request', 'text/plain', 400)
                     return
-                fpath = MY_CV_DIR / name
+                fpath = _user_paths(uid)['my_cv_dir'] / name
                 if not fpath.exists() or not fpath.is_file():
                     self._send(b'Not found', 'text/plain', 404)
                     return
                 self._send(fpath.read_bytes(), 'application/pdf')
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
+
+        elif path == '/api/users':
+            try:
+                data = json.loads(USERS_JSON.read_text(encoding='utf-8'))
+                data['current'] = uid
+                self._send(json.dumps(data, ensure_ascii=False))
+            except Exception as e:
+                self._send(json.dumps({'error': str(e)}), status=500)
+
+        elif path == '/api/taxonomy':
+            try:
+                cfg = read_config(_user_paths(uid)['config_path'])
+                self._send(json.dumps(cfg.get('skill_taxonomy') or {}, ensure_ascii=False))
+            except Exception:
+                self._send(json.dumps({}))
 
         elif path == '/api/search-status':
             running = bool(_search_proc and _search_proc.poll() is None)
@@ -661,13 +725,15 @@ class Handler(BaseHTTPRequestHandler):
                 if not gid:
                     self._send(json.dumps({'error': 'group_id required'}), status=400)
                     return
-                cfg, groups, path_keys = get_keyword_groups()
+                uid = _get_current_uid()
+                cfg_path = _user_paths(uid)['config_path']
+                cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
                 new_groups = [g for g in groups if g.get('group_id') != gid]
                 if len(new_groups) == len(groups):
                     self._send(json.dumps({'error': f'group_id not found: {gid}'}), status=404)
                     return
                 _set_nested(cfg, path_keys, new_groups)
-                write_config(cfg)
+                write_config(cfg, cfg_path)
                 self._send(json.dumps({'ok': True}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -679,7 +745,9 @@ class Handler(BaseHTTPRequestHandler):
                 if not gid:
                     self._send(json.dumps({'error': 'group_id required'}), status=400)
                     return
-                cfg, groups, path_keys = get_keyword_groups()
+                uid = _get_current_uid()
+                cfg_path = _user_paths(uid)['config_path']
+                cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
                 originals = [g for g in groups if g.get('group_id') == gid]
                 if not originals:
                     self._send(json.dumps({'error': f'group_id not found: {gid}'}), status=404)
@@ -696,7 +764,7 @@ class Handler(BaseHTTPRequestHandler):
                 new_grp['group_label'] = new_grp.get('group_label', gid) + ' (Copy)'
                 groups.append(new_grp)
                 _set_nested(cfg, path_keys, groups)
-                write_config(cfg)
+                write_config(cfg, cfg_path)
                 self._send(json.dumps({'ok': True, 'new_group_id': new_id}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -712,13 +780,15 @@ class Handler(BaseHTTPRequestHandler):
                 if not gid:
                     self._send(json.dumps({'error': 'group_id must not be empty'}), status=400)
                     return
-                cfg, groups, path_keys = get_keyword_groups()
+                uid = _get_current_uid()
+                cfg_path = _user_paths(uid)['config_path']
+                cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
                 if any(g.get('group_id') == gid for g in groups):
                     self._send(json.dumps({'error': f'group_id already exists: {gid}'}), status=409)
                     return
                 groups.append(grp)
                 _set_nested(cfg, path_keys, groups)
-                write_config(cfg)
+                write_config(cfg, cfg_path)
                 self._send(json.dumps({'ok': True, 'group_id': gid}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -727,7 +797,8 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 data = self._read_json_body()
                 group_id = data.get('group_id', 'all')
-                cfg = read_config()
+                uid = _get_current_uid()
+                cfg = read_config(_user_paths(uid)['config_path'])
                 _, kgs, _ = get_keyword_groups(cfg)
                 valid_ids = {g.get('group_id') for g in kgs}
                 if group_id != 'all' and group_id not in valid_ids:
@@ -743,6 +814,53 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
 
+        elif path == '/api/switch-user':
+            try:
+                data    = self._read_json_body()
+                new_uid = (data.get('user_id') or '').strip()
+                valid   = _valid_uids()
+                if new_uid not in valid:
+                    self._send(json.dumps({'error': 'unknown user'}), status=400)
+                    return
+                with _search_lock:
+                    if _search_proc and _search_proc.poll() is None:
+                        self._send(json.dumps({'error': 'search_running'}), status=409)
+                        return
+                _set_current_uid(new_uid)
+                with _jobs_cache_lock:
+                    _jobs_cache_mtime[new_uid] = 0.0
+                self._send(json.dumps({'ok': True}))
+            except Exception as e:
+                self._send(json.dumps({'error': str(e)}), status=500)
+
+        elif path == '/api/create-user':
+            try:
+                data = self._read_json_body()
+                uid  = (data.get('user_id') or '').strip().lower()
+                name = (data.get('name') or '').strip()
+                if not uid or not name:
+                    self._send(json.dumps({'error': 'user_id and name required'}), status=400)
+                    return
+                if not uid.replace('-', '').isalnum():
+                    self._send(json.dumps({'error': 'user_id must be alphanumeric'}), status=400)
+                    return
+                users_data = json.loads(USERS_JSON.read_text(encoding='utf-8'))
+                if any(u['id'] == uid for u in users_data.get('users', [])):
+                    self._send(json.dumps({'error': f'user already exists: {uid}'}), status=409)
+                    return
+                users_data.setdefault('users', []).append({'id': uid, 'name': name})
+                with _write_lock:
+                    USERS_JSON.write_text(json.dumps(users_data, ensure_ascii=False, indent=2), encoding='utf-8')
+                user_dir = USERS_DIR / uid
+                (user_dir / 'output' / 'temp').mkdir(parents=True, exist_ok=True)
+                (user_dir / 'my_cv').mkdir(parents=True, exist_ok=True)
+                self._send(json.dumps({'ok': True}))
+            except Exception as e:
+                self._send(json.dumps({'error': str(e)}), status=500)
+
+        elif path in ('/api/generate-job-family', '/api/save-job-family'):
+            self._send(json.dumps({'error': 'not implemented'}), status=501)
+
         else:
             self._send(json.dumps({'error': 'Not found'}), status=404)
 
@@ -752,11 +870,12 @@ class Handler(BaseHTTPRequestHandler):
 
 
 # ── JD file helpers ──────────────────────────────────────────────────────────
-def _update_jd_field(jd_path: str, field: str, value):
+def _update_jd_field(jd_path: str, field: str, value, uid=None):
     """Read jd_analysis.json, set one field, write back. Returns (dict, http_status)."""
-    if not jd_path:
-        return {'error': f'{field} requires jd_path'}, 400
-    jd_file = OUTPUT_DIR / jd_path
+    if not jd_path or '..' in jd_path:
+        return {'error': f'{field} requires valid jd_path'}, 400
+    if uid is None: uid = _get_current_uid()
+    jd_file = _user_paths(uid)['output_dir'] / jd_path
     if not jd_file.exists():
         return {'error': f'File not found: {jd_path}'}, 404
     with _write_lock:

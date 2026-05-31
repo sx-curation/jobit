@@ -303,7 +303,7 @@
     ],
     "location": "Germany",
     "date_range_days": 14,
-    "max_jobs_per_keyword": 1,
+    "max_jobs_per_keyword": 2,
     "max_display": 10,
     "score_threshold_warn": 30,
     "min_score_for_analysis": 20

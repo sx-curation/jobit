@@ -1,0 +1,270 @@
+{
+  "job_search": {
+    "location": "Germany",
+    "date_range_days": 14,
+    "max_jobs_per_keyword": 2,
+    "max_display": 10,
+    "score_threshold_warn": 30,
+    "cv_language": "en",
+    "your_name": "Kelebogile Riet",
+    "your_email": "kelebogilerandy@gmail.com",
+    "keyword_groups": [
+     {
+  "group_id": "group-restaurant",
+  "group_label": "Restaurant & Hospitality Management",
+  "cv_file": "my_cv/my_cv_restaurant.pdf",
+  "primary_keywords": {
+    "en": [
+      "Restaurant Manager",
+      "F&B Manager",
+      "Food and Beverage Manager",
+      "Hospitality Operations Manager",
+      "Gastronomy Director",
+      "Area Manager Restaurant"
+    ],
+    "de": [
+      "Restaurantleiter",
+      "F&B Manager",
+      "Gastronomie Manager",
+      "Betriebsleiter Gastronomie",
+      "Gastronomieleiter",
+      "Bezirksleiter Gastronomie"
+    ]
+  },
+  "job_family": {
+    "en": [
+      "Restaurant Manager",
+      "Food and Beverage (F&B) Manager",
+      "General Manager Hospitality",
+      "Gastronomy Operations Manager",
+      "Assistant F&B Manager",
+      "Catering Manager",
+      "Corporate Dining Manager",
+      "Area Manager (Restaurant Chain)",
+      "Multi-Unit Restaurant Manager",
+      "District Manager Hospitality",
+      "Hotel Food & Beverage Director",
+      "Banquet & Events Manager",
+      "Kitchen Program Manager",
+      "Culinary Operations Lead",
+      "Front of House (FOH) Manager",
+      "Service Manager (Gastronomy)",
+      "Hospitality Procurement & Supply Chain Manager",
+      "QA & Food Safety Compliance Manager"
+    ],
+    "de": [
+      "Restaurantleiter",
+      "F&B Manager",
+      "Gastronomie Manager",
+      "Betriebsleiter Restaurant",
+      "Gastronomieleiter",
+      "Bezirksleiter Gastronomie",
+      "Area Manager Systemgastronomie",
+      "Catering-Manager",
+      "Betriebsleiter Gemeinschaftsverpflegung",
+      "Bankettleiter / Banquet Manager",
+      "Hotel F&B Director",
+      "Serviceleiter (Gastronomie)",
+      "Küchenchef mit Führungsaufgaben",
+      "Leiter Eventgastronomie",
+      "HACCP & Qualitätsmanagement-Beauftragter",
+      "Einkaufsleiter Hotellerie & Gastronomie"
+    ]
+  }
+},
+     {
+  "group_id": "group-econ-research",
+  "group_label": "Economic Research",
+  "cv_file": "my_cv/my_cv_econ_research.pdf",
+  "primary_keywords": {
+    "en": [
+      "Junior Economist",
+      "Graduate Economic Researcher",
+      "Emerging Markets Analyst",
+      "Development Economics Researcher",
+      "Junior Macroeconomic Analyst"
+    ],
+    "de": [
+      "Junior Ökonom",
+      "Volkswirt Berufseinsteiger",
+      "Junior Wirtschaftsanalyst",
+      "Analyst Entwicklungsökonomie",
+      "Junior Länderrisikoanalyst"
+    ]
+  },
+  "job_family": {
+    "en": [
+      "Junior Economist",
+      "Graduate Research Economist",
+      "Assistant Economic Researcher",
+      "Emerging Markets Economic Analyst",
+      "Junior Macro Analyst (EMEA Focus)",
+      "Development Economist (Junior)",
+      "Sovereign Risk Analyst - Africa/EMEA",
+      "Junior Public Policy Analyst",
+      "Economic Research Associate",
+      "Junior Quantitative Economist",
+      "Junior ESG & Sustainability Economist",
+      "Graduate Transfer Pricing Analyst",
+      "International Trade & Commodity Analyst",
+      "Think Tank Research Assistant (Global South)",
+      "Junior Country Risk Analyst",
+      "Economic Consultant (Entry-Level)",
+      "Junior Climate Finance Economist"
+    ],
+    "de": [
+      "Junior Ökonom",
+      "Volkswirt (Berufseinsteiger)",
+      "Junior Wirtschaftsanalyst",
+      "Wissenschaftlicher Mitarbeiter (VWL / Entwicklungsökonomie)",
+      "Junior Analyst Schwellenländer",
+      "Junior Länderrisikoanalyst (Afrika/EMEA)",
+      "Junior Referent für Wirtschaftspolitik",
+      "Trainee Economic Research",
+      "Junior Ökonometriker",
+      "Transfer Pricing Assistant",
+      "Junior Berater Entwicklungszusammenarbeit",
+      "Projektassistent Wirtschaftsforschung",
+      "Junior Rohstoffanalyst",
+      "Junior Nachhaltigkeitsökonom"
+    ]
+  }
+}, {
+  "group_id": "group-commercial-supply-chain",
+  "group_label": "Commercial Operations & Global Procurement",
+  "cv_file": "my_cv/my_cv_commercial_sc.pdf",
+  "primary_keywords": {
+    "en": [
+      "Junior Supply Chain Analyst",
+      "Commercial Operations Associate",
+      "Global Procurement Coordinator",
+      "FMCG Demand Planner",
+      "Junior Revenue Management Analyst",
+      "Africa-Europe Sourcing Specialist"
+    ],
+    "de": [
+      "Junior Supply Chain Analyst",
+      "Mitarbeiter Commercial Operations",
+      "Junior Einkäufer (Global Sourcing)",
+      "Nachfrageplaner / Demand Planner",
+      "Junior Spezialist Import/Export (Afrika-Fokus)"
+    ]
+  },
+  "job_family": {
+    "en": [
+      "Junior Supply Chain Analyst",
+      "Commercial Operations Associate",
+      "Junior Procurement Specialist (Global Sourcing)",
+      "Demand Planner (FMCG/Food Focus)",
+      "Inventory Control Analyst (Retail/Hospitality)",
+      "Supply Chain Coordinator - Emerging Markets",
+      "Junior Commodity Sourcing Manager",
+      "Revenue Management Analyst (Hospitality/Retail)",
+      "Logistics & Operations Coordinator",
+      "Retail Operations Analyst",
+      "Junior Category Manager (Food & Beverage)",
+      "Strategic Sourcing Associate (Africa-Europe Trade)",
+      "Graduate Operations Program Trainee",
+      "Global Sourcing Specialist (Africa/EMEA)",
+      "Food & Beverage Supply Chain Analyst",
+      "Commercial Analyst (Retail/FMCG)",
+      "Import-Export Operations Coordinator"
+    ],
+    "de": [
+      "Junior Supply Chain Analyst",
+      "Junior Einkäufer (Global Sourcing)",
+      "Nachfrageplaner / Demand Planner",
+      "Mitarbeiter Commercial Operations",
+      "Bestandsanalyst / Inventory Analyst",
+      "Logistikkoordinator (Schwellenländer)",
+      "Junior Category Manager",
+      "Revenue Management Analyst",
+      "Trainee Supply Chain & Einkaufe",
+      "Junior Spezialist Import/Export (Afrika-Fokus)",
+      "Betriebswirtschaftlicher Analyst (Schnittstelle Ops/Logistik)",
+      "Strategischer Einkäufer (Agrar/Lebensmittel)",
+      "Junior Logistikmanager (Import/Export)",
+      "Einkaufsassistent (Global Sourcing)",
+      "Analyst Commercial Operations"
+    ]
+  }
+}
+    ]
+  },
+  "skill_taxonomy": {
+    "tools": [
+      "spreadsheet",
+      "powerpoint",
+      "google sheets",
+      "ms office",
+      "ms excel",
+      "excel"
+    ],
+    "academic": [
+      "bachelor",
+      "master",
+      "phd",
+      "mba",
+      "bsc",
+      "msc",
+      "degree",
+      "diploma",
+      "studium",
+      "hochschule",
+      "abschluss",
+      "studiengang",
+      "betriebswirt",
+      "wirtschafts",
+      "economics",
+      "business administration",
+      "computer science",
+      "engineering",
+      "mathematics",
+      "accounting",
+      "psychology",
+      "sociology",
+      "information systems",
+      "quantitative methods"
+    ],
+    "langs": [
+      "german",
+      "deutsch",
+      "english",
+      "englisch",
+      "french",
+      "français",
+      "französisch",
+      "spanish",
+      "espanol",
+      "mandarin",
+      "chinese",
+      "italian",
+      "dutch",
+      "portuguese",
+      "japanese",
+      "korean",
+      "arabic",
+      "hindi",
+      "russian",
+      "polish",
+      "swedish",
+      "norwegian",
+      "danish",
+      "turkish",
+      "muttersprache",
+      "native speaker",
+      "fließend",
+      "verhandlungssicher",
+      "c1",
+      "c2",
+      "b2",
+      "b1",
+      "a2",
+      "a1",
+      "fluent",
+      "bilingual",
+      "business proficient",
+      "business fluent"
+    ]
+  }
+}

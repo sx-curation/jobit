@@ -1,1 +1,2 @@
 - [Candidate profile — Boru Lai](user_candidate_profile.md) — confirmed skills, tools, verified numbers, and experience timeline; use to prevent fabrication in any CV rewrite
+- [Candidate profile — Kelebogile Riet](user_candidate_profile_kelebogie.md) — confirmed skills, verified experience timeline (4 x public-sector internships, no AI/tech background, no quantified numbers); use to prevent fabrication in any CV rewrite
