@@ -1,0 +1,54 @@
+{
+  "job_id": "4418326365",
+  "title": "SAP Programm- & Projektmanager S/4HANA Transformation (w/m/x)",
+  "company": "NTT DATA Europe & Latam",
+  "location": "Ettlingen, Baden-Württemberg, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4418326365/",
+  "match_score": 38.5,
+  "grade": "weak_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Management Officer",
+  "required_skills": [
+    "Multi-year SAP project/programme management experience",
+    "SAP ERP / SAP S/4HANA knowledge",
+    "Stakeholder management up to top management",
+    "Business or technical degree",
+    "Fluent German and English",
+    "Consulting or IT service provider background"
+  ],
+  "bonus_skills": [
+    "Classical and agile project management methods",
+    "Client growth identification and business development",
+    "Delivery excellence community contribution"
+  ],
+  "matched_skills": [
+    "Programme coordination (HSBC: 6-workstream digital transformation, C-suite reporting)",
+    "Stakeholder management across functions and executive levels (HSBC, Hapag-Lloyd)",
+    "Agile delivery — sprint planning, stand-ups, retrospectives (Hapag-Lloyd)",
+    "Budget tracking and financial governance (HSBC: USD 8M programme)",
+    "Status reporting and project transparency (HSBC burn-rate dashboards)",
+    "Business degree: Master Management & Entrepreneurship (Leuphana)",
+    "Fluent German (B1) and English (C1)"
+  ],
+  "missing_skills": [
+    "SAP ERP / SAP S/4HANA hands-on implementation experience",
+    "Consulting or IT service provider professional background",
+    "Large-scale SAP rollout or transformation programme leadership",
+    "PMP / PRINCE2 / SAP PM methodology certification"
+  ],
+  "core_responsibilities": [
+    "Plan, steer and deliver SAP S/4HANA transformation, implementation and rollout projects",
+    "Coordinate interdisciplinary project teams, business units and stakeholders up to top management",
+    "Ensure transparency on time, budget and quality for complex SAP programmes",
+    "Identify optimisation and growth potential with existing clients",
+    "Contribute PM methodology expertise to the internal delivery community"
+  ],
+  "recommended_emphasis": [
+    "HSBC: Managed 6-workstream USD 8M digital transformation with C-suite reporting and cross-functional coordination",
+    "Hapag-Lloyd: Agile sprint coordination across product, engineering and stakeholder teams",
+    "Power BI PL-300 certification and JIRA/Confluence proficiency — tool stack relevant to SAP programme reporting",
+    "Multi-language capability (German B1, English C1, Chinese C2) valuable in international NTT DATA client teams"
+  ],
+  "summary": "Boru scores 38.5 (weak match) primarily because this role demands deep SAP ERP/S4HANA implementation expertise and a consulting background that are absent from the CV. Strong transferable strengths exist in programme coordination, budget governance, stakeholder management and agile delivery — all directly relevant to the role's execution layer. The critical gap is technical SAP knowledge; without this, the application faces a high bar. Consider applying only if targeting the role as a programme coordination support function rather than lead SAP consultant."
+}

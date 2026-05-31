@@ -1,29 +1,27 @@
-[21:00:59] kw='PMO Manager'                                       found= 10  cumulative= 10
-[21:01:14] kw='Project Management Officer'                        found=  8  cumulative= 18
-[21:01:29] kw='Strategic PMO Lead'                                found=  5  cumulative= 23
-[21:01:43] kw='Business Transformation Manager'                   found=  6  cumulative= 29
-[21:01:57] kw='Chief of Staff'                                    found=  5  cumulative= 34
-[21:02:11] kw='PMO Manager'                                       found=  1  cumulative= 35
-[21:02:26] kw='Projektmanagement-Experte'                         found=  5  cumulative= 40
-[21:02:40] kw='Leiter Projektmanagementoffice'                    found=  4  cumulative= 44
-[21:02:54] kw='Change Manager'                                    found=  4  cumulative= 48
-[21:03:09] kw='Transformation Manager'                            found=  0  cumulative= 48
-[21:05:28] kw='PMO Analyst'                                       found=  6  cumulative= 54
-[21:05:43] kw='PMO Specialist'                                    found=  2  cumulative= 56
-[21:05:56] kw='PMO Manager'                                       found=  0  cumulative= 56
-[21:06:09] kw='Program Management Officer'                        found=  2  cumulative= 58
-[21:06:23] kw='Portfolio Manager'                                 found= 10  cumulative= 68
-[21:06:38] kw='Project Governance Manager'                        found=  1  cumulative= 69
-[21:06:52] kw='Project Controller'                                found=  7  cumulative= 76
-[21:07:05] kw='Strategic Planning Manager'                        found=  8  cumulative= 84
-[21:07:20] kw='Project Delivery Manager'                          found=  3  cumulative= 87
-[21:07:34] kw='Transformation PMO'                                found=  0  cumulative= 87
-[21:07:48] kw='Agile PMO Lead'                                    found=  1  cumulative= 88
-[21:08:03] kw='Business Operations Manager (PMO)'                 found=  1  cumulative= 89
-[21:08:17] kw='Chief of Staff (Operations)'                       found=  2  cumulative= 91
-[21:08:32] kw='Change Management Specialist'                      found=  2  cumulative= 93
-[21:08:46] kw='Business Transformation Lead'                      found=  2  cumulative= 95
-[21:09:01] kw='Enterprise PMO (EPMO) Director'                    found=  1  cumulative= 96
-[21:09:24] kw='Strategy Implementation Manager'                   found=  1  cumulative= 97
-[21:09:38] kw='Agile Coach / Scrum Master (Governance Focus)'     found=  8  cumulative=105
-[21:09:52] kw='Process Excellence Manager'                        found=  1  cumulative=106
+[09:10:51] kw='Product Marketing Manager'                         found= 11  cumulative= 11
+[09:11:05] kw='GTM Strategy Lead'                                 found=  9  cumulative= 20
+[09:11:19] kw='Marketing Business Analyst'                        found= 10  cumulative= 30
+[09:11:33] kw='Product Growth Manager'                            found=  4  cumulative= 34
+[09:11:47] kw='Produktmarketingmanager'                           found=  3  cumulative= 37
+[09:12:01] kw='GTM Strategist'                                    found=  5  cumulative= 42
+[09:12:15] kw='Marketing Business Analyst'                        found=  2  cumulative= 44
+[09:12:29] kw='Produkt-Launch-Manager'                            found=  8  cumulative= 52
+[09:15:27] kw='Product Marketing Manager'                         found=  0  cumulative= 52
+[09:15:49] kw='Senior Product Marketer'                           found=  5  cumulative= 57
+[09:16:03] kw='B2B Product Marketing Manager'                     found=  2  cumulative= 59
+[09:16:16] kw='Business Analyst (Marketing Focus)'                found=  8  cumulative= 67
+[09:16:30] kw='Marketing Insights Specialist'                     found=  8  cumulative= 75
+[09:16:44] kw='CRM Marketing Manager'                             found=  1  cumulative= 76
+[09:16:58] kw='Campaign Performance Analyst'                      found=  4  cumulative= 80
+[09:17:12] kw='Digital Product Marketer'                          found=  4  cumulative= 84
+[09:17:27] kw='Marketing Communication Manager'                   found=  1  cumulative= 85
+[09:17:40] kw='GTM (Go-to-Market) Strategy Lead'                  found=  7  cumulative= 92
+[09:17:54] kw='Sales Enablement Manager'                          found= 11  cumulative=103
+[09:18:07] kw='Revenue Operations (RevOps) Specialist'            found=  1  cumulative=104
+[09:18:21] kw='Growth Marketing Manager'                          found=  2  cumulative=106
+[09:18:44] kw='Competitive Intelligence Analyst'                  found=  9  cumulative=115
+[09:18:58] kw='Lifecycle Marketing Manager'                       found=  3  cumulative=118
+[09:19:12] kw='Product Positioning & Messaging Lead'              found= 10  cumulative=128
+[09:19:26] kw='Commercialization Manager'                         found=  3  cumulative=131
+[09:19:40] kw='Portfolio Marketing Manager'                       found=  0  cumulative=131
+[09:19:54] kw='Solution Marketing Manager'                        found=  1  cumulative=132

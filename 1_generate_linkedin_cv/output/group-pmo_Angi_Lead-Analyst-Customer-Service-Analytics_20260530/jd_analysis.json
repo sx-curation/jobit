@@ -1,0 +1,58 @@
+{
+  "job_id": "4421218584",
+  "title": "Lead Analyst, Customer Service Analytics",
+  "company": "Angi",
+  "location": "Berlin, Berlin, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4421218584/",
+  "match_score": 22.7,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Chief of Staff",
+  "required_skills": [
+    "8+ years data analytics experience",
+    "Customer service analytics",
+    "Looker / SQL / Python proficiency",
+    "KPI design and monitoring (CSAT, NPS, AHT, CES)",
+    "Data visualization",
+    "Stakeholder management",
+    "Workforce planning analytics",
+    "Bachelor/Master in Data Analytics or similar"
+  ],
+  "bonus_skills": [
+    "Salesforce experience",
+    "People management experience",
+    "AI tools (Cursor, Claude Code)",
+    "Customer-centric industry background"
+  ],
+  "matched_skills": [
+    "KPI framework design — HSBC PMO: designed burn-rate dashboards and KPI reporting for 6 workstreams",
+    "Stakeholder management — C-suite reporting at HSBC and exec sprint review reports at Hapag-Lloyd",
+    "Data visualization — Power BI PL-300 certified, Google Looker Studio",
+    "Executive reporting — KPI and analytics reporting across multiple roles"
+  ],
+  "missing_skills": [
+    "8+ years dedicated data analytics experience (candidate has ~1-2 yrs analytics-adjacent work)",
+    "SQL / Python proficiency",
+    "Salesforce or customer service platform expertise",
+    "Customer service domain knowledge (CSAT, NPS, First Contact Resolution)",
+    "Workforce planning analytics",
+    "Statistical experimentation / A/B testing"
+  ],
+  "core_responsibilities": [
+    "Analyze customer satisfaction metrics (CSAT, NPS, CES, AHT) to improve service levels",
+    "Steward resource allocation across inbound service workloads and outbound campaigns",
+    "Conduct proactive and reactive A/B experiment analyses with statistically significant results",
+    "Establish and monitor KPIs measuring operational success and report to senior management",
+    "Identify customer pain points from feedback and complaints data",
+    "Leverage AI-driven opportunities to streamline data analysis and improve productivity",
+    "Manage and mentor direct reports in data-driven decision making"
+  ],
+  "recommended_emphasis": [
+    "Power BI PL-300 certification and Google Looker Studio experience as data visualization credentials",
+    "HSBC burn-rate dashboards and KPI reporting across 6 workstreams demonstrating analytics orientation",
+    "Hapag-Lloyd KPI reporting and exec sprint review reports as evidence of analytics communication",
+    "ECE Group competitive analysis and market sizing as quantitative research capability"
+  ],
+  "summary": "With a match score of 22.7, this role is a poor fit for Boru Lai. The Lead Analyst position requires 8+ years of dedicated customer service data analytics with SQL/Python proficiency and deep CSAT/NPS domain expertise — none of which appear in the CV. Boru has strong KPI reporting and data visualization credentials (Power BI, Looker Studio) but these are programme governance tools rather than customer analytics tools. Application is not recommended unless Boru can demonstrate significant unreported analytics depth."
+}

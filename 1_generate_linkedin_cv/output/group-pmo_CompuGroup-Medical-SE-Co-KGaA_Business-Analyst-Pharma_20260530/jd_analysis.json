@@ -1,0 +1,52 @@
+{
+  "job_id": "4371571061",
+  "title": "Business Analyst Pharma (m/w/d)",
+  "company": "CompuGroup Medical SE & Co. KGaA",
+  "location": "Esch, Hesse, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4371571061/",
+  "match_score": 32.5,
+  "grade": "weak_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "PMO Manager",
+  "required_skills": [
+    "Experience in pharmaceutical company, healthcare/pharma industry, or pharmaceutical market research",
+    "Degree in economics, data science, statistics, or natural sciences",
+    "Strong communication and service orientation for pharma clients",
+    "High data affinity and strong MS Office skills (Excel, PowerPoint)",
+    "Very good German and English (min. C1)"
+  ],
+  "bonus_skills": [
+    "Power BI experience",
+    "R or Python experience",
+    "Cross-team project involvement"
+  ],
+  "matched_skills": [
+    "Power BI PL-300 certified — directly matches bonus Power BI requirement",
+    "Excel and data analysis: ECE Group spreadsheet optimisation, HSBC dashboards",
+    "Competitive analysis and market sizing: ECE Group market intelligence for automotive/furniture retail",
+    "Executive-ready reports: ECE Group, HSBC data storytelling",
+    "English C1 — meets language requirement",
+    "Master's degree in Management"
+  ],
+  "missing_skills": [
+    "Pharma/healthcare industry experience",
+    "Pharmaceutical market data knowledge (Rx, drug data)",
+    "German C1/C2 (Boru is B1 — role requires very good German)",
+    "R or Python skills"
+  ],
+  "core_responsibilities": [
+    "Handle customer requests at interface of customer, sales, and internal services",
+    "Develop customer-oriented data solutions and tools in Market Data & Intelligence team",
+    "Identify trends and market potentials in pharmaceutical market research",
+    "Drive data-driven innovation across teams",
+    "Structured analyses, clear visualisations, and targeted presentations"
+  ],
+  "recommended_emphasis": [
+    "Power BI certification as technical differentiator for data visualisation work",
+    "ECE Group competitive analysis and market sizing as analog market research experience",
+    "HSBC data storytelling for executive audiences — structured insight delivery",
+    "Cross-functional project involvement across ECE and Hapag-Lloyd roles"
+  ],
+  "summary": "Score 32.5 (weak match). Boru's Power BI certification and market analysis experience (ECE Group) are genuine strengths for this data-focused analyst role. However, there are critical gaps: no pharma/healthcare domain knowledge, German is only B1 while the role requires C1, and no R/Python skills. The domain barrier (pharma market data expertise) is substantial. Proceed with caution and only if the candidate is open to a steep domain learning curve."
+}

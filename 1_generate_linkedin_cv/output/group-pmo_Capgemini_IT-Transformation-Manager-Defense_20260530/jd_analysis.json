@@ -1,0 +1,59 @@
+{
+  "job_id": "4332881910",
+  "title": "IT Transformation Manager Defense (w/m/d)",
+  "company": "Capgemini",
+  "location": "Berlin Metropolitan Area",
+  "url": "https://www.linkedin.com/jobs/view/4332881910/",
+  "match_score": 28.0,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "PMO Manager",
+  "required_skills": [
+    "IT management / transformation / consulting experience",
+    "Defense / public sector experience",
+    "IT strategy and governance (ITIL, TOGAF, SAFe)",
+    "Stakeholder management at C-level",
+    "German and English fluency",
+    "KPI and compliance/governance standards",
+    "AI/Data transformation experience",
+    "Program and project management methodology"
+  ],
+  "bonus_skills": [
+    "ITIL Expert / SAFe / PMP / PRINCE2 certification",
+    "AI/Cloud/Data certifications",
+    "Security clearance (Sicherheitsüberprüfung)",
+    "Defense/Bundeswehr network"
+  ],
+  "matched_skills": [
+    "Stakeholder management at C-level — HSBC PMO: C-suite reporting and escalation management",
+    "Program governance — HSBC: USD 8M digital transformation budget governance across 6 workstreams",
+    "KPI frameworks — HSBC burn-rate dashboards and Hapag-Lloyd KPI reporting",
+    "German and English fluency — C1 English, B1 German (as noted in CV)",
+    "Project management methodology — agile sprint coordination at Hapag-Lloyd",
+    "Digital transformation — supported digital transformation budget governance at HSBC"
+  ],
+  "missing_skills": [
+    "Defense / public sector experience",
+    "IT strategy and architecture (ITIL/TOGAF/SAFe)",
+    "AI/Data/Cloud technical expertise",
+    "ITIL/PMP/PRINCE2 certifications",
+    "Security clearance eligibility",
+    "Defense network (Bundeswehr context)"
+  ],
+  "core_responsibilities": [
+    "Lead complex IT transformation programs in Bundeswehr, public agencies, and defense industry",
+    "Integrate AI-driven, data-driven, and cloud-based solutions in security-critical environments",
+    "Develop strategic IT roadmaps and orchestrate transformation programs",
+    "Manage change and coach client teams on new technology adoption (AI adoption focus)",
+    "Ensure governance, compliance, and KPI standards (VS-NfD, NATO standards)",
+    "Build and leverage defense/Bundeswehr network to drive transformation initiatives"
+  ],
+  "recommended_emphasis": [
+    "HSBC digital transformation budget governance (USD 8M) as evidence of transformation program management",
+    "C-suite reporting and risk escalation experience to demonstrate senior stakeholder management",
+    "Multi-workstream coordination (6 workstreams) to show program complexity handling",
+    "JIRA and Confluence as agile delivery tooling experience"
+  ],
+  "summary": "Scoring 28.0, this role is a poor match for Boru Lai. The Defense IT Transformation Manager role at Capgemini demands deep IT architecture knowledge (ITIL/TOGAF/SAFe), defense/public sector domain experience, and AI/cloud technical credentials — all absent from the CV. Boru's programme governance and C-suite reporting strengths are relevant to the programme management dimension but insufficient without the defense domain and IT strategy expertise. Application is not recommended without a significant career pivot or additional qualifications."
+}

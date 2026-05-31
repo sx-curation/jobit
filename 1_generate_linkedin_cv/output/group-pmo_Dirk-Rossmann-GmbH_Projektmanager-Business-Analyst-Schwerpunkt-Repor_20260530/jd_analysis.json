@@ -1,0 +1,56 @@
+{
+  "job_id": "4391585407",
+  "title": "Projektmanager/Business Analyst (m/w/d) Schwerpunkt Reporting",
+  "company": "Dirk Rossmann GmbH",
+  "location": "Burgwedel, Lower Saxony, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4391585407/",
+  "match_score": 43.5,
+  "grade": "weak_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Business Transformation Manager",
+  "required_skills": [
+    "Degree in Business Informatics, Business Administration or comparable",
+    "Multi-year experience as Business Analyst, ServiceNow Consultant or comparable",
+    "ServiceNow platform expertise (ideally CSM and RSM modules)",
+    "Reporting and dashboard design (Performance Analytics, KPIs, metrics, data visualisation)",
+    "Analytical and conceptual skills for translating business requirements into reporting solutions",
+    "Strong communication skills for stakeholder and developer collaboration",
+    "Fluent German, good English"
+  ],
+  "bonus_skills": [
+    "ServiceNow CSM and RSM module experience",
+    "Data quality testing and QA skills",
+    "User training and knowledge transfer capability"
+  ],
+  "matched_skills": [
+    "KPI framework design and performance reporting (HSBC: burn-rate dashboards, VfB Stuttgart: impact measurement framework)",
+    "Stakeholder requirements translation into structured deliverables (HSBC, Hapag-Lloyd sprint reports)",
+    "Data visualisation and dashboard creation — Power BI PL-300 certified, Google Looker Studio",
+    "Business analysis and requirements documentation (ECE Group: project reporting, HSBC: programme data)",
+    "Cross-functional stakeholder coordination (HSBC, Hapag-Lloyd)",
+    "User story documentation support (Hapag-Lloyd agile sprint context)",
+    "German B1 and English C1"
+  ],
+  "missing_skills": [
+    "ServiceNow platform expertise (CSM, RSM modules)",
+    "Performance Analytics configuration in ServiceNow",
+    "Dedicated Business Analyst professional background (multi-year)",
+    "Data quality testing and QA for reporting solutions"
+  ],
+  "core_responsibilities": [
+    "Capture and analyse stakeholder requirements; translate into User Stories and technical specifications with focus on reporting, KPIs and dashboards",
+    "Design and conceptualise reports, Performance Analytics dashboards and data visualisations",
+    "Configure reports and dashboards in ServiceNow; collaborate with developer team for complex requirements",
+    "Conduct quality assurance testing to ensure data quality and correct functionality",
+    "Act as central contact for all reporting questions in CSM/RSM; conduct user training sessions",
+    "Create and maintain process and system documentation"
+  ],
+  "recommended_emphasis": [
+    "Power BI PL-300 certification — demonstrates dashboard design and KPI visualisation capability directly relevant to the reporting focus",
+    "HSBC: Built multi-dimensional budget variance dashboards and burn-rate reports for C-suite — closest match to the reporting/dashboard core of this role",
+    "VfB Stuttgart: KPI framework design and cost-benefit tracking methodology — evidences analytical reporting skills",
+    "Hapag-Lloyd: User research data translated into structured executive sprint reports — demonstrates requirements-to-insight translation workflow"
+  ],
+  "summary": "Boru scores 43.5 (weak match) with genuine strength in KPI reporting, dashboard design (Power BI PL-300) and requirements translation, but the role's core platform requirement is ServiceNow expertise which Boru does not possess. The reporting and analytical dimensions align well, and the business analyst coordination experience is transferable. The ServiceNow gap is a material barrier for a role where platform configuration is central. Apply as a stretch, explicitly highlighting Power BI and KPI framework experience while acknowledging ServiceNow as a learning commitment."
+}

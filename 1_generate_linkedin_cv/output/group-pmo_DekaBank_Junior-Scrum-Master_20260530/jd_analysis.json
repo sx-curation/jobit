@@ -1,0 +1,51 @@
+{
+  "job_id": "4403473045",
+  "title": "Junior Scrum Master (w/m/d)",
+  "company": "DekaBank",
+  "location": "Frankfurt am Main, Hesse, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4403473045/",
+  "match_score": 62.5,
+  "grade": "moderate_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Management Officer",
+  "required_skills": [
+    "Minimum 2 years experience as Scrum Master or comparable agile role",
+    "Ability to train and coach teams in agile methods",
+    "Solid understanding of software development processes and cross-functional collaboration tools",
+    "Ability to make agile processes deliver measurable results",
+    "Strong communication and constructive collaboration approach"
+  ],
+  "bonus_skills": [
+    "Agile method optimisation and continuous improvement"
+  ],
+  "matched_skills": [
+    "Agile sprint ceremonies: Hapag-Lloyd — participated in sprint planning, stand-ups, retrospectives as coordination point",
+    "Cross-functional coordination in agile environment: Hapag-Lloyd cross-team delivery coordination",
+    "KPI development for process improvement: VfB Stuttgart KPI framework; Hapag-Lloyd performance reporting",
+    "Team facilitation: HSBC town hall facilitation, sprint review coordination",
+    "Agile delivery stakeholder communication: Hapag-Lloyd executive sprint review reports"
+  ],
+  "missing_skills": [
+    "2 years formal Scrum Master role (Hapag-Lloyd role was coordination, not Scrum Master formally)",
+    "Scrum Master certification (PSM, CSM)",
+    "Software development process knowledge",
+    "Impediment removal and coaching capability as primary responsibility"
+  ],
+  "core_responsibilities": [
+    "Introduce, develop, and continuously optimise agile methods and processes",
+    "Coach teams in agile working methods and support self-organisation",
+    "Organise and moderate all Scrum events (planning, reviews, retrospectives)",
+    "Identify impediments and drive solutions",
+    "Develop KPIs, analyse processes, and support continuous improvement",
+    "Foster culture of openness and development"
+  ],
+  "recommended_emphasis": [
+    "Hapag-Lloyd sprint ceremony participation (planning, stand-ups, retrospectives) as direct Scrum practice evidence",
+    "VfB Stuttgart KPI framework design as process improvement and measurement capability",
+    "HSBC meeting facilitation and cross-workstream coordination as facilitation experience",
+    "Hapag-Lloyd agile delivery coordination — position as proto-Scrum Master experience",
+    "Confluence/JIRA tooling as agile team toolset familiarity"
+  ],
+  "summary": "Score 62.5 (moderate match). Boru has genuine agile coordination experience from Hapag-Lloyd (sprint ceremonies, cross-functional delivery coordination) that overlaps significantly with junior Scrum Master responsibilities. The gap is lack of formal Scrum Master title/certification and explicit coaching/impediment removal experience. This is a viable application — the 'junior' designation accommodates candidates building toward the Scrum Master role. Recommend getting a PSM-I certification to strengthen candidacy."
+}

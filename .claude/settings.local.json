@@ -17,7 +17,8 @@
       "Bash(python *)",
       "Bash(claude -p \"搜索LinkedIn职缺 group-da\")",
       "PowerShell(\\(Get-Content \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\scripts\\\\server.py\" -Raw\\) -split \"`n\" | Select-Object -Index \\(355..375\\) | Out-String)",
-      "Bash(curl -s http://localhost:8080/api/search-analysis)"
+      "Bash(curl -s http://localhost:8080/api/search-analysis)",
+      "PowerShell(cd D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv; $r = python scripts/search_state.py --mode dedup --batch-id 20260531_001 --config config.json 2>&1 | ConvertFrom-Json; \"display_jobs: $\\($r.display_jobs.Count\\)\"; \"skipped_duplicate: $\\($r.skipped_duplicate\\)\"; \"hidden_low_score: $\\($r.hidden_low_score\\)\"; \"\"; \"Score >= 50:\"; $r.display_jobs | Where-Object { $_.quick_score -ge 50 } | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" }; \"\"; \"All jobs by score:\"; $r.display_jobs | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" })"
     ]
   }
 }

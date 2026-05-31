@@ -1,0 +1,53 @@
+{
+  "job_id": "4421232370",
+  "title": "IT Projektmanager - Gesundheitswesen / Telematik (m/w/d)",
+  "company": "Workwise",
+  "location": "Leonberg, Baden-Württemberg, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4421232370/",
+  "match_score": 55.0,
+  "grade": "moderate_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Management Officer",
+  "required_skills": [
+    "Project environment experience (sub-project leadership or IT project participation)",
+    "Understanding of project management methods (classic and/or agile)",
+    "Structured, solution-oriented working style",
+    "Stakeholder communication across multiple levels",
+    "German C1+ and good English skills"
+  ],
+  "bonus_skills": [
+    "PM certification (e.g. PRINCE2, PMP)",
+    "Experience in IT projects in public sector, healthcare or infrastructure/rollout",
+    "Flexibility for project-driven deployment hours"
+  ],
+  "matched_skills": [
+    "Agile project management — sprint planning, stand-ups, retrospectives (Hapag-Lloyd)",
+    "Cross-functional stakeholder coordination across product, engineering and business teams (HSBC, Hapag-Lloyd)",
+    "Project documentation, reporting and status tracking (HSBC, ECE Group)",
+    "Risk identification and escalation (HSBC: risk escalation across 6 workstreams)",
+    "JIRA and Confluence proficiency — directly relevant IT project toolset",
+    "German B1 (meets minimum communication standard) and English C1",
+    "Structured working style demonstrated through budget dashboards and executive reports"
+  ],
+  "missing_skills": [
+    "Healthcare / Telematikinfrastruktur (TI-Gateway) domain knowledge",
+    "Public sector IT project experience",
+    "PM certification (PRINCE2, PMP or similar)"
+  ],
+  "core_responsibilities": [
+    "Support overall project lead in large migration project in public healthcare (TI-Gateway)",
+    "Own sub-project responsibility including planning, coordination and implementation of rollout sites",
+    "Coordinate with clients, clinics and internal teams; support resource planning and project controlling",
+    "Monitor time, quality and budget; track project risks",
+    "Actively support rollout execution with flexible deployment",
+    "Progressively assume more responsibility towards independent project management"
+  ],
+  "recommended_emphasis": [
+    "Hapag-Lloyd: Agile sprint coordination as central interface between project teams, product owners and stakeholders — mirrors this role's coordination mandate",
+    "HSBC: Risk escalation and status reporting across 6 workstreams — demonstrates project controlling capability",
+    "JIRA and Confluence proficiency — core tools expected in this IT PM role",
+    "ECE Group: Project data tracking and progress reporting — directly relevant to controlling responsibilities"
+  ],
+  "summary": "Boru scores 55 (moderate match) driven by solid transferable PM coordination experience, agile methodology exposure, and JIRA/Confluence toolset. The role is entry-to-mid level in nature, seeking someone to grow into project leadership — well-suited to Boru's profile. The main gap is lack of healthcare or Telematikinfrastruktur domain knowledge, though the JD explicitly welcomes candidates without this background if they bring strong PM fundamentals. German B1 is the weakest point; C1 German is implicitly expected for daily client/clinic communication. Worth applying with emphasis on coordination and agile delivery breadth."
+}
