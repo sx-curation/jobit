@@ -1,0 +1,15 @@
+LinkedIn 反爬机制导致 Patchright 浏览器无法正常加载页面的问题。
+
+---
+最快的解决方案：从你的常规 Chrome 导出 li_at
+
+如果你在常规 Chrome 里已经登录了 LinkedIn：
+
+1. 打开 Chrome，进入 https://www.linkedin.com
+2. 按 F12 → Application（应用程序） → Cookies → https://www.linkedin.com
+3. 找到 li_at，双击复制它的 Value
+4. 把值发给我，我来手动写入 cookies.json 和 source-state.json
+
+或者如果你用的是 Edge：F12 → 应用程序 → Cookie → linkedin.com → li_at
+
+▎ ⚠️ li_at 是账户 session token，相当于密码，只发给我这个本地工具，不要粘贴到任何网页或聊天里。
