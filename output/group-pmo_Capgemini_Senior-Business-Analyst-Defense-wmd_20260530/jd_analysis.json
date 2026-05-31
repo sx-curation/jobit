@@ -1,0 +1,56 @@
+{
+  "job_id": "4332931685",
+  "title": "Senior Business Analyst Defense (w/m/d)",
+  "company": "Capgemini",
+  "location": "Germany (DACH region; travel required)",
+  "url": "https://www.linkedin.com/jobs/view/4332931685/",
+  "match_score": 11.1,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "PMO Analyst",
+  "required_skills": [
+    "Several years experience as Business Analyst (or Product Owner/Business Solution Designer) in IT/digital programmes",
+    "Defense background (industry, public sector, or military/Offizierslaufbahn) with existing Bundeswehr/defense network",
+    "Domain expertise in at least one defense area (e.g. Führungsunterstützung, logistics/maintenance, ISR, PLM/ALM, cyber security processes)",
+    "Business Analysis methods: requirements engineering, process/data modelling, functional architecture, business case",
+    "Stakeholder management and change enablement: moderation, conflict resolution, storytelling, transformation support",
+    "Fluent German and English",
+    "Willingness for security clearance (SÜG) and travel"
+  ],
+  "bonus_skills": [
+    "Agile frameworks (Scrum, SAFe), Jira/Confluence, BPMN/UML",
+    "MBSE/ALM/PLM tools (Siemens, IBM)",
+    "Data & AI knowledge (Data Governance/DCAM)",
+    "Project management certification (PRINCE2, IPMA)"
+  ],
+  "matched_skills": [
+    "Stakeholder management and moderation experience (HSBC, Hapag-Lloyd)",
+    "Agile sprint experience: Scrum ceremonies, backlog support (Hapag-Lloyd) — partial bonus hit",
+    "JIRA/Confluence tool experience (bonus)",
+    "English C1",
+    "Data storytelling and executive reporting"
+  ],
+  "missing_skills": [
+    "Zero defense industry or Bundeswehr background",
+    "No security clearance (SÜG) — would require vetting process",
+    "No business analysis formal methodology (BPMN, UML, requirements engineering)",
+    "No domain expertise in any defense area (logistics, ISR, cyber, PLM/ALM)",
+    "No consulting background or client advisory experience",
+    "German B1 — role requires C1+/business fluency in German"
+  ],
+  "core_responsibilities": [
+    "End-to-end business analysis in defense programmes (Bundeswehr, agencies, defense industry)",
+    "Translate AI/data use cases into functional architectures and solution scenarios",
+    "Stakeholder management and change enablement in AI-adoption contexts",
+    "Pre-sales support for defense tenders",
+    "Build and maintain defense sector network"
+  ],
+  "recommended_emphasis": [
+    "Do not apply — defense domain expertise is the primary selection criterion and the candidate has none",
+    "Security clearance requirement adds additional barrier",
+    "German B1 is insufficient for this German-language-heavy consulting role",
+    "Even the business analysis methodology is largely missing"
+  ],
+  "summary": "Match score is 11.1 (poor_match). This is a specialist defense consulting role with hard requirements around Bundeswehr domain knowledge, security clearance, and German business fluency. The candidate has none of these. The only transferable skills are general stakeholder management and Jira experience, which are insufficient to compensate for the profound domain and language gaps. Do not apply."
+}

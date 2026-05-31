@@ -1,0 +1,591 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>My CVs — Group Mapping | Kinetic Archive</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=Space_Grotesk:wght@400;500;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2e3132",
+                        "primary-fixed-dim": "#93ccff",
+                        "on-tertiary-fixed-variant": "#783200",
+                        "on-primary-fixed-variant": "#004b74",
+                        "on-secondary-fixed-variant": "#005321",
+                        "secondary": "#006e2f",
+                        "outline-variant": "#bfc7d1",
+                        "error-container": "#ffdad6",
+                        "primary": "#005d8f",
+                        "on-secondary": "#ffffff",
+                        "tertiary": "#943f00",
+                        "tertiary-container": "#bb5100",
+                        "secondary-container": "#6bff8f",
+                        "on-surface-variant": "#404850",
+                        "on-background": "#191c1d",
+                        "tertiary-fixed-dim": "#ffb690",
+                        "inverse-primary": "#93ccff",
+                        "on-primary-container": "#f3f7ff",
+                        "surface-container-high": "#e7e8e9",
+                        "surface-bright": "#f8f9fa",
+                        "surface-dim": "#d9dadb",
+                        "secondary-fixed": "#6bff8f",
+                        "on-primary-fixed": "#001d32",
+                        "surface": "#f8f9fa",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1d",
+                        "surface-variant": "#e1e3e4",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#cde5ff",
+                        "primary-container": "#0077b5",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#f0f1f2",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#006398",
+                        "background": "#f8f9fa",
+                        "surface-container-low": "#f3f4f5",
+                        "surface-container-highest": "#e1e3e4",
+                        "surface-container": "#edeeef",
+                        "tertiary-fixed": "#ffdbca",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed-dim": "#4ae176",
+                        "on-tertiary-fixed": "#341100",
+                        "on-secondary-fixed": "#002109",
+                        "on-tertiary-container": "#fff4f0",
+                        "outline": "#707881",
+                        "on-secondary-container": "#007432"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Space Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+        .glass-effect { backdrop-filter: blur(20px); }
+        .kinetic-gradient, .search-jobs-btn {
+            background: linear-gradient(135deg, #005D8F 0%, #0077B5 100%);
+        }
+        .search-jobs-btn {
+            color: #fff;
+            border-radius: 9999px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: opacity .15s;
+        }
+        .search-jobs-btn .material-symbols-outlined { font-size: 14px; }
+        .search-jobs-btn:hover:not(:disabled) { opacity: 0.88; }
+        .search-jobs-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        #log-drawer {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+            background: #fff;
+            border-radius: 20px 20px 0 0;
+            box-shadow: 0 -4px 32px rgba(0,0,0,0.14);
+            transform: translateY(100%);
+            transition: transform .3s ease;
+            max-height: 55vh;
+            display: flex; flex-direction: column;
+        }
+        #log-drawer.open { transform: translateY(0); }
+        #log-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px 10px;
+            border-bottom: 1px solid #F3F4F5;
+            flex-shrink: 0;
+        }
+        #log-title {
+            font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700;
+            color: #005D8F;
+        }
+        #log-close {
+            background: none; border: none; cursor: pointer; padding: 4px;
+            color: #707881; font-size: 18px; line-height: 1;
+        }
+        #log-status {
+            font-family: 'Space Grotesk', sans-serif; font-size: 11px;
+            color: #707881; margin-left: 8px;
+        }
+        #log-body {
+            overflow-y: auto; padding: 12px 20px 20px;
+            flex: 1;
+            font-family: 'Consolas', 'Menlo', monospace; font-size: 12px;
+            color: #191C1D; line-height: 1.6;
+            background: #F8F9FA;
+        }
+        #log-body .log-line { padding: 1px 0; white-space: pre-wrap; word-break: break-all; }
+        #log-body .log-done {
+            color: #006e2f; font-weight: 700; margin-top: 8px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        #log-body .log-err { color: #ba1a1a; }
+        .spinner {
+            display: inline-block; width: 11px; height: 11px;
+            border: 2px solid rgba(255,255,255,.4);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin .7s linear infinite;
+            vertical-align: middle; margin-right: 4px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+
+<!-- Log Drawer -->
+<div id="log-drawer">
+    <div id="log-header">
+        <span>
+            <span id="log-title">搜索中…</span>
+            <span id="log-status"></span>
+        </span>
+        <button id="log-close" title="关闭">✕</button>
+    </div>
+    <div id="log-body"></div>
+</div>
+
+<script>
+(function(){
+    var API       = 'http://localhost:8080';
+    var drawer    = document.getElementById('log-drawer');
+    var logBody   = document.getElementById('log-body');
+    var logTitle  = document.getElementById('log-title');
+    var logStatus = document.getElementById('log-status');
+    var evtSrc    = null;
+    var activeBtn = null;
+    var _scrollPending = false;
+    var _streamStarted = false;
+
+    function openDrawer(groupLabel) {
+        logTitle.textContent = '搜索职缺 — ' + groupLabel;
+        logStatus.textContent = '启动中…';
+        logBody.innerHTML = '';
+        drawer.classList.add('open');
+    }
+
+    function appendLog(text, cls) {
+        var d = document.createElement('div');
+        d.className = 'log-line' + (cls ? ' ' + cls : '');
+        d.textContent = text;
+        logBody.appendChild(d);
+        if (!_scrollPending) {
+            _scrollPending = true;
+            requestAnimationFrame(function() {
+                logBody.scrollTop = logBody.scrollHeight;
+                _scrollPending = false;
+            });
+        }
+    }
+
+    function stopStream() {
+        if (evtSrc) { evtSrc.close(); evtSrc = null; }
+    }
+
+    function resetBtn() {
+        if (!activeBtn) return;
+        var lbl = activeBtn.dataset.groupLabel || activeBtn.dataset.groupId;
+        activeBtn.disabled = false;
+        activeBtn.innerHTML = '';
+        var icon = document.createElement('span');
+        icon.className = 'material-symbols-outlined';
+        icon.textContent = 'search';
+        activeBtn.appendChild(icon);
+        activeBtn.appendChild(document.createTextNode('搜索职缺 ' + lbl));
+        activeBtn = null;
+    }
+
+    function startLogStream() {
+        stopStream();
+        _streamStarted = false;
+        evtSrc = new EventSource(API + '/api/search-log');
+        evtSrc.onmessage = function(e) {
+            var msg = JSON.parse(e.data);
+            if (msg.done) {
+                logStatus.textContent = '完成';
+                appendLog('✓ 搜索完成', 'log-done');
+                stopStream();
+                resetBtn();
+            } else if (msg.text) {
+                if (!_streamStarted) {
+                    _streamStarted = true;
+                    logStatus.textContent = '运行中';
+                }
+                appendLog(msg.text);
+            }
+        };
+        evtSrc.onerror = function() {
+            logStatus.textContent = '连接中断';
+            appendLog('⚠ SSE 连接中断', 'log-err');
+            stopStream();
+            resetBtn();
+        };
+    }
+
+    function handleSearchJobs(btn) {
+        var groupId    = btn.dataset.groupId;
+        var groupLabel = btn.dataset.groupLabel || groupId;
+
+        if (activeBtn) {
+            logStatus.textContent = '已有搜索进行中';
+            drawer.classList.add('open');
+            return;
+        }
+
+        activeBtn = btn;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>搜索中…';
+        openDrawer(groupLabel);
+
+        fetch(API + '/api/search', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({group_id: groupId})
+        })
+        .then(function(r) { return r.json().then(function(j) { return {ok: r.ok, body: j}; }); })
+        .then(function(res) {
+            if (!res.ok) {
+                if (res.body.error === 'search already running') {
+                    logStatus.textContent = '搜索已在进行中，监听日志…';
+                    startLogStream();
+                } else {
+                    logStatus.textContent = '失败';
+                    appendLog('✗ ' + (res.body.error || 'unknown error'), 'log-err');
+                    resetBtn();
+                }
+                return;
+            }
+            appendLog('▶ ' + res.body.cmd);
+            startLogStream();
+        })
+        .catch(function() {
+            logStatus.textContent = '无法连接服务器';
+            appendLog('✗ 无法连接 localhost:8080 — 请先运行: python scripts/server.py', 'log-err');
+            resetBtn();
+        });
+    }
+
+    document.addEventListener('click', function(e) {
+        var btn = e.target.closest('.search-jobs-btn');
+        if (btn) { handleSearchJobs(btn); return; }
+        if (e.target.closest('#log-close')) { drawer.classList.remove('open'); }
+    });
+})();
+</script>
+</head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 px-8 py-4 flex justify-between items-center max-w-screen-2xl mx-auto bg-white/70 backdrop-blur-xl rounded-none no-border bg-[#F3F4F5]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#0077B5] cursor-pointer hover:bg-[#F3F4F5] transition-colors p-2 rounded-full" data-icon="grid_view" style="">grid_view</span>
+<h1 class="font-['Manrope'] font-black text-[#0077B5] tracking-tight text-2xl" style="">Kinetic Archive</h1>
+</div>
+<div class="hidden md:flex gap-8 items-center">
+<nav class="flex gap-6">
+<a class="text-[#0077B5] border-b-2 border-[#0077B5] font-['Space_Grotesk'] px-1 py-1" href="#" style="">Dashboard</a>
+<a class="text-slate-500 font-['Inter'] hover:bg-[#F3F4F5] transition-colors px-1 py-1 rounded" href="#" style="">My CVs</a>
+<a class="text-slate-500 font-['Inter'] hover:bg-[#F3F4F5] transition-colors px-1 py-1 rounded" href="#" style="">TBD</a>
+</nav>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-[#0077B5]">
+<img class="w-full h-full object-cover" data-alt="professional executive portrait in a modern glass office setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGbM17AV2w5VWIezeYKUDM7AbPFkIDIMXwpCIS5ghAc7Eh0BnKSfTqmmTcomxU313lbZgZAoL_jrItVLx_94PZ1pACV3JA64Iae8xmQT5b1TXFiakteBbPMIH-2E1AAjSFnzKCENQ46GppIl-oIYrwnuOoJOXl7LfTgvl3eeWOgpDNvVrSanPlOpAzQpG4RVx1PWug9KoXN7CT57PXKk44WikllFttTod3P7D1OHHIpyx_hOAZ66W-qjzpjpAWa2H2tagf1h-oDlw" style="">
+</div>
+</div>
+</header>
+<!-- NavigationDrawer (Web) -->
+<main class="max-w-4xl mx-auto px-4 pt-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
+<div>
+<h2 class="text-3xl font-headline font-extrabold text-on-surface tracking-tight" style="">My CVs</h2>
+<p class="text-on-surface-variant font-body text-sm mt-1" style="">Manage and map your professional profiles to specific career tracks.</p>
+</div>
+<button class="kinetic-gradient text-white px-6 py-3 rounded-full flex items-center gap-2 font-body font-semibold shadow-lg hover:opacity-90 active:scale-95 transition-all" style="">
+<span class="material-symbols-outlined" data-icon="add" style="">add</span>
+                Add Group
+            </button>
+</div>
+<!-- Summary Bar -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-b-2 border-primary/10">
+<p class="font-label text-[10px] uppercase tracking-widest text-outline" style="">Total Groups</p>
+<p class="text-2xl font-headline font-bold text-primary mt-1" style="">5</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-b-2 border-primary/10">
+<p class="font-label text-[10px] uppercase tracking-widest text-outline" style="">Total CVs</p>
+<p class="text-2xl font-headline font-bold text-primary mt-1" style="">5</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-b-2 border-primary/10">
+<p class="font-label text-[10px] uppercase tracking-widest text-outline" style="">Active Searches</p>
+<p class="text-2xl font-headline font-bold text-primary mt-1" style="">3</p>
+</div>
+<div class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border-b-2 border-primary/10 col-span-2 md:col-span-1">
+<p class="font-label text-[10px] uppercase tracking-widest text-outline" style="">Last Updated</p>
+<p class="text-lg font-headline font-bold text-primary mt-1" style="">Apr 17 2026</p>
+</div>
+</div>
+<!-- Main Content: Group Cards -->
+<div class="space-y-6">
+<!-- Card 1: Marketing Analytics -->
+<section class="bg-surface-container-lowest rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-start justify-between mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 bg-teal-500 rounded-lg flex items-center justify-center text-white font-headline font-bold text-xl" style="">DA</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline font-bold text-lg" style="">Marketing Analytics</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-label font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter" style="">Active</span>
+</div>
+<p class="font-label text-xs text-outline tracking-wider" style="">group-da</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-black text-primary" style="">92%</div>
+<div class="font-label text-[10px] uppercase text-outline" style="">MATCH SCORE</div>
+</div>
+</div>
+<div class="space-y-4">
+<!-- CV File -->
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border-l-4 border-teal-500">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description" style="">description</span>
+<span class="font-body text-sm font-medium" style="">my_cv_marketing_analytics_final.pdf</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container-high rounded-full text-outline transition-colors" style="">
+<span class="material-symbols-outlined text-xl" data-icon="visibility" style="">visibility</span>
+</button>
+<button class="p-2 hover:bg-surface-container-high rounded-full text-outline transition-colors" style="">
+<span class="material-symbols-outlined text-xl" data-icon="download" style="">download</span>
+</button>
+</div>
+</div>
+<!-- Keywords -->
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary font-label text-[11px] px-3 py-1 rounded-full border border-primary/20" style="">SQL_ANALYSIS</span>
+<span class="bg-primary/10 text-primary font-label text-[11px] px-3 py-1 rounded-full border border-primary/20" style="">GA4_EXPERTISE</span>
+<span class="bg-indigo-50 text-indigo-700 font-label text-[11px] px-3 py-1 rounded-full border border-indigo-200" style="">DATENANALYSE</span>
+</div>
+<!-- Job Family & Missing Skills -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+<div>
+<p class="font-label text-[10px] uppercase text-outline mb-2 tracking-widest" style="">Job Family</p>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-high px-3 py-1 rounded-full text-xs font-medium" style="">Data &amp; BI</span>
+<span class="material-symbols-outlined text-sm text-outline" data-icon="expand_more" style="">expand_more</span>
+</div>
+</div>
+<div>
+<p class="font-label text-[10px] uppercase text-outline mb-2 tracking-widest" style="">Missing Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="border border-outline-variant text-outline px-2 py-0.5 rounded text-[11px] font-label" style="">R-PROGRAMMING</span>
+<span class="border border-outline-variant text-outline px-2 py-0.5 rounded text-[11px] font-label" style="">BIGQUERY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action Bar -->
+<div class="mt-8 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[11px] text-outline font-label" style="">LAST SEARCH: 2 HOURS AGO</span>
+<div class="flex items-center gap-4">
+<button class="search-jobs-btn" data-group-id="group-da" data-group-label="Marketing Analytics">
+<span class="material-symbols-outlined">search</span>搜索职缺 Marketing Analytics
+</button>
+<button class="text-outline hover:text-on-surface" style="">
+<span class="material-symbols-outlined" data-icon="edit" style="">edit</span>
+</button>
+<button class="text-outline hover:text-on-surface" style="">
+<span class="material-symbols-outlined" data-icon="more_vert" style="">more_vert</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Card 2: PMO -->
+<section class="bg-surface-container-lowest rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-start justify-between mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 bg-purple-500 rounded-lg flex items-center justify-center text-white font-headline font-bold text-xl" style="">PM</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline font-bold text-lg" style="">PMO</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-label font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter" style="">Active</span>
+</div>
+<p class="font-label text-xs text-outline tracking-wider" style="">group-pmo</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-black text-primary" style="">84%</div>
+<div class="font-label text-[10px] uppercase text-outline" style="">MATCH SCORE</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border-l-4 border-purple-500">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description" style="">description</span>
+<span class="font-body text-sm font-medium" style="">my_cv_pmo_2024.pdf</span>
+</div>
+<div class="flex gap-2"><span class="material-symbols-outlined text-outline" data-icon="visibility" style="">visibility</span></div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary font-label text-[11px] px-3 py-1 rounded-full" style="">PROJECT_OPS</span>
+<span class="bg-indigo-50 text-indigo-700 font-label text-[11px] px-3 py-1 rounded-full" style="">STRATEGIE</span>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[11px] text-outline font-label" style="">LAST SEARCH: YESTERDAY</span>
+<div class="flex items-center gap-4">
+<button class="search-jobs-btn" data-group-id="group-pmo" data-group-label="PMO">
+<span class="material-symbols-outlined">search</span>搜索职缺 PMO
+</button>
+<span class="material-symbols-outlined text-outline" data-icon="edit" style="">edit</span>
+</div>
+</div>
+</section>
+<!-- Card 3: Product Marketing -->
+<section class="bg-surface-container-lowest rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-start justify-between mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 bg-blue-500 rounded-lg flex items-center justify-center text-white font-headline font-bold text-xl" style="">PDM</div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="font-headline font-bold text-lg" style="">Product Marketing</h3>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-label font-bold px-2 py-0.5 rounded-full uppercase tracking-tighter" style="">Active</span>
+</div>
+<p class="font-label text-xs text-outline tracking-wider" style="">group-pdm</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-black text-primary" style="">95%</div>
+<div class="font-label text-[10px] uppercase text-outline" style="">MATCH SCORE</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border-l-4 border-blue-500">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description" style="">description</span>
+<span class="font-body text-sm font-medium" style="">my_cv_pdm_leadership.pdf</span>
+</div>
+</div>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary font-label text-[11px] px-3 py-1 rounded-full" style="">GTM_STRATEGY</span>
+<span class="bg-primary/10 text-primary font-label text-[11px] px-3 py-1 rounded-full" style="">PRODUCT_VISION</span>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[11px] text-outline font-label" style="">LAST SEARCH: 1 WEEK AGO</span>
+<div class="flex items-center gap-4">
+<button class="search-jobs-btn" data-group-id="group-pdm" data-group-label="Product Marketing">
+<span class="material-symbols-outlined">search</span>搜索职缺 Product Marketing
+</button>
+<span class="material-symbols-outlined text-outline" data-icon="more_vert" style="">more_vert</span>
+</div>
+</div>
+</section>
+<!-- Card 4: Internal Marketing -->
+<section class="bg-surface-container-lowest rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-start justify-between mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 bg-orange-500 rounded-lg flex items-center justify-center text-white font-headline font-bold text-xl" style="">IM</div>
+<div>
+<h3 class="font-headline font-bold text-lg" style="">Internal Marketing</h3>
+<p class="font-label text-xs text-outline tracking-wider" style="">group-internal-marketing</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-black text-primary" style="">88%</div>
+<div class="font-label text-[10px] uppercase text-outline" style="">MATCH SCORE</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border-l-4 border-orange-500">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description" style="">description</span>
+<span class="font-body text-sm font-medium" style="">my_cv_internal_comms.pdf</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[11px] text-outline font-label" style="">LAST SEARCH: APR 10 2026</span>
+<button class="search-jobs-btn" data-group-id="group-internal-marketing" data-group-label="Internal Marketing">
+<span class="material-symbols-outlined">search</span>搜索职缺 Internal Marketing
+</button>
+</div>
+</section>
+<!-- Card 5: Event Management -->
+<section class="bg-surface-container-lowest rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+<div class="flex items-start justify-between mb-6">
+<div class="flex gap-4">
+<div class="w-14 h-14 bg-pink-500 rounded-lg flex items-center justify-center text-white font-headline font-bold text-xl" style="">EM</div>
+<div>
+<h3 class="font-headline font-bold text-lg" style="">Event Management</h3>
+<p class="font-label text-xs text-outline tracking-wider" style="">group-event-management</p>
+</div>
+</div>
+<div class="text-right">
+<div class="text-2xl font-headline font-black text-primary" style="">91%</div>
+<div class="font-label text-[10px] uppercase text-outline" style="">MATCH SCORE</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-3 bg-surface-container-low rounded-lg border-l-4 border-pink-500">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description" style="">description</span>
+<span class="font-body text-sm font-medium" style="">my_cv_events_2025.pdf</span>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-4 border-t border-outline-variant/10 flex items-center justify-between">
+<span class="text-[11px] text-outline font-label" style="">LAST SEARCH: APR 15 2026</span>
+<button class="search-jobs-btn" data-group-id="group-event-management" data-group-label="Event Management">
+<span class="material-symbols-outlined">search</span>搜索职缺 Event Management
+</button>
+</div>
+</section>
+</div>
+<!-- Footer Banner (Tip) -->
+<div class="mt-12 bg-[#EBF8FF] p-6 rounded-lg border border-[#0077B5]/10 flex items-start gap-4">
+<span class="material-symbols-outlined text-[#0077B5] mt-1" data-icon="lightbulb" style="">lightbulb</span>
+<div>
+<h4 class="font-headline font-bold text-[#005D8F]" style="">Pro Tip: Group Diversity</h4>
+<p class="text-sm text-[#0077B5] mt-1 font-body" style="">Create separate mapping groups for different languages or seniorities. For example, "Marketing Analytics (EN)" and "Marketing Analytics (DE)" will yield highly targeted results in multi-lingual markets.</p>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center p-4 md:hidden bg-white/80 backdrop-blur-2xl rounded-t-[2rem] no-border shadow-[0_-1px_20px_rgba(0,0,0,0.05)]">
+<a class="text-slate-400 flex flex-col items-center justify-center px-6 py-2" href="#" style="">
+<span class="material-symbols-outlined" data-icon="track_changes" style="">track_changes</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1" style="">Tracker</span>
+</a>
+<a class="bg-gradient-to-br from-[#005D8F] to-[#0077B5] text-white rounded-full px-6 py-2 flex flex-col items-center justify-center scale-110 -translate-y-2 shadow-lg" href="#" style="">
+<span class="material-symbols-outlined" data-icon="description" style="font-variation-settings: &quot;FILL&quot; 1;">description</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1" style="">My CVs</span>
+</a>
+<a class="text-slate-400 flex flex-col items-center justify-center px-6 py-2" href="#" style="">
+<span class="material-symbols-outlined" data-icon="inventory_2" style="">inventory_2</span>
+<span class="font-['Space_Grotesk'] text-[10px] uppercase tracking-widest mt-1" style="">Archive</span>
+</a>
+</nav>
+</body></html>

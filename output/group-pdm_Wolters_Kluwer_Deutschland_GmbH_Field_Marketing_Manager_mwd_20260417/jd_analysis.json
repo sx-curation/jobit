@@ -1,0 +1,67 @@
+{
+  "job_id": "st_75831145",
+  "title": "Field Marketing Manager (m/w/d)",
+  "company": "Wolters Kluwer Deutschland GmbH",
+  "location": "Hürth (bei Köln)",
+  "url": "https://www.stepstone.de/stellenangebote--Field-Marketing-Manager-m-w-d-Huerth-Wolters-Kluwer-Deutschland-GmbH--13877830-inline.html",
+  "posted_date": "",
+  "match_score": 42,
+  "required_skills": [
+    "B2B Field Marketing or Demand Generation (3-5 years)",
+    "Marketing automation (HubSpot, Marketo)",
+    "CRM systems (Salesforce)",
+    "German and English communication",
+    "Analytical and data-driven decision making"
+  ],
+  "bonus_skills": [
+    "SaaS or Legal Tech experience",
+    "Account-based Marketing (ABM)"
+  ],
+  "matched_skills": [
+    "B2B marketing background (GTM, campaigns, sales enablement)",
+    "Analytical thinking and KPI/ROI reporting (Power BI, Looker Studio)",
+    "German (B1+) and English (C1)",
+    "Cross-functional collaboration with sales",
+    "Content creation and market intelligence"
+  ],
+  "missing_skills": [
+    "Marketing automation tools (HubSpot, Marketo or equivalent)",
+    "CRM experience (Salesforce or equivalent)",
+    "Field marketing / demand generation focus (vs. product marketing)",
+    "SaaS or Legal Tech industry background",
+    "Account-based Marketing (ABM) execution"
+  ],
+  "core_responsibilities": [
+    "Own regional field marketing strategy and campaigns for Germany",
+    "Generate and qualify leads with focus on pipeline growth",
+    "Collaborate closely with sales to support Legisway Suite portfolio growth",
+    "Create content for local campaigns and manage external vendors",
+    "Track performance and report to sales and management"
+  ],
+  "culture_keywords": [
+    "eigenverantwortliches Arbeiten",
+    "enge Zusammenarbeit mit Vertrieb",
+    "datengetrieben",
+    "regional focus",
+    "EMEA collaboration"
+  ],
+  "recommended_emphasis": [
+    "Highlight B2B campaign execution and lead generation outcomes from previous roles",
+    "Emphasize data-driven reporting (KPI dashboards, ROI) and analytical approach",
+    "Showcase cross-functional collaboration with sales teams",
+    "Mention any event, webinar, or trade fair execution experience",
+    "Stress German language proficiency and EMEA market exposure"
+  ],
+  "summary": "The candidate has a solid B2B marketing background with strong GTM, sales enablement, and analytics skills, but the core discipline mismatch (product marketing vs. field/demand-gen marketing) is significant. Critical tool gaps — no HubSpot/Marketo or Salesforce experience — are listed as required by the JD. German at B1+ meets minimum threshold but is a mild risk for a Germany-focused regional role.",
+  "risk_flags": [
+    "Discipline mismatch: candidate is a Product Marketing Manager; role requires Field Marketing / Demand Generation specialist",
+    "Missing required martech stack: no HubSpot, Marketo, or Salesforce in CV",
+    "German B1+ may be insufficient for a Germany-only regional marketing role requiring strong local communication"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "20.000+ Mitarbeiter weltweit"
+  },
+  "_source": "stepstone"
+}

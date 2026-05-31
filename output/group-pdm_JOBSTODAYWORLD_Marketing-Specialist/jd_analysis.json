@@ -1,0 +1,57 @@
+{
+  "job_id": "4397898116",
+  "company": "JOBSTODAY.WORLD (recruiting for unnamed client)",
+  "title": "Marketing Specialist (B2B Sales role)",
+  "url": "https://www.linkedin.com/jobs/view/4397898116/",
+  "posted_date": "",
+  "match_score": 38,
+  "required_skills": [
+    "B2B sales experience (3-5 years)",
+    "Communication, negotiation, and interpersonal skills",
+    "Self-motivated, results-driven approach",
+    "CRM tools (Salesforce, HubSpot)",
+    "Fluent German (written and spoken)",
+    "Fluent English (written and spoken)",
+    "Sales strategy development",
+    "Sales pipeline management"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "CRM tools: Salesforce and HubSpot (listed in tools)",
+    "Fluent English",
+    "Sales collateral and demo presentation experience (partial match for negotiation/presentation)",
+    "GTM strategy (partial match for sales strategy)"
+  ],
+  "missing_skills": [
+    "Proven B2B sales experience (3-5 years) — Boru has product marketing background, not direct B2B sales",
+    "Fluent German — CV shows B2 level only, JD requires fluent (written and spoken)",
+    "Pipeline management and sales forecasting — not evidenced in CV",
+    "Self-motivated results-driven sales hunter profile — not substantiated by CV"
+  ],
+  "core_responsibilities": [
+    "Develop and implement sales strategies to achieve/exceed revenue targets",
+    "Identify and pursue new business opportunities in existing and new markets",
+    "Build and maintain long-term client and partner relationships",
+    "Conduct product presentations and negotiate with prospective customers",
+    "Prepare sales forecasts and provide regular reporting to management"
+  ],
+  "culture_keywords": [
+    "results-driven",
+    "self-motivated",
+    "cross-functional collaboration",
+    "customer satisfaction",
+    "continuous market monitoring"
+  ],
+  "recommended_emphasis": [
+    "Salesforce and HubSpot proficiency",
+    "Sales enablement and demo/presentation experience (Leyard Europe: 20+ channel partners)",
+    "English fluency",
+    "GTM strategy as a bridge to sales strategy thinking"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "_analysis_notes": "This is a B2B sales role disguised under the 'Marketing Specialist' title. The JD requires proven B2B sales experience (3-5 years) and fluent German — two critical requirements Boru does not meet. German B2 is below fluent, and Boru's background is product marketing (GTM, positioning, enablement), not quota-carrying sales. Match score 38 is below the 50-point threshold for further LinkedIn company lookup. NOT RECOMMENDED for application."
+}

@@ -1,0 +1,63 @@
+{
+  "job_id": "4369236270",
+  "company": "KWS Group",
+  "title": "HR Analytics Expert - Systems and Data Management (m/f/d)",
+  "url": "https://www.linkedin.com/jobs/view/4369236270/",
+  "posted_date": "2 weeks ago",
+  "match_score": 36,
+  "required_skills": [
+    "University degree in Business Administration, Data Science, HR Management, or related field",
+    "Professional experience in HR analytics, people analytics, or HR systems management",
+    "Proficiency in SAP SuccessFactors and data analytics tools (Power BI, Tableau)",
+    "Strong SQL skills and experience with data warehousing or ETL processes",
+    "Excellent communication skills to translate data insights for non-technical stakeholders",
+    "Strong project management skills in international, cross-functional environments"
+  ],
+  "bonus_skills": [
+    "Python or R for advanced analytics",
+    "Knowledge of HR processes and workforce planning methodologies"
+  ],
+  "matched_skills": [
+    "C-level data storytelling (maps to: communication / data insights for non-technical stakeholders)",
+    "Project management (Scrum, SAFe) (maps to: project management in cross-functional environments)",
+    "Cross-functional team coordination (maps to: project management in cross-functional environments)",
+    "Marketing KPI framework design (partial: maps to HR KPI framework development)",
+    "Data quality, tracking & QA (partial: maps to data governance / quality standards)"
+  ],
+  "missing_skills": [
+    "HR analytics or people analytics domain experience",
+    "SAP SuccessFactors",
+    "Power BI or Tableau",
+    "SQL",
+    "Data warehousing or ETL processes",
+    "Python or R",
+    "HR processes and workforce planning knowledge"
+  ],
+  "core_responsibilities": [
+    "Build and maintain HR analytics infrastructure including reporting tools, dashboards, and data pipelines",
+    "Develop and manage HR KPI frameworks and workforce analytics solutions for data-driven decision-making",
+    "Own and optimize HR systems (SAP SuccessFactors) ensuring data integrity and system performance",
+    "Translate complex HR data into actionable insights for HR leadership and business partners",
+    "Lead global HR data projects including data governance and data quality initiatives"
+  ],
+  "culture_keywords": [
+    "global",
+    "cross-functional",
+    "data-driven",
+    "self-service analytics",
+    "international",
+    "collaborative (IT, Finance, business stakeholders)"
+  ],
+  "recommended_emphasis": [
+    "Highlight any KPI framework design or dashboard development experience, even if marketing-focused",
+    "Emphasize cross-functional stakeholder communication and translating data for non-technical audiences",
+    "Stress international project coordination experience (Hapag-Lloyd, HSBC, Minth Group multi-market)",
+    "Mention any exposure to HR data, people data, or workforce metrics if applicable",
+    "If any SQL or BI tool usage exists in background, surface it explicitly"
+  ],
+  "company_info": {
+    "size": "1,001–5,000",
+    "size_source": "jd_text",
+    "size_raw": "around 5,000 employees in more than 70 countries"
+  }
+}

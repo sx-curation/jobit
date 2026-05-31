@@ -1,0 +1,76 @@
+{
+  "job_id": "4409004211",
+  "company": "Hostinger",
+  "title": "Marketing Analytics Lead | Based in Europe",
+  "url": "https://www.linkedin.com/jobs/view/4409004211/",
+  "_source": "linkedin",
+  "posted_date": "",
+  "match_score": 67,
+  "required_skills": [
+    "hiring and team leadership track record",
+    "data analysis",
+    "SQL",
+    "data visualization tools (Tableau)",
+    "marketing fundamentals and attribution concepts",
+    "stakeholder management",
+    "business acumen / translating data into business decisions"
+  ],
+  "bonus_skills": [
+    "marketing attribution (willingness to learn accepted)",
+    "AI / emerging technology integration",
+    "agile methodology"
+  ],
+  "matched_skills": [
+    "data analysis (4+ years across multiple industries)",
+    "marketing attribution concepts",
+    "data visualization (Power BI PL-300, Qlik Sense, Looker Studio)",
+    "stakeholder management / C-level data storytelling",
+    "business acumen",
+    "agile / Scrum / SAFe",
+    "multi-channel marketing analytics (Affiliates, PPC, Influencers, SEO adjacent)",
+    "funnel and conversion analysis",
+    "KPI framework design",
+    "campaign ROI analytics",
+    "customer segmentation and cohort analysis"
+  ],
+  "missing_skills": [
+    "SQL (not mentioned in CV tools or experience)",
+    "Tableau (CV has BI tools but not Tableau specifically)",
+    "proven hiring and direct team-building leadership (CV shows coordination, not people-management)"
+  ],
+  "core_responsibilities": [
+    "Set and uphold the standard for data-driven decision-making across marketing channels",
+    "Lead end-to-end marketing analytics projects, translating raw data into growth opportunities",
+    "Build, hire, mentor and inspire a high-performing team of analysts",
+    "Collaborate with marketing channel leads (Affiliates, Influencers, PPC, SEO, PMMs) to align analytical roadmaps",
+    "Own delivery lifecycle from requirements refinement to backlog prioritisation"
+  ],
+  "culture_keywords": [
+    "customer obsession",
+    "innovative",
+    "results-oriented",
+    "freedom and responsibility",
+    "limitless learning",
+    "fast-paced",
+    "dynamic",
+    "technical mastery",
+    "curiosity",
+    "high-caliber",
+    "ambitious goals"
+  ],
+  "recommended_emphasis": [
+    "Emphasise marketing attribution experience explicitly (multi-touch, budget variance, spend attribution across workstreams at HSBC)",
+    "Highlight cross-channel analytics coverage mapping CV experience to Affiliates, Influencers, PPC, Organic channels",
+    "Lead with stakeholder management and C-level storytelling as differentiator",
+    "Showcase BI tool breadth (Power BI PL-300 certified, Qlik, Looker Studio) as proxy for Tableau proficiency",
+    "Surface agile delivery ownership (backlog, sprints, JIRA) to address delivery lifecycle requirement",
+    "Address SQL gap transparently or de-emphasise tools section",
+    "Reframe coordination and cross-functional collaboration at Hapag-Lloyd and HSBC as proto-leadership",
+    "Use quantified impact bullets (USD 8M programme, 4.6M CNY ROI, 4,000+ attendee events) to signal business acumen"
+  ],
+  "company_info": {
+    "size": "501-1000",
+    "size_source": "jd_text",
+    "size_raw": "900+ talented professionals"
+  }
+}

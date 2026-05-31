@@ -1,0 +1,74 @@
+{
+  "job_id": "st_3c3a723806ea76db",
+  "company": "trivago N.V.",
+  "title": "Data Analyst - Marketing Strategy & Intelligence",
+  "url": "https://www.stepstone.de/stellenangebote--Data-Analyst-Marketing-Strategy-Intelligence-Duesseldorf-trivago-N-V--13790000-inline.html",
+  "posted_date": "",
+  "match_score": 48,
+  "required_skills": [
+    "SQL",
+    "BI / dashboarding tools (Tableau, Looker)",
+    "Marketing metrics, attribution & campaign performance",
+    "5+ years experience as Data Analyst",
+    "Quantitative degree (Statistics, Mathematics, Physics, Computer Science)",
+    "English communication (written & verbal)",
+    "Data storytelling – translating complex findings into actionable insights",
+    "Strong business acumen"
+  ],
+  "bonus_skills": [
+    "Experience in travel, e-commerce, or digital marketing industry",
+    "A/B testing, geo testing, or causal inference",
+    "BigQuery or other big data platforms",
+    "Python or R for analysis"
+  ],
+  "matched_skills": [
+    "BI / dashboarding tools – Power BI (PL-300 certified) and Google Looker Studio",
+    "Marketing metrics, KPI dashboards & ROI reporting",
+    "Data storytelling and executive-ready insight communication",
+    "English communication (C1)",
+    "Strong business acumen across e-commerce, FinTech, and IoT sectors",
+    "E-commerce and digital marketing industry experience (Moli Media)",
+    "Stakeholder management and cross-functional collaboration",
+    "Campaign performance analysis and post-event ROI evaluation"
+  ],
+  "missing_skills": [
+    "SQL – not mentioned anywhere in CV",
+    "Python or R – not present",
+    "BigQuery or big data platform experience",
+    "A/B testing / geo testing / causal inference",
+    "5+ years dedicated Data Analyst role (CV background is product marketing)",
+    "Quantitative degree (CV has Public Relations + Management degrees)"
+  ],
+  "core_responsibilities": [
+    "Translate complex marketing data into actionable insights that shape global marketing strategy and investment decisions",
+    "Partner with marketing stakeholders to define KPIs and measure campaign success across all channels",
+    "Build dashboards and reports that surface trends and tell data-driven stories for technical and non-technical audiences",
+    "Conduct deep-dive analyses to understand performance drivers, detect anomalies, and recommend strategic actions",
+    "Ensure marketing data quality and consistency across multiple data sources"
+  ],
+  "culture_keywords": [
+    "embrace change",
+    "challenge into growth pathway",
+    "cutting-edge technology",
+    "innovate",
+    "data-driven",
+    "collaboration",
+    "actionable insights",
+    "personalized development",
+    "flexible working",
+    "self-determined vacation"
+  ],
+  "recommended_emphasis": [
+    "Highlight Power BI certification (PL-300) and Looker Studio experience prominently — these partially cover the Looker/BI tooling requirement",
+    "Frame KPI dashboard and ROI reporting work at Hapag-Lloyd and Moli Media as data analyst deliverables, not just project coordination",
+    "Emphasize the VfB Stuttgart KPI impact measurement framework as evidence of structured analytical thinking",
+    "Showcase e-commerce and digital marketing analytics work at Moli Media (audience data, ROI analysis, post-campaign reporting)",
+    "Address the SQL gap directly in the cover letter — mention willingness to upskill or any informal SQL exposure",
+    "Leverage the quantitative reasoning demonstrated through financial variance reporting at HSBC to partially compensate for non-quantitative degree"
+  ],
+  "company_info": {
+    "size": "251–1,000",
+    "size_source": "jd_text",
+    "size_raw": "251-1000 Mitarbeiter"
+  }
+}

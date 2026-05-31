@@ -1,0 +1,59 @@
+{
+  "job_id": "4397885449",
+  "company": "Glow25",
+  "title": "Senior Marketing Analyst (all genders)",
+  "url": "https://www.linkedin.com/jobs/view/4397885449/",
+  "posted_date": "",
+  "match_score": 38.0,
+  "required_skills": [
+    "4+ years experience in marketing analytics (DTC/e-commerce/subscription preferred)",
+    "Deep hands-on experience with GTM, GA4, and marketing pixels (Meta, Google Ads, TikTok, Affiliate)",
+    "Strong SQL skills",
+    "dbt or similar data transformation tools",
+    "Attribution frameworks and consent-based tracking (GDPR, CMP)",
+    "Funnel/CRO analysis experience"
+  ],
+  "bonus_skills": [
+    "Attribution tools like Klar",
+    "Subscription model analytics",
+    "ROAS, MER, CAC, contribution margin analysis"
+  ],
+  "matched_skills": [
+    "4+ years marketing analytics experience",
+    "Funnel analysis and conversion optimization thinking (Hapag-Lloyd, Moli Media)",
+    "ROAS/CAC/ROI measurement (IPC role)",
+    "Stakeholder communication — bridge between technical and business teams",
+    "E-commerce experience (Moli Media)",
+    "Power BI and Looker Studio dashboarding"
+  ],
+  "missing_skills": [
+    "GTM (Google Tag Manager) — not in CV",
+    "GA4 (Google Analytics 4) — not in CV",
+    "SQL — hard requirement, not in CV",
+    "dbt — not in CV",
+    "Marketing pixel implementation (Meta Pixel, TikTok Pixel)",
+    "GDPR/CMP tracking consent management experience"
+  ],
+  "core_responsibilities": [
+    "Own tracking and measurement setup end-to-end (GTM client/server-side, GA4, pixels)",
+    "Ensure reliable attribution in consent-driven environment",
+    "Analyse marketing performance beyond platform dashboards (ROAS, MER, CAC, CLV)",
+    "Improve webshop funnel through data-driven analysis",
+    "Build reliable marketing data models using SQL and dbt"
+  ],
+  "culture_keywords": [
+    "DTC", "beauty", "Berlin", "remote-friendly", "growth", "ownership", "fast-paced"
+  ],
+  "recommended_emphasis": [
+    "Funnel analysis and CRO thinking are structural matches",
+    "E-commerce background and ROAS measurement are relevant",
+    "SQL, GTM, GA4, and dbt are hard requirements not met — significant blockers",
+    "Consider positioning as someone transitioning into technical marketing analytics",
+    "Score is above 30 but technical gaps are material"
+  ],
+  "company_info": {
+    "size": "51-200",
+    "size_source": "jd_text",
+    "size_raw": "dynamic fast-growing beauty company, Berlin — implied small-mid size"
+  }
+}

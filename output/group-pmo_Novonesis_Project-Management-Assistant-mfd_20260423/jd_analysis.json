@@ -1,0 +1,79 @@
+{
+  "job_id": "4404201422",
+  "company": "Novonesis",
+  "title": "Project Management Assistant (m/f/d)",
+  "url": "https://www.linkedin.com/jobs/view/4404201422/",
+  "posted_date": "",
+  "location": "Nienburg, Lower Saxony, Germany",
+  "_source": "linkedin",
+  "match_score": 50,
+  "required_skills": [
+    "Microsoft Office (Word, Excel, PowerPoint)",
+    "German fluency — written and oral (hard requirement)",
+    "English fluency — written and oral",
+    "2-3 years experience in a project environment",
+    "Industrial Clerk / Administrative Assistant or equivalent education",
+    "SAP-based cost control and reporting",
+    "Team collaboration and cross-department facilitation",
+    "Organized, self-motivated, detail-oriented",
+    "Analytical reasoning and problem-solving ability"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Microsoft Office (MS Excel, MS PowerPoint confirmed in CV)",
+    "English fluency C1 (meets requirement)",
+    "Project environment experience — HSBC PMO 2021-2022 and Hapag-Lloyd 2024-2025 (exceeds 2-3 year requirement)",
+    "Cross-functional stakeholder coordination",
+    "Budget tracking and cost monitoring (USD 8M programme at HSBC)",
+    "Meeting facilitation and documentation governance",
+    "Presentation preparation",
+    "Action item tracking",
+    "Risk escalation and prioritisation management"
+  ],
+  "missing_skills": [
+    "SAP — not mentioned in CV; JD explicitly requires SAP-based cost control, purchase requisitions, and goods receipt tracking",
+    "German fluency — CV shows B1 only; JD requires full written and oral fluency (estimated C1+)",
+    "Procurement coordination and purchase requisition handling — no supply chain or ERP procurement experience evident",
+    "Formal Industrial Clerk / Administrative Assistant education — CV holds a different educational background",
+    "CAPEX project exposure — engineering investment project context not evidenced",
+    "Risk register maintenance — formal risk register tooling or process ownership not explicitly evidenced"
+  ],
+  "core_responsibilities": [
+    "Support risk identification, tracking, and maintenance of project risk registers and mitigation strategies",
+    "Prepare purchase requisitions, coordinate with procurement, and track deliveries and goods receipt documentation",
+    "Monitor project costs using SAP, compare actuals vs. budgets, and support financial forecasting",
+    "Facilitate meetings and communication between departments and stakeholders across six Central Europe sites",
+    "Manage project documentation and component data flow across all project phases"
+  ],
+  "culture_keywords": [
+    "open collaboration",
+    "cross-functional",
+    "change driver",
+    "process improvement",
+    "deadline focus",
+    "flexibility",
+    "hybrid role",
+    "multi-site coordination",
+    "stakeholder alignment"
+  ],
+  "recommended_emphasis": [
+    "Address German language level directly in the cover letter — B1 is below the fluency requirement; frame as actively improving and emphasise strong written English as a compensating strength in this international team",
+    "Highlight SAP exposure if any exists, even tangentially; otherwise foreground HSBC budget dashboards and Power BI financial reporting as evidence of ERP-adjacent cost control capability",
+    "Elevate HSBC PMO cost tracking and budget variance reporting — directly maps to the SAP-based project cost monitoring responsibility",
+    "Showcase Hapag-Lloyd meeting facilitation, action item tracking, and documentation governance as direct evidence for the communication and documentation responsibilities",
+    "Stress cross-site and multi-stakeholder coordination — JD covers six sites across Germany, France, Czech Republic, and Denmark",
+    "Lead with PMO and project coordination framing throughout; de-emphasise marketing and BD experience",
+    "Emphasise organisational rigour, deadline orientation, and structured working style — the JD lists these as must-have personal attributes"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "score_notes": {
+    "base_ratio_pct": 62,
+    "penalty_german_language": -12,
+    "final_score": 50,
+    "rationale": "Strong PMO and project coordination background maps well to core responsibilities (budget tracking, meeting facilitation, documentation, risk escalation). Two hard gaps materially reduce the score: (1) SAP is explicitly required in multiple responsibilities and is entirely absent from the CV; (2) German fluency is a stated requirement and the candidate is at B1. Education credential mismatch (Industrial Clerk vs. candidate background) and absence of CAPEX/procurement experience are softer additional gaps."
+  }
+}

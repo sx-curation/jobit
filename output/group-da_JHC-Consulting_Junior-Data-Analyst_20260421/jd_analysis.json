@@ -1,0 +1,62 @@
+{
+  "job_id": "4403990325",
+  "company": "JHC Consulting",
+  "title": "Junior Data Analyst",
+  "url": "https://www.linkedin.com/jobs/view/4403990325/",
+  "posted_date": "2026-04-21",
+  "match_score": 62,
+  "required_skills": [
+    "Excel / Google Sheets",
+    "Basic SQL",
+    "Attention to detail",
+    "Clear written English",
+    "Disciplined approach to data accuracy",
+    "Ability to stay organized with messy or incomplete data"
+  ],
+  "bonus_skills": [
+    "Power BI",
+    "Tableau",
+    "Looker Studio"
+  ],
+  "matched_skills": [
+    "Data quality, tracking & QA",
+    "Funnel & conversion analysis",
+    "C-level data storytelling",
+    "Marketing KPI framework design",
+    "Customer segmentation & cohort analysis"
+  ],
+  "missing_skills": [
+    "SQL (basic)",
+    "Power BI / Tableau / Looker Studio"
+  ],
+  "core_responsibilities": [
+    "Review and clean datasets, spreadsheets, and supporting materials into usable working files",
+    "Check figures, categories, and source consistency to verify analytical accuracy",
+    "Prepare summary tables, structured notes, and analytical support materials",
+    "Identify gaps, anomalies, inconsistencies, or weak comparisons in data",
+    "Support internal and client-facing decision-support work where factual basis matters"
+  ],
+  "culture_keywords": [
+    "clarity",
+    "precision",
+    "professional discipline",
+    "judgment",
+    "patience with detail",
+    "substance over presentation",
+    "remote",
+    "thoughtful",
+    "accuracy"
+  ],
+  "recommended_emphasis": [
+    "Highlight Data quality, tracking & QA experience as direct evidence of analytical discipline and accuracy",
+    "Emphasize experience structuring and verifying data in cross-functional analytics contexts",
+    "Showcase any Excel/Google Sheets usage in past roles (e.g., marketing KPI frameworks, cohort analysis)",
+    "Add a brief SQL mention if any exposure exists, even basic coursework or personal projects",
+    "Frame C-level data storytelling as evidence of translating messy inputs into clear, reliable outputs"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

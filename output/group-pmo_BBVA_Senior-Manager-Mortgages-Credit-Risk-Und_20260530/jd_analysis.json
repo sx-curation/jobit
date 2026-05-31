@@ -1,0 +1,56 @@
+{
+  "job_id": "4401727983",
+  "title": "Senior Manager Mortgages Credit Risk Underwriting – Global Digital Banks Germany",
+  "company": "BBVA",
+  "location": "Germany",
+  "url": "https://www.linkedin.com/jobs/view/4401727983/",
+  "match_score": 12.5,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Portfolio Manager",
+  "required_skills": [
+    "7+ years experience in credit risk management for retail clients (mortgage focus)",
+    "Leading underwriting teams with decision-making authority",
+    "Deep knowledge of full mortgage lifecycle (origination, underwriting, activation)",
+    "In-depth knowledge of German mortgage market (distribution channels, collateral, borrower behaviour)",
+    "Command of European/German regulatory frameworks (CRR/CRD, EBA guidelines, MaRisk)",
+    "Experience with acceptance models and risk parameters (PD, LGD, affordability metrics)",
+    "Fluent German (high level)",
+    "Fluent English (high level)"
+  ],
+  "bonus_skills": [
+    "Data analysis and data-driven decision making",
+    "Spanish language skills",
+    "Experience with consumer credit products"
+  ],
+  "matched_skills": [
+    "Fluent English (C1) — satisfies English requirement",
+    "Analytical skills and structured thinking — partial alignment with risk parameter analysis bonus",
+    "Stakeholder management and cross-functional coordination — generic match only"
+  ],
+  "missing_skills": [
+    "No credit risk management experience whatsoever — this is the core requirement (7+ years)",
+    "No mortgage underwriting background or knowledge",
+    "No knowledge of German mortgage market, collateral practices, or borrower behaviour",
+    "No regulatory framework expertise (CRR/CRD, EBA, MaRisk)",
+    "No experience with PD/LGD models or risk acceptance frameworks",
+    "German is B1, not the required high-level fluency",
+    "No leadership of underwriting teams"
+  ],
+  "core_responsibilities": [
+    "End-to-end credit risk review for German mortgage portfolio",
+    "Define credit risk acceptance policies aligned with BBVA global standards and local regulations",
+    "Design mortgage underwriting processes including decision workflows, governance and controls",
+    "Collaborate with product management on mortgage offering design and risk-based pricing",
+    "Monitor, define and report key risk KPIs",
+    "Support definition of acceptance policies for consumer credit products"
+  ],
+  "recommended_emphasis": [
+    "This role is not suitable for this candidate — do not apply",
+    "The core requirement of 7+ years mortgage credit risk management is a fundamental gap with no workaround",
+    "German B1 vs required high-level German is an additional disqualifying gap",
+    "If applying speculatively, the only transferable angle is the USD 8M budget governance and KPI reporting framework at HSBC — but this is insufficient for a senior specialist role"
+  ],
+  "summary": "Poor match at 12.5%. This is a deeply specialised mortgage credit risk underwriting role requiring 7+ years of domain-specific expertise in PD/LGD models, German regulatory frameworks (MaRisk, CRR), and mortgage lifecycle management. The candidate has no credit risk, underwriting, or banking product background. German B1 falls well short of the required high level. Not recommended for application."
+}

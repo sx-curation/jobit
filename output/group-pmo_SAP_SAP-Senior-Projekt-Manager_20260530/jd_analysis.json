@@ -1,0 +1,53 @@
+{
+  "job_id": "4371148636",
+  "title": "SAP Senior Projekt Manager (w/m/d) für die Energiewirtschaft",
+  "company": "SAP",
+  "location": "Ratingen, North Rhine-Westphalia, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4371148636/",
+  "match_score": 22.2,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Strategic PMO Lead",
+  "required_skills": [
+    "Multi-year SAP consulting experience in the energy sector (at least 50% SAP-focused)",
+    "Proven track record leading medium-to-large projects (>1,000 person-days)",
+    "Experience with offshore/nearshore resources and virtual team management",
+    "SAP project management methodology (PMI-based)",
+    "Fluent German and English (negotiation-level)"
+  ],
+  "bonus_skills": [
+    "PM certification (PMI PMP, PRINCE2)",
+    "Agile methodology knowledge",
+    "Energy sector industry knowledge"
+  ],
+  "matched_skills": [
+    "Project coordination and stakeholder management (HSBC, Hapag-Lloyd)",
+    "Budget tracking and financial governance (HSBC: USD 8M programme)",
+    "Cross-functional team coordination (HSBC: 6 workstreams)",
+    "English C1 and German B1"
+  ],
+  "missing_skills": [
+    "SAP consulting or SAP product experience of any kind",
+    "Energy sector / Energiewirtschaft domain knowledge",
+    "Large-scale project leadership (>1,000 PT) track record",
+    "PMI PMP or PRINCE2 certification",
+    "Offshore/nearshore team management",
+    "SAP PM methodology proficiency"
+  ],
+  "core_responsibilities": [
+    "Plan all project activities including scheduling, resource planning and quality assurance",
+    "Manage financial aspects: cost planning, budget monitoring and project profitability",
+    "Execute project management using SAP methodology based on PMI",
+    "Coordinate with external parties (clients, partner providers)",
+    "Lead implementation team, coordinating SAP near/offshore centers and internal SAP units",
+    "Manage stakeholders across internal and external touchpoints",
+    "Implement change management processes"
+  ],
+  "recommended_emphasis": [
+    "HSBC: USD 8M budget governance with C-suite reporting — most relevant transferable skill for the financial management dimension",
+    "HSBC: 6-workstream cross-functional coordination — demonstrates programme orchestration capability",
+    "JIRA and Confluence as project management tools — partial relevance to SAP toolset context"
+  ],
+  "summary": "Boru scores 22.2 (poor match) for this senior SAP consulting role targeting energy sector specialists. The role explicitly requires multiple years of SAP consulting experience in energy — a domain entirely absent from Boru's CV. While programme coordination and budget governance skills transfer, the technical SAP depth and energy industry knowledge represent fundamental qualification gaps. Application is not recommended unless Boru can demonstrate adjacent SAP exposure not captured in the current CV."
+}

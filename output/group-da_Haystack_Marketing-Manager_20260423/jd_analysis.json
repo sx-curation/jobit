@@ -1,0 +1,67 @@
+{
+  "job_id": "4404743818",
+  "company": "Haystack (recruiting on behalf of a partner company)",
+  "title": "Marketing Manager",
+  "url": "https://www.linkedin.com/jobs/view/4404743818/",
+  "posted_date": "",
+  "location": "Germany (Hybrid)",
+  "_source": "linkedin",
+  "match_score": 68,
+  "required_skills": [
+    "Marketing strategy development and implementation",
+    "Marketing mix and customer segmentation tools",
+    "CRM systems (Salesforce preferred)",
+    "Brand communication, corporate identity, and campaign management",
+    "Cross-functional collaboration (sales, product management, technical)",
+    "Managing external service providers and marketing budgets"
+  ],
+  "bonus_skills": [
+    "Salesforce"
+  ],
+  "matched_skills": [
+    "Marketing strategy development (B2B GTM strategy across 4 product launches at IPC)",
+    "Marketing mix and customer segmentation (cross-channel analytics, cohort analysis)",
+    "CRM analytics (listed as skill; no Salesforce specifically)",
+    "Cross-functional collaboration (aligned Marketing, Sales, Engineering at GRG)",
+    "External vendor and channel partner management (IPC)",
+    "Marketing budget and ROI tracking (KPI/ROI reporting at IPC)",
+    "Competitor monitoring and market research (recurring competitor reports at IPC; competitive analysis at ECE)",
+    "Sales support (pre-sales support and product demos to 100+ B2B clients at GRG)"
+  ],
+  "missing_skills": [
+    "Salesforce CRM (specifically named; candidate has CRM analytics experience but no Salesforce mention)",
+    "Brand communication ownership and corporate identity management",
+    "Digital marketing campaign execution (candidate's background is analytics-side, not campaign ownership)",
+    "Pricing concept development",
+    "CRM user training and process ownership"
+  ],
+  "core_responsibilities": [
+    "Develop long-term marketing strategies by analyzing market trends, competitor landscapes, and technological advancements",
+    "Manage the marketing mix and product portfolio in close collaboration with product management, technical teams, and sales",
+    "Create pricing concepts with sales and use customer feedback for strategic development",
+    "Oversee CRM tools and processes, including user training",
+    "Ensure consistent brand communication through brand management, corporate identity, and digital marketing campaigns"
+  ],
+  "culture_keywords": [
+    "collaboration",
+    "cross-functional",
+    "partner",
+    "strategic development",
+    "long-term"
+  ],
+  "recommended_emphasis": [
+    "Lead with the exact title match: Marketing Manager at IPC with B2B GTM execution and measurable revenue impact (4.6M CNY)",
+    "Highlight cross-functional alignment experience (Marketing, Sales, Engineering) to address collaboration requirement",
+    "Emphasise external vendor management and SOPs at IPC to cover 'managing external service providers' requirement",
+    "Frame competitor monitoring reports and market research as direct evidence of strategic marketing analysis",
+    "Position CRM analytics and customer segmentation skills as CRM-adjacent; note willingness to learn Salesforce",
+    "Quantify ROI and KPI reporting to reinforce data-driven marketing strategy capability",
+    "Cite pre-sales support and materials delivery at GRG to address 'support the sales team' responsibility"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null,
+    "note": "Haystack is a recruiting intermediary; actual employer is undisclosed. No company size signals found in JD text. LinkedIn company_url not provided for fallback lookup."
+  }
+}

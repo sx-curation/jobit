@@ -1,0 +1,75 @@
+{
+  "job_id": "4400190507",
+  "company": "QUNIS GmbH",
+  "title": "CONSULTANT FÜR DATA & ANALYTICS",
+  "url": "https://www.linkedin.com/jobs/view/4400190507/",
+  "posted_date": "5 days ago",
+  "match_score": 17,
+  "required_skills": [
+    "SQL",
+    "Business Intelligence (BI)",
+    "Data Warehouse / Data Warehousing",
+    "Microsoft Power BI",
+    "Azure Data Factory",
+    "Azure Databricks",
+    "Microsoft Fabric",
+    "Multi-year BI project experience",
+    "German language (sehr gut)",
+    "English language"
+  ],
+  "bonus_skills": [
+    "SAP Datasphere",
+    "SAP Analytics Cloud (SAC)",
+    "S/4HANA Embedded Analytics / Fiori",
+    "Dremio",
+    "Lakehouse / Open-Source tools",
+    "Advanced Analytics / Big Data"
+  ],
+  "matched_skills": [
+    "English language",
+    "Advanced Analytics (partial — A/B testing, cohort analysis, KPI frameworks)",
+    "Project management / cross-functional coordination (partial)"
+  ],
+  "missing_skills": [
+    "SQL",
+    "Business Intelligence (BI) consulting",
+    "Data Warehouse architecture",
+    "Microsoft Power BI",
+    "Azure Data Factory",
+    "Azure Databricks",
+    "Microsoft Fabric",
+    "SAP Datasphere / SAC / S/4HANA",
+    "German language proficiency",
+    "Multi-year BI project delivery experience"
+  ],
+  "core_responsibilities": [
+    "Consulting clients on technical, organizational, and functional questions around Data Warehouse and Business Intelligence",
+    "Conducting requirements analysis and taking on project leadership responsibilities",
+    "Creating technical concepts and implementing them independently within a team",
+    "Conducting client training and workshops; coaching junior consultants",
+    "Implementing applications on the Microsoft BI platform and selected BI frontends/planning solutions"
+  ],
+  "culture_keywords": [
+    "Vertrauen (trust)",
+    "Teamgeist (team spirit)",
+    "Leidenschaft (passion)",
+    "Spaß (fun)",
+    "Fairness",
+    "Qualität (quality)",
+    "Kurze Entscheidungswege (short decision paths)",
+    "Innovative Umgebung",
+    "Interdisziplinäres Team",
+    "Remote / Workation"
+  ],
+  "recommended_emphasis": [
+    "Project management and structured delivery experience (Scrum, SAFe, PMO)",
+    "Data-driven analytical thinking and KPI framework design",
+    "Cross-functional stakeholder communication and client-facing experience",
+    "International experience and English proficiency"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "job_id": "4365086874",
+  "company": "Agoda",
+  "title": "Analyst/Senior Analyst, Customer Marketing (Marketing Analytics)",
+  "url": "https://www.linkedin.com/jobs/view/4365086874/",
+  "posted_date": "Reposted 4 days ago",
+  "match_score": 63,
+  "required_skills": [
+    "Bachelor's degree or higher in quantitative subject (CS, mathematics, engineering, business, science)",
+    "Excellent verbal and written communication in English",
+    "2+ years experience in data crunching (consulting, investment banking, PE, strategy, or fast-growing global tech)",
+    "Experience in data analysis packages: SAS, R, SPSS, Python, VBA, SQL",
+    "Experience in visualization tools: Tableau, Power BI",
+    "Ability to make decisions on objective evidence",
+    "Excellent organizational skills and ability to work independently"
+  ],
+  "bonus_skills": [
+    "Experience in digital marketing or e-commerce",
+    "Experience with A/B testing and other testing metrics",
+    "Strong presentation and negotiation skills",
+    "Skills that foster collaboration and team spirit"
+  ],
+  "matched_skills": [
+    "2+ years data experience (4+ years international analytics experience)",
+    "English communication",
+    "Bachelor's/quantitative degree background",
+    "E-commerce & campaign ROI analytics (digital marketing / ecommerce)",
+    "A/B testing & experiment design",
+    "C-level data storytelling (presentation skills)",
+    "Campaign performance optimisation",
+    "Customer segmentation & cohort analysis (dashboard/reporting)"
+  ],
+  "missing_skills": [
+    "SQL / Python / R / SAS / SPSS (no explicit mention in CV)",
+    "Tableau / Power BI (data visualization tools not listed in CV)",
+    "Predictive modeling / data science techniques"
+  ],
+  "core_responsibilities": [
+    "Experiment with ads/campaign structures and bidding & pricing strategies on partners (Google, Bing, Tripadvisor, Trivago) and adapt based on test results",
+    "Analyze large datasets and develop predictive models using data science techniques (e.g. demand elasticity, TV campaign impact modeling)",
+    "Build dashboards to track performance, derive insights, and communicate recommendations to stakeholders via presentations",
+    "Liaise with product teams on implementation roadmaps based on modeling outputs"
+  ],
+  "culture_keywords": [
+    "data-driven",
+    "curiosity and innovation",
+    "ownership and impact",
+    "diverse team (90 countries, 7,000+ people)",
+    "fast-moving global tech",
+    "learning environment",
+    "objective evidence over gut feel",
+    "collaborative"
+  ],
+  "recommended_emphasis": [
+    "Highlight any SQL, Python, or R usage explicitly in CV even if in project/working student context",
+    "Emphasize e-commerce analytics experience (ECE Group, Hapag-Lloyd customer journey analysis)",
+    "Showcase A/B testing & experiment design prominently as a matched bonus skill",
+    "Quantify campaign performance work with specific metrics (CTR, conversion rates, ROI figures)",
+    "Lead with data storytelling to C-level as this aligns with Agoda's stakeholder communication culture",
+    "Note: role is Bangkok-based with relocation provided — confirm willingness to relocate in application"
+  ],
+  "company_info": {
+    "size": "5,001–10,000",
+    "size_source": "jd_text",
+    "size_raw": "diverse team of over 7,000 people from 90 countries"
+  }
+}

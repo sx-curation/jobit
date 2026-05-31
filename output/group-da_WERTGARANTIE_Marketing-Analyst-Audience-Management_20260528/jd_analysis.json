@@ -1,0 +1,63 @@
+{
+  "job_id": "4416050542",
+  "company": "WERTGARANTIE Group (via Workwise)",
+  "title": "Marketing Analyst - Audience Management / Analytics (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4416050542/",
+  "posted_date": "",
+  "_source": "linkedin",
+  "match_score": 58,
+  "required_skills": [
+    "Analytics experience in Audience Management, Marketing Analytics or comparable field",
+    "Customer/usage/campaign data analysis → concrete operational insights",
+    "Zielgruppenanalysen, Selektionen, Segmentierungen (audience segmentation and selection)",
+    "Evaluating Direktmarketing / communication measures using KPIs",
+    "BI tools and analytics platforms (BSI, Formware, or equivalent)",
+    "German language (role is German-speaking company, Hannover HQ)"
+  ],
+  "bonus_skills": [
+    "AI-gestützte Analyseverfahren (AI-supported analytics)",
+    "Customer Experience and customer communications interest",
+    "University degree in economics / business / related field"
+  ],
+  "matched_skills": [
+    "Marketing analytics with audience segmentation (GRG: B2B customer segmentation across verticals; IPC: lead analytics and targeting)",
+    "Campaign performance evaluation using KPIs (IPC: 4 campaigns ROI; GRG: pipeline conversion tracking)",
+    "Customer journey and funnel analytics (Hapag-Lloyd: booking funnel analysis, friction identification)",
+    "Cohort analysis and audience behaviour tracking (Moli Media: live-stream audience analytics 4,000+ attendees)",
+    "KPI framework design and structured reporting (HSBC: C-suite dashboards, variance reports)",
+    "Power BI PL-300 + Qlik Sense ✓ (directly maps to BI-tools requirement)",
+    "AI-tool openness (mentioned in CV summary)",
+    "Master's degree (Leuphana University) ✓"
+  ],
+  "missing_skills": [
+    "German Arbeitssprache — B1+ is a soft risk for Hannover-based German company",
+    "Direct marketing / Direktmarketing campaign execution experience (Boru analyses campaigns, does not plan/send them)",
+    "Specific tools BSI/Formware — but BI skill transferable",
+    "Insurance / lifestyle warranty domain (soft — role is domain-agnostic analytics)"
+  ],
+  "core_responsibilities": [
+    "Analyse customer, usage and campaign data → derive concrete operational insights",
+    "Develop and execute audience segmentation, selection and profiling",
+    "Evaluate impact of communications and direct marketing using KPIs",
+    "Develop and refine selection logic, models, algorithms continuously",
+    "Create reporting and presentations on campaign and communications performance"
+  ],
+  "culture_keywords": [
+    "WERTGARANTIE Group (lifestyle insurer, Hannover)",
+    "Nachhaltig / sustainability focus",
+    "Hansafit, sport events, health-oriented culture"
+  ],
+  "recommended_emphasis": [
+    "GRG: customer segmentation across B2B verticals → direct match for 'target audience analysis and segmentation'",
+    "IPC: campaign KPI tracking with ROI measurement → maps to 'Wirkung von Direktmarketingmaßnahmen bewerten'",
+    "Moli Media: cohort and audience behavior analytics → 'further developing selection logic and algorithms'",
+    "Hapag-Lloyd: friction point identification in customer journey → 'operative Insights ableiten'",
+    "Power BI PL-300 + Qlik Sense → direct answer to BI-tools requirement",
+    "HSBC: structured C-suite reporting → 'meaningful reports and presentations'"
+  ],
+  "company_info": {
+    "size": "501–1,000",
+    "size_source": "known",
+    "size_raw": "WERTGARANTIE Group — lifestyle insurer (electronics, bikes, e-bikes), Hannover"
+  }
+}

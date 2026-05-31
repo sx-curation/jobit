@@ -1,0 +1,46 @@
+{
+  "job_id": "4334447726",
+  "title": "Senior Commercial Data Analyst (f/m/d)",
+  "company": "Moss",
+  "location": "Berlin, Germany (Hybrid)",
+  "url": "https://www.linkedin.com/jobs/view/4334447726/",
+  "posted": "3 hours ago",
+  "match_score": 62,
+  "matched_skills": [
+    "Data analysis and business intelligence",
+    "Dashboard building — Power BI (PL-300 certified), Qlik Sense, Looker Studio, SAP Analytics",
+    "Data quality and reporting integrity",
+    "Customer Success / commercial exposure (Hapag-Lloyd customer experience, ECE commercial analytics)",
+    "Fluent English (C1)",
+    "Retention/cohort analysis — cohort analysis and retention signals in e-commerce and Hapag-Lloyd work"
+  ],
+  "missing_skills": [
+    "SQL proficiency — not mentioned in CV (non-negotiable per JD)",
+    "B2B SaaS environment — background covers FinTech, shipping, manufacturing, IoT but no SaaS-native experience",
+    "Salesforce CRM familiarity",
+    "Metabase experience",
+    "NRR / churn / health score modelling in SaaS context"
+  ],
+  "key_requirements": [
+    "Proven data analysis/BI experience in B2B SaaS environment",
+    "SQL proficiency — non-negotiable",
+    "Customer Success / commercial function exposure",
+    "Dashboard development (Metabase preferred)",
+    "Fluent English",
+    "Retention modelling, renewal forecasting, OKR tracking"
+  ],
+  "cv_highlights": [
+    "Power BI Microsoft Certified (PL-300), Qlik Sense, Looker Studio, SAP Analytics",
+    "HSBC: USD 8M programme dashboards, spend attribution, burn-rate reporting to C-suite",
+    "Hapag-Lloyd: customer journey & behavioural analysis, friction identification, sprint reporting",
+    "ECE Group: commercial analytics for business development pipeline",
+    "Cohort analysis, customer segmentation, A/B testing experience",
+    "Cross-functional stakeholder collaboration"
+  ],
+  "gaps": [
+    "SQL not mentioned anywhere in CV — critical gap for this role",
+    "No SaaS industry background",
+    "No Salesforce or CS tool experience mentioned"
+  ],
+  "recommendation": "Good match on BI tools and commercial analytics mindset. SQL gap is the main risk — must be addressed in CV if candidate has any SQL experience. Reframe Hapag-Lloyd customer journey work as CS-adjacent analytics. Strong dashboard credentials from Power BI certification."
+}

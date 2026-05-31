@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(try { $result = Invoke-WebRequest -Uri \"http://127.0.0.1:8000/\" -TimeoutSec 3 -ErrorAction Stop; \"Server up: $\\($result.StatusCode\\)\" } catch { \"Server not running: $_\" })",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\Admin\\\\AppData\\\\Local\\\\\" -Depth 1 -ErrorAction SilentlyContinue | Select-Object Name | Where-Object { $_.Name -match \"python|conda|uv|pip|pyenv\" })",
+      "Bash(curl -s --max-time 5 http://127.0.0.1:8000/)",
+      "Bash(python scripts/search_state.py --mode offset --config config.json)",
+      "Bash(python scripts/run_phase2_search_stepstone.py --group group-da)",
+      "Bash(python -m py_compile scripts/search_state.py)",
+      "Bash(python -m py_compile scripts/run_phase2_search_stepstone.py)",
+      "Read(//c/Users/Admin/.linkedin-mcp//**)",
+      "Read(//c/Users/Admin/.linkedin-mcp/**)",
+      "Bash(rm -rf /c/Users/Admin/.linkedin-mcp/invalid-state-*)",
+      "Bash(python scripts/run_phase2_search.py --group group-da)",
+      "Bash(\"/c/Users/Admin/AppData/Local/Packages/PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0/LocalCache/local-packages/Python313/Scripts/uvx.exe\" linkedin-scraper-mcp *)",
+      "Bash(python -c ' *)",
+      "Bash(python *)",
+      "Bash(claude -p \"搜索LinkedIn职缺 group-da\")",
+      "PowerShell(\\(Get-Content \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\scripts\\\\server.py\" -Raw\\) -split \"`n\" | Select-Object -Index \\(355..375\\) | Out-String)",
+      "Bash(curl -s http://localhost:8080/api/search-analysis)",
+      "PowerShell(cd D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv; $r = python scripts/search_state.py --mode dedup --batch-id 20260531_001 --config config.json 2>&1 | ConvertFrom-Json; \"display_jobs: $\\($r.display_jobs.Count\\)\"; \"skipped_duplicate: $\\($r.skipped_duplicate\\)\"; \"hidden_low_score: $\\($r.hidden_low_score\\)\"; \"\"; \"Score >= 50:\"; $r.display_jobs | Where-Object { $_.quick_score -ge 50 } | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" }; \"\"; \"All jobs by score:\"; $r.display_jobs | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" })"
+    ]
+  }
+}

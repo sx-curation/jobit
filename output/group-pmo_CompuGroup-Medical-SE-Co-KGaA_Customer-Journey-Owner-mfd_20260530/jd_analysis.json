@@ -1,0 +1,53 @@
+{
+  "job_id": "4390940200",
+  "title": "Customer Journey Owner (m/f/d)",
+  "company": "CompuGroup Medical SE & Co. KGaA",
+  "location": "Koblenz, Germany (inferred from benefits mentioning Koblenz canteen/gym)",
+  "url": "https://www.linkedin.com/jobs/view/4390940200/",
+  "match_score": 27.3,
+  "grade": "weak_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Change Management Specialist",
+  "required_skills": [
+    "Several years experience in customer experience, service design, or customer operations",
+    "Preferably in software, SaaS, or IT services context",
+    "Excellent academic background (leading university preferred)",
+    "Experience with CX platforms: Salesforce, ServiceNow, Zendesk, Freshdesk or comparable",
+    "Data-driven working style: journey analytics, NPS feedback, support data",
+    "Strong process-oriented thinking with affinity for automation and standardisation"
+  ],
+  "bonus_skills": [
+    "Background in business administration, business psychology, business informatics, or service design",
+    "Experience coordinating multi-country rollouts (up to 19 countries)"
+  ],
+  "matched_skills": [
+    "KPI framework design and performance reporting (HSBC, Hapag-Lloyd)",
+    "Customer journey analysis: analysed customer journey and user research data at Hapag-Lloyd",
+    "Cross-functional stakeholder coordination across product, engineering, and customer teams",
+    "Data storytelling: translated complex programme data into structured insight narratives (HSBC)",
+    "Multi-market coordination experience (EMEA, APAC at HSBC)"
+  ],
+  "missing_skills": [
+    "No experience with CX platforms (Salesforce, ServiceNow, Zendesk, Freshdesk)",
+    "No direct customer-facing service operations or support function management",
+    "No NPS target ownership or early resolution rate management",
+    "No SaaS or IT services context for customer experience",
+    "No automation or self-service system design experience"
+  ],
+  "core_responsibilities": [
+    "End-to-end responsibility for customer journey in support and service",
+    "Steering CX metrics: NPS target +45, early resolution rate >80%, 30% reduction in repeat contacts",
+    "Selection, configuration and optimisation of CX tools (portals, self-service, routing, feedback)",
+    "Systematic identification and elimination of friction points along the journey",
+    "Design of self-service and deflection mechanisms",
+    "Coordinating rollout of new journey standards across up to 19 countries"
+  ],
+  "recommended_emphasis": [
+    "Highlight the customer journey and user research analysis work at Hapag-Lloyd as the closest match to CX ownership",
+    "Emphasise the multi-market experience from HSBC (EMEA/APAC) as evidence for 19-country coordination capability",
+    "Note the gap in platform experience honestly — no Salesforce/ServiceNow/Zendesk background is a significant gap",
+    "A cover letter should address the SaaS/IT service context gap and articulate transferable skills from shipping/fintech contexts"
+  ],
+  "summary": "Match score is 27.3 (weak_match). The candidate has relevant customer journey analysis and KPI reporting experience from Hapag-Lloyd and multi-market coordination from HSBC, but lacks the critical requirements: CX platform experience (Salesforce/ServiceNow/Zendesk), SaaS/IT services context, and direct ownership of NPS and service resolution metrics. The role also explicitly prefers candidates from leading universities with strong service design backgrounds. Apply only with a strong cover letter bridging the technical platform gap."
+}

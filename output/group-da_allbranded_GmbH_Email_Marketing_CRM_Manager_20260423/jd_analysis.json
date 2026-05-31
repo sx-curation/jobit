@@ -1,0 +1,82 @@
+{
+  "job_id": "st_aa886096e819b29c",
+  "company": "allbranded GmbH",
+  "title": "E-Mail Marketing / CRM Manager (all genders)",
+  "url": "https://www.stepstone.de/stellenangebote--E-Mail-Marketing-CRM-Manager-all-genders-Hamburg-allbranded-GmbH--13932124-inline.html",
+  "posted_date": "",
+  "match_score": 40,
+  "required_skills": [
+    "CRM / Lifecycle / E-Mail-Marketing experience (ideally E-Commerce / B2B)",
+    "CRM systems & analytics tools with technical understanding for automations",
+    "Analytical capability combined with copywriting / creative content skills",
+    "Hands-on mentality: strategy development AND operative execution",
+    "German C1/C2 level"
+  ],
+  "bonus_skills": [
+    "E-Commerce background",
+    "B2B marketing background"
+  ],
+  "matched_skills": [
+    "A/B testing & experiment design",
+    "Analytics tools (Power BI, Looker Studio, Qlik Sense — proxies for Tableau/GA4)",
+    "KPI framework design and marketing performance reporting",
+    "B2B campaign analytics (IPC, GRG Banking — multi-campaign ROI tracking)",
+    "E-commerce funnel & audience analytics (Moli Media live-stream e-commerce)",
+    "Customer segmentation & cohort analysis",
+    "Funnel & conversion analysis",
+    "Data-driven recommendations to stakeholders",
+    "English C1 (matches English requirement)"
+  ],
+  "missing_skills": [
+    "German C1/C2 (candidate is at B1+ — critical gap for this role)",
+    "Hands-on email marketing tool experience (MailerLite, Klaviyo, Mailchimp, or equivalent)",
+    "CRM platform hands-on usage (HubSpot, Salesforce, or similar)",
+    "Lifecycle automation / customer journey building (e.g., drip sequences, behavioural triggers)",
+    "Webpush / re-engagement channel management",
+    "Copywriting and content creation for campaigns",
+    "GA4 (not listed in candidate tools)",
+    "Tableau (candidate uses Power BI, not Tableau)"
+  ],
+  "core_responsibilities": [
+    "Design and manage data-driven multi-channel campaigns (Email, Webpush, Re-Engagement)",
+    "Create campaign content (copywriting & briefing) and execute independently in tools such as MailerLite and WonderPush",
+    "Build and optimise scalable lifecycle automation journeys aligned to customer behaviour",
+    "Run continuous A/B tests on subject lines, CTAs, and audience segments to maximise performance",
+    "Analyse KPIs in GA4 or Tableau, derive actionable recommendations, and report on results"
+  ],
+  "culture_keywords": [
+    "Startup",
+    "datengetrieben (data-driven)",
+    "hands-on",
+    "eigenständig (autonomous)",
+    "operativ",
+    "kreativ (creative)",
+    "Lead-to-Loyalty",
+    "Operative Exzellenz"
+  ],
+  "recommended_emphasis": [
+    "Highlight A/B testing experience explicitly (subject line and segment testing maps directly to JD requirement)",
+    "Emphasise B2B campaign analytics from IPC and GRG as proof of multi-campaign performance tracking",
+    "Reframe e-commerce funnel analytics (Moli Media) as lifecycle and conversion expertise",
+    "Surface any exposure to email platforms or marketing automation tools, even indirect",
+    "Position Power BI dashboards as a proxy for KPI reporting/Tableau usage",
+    "Demonstrate data-to-action storytelling: connect analytics output to concrete business decisions",
+    "If any CRM-adjacent tool (HubSpot, Salesforce, SAP CRM) was used, even minimally, name it explicitly"
+  ],
+  "company_info": {
+    "size": "11–50",
+    "size_source": "jd_text",
+    "size_raw": "11-50 Mitarbeiter (Startup)"
+  },
+  "score_breakdown": {
+    "required_skills_score": 22.5,
+    "required_skills_max": 75,
+    "bonus_skills_score": 10,
+    "bonus_skills_max": 10,
+    "responsibilities_score": 6.5,
+    "responsibilities_max": 12.5,
+    "raw_total": 39,
+    "raw_max": 97.5
+  },
+  "raw_jd_text": "E-Mail Marketing / CRM Manager (all genders). allbranded GmbH. Hamburg.\n\nÜber uns: allbranded steht für Werbeartikel, die Emotionen transportieren. Als eines der führenden B2B-Unternehmen für personalisierte Werbeartikel bieten wir mit 9 innovativen Online-Shops europaweit und in der USA kreative Werbeartikel zur kundenindividuellen Bedruckung an.\n\nDas sind Deine Hauptaufgaben:\n- Lead-to-Loyalty: Du konzipierst und steuerst datengetriebene Multi-Channel-Kampagnen (E-Mail, Webpush, Re-Engagement)\n- Operative Exzellenz: Du erstellst packenden Content (Copywriting & Briefing) und setzt Kampagnen eigenständig in unseren Tools (z.B. MailerLite, WonderPush) um\n- Lifecycle-Automatisierung: Du baust und optimierst skalierbare Journeys, die sich am Verhalten unserer Kunden ausrichten\n- Conversion-Optimierung: Durch kontinuierliche A/B-Tests verbesserst du Betreffzeilen, CTAs und Segmente für maximale Performance\n- Data & Reporting: Du analysierst KPIs in GA4 oder Tableau, leitest Handlungsempfehlungen ab und machst deine Erfolge transparent\n\nWas Du mitbringen solltest:\n- Erfahrung: Fundierte Kenntnisse im CRM-, Lifecycle- oder E-Mail-Marketing (idealerweise im E-Commerce / B2B)\n- Tool-Box: Sicher im Umgang mit CRM-Systemen und Analytics-Tools. Technisches Verständnis für Automatisierungen\n- Analytisches Herz & kreativer Kopf: Du liebst Daten, hast aber auch ein Gespür für gute Texte und überzeugende Kundenansprache\n- Hands-on-Mentalität: Strategien entwickeln UND operativ umsetzen\n- Sprachen: Deutsch auf C1/C2-Niveau und sicheres Englisch\n\nallbranded GmbH: IT & Tech • Werbung, Marketing & PR • 11-50 Mitarbeiter (Startup)"
+}

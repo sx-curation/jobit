@@ -1,0 +1,79 @@
+{
+  "job_id": "4399749848",
+  "company": "Six Values",
+  "title": "Senior Performance Marketing Analyst",
+  "url": "https://www.linkedin.com/jobs/view/4399749848/",
+  "posted_date": "",
+  "match_score": 67,
+  "required_skills": [
+    "SQL (BigQuery or similar)",
+    "Performance marketing analytics (5+ years)",
+    "Acquisition funnel analysis",
+    "Attribution modelling",
+    "GA4",
+    "GTM",
+    "UTMs / campaign tracking (gclid, fbclid)",
+    "CPA / ROAS / LTV",
+    "Large-scale marketing datasets",
+    "Paid media data (Meta, affiliates)"
+  ],
+  "bonus_skills": [
+    "BigQuery specifically",
+    "Tableau or similar dashboarding tool",
+    "SEO analytics",
+    "Data pipeline design",
+    "Multi-brand / multi-geo analytics",
+    "CRM data integration"
+  ],
+  "matched_skills": [
+    "SQL & data modelling → SQL (BigQuery or similar)",
+    "Funnel & conversion analysis → acquisition funnel analysis",
+    "Campaign performance optimisation → performance marketing analytics",
+    "E-commerce & campaign ROI analytics → CPA / ROAS",
+    "Marketing KPI framework design → KPI definition & consistency",
+    "Customer segmentation & cohort analysis → customer behaviour & value linking",
+    "C-level data storytelling → reporting & actionable insights",
+    "Cross-functional stakeholder management → stakeholder collaboration",
+    "Python scripting → data modelling / pipeline support",
+    "A/B & multivariate testing → campaign optimisation"
+  ],
+  "missing_skills": [
+    "GA4 (Google Analytics 4)",
+    "GTM (Google Tag Manager)",
+    "UTM / gclid / fbclid tracking implementation",
+    "Attribution modelling (last-touch, multi-touch)",
+    "Tableau or equivalent dashboarding",
+    "BigQuery hands-on experience",
+    "Paid media channel expertise (Meta Ads, affiliate networks)"
+  ],
+  "core_responsibilities": [
+    "Build and maintain full acquisition funnel view across Meta, affiliates, SEO, and other channels",
+    "Own marketing attribution and measurement: campaign tracking, conversion events, CPA/ROAS/payback models",
+    "Integrate marketing spend data with customer behaviour and revenue in BigQuery",
+    "Build and maintain performance dashboards (Tableau or similar) for CPA, ROAS, funnel metrics",
+    "Collaborate with Performance Marketing, CRM, Product/CRO, BI & Data Engineering on analytical frameworks"
+  ],
+  "culture_keywords": [
+    "fast-moving",
+    "highly efficient",
+    "commercially aware",
+    "motivated by impact",
+    "scale-up environment",
+    "data-driven",
+    "collaborative"
+  ],
+  "recommended_emphasis": [
+    "Highlight SQL and data modelling work with large marketing datasets — directly matches the BigQuery/SQL requirement",
+    "Emphasise funnel and conversion analysis projects with measurable CPA/ROAS outcomes",
+    "Showcase any attribution or tracking work (UTMs, pixel setup, GA4/GTM) even if minor",
+    "Lead with campaign ROI analytics and e-commerce performance work to address the paid media analytics requirement",
+    "Stress cross-functional collaboration with marketing, BI, and product teams",
+    "Quantify business impact of data insights (budget decisions, spend optimisation) to match commercial focus"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "_source": "linkedin"
+}

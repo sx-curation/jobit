@@ -1,0 +1,74 @@
+{
+  "job_id": "st_fb932acff336ea9c",
+  "company": "Rebuy Recommerce GmbH",
+  "title": "Analyst, Pricing & Revenue Optimization (m/f/x)",
+  "url": "",
+  "posted_date": "",
+  "match_score": 38,
+  "required_skills": [
+    "~5 years experience in commercial analytics, pricing, or related analytical roles",
+    "SQL and major programming language proficiency",
+    "Translate complex analyses into actionable business recommendations",
+    "Stakeholder management and communication skills",
+    "Strategic mindset with business acumen and commercial awareness",
+    "Experience with pricing algorithms, dynamic pricing, or revenue management systems"
+  ],
+  "bonus_skills": [
+    "Data visualization tools (Tableau, Looker, Power BI, DBT)",
+    "Experience in sustainability-focused or circular economy businesses",
+    "Understanding of marketplace or two-sided platform dynamics",
+    "Familiarity with DBT"
+  ],
+  "matched_skills": [
+    "Stakeholder management and communication (demonstrated across HSBC, Hapag-Lloyd)",
+    "Translating complex data into actionable recommendations (KPI reporting, C-level reporting)",
+    "Strategic mindset and business acumen (GTM strategy, commercial decision-making)",
+    "Data visualization — Power BI (Microsoft Certified PL-300), Google Looker Studio",
+    "Marketplace sector exposure (ECE Group — Marketplace / Real Estate)",
+    "Sustainability project experience (VfB Stuttgart impact measurement framework)"
+  ],
+  "missing_skills": [
+    "SQL",
+    "Python or other major programming language",
+    "Pricing algorithm development or dynamic pricing systems",
+    "A/B test design and experimentation methodology",
+    "Pricing elasticity analysis",
+    "Revenue management systems",
+    "DBT",
+    "E-commerce or marketplace analytics (hands-on analytical role)",
+    "5 years dedicated analytics/pricing experience"
+  ],
+  "core_responsibilities": [
+    "Develop and optimize end-to-end pricing strategies including algorithm development, implementation, and performance monitoring",
+    "Design and execute pricing experiments and A/B tests with strategic recommendations to leadership",
+    "Generate commercial insights via deep-dive analyses on pricing elasticity, customer behavior, market dynamics, and competitive positioning",
+    "Collaborate with senior stakeholders in Commercial to identify opportunities and solve business challenges",
+    "Create and automate reporting frameworks and dashboards for self-service analytics across the organization"
+  ],
+  "culture_keywords": [
+    "circular economy",
+    "sustainability",
+    "recommerce",
+    "flat hierarchies",
+    "transparency",
+    "personal responsibility",
+    "positive critical thinking",
+    "data-driven",
+    "independence",
+    "collaborative"
+  ],
+  "recommended_emphasis": [
+    "Highlight Power BI certification and Looker Studio as direct match for the data visualization requirement",
+    "Emphasize any data analysis work: KPI dashboards, financial variance reports, ROI analysis at Moli Media",
+    "Reframe competitive intelligence and market monitoring experience at Intelligent Power Corporation as pricing-adjacent analytical work",
+    "Stress stakeholder management and C-level communication across HSBC and Hapag-Lloyd to address the senior collaboration requirement",
+    "Leverage ECE Group marketplace experience to demonstrate understanding of platform/marketplace dynamics",
+    "Highlight sustainability alignment: VfB Stuttgart impact measurement and interest in circular economy",
+    "Acknowledge the SQL/programming gap honestly — consider adding a note about willingness to learn or any self-study"
+  ],
+  "company_info": {
+    "size": "501–1,000",
+    "size_source": "jd_text",
+    "size_raw": "Our team of 600"
+  }
+}

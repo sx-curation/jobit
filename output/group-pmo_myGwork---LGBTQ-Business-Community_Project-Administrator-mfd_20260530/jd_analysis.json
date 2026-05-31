@@ -1,0 +1,50 @@
+{
+  "job_id": "4418322980",
+  "title": "Project Administrator (m/f/d)",
+  "company": "myGwork - LGBTQ+ Business Community (ABB)",
+  "location": "Germany (ABB – Motion High Power Division Germany)",
+  "url": "https://www.linkedin.com/jobs/view/4418322980/",
+  "match_score": 28.6,
+  "grade": "weak_match",
+  "source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Controller",
+  "required_skills": [
+    "Minimum 3 years commercial education",
+    "At least 2 years relevant professional experience in commercial project handling",
+    "Advanced SAP knowledge",
+    "Proficiency in written and spoken English and German"
+  ],
+  "bonus_skills": [
+    "Previous ABB experience",
+    "Additional languages beyond English and German"
+  ],
+  "matched_skills": [
+    "Professional English proficiency (C1 certified)",
+    "German language skills (B1 — borderline, role likely requires C1+)",
+    "Cross-functional stakeholder coordination (HSBC, Hapag-Lloyd)",
+    "Financial tracking and reporting (USD 8M programme budget at HSBC)",
+    "Documentation and reporting support (Hapag-Lloyd, ECE Group)"
+  ],
+  "missing_skills": [
+    "SAP knowledge (no SAP mentioned anywhere in CV)",
+    "Commercial/contractual project administration experience (invoicing, purchase orders, revenue recognition)",
+    "Experience with customer orders, guarantees/bonds, accounts receivable monitoring",
+    "Technical commercial education or Kaufmännische Ausbildung background"
+  ],
+  "core_responsibilities": [
+    "Entry and maintenance of order-related data in SAP (SOX compliance)",
+    "Invoicing of customer orders per revenue recognition requirements",
+    "Commercial and contractual review of customer orders (Incoterms, payment terms)",
+    "Procurement of customer securities (guarantees/bonds)",
+    "Monitoring accounts receivable with Project Management and SAS",
+    "Monthly revenue planning for invoicing"
+  ],
+  "recommended_emphasis": [
+    "Highlight the financial tracking and budget variance reporting experience from HSBC (USD 8M programme) as evidence of financial governance discipline",
+    "Emphasise any Excel/data entry work from ECE Group or Hapag-Lloyd that demonstrates systematic data management",
+    "German language skills are critical — note B1 level honestly; this role likely requires B2/C1 for contractual German communication",
+    "Do not apply without SAP experience — this is listed as 'Advanced knowledge' and is a hard requirement"
+  ],
+  "summary": "Match score is 28.6 (weak_match). The candidate has relevant financial reporting and stakeholder coordination experience, but lacks the core technical requirements: advanced SAP, commercial/contractual project administration, and the specific billing/invoicing workflow experience ABB requires. German at B1 may also be insufficient for a role involving contractual and financial communications. Not recommended unless candidate can demonstrate SAP exposure."
+}

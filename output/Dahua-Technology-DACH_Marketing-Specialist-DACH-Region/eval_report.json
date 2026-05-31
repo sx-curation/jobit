@@ -1,0 +1,79 @@
+{
+  "job_id": "4381849574",
+  "company": "Dahua Technology DACH",
+  "title": "Marketing Specialist DACH Region",
+  "eval_timestamp": "2026-04-07",
+  "overall": "PASS",
+  "dimensions": {
+    "keyword_alignment": {
+      "score": 88,
+      "status": "PASS",
+      "notes": [
+        "JD critical requirements covered: B2B marketing, trade fair/exhibition, GTM strategy, sales enablement, DACH region, HQ coordination",
+        "Chinese C2 prominently surfaced in both CV summary and Cover Letter para 1 — decisive advantage for China HQ role",
+        "B2B event execution appears in both IPC and GRG bullets with JD-aligned language",
+        "Cover Letter para 2 cites specific quantified outputs (4.6M CNY, 100+ clients) — strong signal density",
+        "Missing skills (Photoshop, Salesforce) acknowledged honestly in CL para 3 — appropriate framing",
+        "German B1+ framed as 'approaching B2' in both documents — honest, positive"
+      ]
+    },
+    "fabrication_check": {
+      "status": "PASS",
+      "notes": [
+        "All figures in CL (4.6M CNY, 100+ clients) trace directly to cv_tailored.md — no new numbers introduced",
+        "No skills added that are not in the CV (Photoshop, Salesforce correctly omitted)",
+        "No invented job responsibilities or company details",
+        "cv_changes.md documents removal of inferred HQ coordination bullet from GRG — correctly excluded from final output"
+      ]
+    },
+    "cover_letter_structure": {
+      "status": "PASS",
+      "word_count": 337,
+      "word_limit": 400,
+      "paragraphs": 4,
+      "structure": [
+        "Para 1: Hook — why Dahua + unique value (Chinese C2, HQ coordination experience)",
+        "Para 2: Evidence — IPC and GRG B2B marketing specifics with numbers",
+        "Para 3: Cultural/language fit + honest gap acknowledgement (Photoshop, Salesforce)",
+        "Para 4: Call to action"
+      ],
+      "notes": [
+        "Four-paragraph structure correctly implemented",
+        "337 words — 63 words below limit, well-paced",
+        "Opening does not begin with 'I' — leads with role description and hook",
+        "Tone is confident and specific without being generic"
+      ]
+    },
+    "cv_consistency": {
+      "status": "PASS",
+      "notes": [
+        "cv_changes.md accurately reflects what changed: IPC moved to position 1, language order adjusted, trade fair bullet reworded",
+        "Chinese C2 note in Languages table matches CV content",
+        "No discrepancies found between cv_changes.md description and cv_tailored.md actual content",
+        "Skills sections match documented restructuring into 4 groups"
+      ]
+    },
+    "package_coherence": {
+      "status": "PASS",
+      "notes": [
+        "CV and Cover Letter tell the same story from different angles — no contradiction",
+        "Match score 72/100 is solid for this role given the gap in graphic design tools",
+        "Honest framing of German B1+ and missing tools is coherent across both documents",
+        "Application package is internally consistent and professionally presented"
+      ]
+    }
+  },
+  "risks": [
+    {
+      "level": "LOW",
+      "item": "German B2 requirement",
+      "note": "CV and CL frame as B1+ approaching B2. Honest disclosure — unlikely to disqualify but may be flagged at screening."
+    },
+    {
+      "level": "LOW",
+      "item": "Photoshop / Illustrator gap",
+      "note": "Acknowledged in CL. Dahua may expect hands-on design capability. Positioning as 'works with designers' is the correct mitigation."
+    }
+  ],
+  "recommendation": "Package is ready for submission. The Chinese C2 advantage is well-positioned as a decisive differentiator. No fabrication, no structural issues, word count within limit."
+}

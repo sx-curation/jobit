@@ -1,0 +1,53 @@
+{
+  "job_id": "4422059464",
+  "title": "Industry AI - Customer Facing Project Manager Expert  (f/m/d)",
+  "company": "SAP",
+  "location": "Garching, Bavaria, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4422059464/",
+  "match_score": 27.3,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Business Transformation Manager",
+  "required_skills": [
+    "Extensive experience in project/programme management in enterprise software or AI delivery",
+    "Proven ability to lead ambiguous, high-impact customer-facing engagements end-to-end",
+    "Strong capability in customer-embedded settings navigating executive stakeholders",
+    "Understanding of agile delivery and cross-functional team coordination (engineering, AI/ML, product, GTM)",
+    "Solid awareness of enterprise AI deployment realities (data readiness, compliance, integration)",
+    "Proactive AI tooling adoption in everyday workflows"
+  ],
+  "bonus_skills": [
+    "Industry and E2E process knowledge for forward-deployed AI implementations",
+    "Agentic AI context experience",
+    "Enterprise AI and compliance navigation experience"
+  ],
+  "matched_skills": [
+    "Agile delivery coordination — sprint planning, standups, retrospectives (Hapag-Lloyd)",
+    "Executive stakeholder management and C-suite communication (HSBC)",
+    "Cross-functional team coordination across engineering, product and business (HSBC, Hapag-Lloyd)",
+    "Programme status reporting and risk escalation (HSBC: 6 workstreams)",
+    "Customer-facing coordination (IPC: B2B GTM, GRG: trade fair client engagement)"
+  ],
+  "missing_skills": [
+    "Enterprise software delivery experience (SAP, Salesforce, or equivalent platform)",
+    "AI/ML delivery or agentic AI programme management experience",
+    "Customer-embedded senior delivery anchor experience",
+    "Production AI deployment lifecycle management",
+    "Data readiness, model compliance and integration assessment skills"
+  ],
+  "core_responsibilities": [
+    "Lead all phases of customer engagement lifecycle from discovery through delivery and scale-out",
+    "Own project scope, timelines, risks and outcomes aligned with agreed success criteria",
+    "Drive implementation excellence and customer adoption of AI solutions",
+    "Serve as primary delivery interface for senior customer stakeholders including executive leadership",
+    "Navigate complex customer environments including data readiness, compliance and system integration",
+    "Feed field learnings back into SAP product and engineering teams as reusable playbooks"
+  ],
+  "recommended_emphasis": [
+    "HSBC: C-suite communication and programme risk management across 6 workstreams — most relevant dimension for senior stakeholder navigation",
+    "Hapag-Lloyd: Agile sprint coordination with cross-functional teams — applicable to delivery rhythm management",
+    "IPC/GRG: B2B customer-facing engagement and GTM coordination — partial overlap with customer-embedded delivery concept"
+  ],
+  "summary": "Boru scores 27.3 (poor match) for this senior AI delivery role at SAP, which targets seasoned enterprise software professionals with AI implementation expertise. The role explicitly requires experience leading AI/ML production deployments — a domain gap not addressed in the CV. While stakeholder management and agile coordination skills transfer, the senior enterprise AI delivery mandate far exceeds Boru's current experience level. Application is not recommended."
+}

@@ -1,0 +1,60 @@
+{
+  "job_id": "4387288172",
+  "company": "MAINGAU Energie GmbH",
+  "title": "Marketing Tech & Content Automation Expert (w/m/d)",
+  "url": "https://www.linkedin.com/jobs/view/4387288172/",
+  "posted_date": "",
+  "match_score": 34,
+  "required_skills": [
+    "Marketing degree or equivalent qualification",
+    "AI tools in marketing context (ads, content, personalization)",
+    "Technical skills: automation, scripting, API knowledge, programming languages",
+    "MarTech / data-driven marketing experience",
+    "Structured, pragmatic work style with bias for fast execution"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "MBA / Marketing degree (Leuphana University)",
+    "KPI dashboards and ROI reporting (partial MarTech match)",
+    "HubSpot and Google Analytics (partial data-driven marketing match)",
+    "Product tool evaluation background (partial use-case development match)"
+  ],
+  "missing_skills": [
+    "AI tools in marketing context (e.g., generative AI for ads, content, personalization)",
+    "Marketing automation platforms (e.g., Mailchimp, Klaviyo, Braze, Salesforce Marketing Cloud)",
+    "Scripting / programming languages (Python, JavaScript, etc.)",
+    "API integration experience",
+    "Ad campaign management (Google Ads, Meta Ads)",
+    "Email/newsletter performance analysis",
+    "Image generation tools for creatives (e.g., Midjourney, DALL-E, Adobe Firefly)"
+  ],
+  "core_responsibilities": [
+    "Develop and orchestrate dynamic ad campaigns, identifying optimal timing, channels, and messaging",
+    "Test and apply image generation tools for performance creatives, landing pages, and social media",
+    "Evaluate new MarTech tools, build test setups, and develop scalable use cases",
+    "Automate marketing processes to free up capacity for strategic initiatives",
+    "Analyze newsletter and automated mailing performance and derive content optimization insights"
+  ],
+  "culture_keywords": [
+    "dynamisch",
+    "kollaborativ",
+    "pragmatisch",
+    "schnelle Umsetzung",
+    "skalierbar",
+    "datengetrieben",
+    "strukturiert",
+    "operativ"
+  ],
+  "recommended_emphasis": [
+    "Highlight any exposure to marketing automation or AI-assisted tools, even if limited",
+    "Emphasize data-driven mindset: KPI dashboards, ROI reporting, Google Analytics",
+    "Reframe SQL and Power BI as indicators of technical aptitude and willingness to work with data pipelines",
+    "Stress pragmatic, fast-execution work style from project management experience (Agile/Scrum)",
+    "Mention any personal or side-project use of AI content tools (ChatGPT, image generators, etc.) if applicable"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

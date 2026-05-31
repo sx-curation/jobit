@@ -1,0 +1,62 @@
+{
+  "job_id": "4399407421",
+  "company": "Pipedrive",
+  "title": "SEM Analyst",
+  "url": "https://www.linkedin.com/jobs/view/4399407421/",
+  "posted_date": "",
+  "match_score": 36,
+  "required_skills": [
+    "3+ years in data/marketing analytics or SEM role with strong reporting/analysis focus",
+    "Proficiency in Tableau/Looker/BI tools for data visualization and dashboarding",
+    "Practical experience using SQL and Python (Pandas/NumPy) for data manipulation",
+    "Familiarity with Google Ads data"
+  ],
+  "bonus_skills": [
+    "Familiarity with Google Ads API",
+    "Experience/interest in AI for data automation/analysis",
+    "Background in maths, computer science, economics or related field"
+  ],
+  "matched_skills": [
+    "MS Power BI (certified) — matches BI tools requirement (required, weight 3)",
+    "SQL (basic) — partial match for SQL/Python requirement (required, partial weight 1.5)",
+    "KPI dashboards/ROI reporting — partial match for analytics experience (required, partial weight 1)",
+    "MBA in Business — partial match for economics/related field background (bonus, partial weight 0.5)"
+  ],
+  "missing_skills": [
+    "Python (Pandas/NumPy) — no evidence in CV",
+    "Google Ads hands-on experience (Google Analytics listed, not Google Ads)",
+    "SEM/paid search campaign management experience",
+    "A/B test design and tracking",
+    "Google Ads API knowledge",
+    "Joining ad platform data with CRM/internal metrics",
+    "AI tools for data automation/analysis"
+  ],
+  "core_responsibilities": [
+    "Build and maintain SEM performance dashboards on top of existing data infrastructure (70% reporting/analysis focus)",
+    "Develop Google Ads API expertise to extract granular keyword, bid strategy and audience-level data",
+    "Connect paid search activity to downstream business outcomes by joining ad platform data with internal metrics",
+    "Design and track A/B tests from hypothesis through to actionable conclusions",
+    "Support creation, management and optimisation of paid search campaigns across Google Ads and Microsoft Ads"
+  ],
+  "culture_keywords": [
+    "analytical backbone",
+    "data foundation",
+    "faster bolder decisions",
+    "global scale",
+    "international company",
+    "granular insight",
+    "channel expertise"
+  ],
+  "recommended_emphasis": [
+    "Highlight MS Power BI certification prominently as it directly satisfies the BI dashboarding requirement",
+    "Expand on any SQL usage in past roles (Hapag-Lloyd KPI reporting, HSBC budget tracking) with concrete examples",
+    "Reframe KPI dashboard and ROI reporting experience to emphasise analytical depth and data-driven decision making",
+    "If any exposure to Google Analytics campaign data or paid media reporting exists, surface it explicitly",
+    "Acknowledge MBA economics background to partially satisfy the 'related field' bonus criterion"
+  ],
+  "company_info": {
+    "size": "501–1,000",
+    "size_source": "jd_text",
+    "size_raw": "over 850+ people"
+  }
+}

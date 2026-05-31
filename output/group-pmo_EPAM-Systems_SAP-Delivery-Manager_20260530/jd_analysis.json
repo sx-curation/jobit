@@ -1,0 +1,56 @@
+{
+  "job_id": "4357473201",
+  "title": "SAP Delivery Manager (m/f/d)",
+  "company": "EPAM Systems",
+  "location": "Leipzig, Saxony, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4357473201/",
+  "match_score": 14.3,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Change Manager",
+  "required_skills": [
+    "SAP project methodology expertise (ASAP, SAP Activate)",
+    "SAP Solution Manager (with/without Focused Build)",
+    "SAP S/4HANA migration and implementation knowledge",
+    "Broad SAP module knowledge (Finance, Logistics, Production, C/4HANA, SCM, GRC, SuccessFactors, Ariba)",
+    "End-to-end SAP solution design and delivery",
+    "Strong client-facing and stakeholder management skills",
+    "Advanced planning and project management skills",
+    "Fluent English and German"
+  ],
+  "bonus_skills": [
+    "Strong SAP technical knowledge",
+    "Agile and Scrum delivery experience",
+    "SAP CI/CD principles and tooling"
+  ],
+  "matched_skills": [
+    "Stakeholder management — C-suite reporting at HSBC and multi-stakeholder coordination",
+    "Project management — programme governance and agile delivery across multiple roles",
+    "English C1 — meets English fluency requirement",
+    "Agile methodology — Hapag-Lloyd sprint coordination and JIRA/Confluence usage"
+  ],
+  "missing_skills": [
+    "SAP technical expertise (ASAP, SAP Activate, S/4HANA, Solution Manager)",
+    "SAP module knowledge (Finance, Logistics, SCM, GRC, SuccessFactors, Ariba)",
+    "SAP end-to-end delivery track record",
+    "German at business-fluent level (B1 only)",
+    "IT consulting background",
+    "Client proposal and statement of work preparation"
+  ],
+  "core_responsibilities": [
+    "Manage design and deployment of integrated end-to-end SAP solutions",
+    "Define and execute continuous delivery risk management strategy",
+    "Take accountability for technical leadership ensuring robust SAP architecture",
+    "Translate business value into SAP solution benefits",
+    "Lead delivery of SAP projects per EPAM methodologies",
+    "Manage client expectations and foster strong client relationships",
+    "Prepare detailed project estimations covering timelines, resources, and quality"
+  ],
+  "recommended_emphasis": [
+    "Programme governance and multi-workstream management (HSBC) as delivery management foundation",
+    "Agile sprint coordination (Hapag-Lloyd) as delivery methodology alignment",
+    "C-suite stakeholder management for client relationship experience"
+  ],
+  "summary": "Scoring 14.3, this is a poor match. The SAP Delivery Manager role at EPAM requires deep SAP technical expertise across multiple modules, SAP Activate/ASAP methodology knowledge, and strong German proficiency — none of which appear in Boru's CV. While Boru has transferable project management and stakeholder management skills, the SAP technical depth is a hard requirement that cannot be bridged with general PMO experience. Application is not recommended."
+}

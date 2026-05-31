@@ -1,0 +1,67 @@
+{
+  "job_id": "4399250356",
+  "company": "morefire",
+  "title": "Performance Marketing Manager (m/w/d) - Fokus SEA & Webanalyse",
+  "url": "https://www.linkedin.com/jobs/view/4399250356/",
+  "posted_date": "",
+  "match_score": 28,
+  "required_skills": [
+    "SEA campaign management (Google Ads, Microsoft Advertising) — 2–3 years hands-on",
+    "Web analytics tools (GA4 and/or Matomo)",
+    "Google Tag Manager + data streams & feed management",
+    "Holistic customer journey mindset",
+    "German & English communication at C-level (client-facing)"
+  ],
+  "bonus_skills": [
+    "Looker Studio dashboard creation",
+    "Attribution modelling",
+    "AI / platform feature testing for SEA efficiency",
+    "Feed management & data stream setup",
+    "Strategic partner mindset with clients"
+  ],
+  "matched_skills": [
+    "Looker Studio (listed as tool)",
+    "Attribution & ROI analytics (campaign ROI, programme attribution at HSBC)",
+    "Funnel & conversion analysis (customer journey understanding)",
+    "C-level data storytelling",
+    "A/B testing & experiment design",
+    "Data quality, tracking & QA (partial overlap with tracking setup)"
+  ],
+  "missing_skills": [
+    "Hands-on SEA execution (Google Ads, Microsoft Advertising) — core hard requirement, no evidence in CV",
+    "GA4 configuration & analysis — not mentioned anywhere",
+    "Google Tag Manager implementation",
+    "Matomo or equivalent web analytics platform",
+    "Data stream & feed management",
+    "German at C-level client communication (CV shows B1+)"
+  ],
+  "core_responsibilities": [
+    "Independent management and optimisation of SEA campaigns (Google Ads, Microsoft Ads)",
+    "Tracking & data setup: concept and monitoring of GA4/GTM tracking logic for clean data",
+    "Client consulting: translate complex datasets into dashboards (Looker Studio) and clear strategies",
+    "Test new platform features and drive AI usage to improve SEA and analytics efficiency",
+    "Evaluate real SEA contribution via attribution models; optimise campaigns accordingly"
+  ],
+  "culture_keywords": [
+    "agency environment (~115 employees)",
+    "Cologne hybrid",
+    "innovation-driven",
+    "team player",
+    "independent working style",
+    "continuous learning",
+    "AI adoption"
+  ],
+  "recommended_emphasis": [
+    "Looker Studio dashboard work — directly relevant to the consulting/reporting responsibility",
+    "Attribution and ROI analytics experience (HSBC programme analytics, campaign ROI measurement)",
+    "Funnel & conversion analysis as proxy for customer journey understanding",
+    "Data quality and tracking QA — position as adjacent to GTM/GA4 tracking discipline",
+    "C-level data storytelling — aligns with client-facing consulting expectation"
+  ],
+  "company_info": {
+    "size": "51–200",
+    "size_source": "jd_text",
+    "size_raw": "~115 employees (stated in job context)"
+  },
+  "_source": "linkedin"
+}

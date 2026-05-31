@@ -1,0 +1,40 @@
+{
+  "job_id": "4266752750",
+  "company": "SIXT",
+  "title": "Senior Product Manager Growth",
+  "url": "https://www.linkedin.com/jobs/view/4266752750/",
+  "match_score": 60,
+  "matched_skills": [
+    "Agile/Scrum/SAFe",
+    "Power BI PL-300",
+    "Product lifecycle management GTM",
+    "C-level reporting",
+    "Hapag-Lloyd CX project",
+    "Multi-market EMEA/Asia"
+  ],
+  "missing_skills": [
+    "Digital product ownership full PM cycle",
+    "A/B testing frameworks",
+    "Conversion funnel optimization",
+    "Product spec writing for engineering"
+  ],
+  "required_skills": [
+    "Several years PM experience",
+    "Agile cross-functional delivery",
+    "A/B testing conversion funnel",
+    "Data KPI-driven decisions",
+    "Product spec writing"
+  ],
+  "recommended_emphasis": [
+    "Reframe PMM as product ownership",
+    "Power BI as product analytics",
+    "Hapag-Lloyd CX as digital product context",
+    "HSBC cross-functional as PM skill"
+  ],
+  "company_info": {
+    "size": "5001-10000",
+    "size_source": "jd_text",
+    "size_raw": "~9000 employees"
+  },
+  "_source": "linkedin"
+}

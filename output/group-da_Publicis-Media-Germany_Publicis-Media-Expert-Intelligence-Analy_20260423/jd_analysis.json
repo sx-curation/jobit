@@ -1,0 +1,75 @@
+{
+  "job_id": "4400765159",
+  "company": "Publicis Media Germany",
+  "title": "Expert Intelligence & Analytics (m/w/d)",
+  "url": "https://www.linkedin.com/jobs/view/4400765159/",
+  "posted_date": "",
+  "match_score": 72,
+  "required_skills": [
+    "Revenue and margin analysis",
+    "KPI design, dashboard and report development",
+    "QA of management-relevant reporting",
+    "Scenario analysis and forecasting",
+    "Complex data model analysis",
+    "Executive Summaries and ad-hoc analyses for management",
+    "Business requirements translation into functional specifications",
+    "Cross-functional stakeholder collaboration (Controlling, Investment, Product, Tech)"
+  ],
+  "bonus_skills": [
+    "SQL and data modelling",
+    "Python / automation scripting",
+    "BI and visualization tools (Power BI, Looker Studio)",
+    "Pricing and efficiency evaluation",
+    "Process optimisation and analytics enablement"
+  ],
+  "matched_skills": [
+    "Marketing KPI framework design → KPI target setting and dashboard development",
+    "C-level data storytelling → Executive Summaries and management reporting",
+    "Cross-functional stakeholder management → business partner role across Controlling/Product/Tech",
+    "Data quality, tracking & QA → QA of management-relevant KPIs and dashboards",
+    "Market segmentation & intelligence → performance analysis across client, product, channel",
+    "E-commerce & campaign ROI analytics → revenue and margin analysis",
+    "Funnel & conversion analysis → performance driver identification",
+    "SQL & data modelling → complex data model analysis",
+    "Python scripting → automation and tooling support",
+    "Power BI (PL-300 certified), Looker Studio, Qlik Sense → reporting and visualization solutions",
+    "Customer segmentation & cohort analysis → multi-dimensional client/channel analysis"
+  ],
+  "missing_skills": [
+    "Media agency investment business domain knowledge (pricing, margin, media inventory)",
+    "Forecasting and scenario modelling for financial/investment steering",
+    "Writing functional specifications for BI/Tech teams (data model documentation)",
+    "Revenue management in an agency or media context"
+  ],
+  "core_responsibilities": [
+    "Revenue and margin analysis, KPI target setting and performance tracking across clients, products and channels",
+    "Scenario analyses and forecast development for investment business steering",
+    "Design, develop and QA management-relevant KPIs, dashboards and reports",
+    "Ad-hoc analyses and Executive Summaries for management and stakeholders with actionable recommendations",
+    "Translate business requirements into functional specifications and collaborate with BI/Tech on analytics tools"
+  ],
+  "culture_keywords": [
+    "business partner",
+    "cross-functional collaboration",
+    "data-driven decision making",
+    "management-relevant",
+    "actionable recommendations",
+    "intelligence & analytics",
+    "enablement"
+  ],
+  "recommended_emphasis": [
+    "KPI framework design and dashboard development experience (Power BI PL-300 certification is a strong differentiator)",
+    "C-level / executive reporting and data storytelling — directly maps to Executive Summaries responsibility",
+    "Cross-functional stakeholder coordination bridging technical and business teams (mirrors Controlling/Product/Tech partner role)",
+    "QA and data quality experience from Hapag-Lloyd sprint reviews",
+    "Revenue and ROI analytics from HSBC programme (USD 8M budget variance dashboards, burn-rate reporting)",
+    "Multi-dimensional analysis across segments, channels and markets (EMEA/APAC coverage)",
+    "Python and SQL for data modelling and automation"
+  ],
+  "company_info": {
+    "size": "201–500",
+    "size_source": "jd_text",
+    "size_raw": "~200-500 employees in Germany; part of Publicis Groupe global network (100+ countries)"
+  },
+  "_source": "linkedin"
+}

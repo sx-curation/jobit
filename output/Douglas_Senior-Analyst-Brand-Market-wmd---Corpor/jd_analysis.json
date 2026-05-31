@@ -1,0 +1,54 @@
+{
+  "job_id": "4392873785",
+  "company": "Douglas",
+  "title": "Senior Analyst Brand & Market (w/m/d) - Corporate Brands",
+  "url": "https://www.linkedin.com/jobs/view/4392873785/",
+  "posted_date": "",
+  "match_score": 28.0,
+  "required_skills": [
+    "Degree in business administration, supply chain management or comparable field",
+    "Experience in supply chain, demand planning, or order management",
+    "Advanced Excel proficiency",
+    "BI and reporting tools",
+    "English fluency",
+    "Structured data analysis and accuracy focus"
+  ],
+  "bonus_skills": [
+    "German language skills",
+    "Hybrid working adaptability"
+  ],
+  "matched_skills": [
+    "Business administration degree",
+    "Excel proficiency",
+    "BI tools (Power BI)",
+    "English C1",
+    "Structured data analysis and reporting"
+  ],
+  "missing_skills": [
+    "Supply chain management experience — not in CV at all",
+    "Demand planning / order management / inventory management experience",
+    "SKU-level stock analysis",
+    "Replenishment and supplier management experience"
+  ],
+  "core_responsibilities": [
+    "Monitor KPIs for demand forecasting and stock availability",
+    "Develop order volume planning tools and consolidate demand inputs",
+    "Manage stock lifecycle and master data",
+    "Calculate order requirements at SKU level",
+    "Establish rolling forecasts for strategic suppliers"
+  ],
+  "culture_keywords": [
+    "beauty", "retail", "Douglas", "supply chain", "accuracy", "Düsseldorf"
+  ],
+  "recommended_emphasis": [
+    "NOTE: Despite the title 'Brand & Market Analyst', this role is a Supply Chain / Demand Planning analyst — not a brand or marketing analytics role",
+    "Score is below threshold (30) — CV has no supply chain or demand planning background",
+    "Not aligned with CV's marketing/analytics focus",
+    "Recommend discussing with user whether to skip"
+  ],
+  "company_info": {
+    "size": "10,001+",
+    "size_source": "jd_text",
+    "size_raw": "Douglas — Europe's leading beauty retailer, international company"
+  }
+}

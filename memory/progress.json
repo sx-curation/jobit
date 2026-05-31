@@ -1,0 +1,260 @@
+{
+  "last_updated": "2026-04-23T12:00:00",
+  "session_count": 32,
+  "cv_parse_status": {
+    "group-da": "done",
+    "group-pdm": "done",
+    "group-pmo": "done"
+  },
+  "search_summary": {
+    "total_batches": 8,
+    "total_seen_jobs": 415,
+    "last_batch_id": "20260423_003",
+    "last_batch_date": "2026-04-23"
+  },
+  "job_pipeline": {
+    "generated_pdf": [],
+    "skipped": [
+      {
+        "num": 1,
+        "company": "Westcon-Comstor",
+        "score": 50,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 2,
+        "company": "EPODEX GmbH",
+        "score": 56,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 3,
+        "company": "TalentBet",
+        "score": 52,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 6,
+        "company": "Tripledot Studios",
+        "score": 62,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 7,
+        "company": "Agoda (Bangkok)",
+        "score": 65,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 14,
+        "company": "GLS Germany",
+        "score": 55,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 15,
+        "company": "Fresenius Kabi",
+        "score": 62,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 17,
+        "company": "Zenith Deutschland",
+        "score": 50,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 19,
+        "company": "Trust In SODA",
+        "score": 63,
+        "group_id": "group-da",
+        "reason": "cancelled Phase 3B"
+      },
+      {
+        "num": 30,
+        "company": "MarketVector Indexes",
+        "score": 66,
+        "group_id": "group-pdm",
+        "reason": "cancelled Phase 3B"
+      }
+    ],
+    "markdown_only": [
+      {
+        "num": 4,
+        "job_id": "4384810054",
+        "company": "Bionorica SE",
+        "title": "Marketing Analyst / Sales Analyst (m/w/d)",
+        "group_id": "group-da",
+        "folder": "output/Bionorica-SE_Marketing-Analyst-Sales-Analyst-mwd",
+        "match_score": 72,
+        "status": "markdown_only_pdf_cancelled",
+        "note": "cv_tailored.md 就绪，PDF 生成已取消（用户，Session #9）"
+      },
+      {
+        "num": 28,
+        "job_id": "4390380447",
+        "company": "PUMA Group",
+        "title": "Junior Manager Marketing Operations Global E-Commerce",
+        "group_id": "group-pdm",
+        "folder": "output/PUMA-Group_Junior-Manager-Marketing-Operations-Global-E-Commerce",
+        "match_score": 67,
+        "status": "markdown_only_pdf_cancelled",
+        "note": "cv_tailored.md 就绪，PDF 生成已取消（用户，Session #9）"
+      },
+      {
+        "num": 29,
+        "job_id": "4381849574",
+        "company": "Dahua Technology DACH",
+        "title": "Marketing Specialist DACH Region",
+        "group_id": "group-pdm",
+        "folder": "output/Dahua-Technology-DACH_Marketing-Specialist-DACH-Region",
+        "match_score": 72,
+        "status": "markdown_only_pdf_cancelled",
+        "note": "cv_tailored.md 就绪，PDF 生成已取消（用户，Session #9）"
+      }
+    ],
+    "phase3b_cancelled": [
+      {
+        "num": 31,
+        "job_id": "4398552289",
+        "company": "Intersnack Group",
+        "score": 68,
+        "reason": "Phase 3B cancelled by user Session #9"
+      },
+      {
+        "num": 32,
+        "job_id": "4400689480",
+        "company": "HelloFresh",
+        "score": 82,
+        "reason": "Phase 3B cancelled by user Session #9"
+      },
+      {
+        "num": 33,
+        "job_id": "4399873173",
+        "company": "Kraken",
+        "score": 78,
+        "reason": "Phase 3B cancelled by user Session #9"
+      },
+      {
+        "num": 34,
+        "job_id": "4335656104",
+        "company": "Brandwatch",
+        "score": 70,
+        "reason": "Phase 3B cancelled by user Session #9"
+      },
+      {
+        "num": 35,
+        "job_id": "4369628589",
+        "company": "Agoda",
+        "score": 69,
+        "reason": "Phase 3B cancelled by user Session #9"
+      }
+    ]
+  },
+  "web_ui_v3_status": {
+    "implementation_date": "2026-04-19",
+    "server_file": "scripts/server.py",
+    "html_generator_file": "scripts/gen_job_tracker_html.py",
+    "pages_implemented": {
+      "page_1_dashboard": {
+        "status": "done",
+        "fix_session_28": "Remark 列 <th> 加 min-width:110px 防止列宽坍缩"
+      },
+      "page_2_job_detail": {
+        "status": "done",
+        "fix_session_28": "3 列布局改为 grid-template-columns: 2fr 1.75fr 1.25fr（40/35/25%）"
+      },
+      "page_3_add_search_group": {
+        "status": "pending_implementation",
+        "note": "表单页面，需新增 POST /api/group-save 端点"
+      },
+      "page_4_my_cvs": {
+        "status": "done",
+        "implementation_summary": "全新实现，5 个新 API 端点 + HTML + JS",
+        "api_endpoints": [
+          "GET /api/group-stats — 计算各 group stats（job_count、avg_score、top_missing_skills、last_search、is_active）",
+          "GET /api/cvfiles — 列出 my_cv/ 下的 PDF 文件",
+          "POST /api/group-delete — 从 config.json 删除 group",
+          "POST /api/group-dup — 复制 group（加 -copy 后缀）"
+        ],
+        "html_features": [
+          "Stats bar：Total Groups / Total CVs / Active Searches / Last Updated",
+          "2 列卡片网格（Section A: CV File, B: EN/DE keywords, C: Job Family, D: Missing Skills）",
+          "Search Jobs 按钮（复制指令 + 跳转 Dashboard + 预选 group + 开始轮询）",
+          "··· 菜单（Delete + Duplicate）",
+          "Edit 按钮（禁用，待 Page 3 实现）",
+          "+ Add Group 按钮（禁用）",
+          "Toast 通知",
+          "Nav 链接 navTo('cvs')，支持 active state 高亮"
+        ]
+      }
+    },
+    "search_auto_trigger_feature_session_29": {
+      "status": "completed",
+      "components_added": [
+        "scripts/server.py: 新增 _search_proc, _search_log, _search_lock 全局变量 + _run_search() 函数",
+        "scripts/server.py: GET /api/search-status 路由（返回进行中状态）",
+        "scripts/server.py: GET /api/search-log SSE 流式路由（日志推送）",
+        "scripts/server.py: POST /api/search 路由（启动子进程执行 Claude Code，含并发保护 409）",
+        "scripts/gen_job_tracker_html.py: onLoadingClick() 改为立即禁用按钮显示「⏳ 连接中…」",
+        "scripts/gen_job_tracker_html.py: 新增 openSearchLog()、subscribeSearchLog() 函数",
+        "scripts/gen_job_tracker_html.py: 新增 #search-log-panel 日志面板（dark terminal 风格 <pre>）"
+      ],
+      "html_output_updated": "C:/Users/Leon/Desktop/job_tracker/index.html（84 KB）",
+      "known_issue": "按钮无反应（待用户重启 server.py），已添加 console.log/warn 诊断日志",
+      "next_step": "用户重启 python scripts/server.py 后验证功能"
+    },
+    "ui_button_simplify_session_30": {
+      "status": "completed",
+      "work_phase_1": "「搜索职缺」按钮功能升级：临时方案 → 直接 API 调用",
+      "work_phase_2": "/simplify 代码清理与 bug 修复",
+      "file_modified": "UI/My_CVs/code.html",
+      "phase_1_changes": [
+        "移除临时剪贴板方案（复制命令到剪贴板）",
+        "改为直接 POST 调用 /api/search，传递 {group_id}",
+        "server.py line 497 路由已存在，无需新增",
+        "按钮点击后立即禁用，启动搜索流程",
+        "底部 Log Drawer 实时显示 SSE 流日志"
+      ],
+      "phase_2_simplify_changes": [
+        "合并两个 <style> 块为单一块",
+        "消除 .search-jobs-btn 与 .kinetic-gradient 重复渐变定义",
+        "删除 5 处 style=\"font-size:14px\" 行内样式，移入 CSS 规则",
+        "修复 XSS：resetBtn() 改用 createElement/createTextNode 替代 innerHTML",
+        "修复 409 逻辑：按钮保持禁用状态直到流结束（移除不必要的 resetBtn() 调用）",
+        "消除字符串状态判断 logStatus.textContent === '启动中…'，改用 _streamStarted 布尔标志",
+        "滚动优化：requestAnimationFrame 节流替代每行触发 scrollTop = scrollHeight"
+      ],
+      "result": "UI/My_CVs/code.html 功能完整，搜索按钮可直接触发 Claude Code 搜索流程，前提：需先运行 python scripts/server.py"
+    },
+    "documentation_sync": {
+      "spec_md": "已更新至当前实现状态",
+      "ui_md": "已更新至当前实现状态"
+    },
+    "system_stats": {
+      "total_jobs_in_db": 224,
+      "total_groups": 5,
+      "groups_detail": {
+        "group-da": 35,
+        "group-pmo": 33,
+        "group-pdm": 52,
+        "internal-marketing": 0,
+        "event-management": 0
+      },
+      "html_output_path": "C:/Users/Leon/Desktop/job_tracker/index.html",
+      "html_output_size_kb": 54
+    }
+  },
+  "pending_actions": [
+    "Page 3（Add Search Group）表单页面，需新增 POST /api/group-save 端点",
+    "决定是否为 #219 ALDI PMO ERP Transformation (78) 生成 CV/CL"
+  ]
+}

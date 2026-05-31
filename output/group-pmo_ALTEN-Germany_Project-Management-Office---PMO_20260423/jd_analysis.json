@@ -1,0 +1,70 @@
+{
+  "job_id": "4374892097",
+  "company": "ALTEN Germany (ALTEN Consulting Services GmbH)",
+  "title": "Project Management Office - PMO",
+  "url": "https://www.linkedin.com/jobs/view/4374892097/",
+  "location": "Bremen, Germany",
+  "posted_date": "",
+  "_source": "linkedin",
+  "match_score": 52,
+  "required_skills": [
+    "Abgeschlossenes Studium oder vergleichbare Qualifikation",
+    "Zusatzqualifikationen im Projektmanagement (e.g. PMP, PRINCE2, IPMA)",
+    "Fundierte Erfahrung im Programm-/Projektmanagement komplexer technischer Vorhaben",
+    "Hohe Struktur, Durchsetzungsvermögen und Kommunikationsfähigkeit",
+    "Souverän in der Managementkommunikation",
+    "Erfahrung im Angebots-/Proposal-Management ODER Management großer Multi-Stakeholder-Programme"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Programme governance & PMO operations (HSBC USD 8M programme, 6 workstreams)",
+    "Risk escalation & prioritisation management",
+    "C-suite / executive status reporting and data storytelling",
+    "Multi-stakeholder coordination across Product, Engineering, Marketing, C-suite",
+    "Budget tracking & financial governance (burn-rate dashboards)",
+    "Agile sprint planning & delivery (Scrum) — Hapag-Lloyd",
+    "KPI framework design & performance reporting"
+  ],
+  "missing_skills": [
+    "Technical/engineering domain PMO experience (Aerospace, Defense, or industrial engineering context implied by Bremen + ALTEN client base)",
+    "Formal PM certification (PMP, PRINCE2, or IPMA) — Power BI cert (PL-300) does not qualify as Projektmanagement Zusatzqualifikation",
+    "Work Breakdown Structure (WBS) planning — not explicitly evidenced in CV",
+    "Proposal / bid management (Angebotsprozess, time-cost structure for engineering tenders)",
+    "Milestone and dependency management in large-scale technical programmes",
+    "Escalation template creation and steering committee facilitation",
+    "Collaboration with Systems Architect or Requirements & Interface Manager roles"
+  ],
+  "core_responsibilities": [
+    "Build and maintain programme planning including WBS, milestones, dependencies, and resources",
+    "Own risk and opportunity management including measure tracking and escalation template creation",
+    "Steer steering meetings and status reporting; define escalation logic and decision frameworks",
+    "Collaborate closely with Systems Architect, Commercial & Subcontract Manager, and Requirements & Interface Manager",
+    "Support the proposal phase covering time/cost structure, assumptions, bid process, and deliverable planning"
+  ],
+  "culture_keywords": [
+    "Kompetenz",
+    "Engagement",
+    "Leidenschaft",
+    "hochspezialisiert",
+    "Engineering- und IT-Dienstleistungen",
+    "branchen- und technologieübergreifend",
+    "forward thinker",
+    "Make it happen",
+    "Durchsetzungsvermögen"
+  ],
+  "recommended_emphasis": [
+    "Lead with HSBC USD 8M programme governance: 6 workstreams, C-suite escalation, risk prioritisation — this is the strongest direct match to Steering/Status-Reporting responsibilities",
+    "Quantify status reporting cadence at HSBC (weekly burn-rate reports, executive reviews) to mirror the steering committee reporting requirement",
+    "Reframe Hapag-Lloyd sprint coordination using programme planning language: dependency tracking, milestone ownership, cross-team delivery",
+    "Explicitly surface any WBS or structured scheduling experience, even if informal, since the JD uses this terminology directly",
+    "If a formal PM certification (PMP, PRINCE2, IPMA) is achievable short-term, flag it; otherwise emphasise structured governance methodology as a substitute signal",
+    "Neutralise the FinTech/digital framing where possible and use domain-agnostic programme management language to reduce perceived domain mismatch",
+    "Highlight B1 German and willingness to work in Bremen as practical fit signals for this location-specific role"
+  ],
+  "score_rationale": "Candidate has solid PMO foundations — governance, risk escalation, C-level reporting, multi-stakeholder coordination — that align with the role's operational core. Primary deductions: (1) role targets engineering/technical PMO in an industrial or Aerospace/Defense context; candidate has no engineering domain background; (2) WBS and formal proposal/bid management are not evidenced in the CV; (3) no formal PM certification (PMP/PRINCE2/IPMA) — Power BI cert does not satisfy Zusatzqualifikationen im Projektmanagement. Score 52 reflects meaningful process-level overlap but a significant domain depth gap.",
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

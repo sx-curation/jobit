@@ -1,0 +1,46 @@
+{
+  "job_id": "4385360265",
+  "title": "Senior Product Data Analyst",
+  "company": "Qonto",
+  "location": "Berlin, Germany (Hybrid)",
+  "url": "https://www.linkedin.com/jobs/view/4385360265/",
+  "posted": "1 day ago",
+  "match_score": 45,
+  "matched_skills": [
+    "A/B testing framework design",
+    "User behavior and funnel analysis",
+    "Stakeholder management and communication",
+    "English fluency (C1)",
+    "Data quality and tracking QA (maps to telemetry setup)"
+  ],
+  "missing_skills": [
+    "SQL — not mentioned anywhere in CV (hard requirement)",
+    "Snowflake or modern data warehouse — not mentioned",
+    "Amplitude or Mixpanel — 4+ years hard requirement",
+    "Metabase experience",
+    "Frontend/backend event blending and telemetry setup"
+  ],
+  "key_requirements": [
+    "Highly proficient complex SQL — non-negotiable",
+    "4+ years with product analytics platforms: Amplitude or Mixpanel",
+    "Snowflake, Metabase, Cursor data stack",
+    "Product experimentation: A/B testing from design to impact measurement",
+    "User journey and funnel analysis — deep product domain",
+    "Fluent English"
+  ],
+  "cv_highlights": [
+    "Funnel & behavioural analysis (Hapag-Lloyd, Moli Media)",
+    "A/B testing & experiment design",
+    "C-level data storytelling and stakeholder management (HSBC)",
+    "Google Looker Studio (adjacent to Looker/Metabase)",
+    "Data quality & QA, sprint reporting (Hapag-Lloyd)",
+    "Cross-functional ownership mindset"
+  ],
+  "gaps": [
+    "SQL not listed anywhere — critical blocker",
+    "No Amplitude or Mixpanel experience",
+    "No Snowflake or modern data warehouse background",
+    "No product analytics (SaaS product domain) experience"
+  ],
+  "recommendation": "Moderate match on methodology (funnel analysis, A/B testing, stakeholder communication), but critical technical gaps in SQL, Amplitude/Mixpanel, and Snowflake. Role is product-domain focused requiring specific tooling the CV doesn't demonstrate."
+}

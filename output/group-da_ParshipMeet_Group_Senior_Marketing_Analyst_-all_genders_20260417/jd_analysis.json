@@ -1,0 +1,63 @@
+{
+  "job_id": "st_07244229",
+  "title": "Senior Marketing Analyst (all genders)",
+  "company": "ParshipMeet Group",
+  "match_score": 42,
+  "summary": "Strong conceptual fit in funnel/cohort analytics and BI reporting, but critical gaps in SQL, Python/R, and app/web tracking make this a stretch for the senior-level technical bar.",
+  "key_requirements": [
+    "5+ years experience as Marketing Analyst / Growth Analyst / BI Analyst (required)",
+    "SQL — very good proficiency (required)",
+    "BI tools: Looker, Tableau, or Power BI (required)",
+    "Web and app marketing tracking: GA, event tracking, attribution (required)",
+    "Python and/or R for advanced analysis and forecasting (required)",
+    "Deep understanding of Growth and Performance Marketing (Paid, CRM, Lifecycle) (required)",
+    "English — very good written and spoken (required)",
+    "Marketing attribution models knowledge (bonus)",
+    "Experience in data-driven scale-up / digital / tech environment (bonus)",
+    "German — good written and spoken (bonus)"
+  ],
+  "matched_skills": [
+    "Power BI (Microsoft Certified PL-300)",
+    "Google Looker Studio (partial Looker match)",
+    "Funnel and conversion analysis",
+    "Cohort analysis",
+    "A/B testing and experiment design",
+    "Campaign ROI analytics",
+    "KPI framework design and dashboard development",
+    "Attribution analysis (conceptual and applied)",
+    "Data quality and tracking QA",
+    "Stakeholder data storytelling / C-level communication",
+    "English C1",
+    "German B1+ (bonus — partial)"
+  ],
+  "missing_skills": [
+    "SQL (not listed in tools or experience)",
+    "Python or R (not evidenced anywhere)",
+    "GA / Google Analytics hands-on experience",
+    "App event tracking and tracking setup ownership",
+    "5+ years in a dedicated analytics role (candidate has ~4 years mixed marketing + analytics)",
+    "Looker (enterprise) — candidate has Looker Studio only",
+    "Scale-up or consumer tech/dating-app domain experience"
+  ],
+  "recommended_emphasis": [
+    "Highlight Power BI certification and dashboard ownership at HSBC (budget variance, burn-rate reports to C-suite)",
+    "Emphasise A/B testing and experiment design experience from CV",
+    "Lead with cohort analysis, funnel analytics, and attribution work across multiple roles",
+    "Frame Hapag-Lloyd funnel and behavioural analysis as growth analytics experience",
+    "Mention Qlik Sense and SAP Analytics to broaden BI tool breadth",
+    "If any SQL or Python exposure exists (even coursework), surface it explicitly"
+  ],
+  "language_requirement": "English (very good, required); German (good, bonus)",
+  "location_notes": "Hamburg / Dresden / Berlin — candidate based in Luneburg, Hamburg is commutable",
+  "risk_flags": [
+    "SQL is listed as 'sehr gute Kenntnisse' required — no SQL evidence in CV is a hard blocker",
+    "Python/R required for modelling and forecasting — not evidenced in CV",
+    "Role title is Senior with 5+ year requirement — candidate experience level may not meet bar",
+    "App marketing tracking ownership not evidenced — key technical requirement for this team"
+  ],
+  "company_info": {
+    "size": "501–1,000",
+    "size_source": "jd_text",
+    "size_raw": "mehr als 500 Mitarbeitenden"
+  }
+}

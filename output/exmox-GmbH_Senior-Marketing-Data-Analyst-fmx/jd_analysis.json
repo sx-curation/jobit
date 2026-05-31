@@ -1,0 +1,63 @@
+{
+  "job_id": "4375700660",
+  "company": "exmox GmbH",
+  "title": "Senior Marketing Data Analyst (f/m/x)",
+  "url": "https://www.linkedin.com/jobs/view/4375700660/",
+  "posted_date": "",
+  "match_score": 33.0,
+  "required_skills": [
+    "4+ years experience in marketing analytics, particularly mobile performance marketing",
+    "Strong SQL and Python for analysis",
+    "Mobile gaming / app experience preferred",
+    "Attribution and incrementality analysis (MMP, SKAN)",
+    "Statistical modelling for campaign optimization",
+    "BI dashboarding and automated reporting"
+  ],
+  "bonus_skills": [
+    "Product and tech team collaboration",
+    "Data Engineering partnership",
+    "ROAS, CAC optimization expertise"
+  ],
+  "matched_skills": [
+    "Marketing analytics mindset and KPI reporting",
+    "Campaign performance analysis and ROAS measurement (IPC role)",
+    "Power BI (PL-300) for BI dashboarding",
+    "Cross-functional collaboration (product, tech teams)",
+    "ROI analysis and data-driven decision-making"
+  ],
+  "missing_skills": [
+    "SQL — hard requirement not met",
+    "Python — hard requirement not met",
+    "Mobile gaming industry experience",
+    "MMP experience (AppsFlyer, Adjust, SKAN)",
+    "Mobile performance marketing (CPI, LTV, UA campaigns)"
+  ],
+  "core_responsibilities": [
+    "Partner with marketing teams to define KPIs and solve strategic challenges",
+    "Build and maintain automated dashboards for marketing decisions",
+    "Use SQL, Python, and statistical modeling for campaign and audience optimization",
+    "Analyse user acquisition, retention, and market trends",
+    "Ensure accuracy and integrity of marketing data across channels"
+  ],
+  "culture_keywords": [
+    "growth",
+    "hyper-competitive",
+    "mobile gaming",
+    "data-driven",
+    "rewarded UA",
+    "startup"
+  ],
+  "recommended_emphasis": [
+    "SQL and Python are hard requirements — significant gap in CV",
+    "Mobile gaming industry experience strongly preferred — not in CV",
+    "MMP (attribution) experience required — not in CV",
+    "Power BI and ROI analytics are positives but insufficient for this technical role",
+    "Score barely above 30 — consider discussing with user whether to proceed"
+  ],
+  "company_info": {
+    "size": "51-200",
+    "size_source": "jd_text",
+    "size_raw": "exmox GmbH — mobile gaming scale-up"
+  },
+  "application_record": null
+}

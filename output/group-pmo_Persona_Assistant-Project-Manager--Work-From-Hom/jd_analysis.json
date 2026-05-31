@@ -1,0 +1,82 @@
+{
+  "job_id": "4399156470",
+  "title": "Assistant Project Manager (Work From Home)",
+  "company": "Persona",
+  "location": "Remote",
+  "url": "https://www.linkedin.com/jobs/view/4399156470/",
+  "posted": "unknown",
+  "match_score": 72,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "required_skills": [
+    "Fully fluent in English",
+    "Skilled in apps and technology",
+    "Experience with project management tools (Asana, ClickUp, Notion, Monday.com)",
+    "Highly organized and detail-oriented",
+    "Strong written communication skills",
+    "Reliable high-speed internet connection"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Fluent English (stated in CV profile)",
+    "Technology operations and tech stack lifecycle management (direct match to 'skilled in apps and technology')",
+    "Vendor and partner management (direct match to Client and Vendor Management responsibility)",
+    "C-level reporting and data storytelling (matches Reports Generation and Documentation)",
+    "KPI framework design and performance reporting (matches Data Collection and Analysis)",
+    "Cross-functional stakeholder coordination (matches B2B Communication)",
+    "Agile sprint planning and delivery / Scrum (matches Process Optimization and PM tools usage)",
+    "Programme Governance and PMO Operations (matches organized and detail-oriented requirement)"
+  ],
+  "missing_skills": [
+    "Explicit naming of specific PM tools (Asana, ClickUp, Notion, Monday.com) — Boru's CV does not name these tools directly",
+    "No demonstrated 'assistant-level' scoping — all CV experience is mid/senior coordination or PMO"
+  ],
+  "key_requirements": [
+    "Fluent English communication (written and verbal)",
+    "Proficiency with modern project management software (Asana, ClickUp, Notion, Monday.com or equivalents)",
+    "Client and vendor coordination across business units",
+    "Report generation, documentation, and data analysis",
+    "Process optimization mindset",
+    "Remote-work self-sufficiency (reliable internet, async communication)"
+  ],
+  "core_responsibilities": [
+    "B2B communication and stakeholder coordination across client organizations",
+    "Client and vendor management on behalf of tech startup clients",
+    "Data collection, analysis, and reporting",
+    "Documentation and report generation",
+    "Supporting process optimization initiatives"
+  ],
+  "culture_keywords": [
+    "fast-growing technology startups",
+    "remote-first",
+    "global talent",
+    "problem solver",
+    "scale",
+    "Stanford-founded",
+    "VC-backed clients (Sequoia, a16z, Founders Fund)"
+  ],
+  "cv_highlights": [
+    "PMO at HSBC managing USD 8M programme with C-suite reporting — demonstrates senior-level governance and communication",
+    "Project Coordination at Hapag-Lloyd with Agile/Scrum delivery and KPI tracking — directly maps to PM tools and process optimization",
+    "Business Development at ECE Group: project reporting and vendor coordination — maps to vendor management and documentation",
+    "Power BI certified — supports data collection and analysis requirement",
+    "Multilingual (English, German, Chinese, Cantonese) — adds value for global startup clients"
+  ],
+  "gaps": [
+    "Role is 'assistant' level — significantly below Boru's 4+ years of PMO and senior project coordination experience; likely to be perceived as overqualified",
+    "Compensation is likely USD-based global talent arbitrage pricing, not competitive for Germany cost-of-living",
+    "No explicit mention of Asana, ClickUp, Notion, or Monday.com in CV — this is a minor gap since PM tool proficiency is implied",
+    "Persona is a staffing agency, not a direct employer — less stable career trajectory and limited branding benefit"
+  ],
+  "recommended_emphasis": [
+    "Explicitly name PM tools used (even if implied) — add Notion, Jira, or similar to CV skills if accurate",
+    "Frame Hapag-Lloyd and HSBC experience around 'supporting and coordinating' alongside leadership to avoid appearing overqualified",
+    "Highlight remote-work experience and async communication capability",
+    "Emphasize data analysis and reporting outputs (Power BI, KPI dashboards) as concrete deliverables",
+    "Lead with cross-functional coordination and vendor management rather than governance/programme oversight"
+  ],
+  "recommendation": "Weak fit — skills align well technically (score 72), but the role is assistant-level at a staffing agency with likely below-Germany-market compensation. Boru is overqualified in seniority. Only worth pursuing if Boru explicitly wants remote entry-level re-entry or a side engagement; otherwise deprioritize in favor of direct-employer PMO or Project Manager roles."
+}

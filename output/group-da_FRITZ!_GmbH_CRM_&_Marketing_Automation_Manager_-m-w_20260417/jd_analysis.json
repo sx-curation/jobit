@@ -1,0 +1,59 @@
+{
+  "job_id": "st_07077258",
+  "title": "CRM & Marketing Automation Manager (m/w/d), mit internationalem Schwerpunkt",
+  "company": "FRITZ! GmbH",
+  "match_score": 42,
+  "summary": "CRM and email marketing automation role with strong analytical and segmentation overlap with Boru's profile, but requires hands-on CRM tool experience (Klaviyo/HubSpot/Salesforce) and German C1 — both of which are gaps.",
+  "key_requirements": [
+    "Multi-year experience in CRM, email marketing, or marketing automation (required)",
+    "Strategic and operational CRM system build-up and development experience (required)",
+    "Segmentation, automation, and personalisation of email campaigns (required)",
+    "Proficiency with CRM/email tools: CleverReach, Klaviyo, Mailchimp, Salesforce, HubSpot or equivalent (required)",
+    "Strong analytical skills to interpret campaign data and derive optimisations (required)",
+    "A/B testing execution and KPI-based campaign analysis (required)",
+    "German C1 minimum; English B2 minimum (required)",
+    "E-commerce or D2C background preferred (bonus)",
+    "International market focus — cultural and linguistic campaign adaptation (required)"
+  ],
+  "matched_skills": [
+    "A/B testing and experiment design",
+    "Customer segmentation and cohort analysis",
+    "Campaign performance analytics and KPI tracking (IPC, GRG, Moli Media)",
+    "Funnel and conversion analysis",
+    "E-commerce and campaign ROI analytics (Moli Media live-stream e-commerce)",
+    "Multi-market campaign performance monitoring (EMEA, APAC at GRG)",
+    "Cross-functional team coordination and stakeholder reporting",
+    "Data-driven go-to-market strategy support",
+    "International market coverage experience",
+    "English C1 fluency"
+  ],
+  "missing_skills": [
+    "Hands-on CRM platform experience (Klaviyo, HubSpot, Salesforce, Mailchimp, CleverReach)",
+    "Email marketing campaign planning and execution (as primary function)",
+    "Marketing automation workflow design (welcome, reactivation, upselling sequences)",
+    "German C1 proficiency (Boru is B1+)",
+    "E-commerce or D2C industry experience in a CRM context",
+    "Server-side or technical CRM architecture / system build-up experience"
+  ],
+  "recommended_emphasis": [
+    "A/B testing and experiment design capability",
+    "Customer segmentation models developed at IPC for B2B verticals",
+    "Campaign ROI analytics and KPI framework design across multiple campaigns",
+    "E-commerce funnel and audience analytics from Moli Media (live-stream e-commerce, 4,000+ attendees)",
+    "Multi-market campaign performance experience (EMEA, APAC) — aligns with international focus",
+    "Data quality and tracking QA — relevant to CRM data integrity"
+  ],
+  "language_requirement": "German C1 minimum required — Boru's B1+ is below threshold; this is a stated mandatory requirement",
+  "location_notes": "Berlin, hybrid with several home-office days per week; Boru is in Lüneburg — manageable with hybrid model but relocation may be preferred",
+  "risk_flags": [
+    "German C1 required — Boru is B1+, a gap of at least one full proficiency level",
+    "No hands-on experience with any named CRM/email automation platforms (Klaviyo, HubSpot, Salesforce, etc.)",
+    "Role requires multi-year CRM-specific experience as primary function — Boru's CRM exposure is incidental",
+    "No email campaign creation or automation workflow ownership in CV"
+  ],
+  "company_info": {
+    "size": "251–1,000",
+    "size_source": "jd_text",
+    "size_raw": "900 Mitarbeitenden"
+  }
+}

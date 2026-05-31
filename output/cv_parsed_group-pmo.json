@@ -1,0 +1,137 @@
+{
+  "name": "Boru Lai",
+  "email": "Leonlai0524@outlook.com",
+  "phone": "+49 15236845456",
+  "location": "Lüneburg, Germany",
+  "linkedin": "https://www.linkedin.com/in/leon-lai92/",
+  "summary": "Technology operations / project management professional with 4+ years of international experience spanning shipping, FinTech, IoT, and e-commerce. Proven track record in programme governance, vendor management, budget tracking, and cross-functional stakeholder coordination at global organisations including Hapag-Lloyd and HSBC. Microsoft Power BI Certified (PL-300). Fluent in English, German, Chinese, and Cantonese. Based in Germany, available immediately.",
+  "skills": [
+    "Programme Governance & PMO Operations",
+    "Budget tracking & cost optimisation (USD 8M programme)",
+    "Cross-functional stakeholder coordination",
+    "C-level reporting & data storytelling",
+    "Risk escalation & prioritisation management",
+    "Agile sprint planning & delivery (Scrum)",
+    "Technology operations & tech stack lifecycle management",
+    "Vendor & partner management",
+    "KPI framework design & performance reporting",
+    "Go-to-market strategy support",
+    "Internal communications & hybrid event management",
+    "Multi-market coverage (EMEA, APAC)"
+  ],
+  "experience": [
+    {
+      "company": "Hapag-Lloyd AG",
+      "sector": "Shipping / Logistics",
+      "title": "Working Student in Project Coordination Customer Experience",
+      "duration": "2024 – 2025",
+      "bullets": [
+        "Technology Operations Support: Coordinated cross-functional deliverables and managed operational dependencies across agile sprints; served as central coordination point between project teams, stakeholders, and product owners.",
+        "KPI & Performance Reporting: Analysed customer journey and user research data; translated findings into structured executive sprint review reports escalated to senior stakeholders.",
+        "Governance & Documentation: Maintained and consolidated internal booking reports; provided ad-hoc documentation support including presentation preparation and meeting facilitation.",
+        "Stakeholder & Agile Delivery: Participated in sprint ceremonies (planning, stand-ups, retrospectives); coordinated internal communications for feature releases and product publications."
+      ]
+    },
+    {
+      "company": "Hongkong and Shanghai Banking Corporation Limited (HSBC)",
+      "sector": "FinTech / Banking",
+      "title": "Project Management Officer (PMO) — Platform Strategy Dept.",
+      "duration": "2021 – 2022",
+      "bullets": [
+        "Budget & Financial Governance: Owned financial performance tracking across a USD 8M digital transformation programme; built multi-dimensional budget variance dashboards and weekly burn-rate reports escalated to C-suite.",
+        "Technology Programme Coordination: Served as central operational interface across Product, Engineering, Marketing, and C-suite; managed programme status, risk escalation, and prioritisation decisions across 6 workstreams.",
+        "Stakeholder Data Storytelling: Translated complex programme data into structured insight narratives that drove investment and prioritisation decisions at executive reviews.",
+        "Hybrid Events & Internal Comms: Planned and delivered hybrid town hall events for 300+ attendees; managed run-of-show, speaker coordination, produced company-wide commercial video/newsletters."
+      ]
+    },
+    {
+      "company": "ECE Group Hamburg",
+      "sector": "Marketplace / Real Estate",
+      "title": "Working Student in Business Development",
+      "duration": "2024",
+      "bullets": [
+        "Market & Competitive Intelligence: Conducted competitive analysis and market sizing across automotive and furniture retail segments; packaged findings into executive-ready reports supporting strategic channel prioritisation decisions.",
+        "Project Reporting & Optimisation: Regularly updated project data to monitor progress and drafted periodic progress reports; optimised project-related spreadsheets to enhance automation and improve operational efficiency.",
+        "Vendor & Stakeholder Coordination: Managed scheduling and logistics coordination for client visits and cross-team meetings within the AC Asia Business department."
+      ]
+    },
+    {
+      "company": "Intelligent Power Corporation Limited",
+      "sector": "IoT / IT",
+      "title": "Marketing Manager",
+      "duration": "2020",
+      "bullets": [
+        "Go-to-Market & Campaign Operations: Developed and executed B2B GTM strategy across 4 product launches; event activations and sales collateral contributed to 4.6M CNY in signed contracts.",
+        "Vendor & Partner Management: Managed external vendors and channel partners; developed SOPs and training materials standardising GTM delivery processes across the organisation.",
+        "Performance Analytics & Reporting: Tracked and reported marketing KPIs across campaigns; ROI analysis evidenced direct event-to-revenue impact; built recurring competitor monitoring reports informing product positioning."
+      ]
+    },
+    {
+      "company": "GRG Banking Corporation Limited",
+      "sector": "ATM Manufacturing",
+      "title": "Product Manager",
+      "duration": "2019",
+      "bullets": [
+        "Go-To-Market Strategy & Product Operations: Defined and executed go-to-market plans across 6 product lines; aligned Marketing, Sales, and Engineering on launch timelines, positioning, and channel strategy.",
+        "Trade Fair & Client Engagement: Delivered product demonstrations and pre-sales support to 100+ B2B clients at industry trade fairs; coordinated lead capture supporting the sales pipeline.",
+        "Portfolio Gap Analysis: Identified portfolio gaps across product lines; coordinated with engineering and sales teams to define development priorities and address unmet customer needs."
+      ]
+    },
+    {
+      "company": "Moli Media Corporation Limited",
+      "sector": "E-commerce / Live-stream Agency",
+      "title": "Marketing Specialist",
+      "duration": "2018",
+      "bullets": [
+        "Large-Scale Event Operations: Planned and delivered corporate live-stream events for 4,000+ attendees; oversaw venue management, vendor negotiation, run-of-show, digital production, and live-event logistics end-to-end.",
+        "KOL & Partnership Coordination: Managed KOL and corporate partner relationships; curated influencer participation across digital and live-event channels maximising audience engagement and brand reach.",
+        "ROI & Audience Analytics: Analysed post-event operational and audience data; delivered structured insight reports to senior management improving targeting and format decisions for subsequent campaigns."
+      ]
+    }
+  ],
+  "student_consulting": [
+    {
+      "organization": "VfB Stuttgart",
+      "location": "Lüneburg & Stuttgart",
+      "bullets": [
+        "KPI Framework Design: Developed an impact measurement framework and cost-benefit tracking methodology for sustainability projects; presented findings and recommendations to club management.",
+        "Data-Driven Post-Event Evaluation: Delivered structured analysis enabling evidence-based post-event evaluation across the club's sustainability programme."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master of Management & Entrepreneurship",
+      "school": "Leuphana University",
+      "year": "2022 – 2025"
+    },
+    {
+      "degree": "Master of Public Relations and Advertising",
+      "school": "Shih Hsin University",
+      "year": "2015 – 2018"
+    },
+    {
+      "degree": "Bachelor of Management Administration",
+      "school": "South China University of Technology",
+      "year": "2011 – 2015"
+    }
+  ],
+  "tools": [
+    "Power BI (Microsoft Certified: Power BI Data Analyst Associate PL-300)",
+    "MS Excel",
+    "Google Looker Studio",
+    "JIRA",
+    "Confluence",
+    "MS PowerPoint",
+    "AI — ChatGPT / Claude"
+  ],
+  "certifications": [
+    "Microsoft Certified: Power BI Data Analyst Associate (PL-300)"
+  ],
+  "languages": [
+    {"language": "English", "level": "C1"},
+    {"language": "German", "level": "B1"},
+    {"language": "Chinese", "level": "C2"},
+    {"language": "Cantonese", "level": "C2"}
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "job_id": "4401960402",
+  "company": "AMBOSS",
+  "title": "Performance Marketing Manager",
+  "url": "https://www.linkedin.com/jobs/view/4401960402/",
+  "posted_date": "",
+  "_source": "linkedin",
+  "match_score": 52,
+  "required_skills": [
+    "3+ years performance marketing experience (SEM, paid social, paid mobile)",
+    "Budget management for paid acquisition",
+    "Attribution modelling",
+    "Cohort analysis",
+    "Funnel metrics analysis",
+    "Google Ads",
+    "Meta Ads Manager",
+    "Apple Search Ads",
+    "SQL (plus)",
+    "English fluency"
+  ],
+  "bonus_skills": [
+    "SQL knowledge",
+    "German language"
+  ],
+  "matched_skills": [
+    "Attribution modelling",
+    "Cohort analysis",
+    "A/B testing & experimentation",
+    "Customer segmentation",
+    "Funnel analysis",
+    "SQL",
+    "Marketing analytics tools (GA4, Looker Studio)",
+    "English fluency (C1)",
+    "German (B1 — meets plus requirement)",
+    "Data dashboards & reporting",
+    "Cross-channel marketing analytics",
+    "Go-to-market strategy execution",
+    "KPI reporting & performance analysis"
+  ],
+  "missing_skills": [
+    "Hands-on paid media platform management (Google Ads, Meta Ads Manager, Apple Search Ads)",
+    "SEM / paid search campaign execution",
+    "Paid social campaign execution",
+    "Paid mobile campaigns",
+    "Creative strategy development (ad copy, visuals, landing pages)",
+    "CAC / ROAS / LTV optimisation in a paid media context",
+    "Budget ownership for paid acquisition at scale"
+  ],
+  "core_responsibilities": [
+    "Plan, execute, and optimise paid media campaigns across Google Ads, Meta, YouTube, Apple Search, LinkedIn",
+    "Manage and optimise campaign budgets to hit CAC, ROAS, and LTV targets",
+    "Perform in-depth performance analysis: attribution, incrementality, audience segmentation, funnel analysis",
+    "Develop and test creative strategies including ad copy, visuals, and landing pages",
+    "Collaborate with analytics, product, and growth teams to scale acquisition"
+  ],
+  "culture_keywords": [
+    "creativity",
+    "experimentation",
+    "results-driven",
+    "bias toward experimentation",
+    "cross-functional collaboration",
+    "scale what works, kill what doesn't",
+    "growth mindset",
+    "copilot for medical professionals",
+    "international"
+  ],
+  "recommended_emphasis": [
+    "Attribution modelling and cohort analysis experience — directly matches required analytical skills",
+    "A/B testing and experimentation mindset — aligns with the company's bias-toward-experimentation culture",
+    "SQL and GA4/Looker Studio proficiency — addresses the data/dashboard requirement",
+    "International marketing experience (4+ years, multi-country context) — relevant to AMBOSS's 180+ country footprint",
+    "KPI reporting and ROI analysis from Intelligent Power role — demonstrates accountability to acquisition metrics",
+    "Cross-channel marketing analytics — bridges to multi-channel paid media scope",
+    "English fluency (C1) with German (B1) — meets both the required and the bonus language criteria"
+  ],
+  "company_info": {
+    "size": "501–1,000",
+    "size_source": "jd_text",
+    "size_raw": "600+ employees"
+  }
+}

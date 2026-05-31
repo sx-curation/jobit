@@ -1,0 +1,50 @@
+{
+  "job_id": "4422521561",
+  "title": "Project Manager",
+  "company": "Haystack",
+  "location": "Berlin Metropolitan Area",
+  "url": "https://www.linkedin.com/jobs/view/4422521561/",
+  "match_score": 21.4,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Business Transformation Manager",
+  "required_skills": [
+    "Degree or master craftsman qualification in building services or electrical engineering",
+    "Minimum 2 years project management in building services plant construction",
+    "Proven ability to manage cross-trade projects",
+    "Strong negotiation skills and teamwork",
+    "Independent work style and excellent communication skills"
+  ],
+  "bonus_skills": [
+    "Familiarity with CAD software",
+    "Project management tool experience"
+  ],
+  "matched_skills": [
+    "Project management and coordination experience (HSBC, Hapag-Lloyd, ECE Group)",
+    "Cross-functional team collaboration and stakeholder communication",
+    "Budget and timeline monitoring (HSBC programme governance)",
+    "Project management tool proficiency — JIRA, Confluence"
+  ],
+  "missing_skills": [
+    "Building services or electrical engineering degree/qualification",
+    "Building services plant construction project experience",
+    "Cross-trade project management (HVAC, electrical, plumbing etc.)",
+    "CAD software knowledge",
+    "Technical construction industry background"
+  ],
+  "core_responsibilities": [
+    "Lead and coordinate projects in building services engineering sector",
+    "Develop and review technical concepts, plans and tender documents",
+    "Manage and monitor project timelines, budgets and progress",
+    "Collaborate with architects, specialist planners, subcontractors and clients",
+    "Ensure quality assurance and compliance with standards and regulations",
+    "Support bid preparation and cost calculations"
+  ],
+  "recommended_emphasis": [
+    "Project coordination and timeline/budget tracking capabilities (HSBC, Hapag-Lloyd)",
+    "Cross-functional stakeholder management and communication skills",
+    "Vendor coordination experience (IPC, Moli Media)"
+  ],
+  "summary": "Boru scores 21.4 (poor match) as this role requires specialist building services or electrical engineering qualifications and hands-on experience in plant construction project management — a technical domain entirely outside Boru's background. General PM coordination skills are transferable but insufficient to overcome the hard qualification requirement for a technical engineering PM role. Application is not recommended."
+}

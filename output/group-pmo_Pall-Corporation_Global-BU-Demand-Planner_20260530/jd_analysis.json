@@ -1,0 +1,47 @@
+{
+  "job_id": "4390072119",
+  "title": "Global BU Demand Planner",
+  "company": "Pall Corporation",
+  "location": "Bad Kreuznach, Germany or Portsmouth, UK (on-site)",
+  "url": "https://www.linkedin.com/jobs/view/4390072119/",
+  "match_score": 5.0,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Project Controller",
+  "required_skills": [
+    "Proficiency with planning systems (Kinaxis Maestro, SAP, or other APS tools)",
+    "Strong analytical skills for data interpretation and actionable forecasting",
+    "Business acumen and understanding of end-to-end supply chain in global manufacturing",
+    "Bachelor's Degree in Procurement, Supply Chain, Engineering, or relevant field"
+  ],
+  "bonus_skills": [
+    "Kinaxis Maestro Advanced Planning System experience",
+    "RCCA (Root Cause Corrective Actions) and Counter Measures experience"
+  ],
+  "matched_skills": [
+    "Strong analytical skills — demonstrated in budget variance analysis and KPI reporting (HSBC, Hapag-Lloyd)",
+    "Data storytelling and reporting (partial relevance)"
+  ],
+  "missing_skills": [
+    "No supply chain or demand planning experience whatsoever",
+    "No planning systems experience (Kinaxis, SAP APS, or similar)",
+    "No manufacturing or operations context",
+    "No statistical forecasting or demand review (S&OP) experience",
+    "No procurement or supply chain degree background",
+    "No inventory management or forecast accuracy management experience"
+  ],
+  "core_responsibilities": [
+    "Develop and maintain accurate statistical and consensus demand forecast",
+    "Lead demand review process within S&OP",
+    "Identify demand risks and opportunities",
+    "Monitor forecast accuracy and bias",
+    "Translate demand plan into actionable signals for supply planning"
+  ],
+  "recommended_emphasis": [
+    "Do not apply — this role requires specialist supply chain/demand planning expertise the candidate does not have",
+    "The candidate has no S&OP, statistical forecasting, or manufacturing supply chain experience",
+    "Even the analytical skills are of limited relevance given the domain-specific technical requirements"
+  ],
+  "summary": "Match score is 5.0 (poor_match). This is a specialist supply chain demand planning role requiring deep expertise in statistical forecasting, S&OP processes, and planning systems (Kinaxis/SAP). The candidate has no supply chain background, no planning system experience, and no manufacturing context. The only partial overlap is general analytical skills. This role is fundamentally misaligned with the candidate's profile and should not be pursued."
+}

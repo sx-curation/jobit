@@ -1,0 +1,59 @@
+{
+  "job_id": "4409070801",
+  "title": "Strategic Supply Planner (all genders)",
+  "company": "BESTSECRET Group",
+  "location": "Munich, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4409070801/",
+  "match_score": 26.9,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Agile Coach / Scrum Master (Governance Focus)",
+  "required_skills": [
+    "3+ years of experience in planning, trading, analytics or similar role within a commercial environment (e.g. e-commerce, demand or supply planning, retail)",
+    "Strong commercial understanding of key performance drivers: margins, discounting, inventory dynamics",
+    "Highly analytical mindset with ability to translate data into clear business actions",
+    "Strong hands-on Excel skills; ability to independently analyse large and complex datasets",
+    "Practical experience with Power BI, SQL or similar tools for day-to-day work",
+    "Ability to structure problems, build business cases, and translate analysis into commercial recommendations",
+    "Strong stakeholder management skills with confidence to challenge and influence decision-making",
+    "Ability to operate in fast-paced environment with multiple planning cycles"
+  ],
+  "bonus_skills": [
+    "Experience in demand or supply planning specifically",
+    "Fashion/luxury off-price retail knowledge"
+  ],
+  "matched_skills": [
+    "Power BI (PL-300 certified) — satisfies Power BI tool requirement",
+    "Strong Excel skills — satisfies Excel requirement",
+    "Strong stakeholder management: multi-workstream coordination at HSBC, cross-functional interface at Hapag-Lloyd — satisfies stakeholder management requirement",
+    "Analytical mindset: KPI dashboards, budget variance analysis, data storytelling at HSBC — partially satisfies analytical mindset requirement",
+    "E-commerce background (Moli Media, GRG Banking, ECE Group) — weakly satisfies commercial environment experience requirement",
+    "Business case structuring: competitive intelligence, market analysis at ECE Group — very partial match"
+  ],
+  "missing_skills": [
+    "No demand planning or supply planning experience whatsoever",
+    "No inventory management or stock level analysis experience",
+    "No experience with margins, discounting structures, or intake/supply KPIs in a retail context",
+    "No SQL skills — explicitly listed as required tool proficiency",
+    "No forecasting, budgeting, or reforecasting in a retail/trading context",
+    "No fashion, luxury, or off-price retail industry knowledge",
+    "No experience with trading performance analysis or scenario analysis for commercial planning"
+  ],
+  "core_responsibilities": [
+    "Own and drive end-to-end planning cycle including annual budgeting, monthly reforecasts, and weekly performance tracking",
+    "Ensure alignment between top-down targets and bottom-up plans; identify gaps and drive corrective actions",
+    "Analyse trading and supply performance; translate data into actionable recommendations for growth, profitability, and inventory health",
+    "Deliver accurate forecasts across key supply KPIs (intake, discounting, margins, inventory levels)",
+    "Drive short-term and long-term planning decisions through scenario analysis and performance insights",
+    "Partner with division teams to challenge assumptions and improve forecast quality",
+    "Continuously improve planning frameworks, tools and processes"
+  ],
+  "recommended_emphasis": [
+    "This role is not suitable for this candidate — do not apply",
+    "Supply planning is a domain-specific discipline requiring experience with demand forecasting, inventory dynamics, and retail trading KPIs — none of which are in the candidate's background",
+    "The Power BI certification is a genuine asset but insufficient to compensate for the planning domain and SQL gaps",
+    "The role requires operating in weekly/monthly trading cycles with commercial targets — fundamentally different from programme governance"
+  ],
+  "summary": "Poor match at 26.9%. This is a supply chain planning role requiring 3+ years of demand/supply planning, trading analytics, or retail inventory management experience alongside SQL skills and commercial retail KPI knowledge. While the candidate's Power BI certification and analytical background provide partial tool-level alignment, the core domain expertise in supply planning and retail trading is entirely absent. Not recommended for application."
+}

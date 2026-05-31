@@ -1,0 +1,28 @@
+{
+  "eval_timestamp": "2026-04-07T00:00:00",
+  "folder": "Zenith-Deutschland_Media-Performance-Analyst",
+  "overall": "WARN",
+  "fabrication": {
+    "status": "pass",
+    "issues": []
+  },
+  "word_count": {
+    "status": "PASS",
+    "count": 250,
+    "limit": 400,
+    "language": "English"
+  },
+  "jd_coverage": {
+    "required_hit_rate": 67,
+    "responsibility_hit_rate": 75,
+    "missing_required": [
+      "Paid Social hands-on execution (Meta, TikTok, etc.)",
+      "Programmatic Display / DSP / Retargeting"
+    ],
+    "missing_responsibilities": [
+      "Hands-on ad platform management (Google Ads, Meta Ads Manager)",
+      "Bid-management and campaign optimisation within DSP/SEA tools"
+    ]
+  },
+  "summary": "No fabrication issues detected. Cover Letter is 250 words — well within limit. JD coverage is solid on attribution, tracking/QA, and funnel analysis (matched skills), but required_hit_rate is 67% due to genuine skill gaps in paid media platform execution (Paid Social, Programmatic, SEA, Bid-Management) which cannot be added without fabrication. WARN issued for coverage shortfall on platform-specific requirements."
+}

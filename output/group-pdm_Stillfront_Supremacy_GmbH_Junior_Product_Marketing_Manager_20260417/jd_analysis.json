@@ -1,0 +1,68 @@
+{
+  "job_id": "st_93c634df",
+  "title": "Junior Product Marketing Manager",
+  "company": "Stillfront Supremacy GmbH",
+  "location": "Hamburg",
+  "url": "https://www.stepstone.de/stellenangebote--Junior-Product-Marketing-Manager-Hamburg-Stillfront-Supremacy-GmbH--13737688-inline.html",
+  "match_score": 52,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "summary": "Candidate brings solid B2B product marketing fundamentals (GTM strategy, cross-functional collaboration, project management) that partially transfer to this role. However, the position is highly specialized in mobile app store operations and gaming live-ops, areas where the candidate has no demonstrated experience. The seniority fit is reasonable given the 'Junior' title, but the domain gap is significant.",
+  "required_skills": [
+    "Mobile gaming passion/experience",
+    "App store optimization or store merchandising",
+    "Strong English communication",
+    "Project management tools",
+    "Cross-functional collaboration",
+    "Creative writing skills"
+  ],
+  "bonus_skills": [
+    "German language",
+    "B2B or B2C marketing experience"
+  ],
+  "matched_skills": [
+    "Strong English communication (C1)",
+    "Project management tools (JIRA, Confluence, Agile/Scrum/SAFe)",
+    "Cross-functional collaboration (documented across multiple roles)",
+    "B2B marketing experience (4+ years, GTM strategy, product positioning)",
+    "German language (B1+)"
+  ],
+  "missing_skills": [
+    "App store optimization (ASO) or store merchandising — no evidence in CV",
+    "Mobile gaming industry experience or demonstrated passion",
+    "In-App Event planning and publishing (Apple App Store / Google Play)",
+    "Live-ops marketing or gaming-specific promotional experience",
+    "Creative copywriting for consumer-facing game content"
+  ],
+  "core_responsibilities": [
+    "Own Store In-App Events end-to-end across Apple App Store and Google Play",
+    "Plan, create, and publish Store In-App Events aligned with live-ops and product updates",
+    "Partner cross-functionally with Product, Live Ops, and Creative teams",
+    "Support broader go-to-market execution",
+    "Shape app store presence and ensure consistent, impactful messaging"
+  ],
+  "culture_keywords": [
+    "high-quality strategy games",
+    "live-ops",
+    "cross-functional",
+    "impactful messaging",
+    "mobile gaming"
+  ],
+  "recommended_emphasis": [
+    "Highlight any personal interest or experience in mobile gaming, even casual, to address the passion requirement",
+    "Frame GTM execution experience as directly transferable to app store go-to-market and launch communication",
+    "Emphasize cross-functional project coordination (Hapag-Lloyd, ECE) to demonstrate ability to work with Product, Creative, and Live Ops teams",
+    "Position JIRA/Confluence and Agile experience prominently to satisfy the project management tools requirement",
+    "Showcase any creative or consumer-facing writing samples from past roles (collateral, demo scripts, trade fair materials)"
+  ],
+  "risk_flags": [
+    "No app store or ASO experience — this is a core job function, not a nice-to-have",
+    "No mobile gaming background; role explicitly states passion for gaming as a requirement",
+    "All prior marketing experience is B2B; this role involves consumer-facing (B2C) store content creation",
+    "Live-ops marketing is a specialized discipline absent from the candidate's profile"
+  ],
+  "_source": "stepstone"
+}

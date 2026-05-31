@@ -1,0 +1,67 @@
+{
+  "job_id": "st_7ac505f4",
+  "title": "Marketing Associate",
+  "company": "ACE Alternatives GmbH",
+  "location": "Berlin",
+  "url": "https://www.stepstone.de/stellenangebote--Marketing-Associate-Berlin-ACE-Alternatives-GmbH--13301590-inline.html",
+  "match_score": 48,
+  "company_size": null,
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  },
+  "summary": "Boru has strong marketing campaign analytics and multi-channel execution experience that aligns with the role's performance-tracking and campaign coordination needs, and her fintech/startup background fits ACE Alternatives' sector focus well. However, the role prioritises content creation, writing, and social media output rather than data analytics, which is where her CV is weighted. The most significant risk is German language: the JD requires Fluent German, while Boru is at B1+, which is likely below the bar.",
+  "required_skills": [
+    "English (Fluent)",
+    "German (Fluent)",
+    "Strong writing and communication skills"
+  ],
+  "bonus_skills": [
+    "Previous internship or experience in marketing",
+    "Interest in startups, VC, or tech"
+  ],
+  "matched_skills": [
+    "English (C1 — functional fluency)",
+    "Marketing campaign experience (4+ years across multiple roles)",
+    "Campaign performance tracking and analytics",
+    "Fintech and startup environment familiarity",
+    "Cross-channel marketing exposure (EMEA/APAC)"
+  ],
+  "missing_skills": [
+    "German fluency (B1+ vs. required Fluent)",
+    "Content writing and social media content creation",
+    "Email newsletter and blog post authoring",
+    "Event coordination",
+    "Brand consistency management"
+  ],
+  "core_responsibilities": [
+    "Plan and execute cross-channel marketing campaigns",
+    "Create and curate content for social media, email newsletters, and blog posts",
+    "Support event coordination and product launch communications",
+    "Maintain brand consistency across all touchpoints",
+    "Track campaign performance and suggest improvements based on insights"
+  ],
+  "culture_keywords": [
+    "entrepreneurial",
+    "fast-paced",
+    "startups",
+    "fintech",
+    "innovation",
+    "dynamic team"
+  ],
+  "recommended_emphasis": [
+    "Highlight campaign performance tracking and ROI analytics experience across multiple marketing roles",
+    "Emphasise fintech and startup exposure (HSBC digital transformation, IoT/FinTech sector experience)",
+    "Showcase any content writing samples, newsletter contributions, or social media work — even if peripheral",
+    "Leverage Master in Management & Entrepreneurship to signal startup mindset alignment",
+    "Quantify cross-channel campaign outcomes (conversion rates, lead funnel results) to demonstrate tangible impact"
+  ],
+  "risk_flags": [
+    "German language gap: JD requires Fluent German; CV shows B1+ — this is likely a hard filter",
+    "Role is associate-level (entry/junior) but candidate has 4+ years of experience — potential overqualification concern",
+    "CV is analytics/data-heavy; JD emphasises writing, content creation, and brand work — skill emphasis mismatch",
+    "In-person Berlin requirement: candidate is based in Lüneburg, relocation not mentioned"
+  ],
+  "_source": "stepstone"
+}

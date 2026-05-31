@@ -1,0 +1,50 @@
+{
+  "job_id": "4362341482",
+  "title": "Marketing Analyst — Fully Remote",
+  "company": "SOFTGAMES",
+  "location": "Germany (Remote)",
+  "url": "https://www.linkedin.com/jobs/view/4362341482/",
+  "posted": "6 days ago",
+  "match_score": 35,
+  "matched_skills": [
+    "Data visualization: Power BI (Microsoft Certified PL-300) + Google Looker Studio",
+    "Cohort analysis and A/B testing methodology",
+    "Bachelor's + two Master's degrees in relevant fields",
+    "English fluency (C1)"
+  ],
+  "missing_skills": [
+    "SQL — no mention anywhere in CV (hard requirement)",
+    "MMP platforms — Adjust, AppsFlyer",
+    "Ad Mediation platforms — Max, LevelPlay",
+    "Mobile ad tech stack / programmatic/DSP knowledge",
+    "Google Ads and Facebook Ads platform expertise",
+    "5+ years experience (CV shows 4+ years)",
+    "Gaming/product company analytics experience",
+    "Python/R for predictive modeling",
+    "Marketing Mix Modeling (MMM)",
+    "Ad Revenue (IAA) waterfall optimization"
+  ],
+  "key_requirements": [
+    "5+ years Marketing/Performance/Growth Analyst experience (B2C or gaming preferred)",
+    "Advanced SQL — non-negotiable",
+    "MMP fluency: Adjust, AppsFlyer",
+    "Mobile ad tech: Ad Mediation, Programmatic/DSP",
+    "Google Ads, Facebook Ads platform expertise",
+    "Tableau/Looker/PowerBI dashboards",
+    "Cohort analysis, A/B testing, statistical analysis"
+  ],
+  "cv_highlights": [
+    "Power BI Microsoft Certified (PL-300), Google Looker Studio",
+    "Cohort analysis and A/B testing & experiment design",
+    "Executive-level dashboard development (HSBC)",
+    "Multi-channel campaign analytics and ROI measurement",
+    "Market segmentation and competitive intelligence"
+  ],
+  "gaps": [
+    "No SQL experience listed anywhere",
+    "No mobile ad tech or MMP (Adjust/AppsFlyer) experience",
+    "No gaming industry background",
+    "No programmatic/DSP or paid media platform experience"
+  ],
+  "recommendation": "Low-moderate match. Strong on analytics methodology and BI tools, but critical gaps in SQL and mobile ad tech stack make this a stretch. Not recommended without SQL skills to demonstrate."
+}

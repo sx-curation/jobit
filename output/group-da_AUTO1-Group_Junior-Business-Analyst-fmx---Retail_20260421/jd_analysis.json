@@ -1,0 +1,61 @@
+{
+  "job_id": "4403967446",
+  "company": "AUTO1 Group",
+  "title": "Junior Business Analyst (f/m/x) - Retail",
+  "url": "https://www.linkedin.com/jobs/view/4403967446/",
+  "posted_date": "2026-04-21",
+  "match_score": 48,
+  "required_skills": [
+    "Excel / G Suite",
+    "Cross-functional & cross-regional communication",
+    "Execution and impact on multi-product initiatives with leadership",
+    "Autonomy and pragmatism"
+  ],
+  "bonus_skills": [
+    "SQL scripting",
+    "Data visualization (Tableau, Power BI or similar)",
+    "Data Build Tools (dbt)"
+  ],
+  "matched_skills": [
+    "Cross-functional team coordination",
+    "C-level data storytelling",
+    "Executive-ready analytical reports",
+    "Dashboard and reporting experience",
+    "Multi-market stakeholder management (EMEA, APAC)",
+    "Project execution with leadership interface (HSBC USD 8M programme)"
+  ],
+  "missing_skills": [
+    "SQL",
+    "Tableau / Power BI",
+    "Data Build Tools (dbt)",
+    "Excel / G Suite (not explicitly stated in CV)",
+    "Retail sales pipeline analytics"
+  ],
+  "core_responsibilities": [
+    "Build automated data solutions providing strategic insights for top management",
+    "Produce reports and dashboards for Product Management and Business teams",
+    "Communicate analyses and technical trade-offs to executives and engineers",
+    "Monitor and control business outcomes for the product team",
+    "Analyze, model, and evaluate Retail Sales pipeline performance across website and partner platforms"
+  ],
+  "culture_keywords": [
+    "hybrid work",
+    "international & diverse (90+ nationalities)",
+    "open culture",
+    "direct communication",
+    "autonomy & pragmatism",
+    "strategic impact"
+  ],
+  "recommended_emphasis": [
+    "Highlight executive-level reporting and dashboard delivery (HSBC, Minth Group) as direct evidence of producing strategic insights for top management",
+    "Emphasize cross-functional and cross-regional stakeholder coordination to address the communication requirement",
+    "Quantify reporting scope: 12 product lines at Minth, USD 8M programme at HSBC",
+    "Mention any Excel or G Suite usage explicitly in experience bullets",
+    "If any SQL or BI tool exposure exists (even coursework), surface it to close the most critical missing skill gap"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": null
+  }
+}

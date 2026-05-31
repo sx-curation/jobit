@@ -1,0 +1,60 @@
+{
+  "job_id": "4399145480",
+  "company": "Harvey Nash",
+  "title": "Senior Business Analyst (m/f/d) Process & Reporting focus",
+  "url": "https://www.linkedin.com/jobs/view/4399145480/",
+  "posted_date": "1 week ago",
+  "match_score": 45,
+  "required_skills": [
+    "Business Analyst experience in transformation projects",
+    "Process design (APQC, BPMN)",
+    "Translate business needs into structured requirements",
+    "Reporting and analytics requirements experience",
+    "Workday or HCM transformation experience",
+    "Understanding of data models and reporting architectures",
+    "Global / cross-regional environment experience"
+  ],
+  "bonus_skills": [],
+  "matched_skills": [
+    "Reporting and analytics requirements experience",
+    "Global / cross-regional environment experience (EMEA, APAC)",
+    "Business Analyst / PMO experience in transformation projects (partial)",
+    "Stakeholder management and cross-functional coordination",
+    "Data quality QA and sprint-based delivery (UAT-adjacent)"
+  ],
+  "missing_skills": [
+    "Process design methodologies (APQC, BPMN, SIPOC)",
+    "Workday / HCM platform experience",
+    "Functional requirements documentation for ERP/HCM systems",
+    "Data model and reporting architecture design",
+    "HC (Human Capital) domain knowledge"
+  ],
+  "core_responsibilities": [
+    "Support design of global HC processes (L3/L4) aligned with Workday; document gaps and regional exceptions using SIPOC and BPMN",
+    "Translate business needs into functional and reporting requirements; ensure alignment between process design, data structures, and reporting needs",
+    "Derive reporting requirements from process design; align with HC stakeholders and Data Warehouse/reporting teams on KPIs, reporting logic, and data models",
+    "Support validation of Workday implementation and reporting outputs; participate in UAT and feedback loops with business stakeholders",
+    "Act as interface between HC business teams, Process & Data workstream, and IT/Reporting teams; facilitate workshops and requirement discussions"
+  ],
+  "culture_keywords": [
+    "exciting environment",
+    "cutting-edge projects",
+    "global brands",
+    "hidden champions",
+    "personal and individual support",
+    "Nash direct team",
+    "quick feedback"
+  ],
+  "recommended_emphasis": [
+    "Highlight data quality QA work at Hapag-Lloyd as evidence of structured requirements validation and UAT-adjacent experience",
+    "Frame HSBC PMO role around cross-functional requirements gathering and reporting across 6 workstreams",
+    "Emphasize experience working in global/cross-regional environments (EMEA, APAC at Minth Group)",
+    "Position KPI framework design and executive dashboards as direct relevance to reporting requirements engineering",
+    "Acknowledge Workday gap explicitly if cover letter is written; instead lean on transferable HCM-adjacent analytics experience"
+  ],
+  "company_info": {
+    "size": null,
+    "size_source": "unavailable",
+    "size_raw": "End client described as 'famous company in the semiconductor sector' — no headcount figure in JD; match_score 45 < 50, LinkedIn lookup skipped"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "job_id": "4389750861",
+  "company": "EPODEX GmbH",
+  "title": "Senior Marketing Analyst (m/w/d) – E-Commerce & Online Marketing",
+  "url": "https://www.linkedin.com/jobs/view/4389750861/",
+  "posted_date": "",
+  "match_score": 56.1,
+  "required_skills": [
+    "5+ years experience in data-driven online marketing analytics",
+    "Performance Marketing Analytics (SEA, Paid Social, Display, Affiliate)",
+    "Web Analytics tools (Google Analytics 4, Adobe Analytics)",
+    "Tag Management Systems (GTM, Tealium)",
+    "Attribution modelling / Multi-Touch Attribution",
+    "BI tools (Looker, Tableau, Power BI)",
+    "SQL",
+    "A/B Testing and statistical significance",
+    "German C1+",
+    "Strong communication and presentation skills"
+  ],
+  "bonus_skills": [
+    "Python or R for advanced analysis",
+    "E-Commerce environment experience",
+    "CDP systems or CRM platforms"
+  ],
+  "matched_skills": [
+    "A/B testing and experiment design",
+    "Funnel and conversion analysis",
+    "Multi-touch attribution (HSBC programme analytics)",
+    "Power BI (certified PL-300), Looker Studio",
+    "E-commerce background (Moli Media)",
+    "C-level data storytelling",
+    "Campaign performance analytics (ROAS, KPIs)"
+  ],
+  "missing_skills": [
+    "Google Analytics 4 / Adobe Analytics",
+    "Tag Management Systems (GTM / Tealium)",
+    "SQL",
+    "German C1 (CV shows B1+)",
+    "5 years experience (CV states 4+)"
+  ],
+  "core_responsibilities": [
+    "Tracking setup oversight and UTM taxonomy management",
+    "Campaign performance analysis across all channels (ROAS, CPM, CPC, CTR)",
+    "Conversion and funnel analysis by channel/device/audience",
+    "Multi-touch attribution model design and maintenance",
+    "A/B and multivariate testing conception and evaluation"
+  ],
+  "culture_keywords": [
+    "data-driven", "growth", "Wachstumsstrategie", "direct reporting to management", "ownership"
+  ],
+  "recommended_emphasis": [
+    "Lead with A/B testing, funnel analysis, and attribution experience",
+    "Highlight Power BI (PL-300 certified) and Looker Studio as BI tools match",
+    "Frame Moli Media e-commerce funnel work prominently",
+    "Frame HSBC budget analytics as multi-touch attribution analogue",
+    "Acknowledge SQL gap — do not fabricate SQL experience",
+    "State German as B1+, do not overstate"
+  ],
+  "company_info": {
+    "size": "51-200",
+    "size_source": "jd_text",
+    "size_raw": "51–200 employees"
+  }
+}

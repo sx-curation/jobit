@@ -1,0 +1,122 @@
+{
+  "job_id": "st_15da3d17aad8cd02",
+  "company": "Amaseo GmbH",
+  "title": "Performance Marketing Consultant (m/w/d)",
+  "location": "Hamburg",
+  "source": "stepstone",
+  "url": "https://www.stepstone.de/stellenangebote--Performance-Marketing-Consultant-m-w-d-Hamburg-Amaseo-GmbH--13109502-inline.html",
+  "company_size": "small_startup",
+  "seniority_level": "entry_level",
+  "required_skills": [
+    {
+      "skill": "Online Marketing & data-driven working",
+      "original": "Begeisterung für Online-Marketing und datengetriebenes Arbeiten",
+      "hit": true,
+      "evidence": "Campaign performance optimisation, E-commerce & campaign ROI analytics, data storytelling in CV"
+    },
+    {
+      "skill": "Performance Marketing / SEA experience",
+      "original": "Erste praktische Erfahrung im Bereich Performance Marketing oder SEA",
+      "hit": true,
+      "evidence": "Campaign Analytics & ROI Measurement at IPC; Multi-market Campaign Performance at GRG Banking; E-commerce Funnel & Audience Analytics at Moli Media — note: candidate is overqualified for entry-level requirement"
+    },
+    {
+      "skill": "Analytical thinking, self-motivation, teamwork",
+      "original": "Analytisches Denken, Eigenmotivation & Teamfähigkeit",
+      "hit": true,
+      "evidence": "A/B testing & experiment design, Funnel & conversion analysis, Cross-functional team coordination listed in skills"
+    },
+    {
+      "skill": "Very good German language skills",
+      "original": "Sehr gute Deutschkenntnisse",
+      "hit": false,
+      "evidence": "Candidate has German B1+ — JD requires 'sehr gute' (B2/C1 level); this is a gap"
+    }
+  ],
+  "preferred_skills": [],
+  "core_responsibilities": [
+    {
+      "responsibility": "Planning and managing digital campaigns (SEA, Google Ads, Amazon Ads)",
+      "original": "Verantwortung für die Planung und Steuerung digitaler Kampagnen (SEA, Google Ads, Amazon Ads)",
+      "hit": true,
+      "evidence": "Campaign Analytics & ROI Measurement, Multi-market Campaign Performance — note: specific SEA/Google Ads/Amazon Ads platform tools not explicitly listed"
+    },
+    {
+      "responsibility": "Performance data analysis",
+      "original": "Analyse von Performance-Daten",
+      "hit": true,
+      "evidence": "Funnel Optimisation & Lead Analytics, E-commerce & campaign ROI analytics, Marketing KPI framework design"
+    },
+    {
+      "responsibility": "Deriving optimization measures",
+      "original": "Ableitung konkreter Optimierungsmaßnahmen",
+      "hit": true,
+      "evidence": "Campaign performance optimisation, A/B testing & experiment design"
+    },
+    {
+      "responsibility": "Collaboration with clients on strategy development",
+      "original": "Zusammenarbeit mit unseren Kund*innen bei der Entwicklung individueller Strategien",
+      "hit": true,
+      "evidence": "Cross-functional team coordination, Go-to-market strategy support, C-level data storytelling"
+    },
+    {
+      "responsibility": "Marketing process automation and efficiency improvement",
+      "original": "Unterstützung bei der Automatisierung und Effizienzsteigerung unserer Marketingprozesse",
+      "hit": false,
+      "evidence": "No explicit marketing automation tools (e.g. Google Ads scripts, Amazon Advertising API) mentioned in CV"
+    }
+  ],
+  "scoring": {
+    "required_hits": 3,
+    "required_total": 4,
+    "preferred_hits": 0,
+    "preferred_total": 0,
+    "responsibility_hits": 4,
+    "responsibility_total": 5,
+    "raw": 11.0,
+    "max": 12.0,
+    "match_score": 91.7,
+    "grade": "强匹配",
+    "recommendation": "优先处理，正常生成材料"
+  },
+  "gaps": [
+    {
+      "type": "required",
+      "item": "Very good German language skills (B2/C1)",
+      "candidate_level": "B1+",
+      "severity": "medium",
+      "note": "B1+ is below the 'sehr gute' threshold. Candidate should highlight German usage in professional contexts and any ongoing improvement."
+    },
+    {
+      "type": "responsibility",
+      "item": "Marketing process automation (Google Ads scripts, Amazon Advertising API)",
+      "severity": "low",
+      "note": "No explicit automation tooling mentioned. Candidate could reference project management and efficiency tools (Scrum/SAFe) as adjacent experience."
+    }
+  ],
+  "highlights": [
+    "Multi-role campaign analytics background (B2B and e-commerce) maps directly to core responsibilities",
+    "E-commerce & campaign ROI analytics aligns with Amaseo's Amazon/Google platform focus",
+    "Candidate is overqualified for entry-level requirement — strong asset for role impact, but may raise seniority/salary fit questions",
+    "Power BI and Looker Studio skills strengthen data reporting credibility",
+    "Small startup context suits candidate's cross-functional and self-directed work style"
+  ],
+  "cv_tailoring_hints": [
+    "Emphasize Amazon and Google campaign experience explicitly (e.g., ROI analytics for e-commerce clients)",
+    "Highlight any exposure to SEA or paid search workflows, even indirectly",
+    "Mention German language use in professional settings to partially mitigate the B1+ gap",
+    "Frame startup/agile experience (Scrum, SAFe) as alignment with Start-up-Spirit culture",
+    "Keep CV concise and entry-level-friendly in tone — avoid over-emphasizing seniority to prevent self-pricing out"
+  ],
+  "analyzed_at": "2026-05-28",
+  "match_score": 91.7,
+  "missing_skills": [
+    "Very good German language skills (B2/C1)",
+    "Marketing process automation (Google Ads scripts, Amazon Advertising API)"
+  ],
+  "recommended_emphasis": [
+    "Emphasize Amazon and Google campaign experience explicitly (e.g., ROI analytics for e-commerce clients)",
+    "Highlight any exposure to SEA or paid search workflows, even indirectly",
+    "Mention German language use in professional settings to partially mitigate the B1+ gap"
+  ]
+}

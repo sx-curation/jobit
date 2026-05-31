@@ -1,0 +1,50 @@
+{
+  "job_id": "4382947321",
+  "company": "SThree (client: Fashion brand)",
+  "title": "Market Research (Freelancer — Web Scraping & Lead Research)",
+  "url": "https://www.linkedin.com/jobs/view/4382947321/",
+  "posted_date": "",
+  "match_score": 15.0,
+  "required_skills": [
+    "Web scraping and data extraction experience",
+    "Lead generation and data research skills",
+    "Structured data preparation (Google Sheets / CSV)",
+    "Experience identifying new partners in fashion/e-commerce marketplaces",
+    "Available ~20 hours/week (freelance project)"
+  ],
+  "bonus_skills": [
+    "E-commerce experience",
+    "Fashion marketplace knowledge (Fashiondays, TikTok Shop, Amazon)"
+  ],
+  "matched_skills": [
+    "Structured data work and research mindset",
+    "E-commerce background (Moli Media)",
+    "Organised data-oriented approach"
+  ],
+  "missing_skills": [
+    "Web scraping technical skills (Python/BeautifulSoup/Scrapy)",
+    "Fashion marketplace experience",
+    "Lead generation / data extraction tools",
+    "Freelance availability"
+  ],
+  "core_responsibilities": [
+    "Web scraping fashion marketplaces (Fashiondays, TikTok Shop, Amazon)",
+    "Identifying relevant fashion brands and sellers",
+    "Structured data preparation in lead database",
+    "Extracting brand/seller information systematically"
+  ],
+  "culture_keywords": [
+    "freelance", "project-based", "fashion", "e-commerce", "remote"
+  ],
+  "recommended_emphasis": [
+    "NOTE: This is a short-term freelance gig requiring web scraping skills — not a full-time role",
+    "Score is well below threshold (30) — strongly recommend skipping",
+    "No technical web scraping background in CV",
+    "Not aligned with career trajectory implied by CV"
+  ],
+  "company_info": {
+    "size": "1,001-5,000",
+    "size_source": "jd_text",
+    "size_raw": "SThree: 7,799 employees (recruitment agency acting as intermediary)"
+  }
+}

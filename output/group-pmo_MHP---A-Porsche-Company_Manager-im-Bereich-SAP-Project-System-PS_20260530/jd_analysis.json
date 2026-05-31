@@ -1,0 +1,52 @@
+{
+  "job_id": "4371002791",
+  "title": "Manager im Bereich SAP Project System (PS) (all genders)",
+  "company": "MHP – A Porsche Company",
+  "location": "Dresden, Saxony, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4371002791/",
+  "match_score": 18.2,
+  "grade": "poor_match",
+  "_source": "linkedin",
+  "_group_id": "group-pmo",
+  "_keyword": "Strategic PMO Lead",
+  "required_skills": [
+    "5+ years of SAP consulting or inhouse consulting experience (Automotive/Manufacturing focus)",
+    "SAP PS module expertise (implementation and application)",
+    "Integration knowledge across FI/CO, SD, MM, PP or PM modules",
+    "Process modelling and optimisation in SAP context",
+    "Professional appearance and presentation experience",
+    "Fluent German and English"
+  ],
+  "bonus_skills": [
+    "SAP PPM or SAP CPM experience",
+    "S/4HANA experience",
+    "Agile project management tool experience"
+  ],
+  "matched_skills": [
+    "Project coordination and stakeholder management (HSBC, Hapag-Lloyd)",
+    "Presentation and reporting for executive audiences (HSBC C-suite, Hapag-Lloyd sprint reviews)",
+    "Structured analytical working style (budget dashboards, KPI frameworks)",
+    "English C1 and German B1"
+  ],
+  "missing_skills": [
+    "SAP PS module hands-on experience",
+    "SAP FI/CO, SD, MM, PP or PM module knowledge",
+    "Automotive or manufacturing industry background",
+    "5+ years SAP consulting track record",
+    "Process modelling expertise in SAP environment",
+    "SAP PPM or CPM knowledge"
+  ],
+  "core_responsibilities": [
+    "Advise clients on SAP PS process implementation and optimisation",
+    "Integration consulting between business and IT within SAP ecosystem",
+    "Assess material flows in manufacturing: MM, PP, SD processes",
+    "Apply new technologies including S/4HANA and agile PM tools",
+    "Flexibly take advisory roles across assessment, design, implementation, testing, rollout and support phases"
+  ],
+  "recommended_emphasis": [
+    "HSBC: Programme coordination across 6 workstreams — closest analogue to cross-module SAP coordination",
+    "Executive reporting and stakeholder communication — relevant to client advisory dimension",
+    "Analytical mindset demonstrated through budget variance dashboards and KPI framework design"
+  ],
+  "summary": "Boru scores 18.2 (poor match) as this is a specialist SAP PS consulting role requiring deep hands-on SAP module experience and automotive/manufacturing industry knowledge — both entirely absent from the CV. The 5-year SAP consulting requirement is a hard filter. General PM and coordination skills do not compensate for the technical SAP depth this role demands. Application is not recommended."
+}

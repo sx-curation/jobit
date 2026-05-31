@@ -1,0 +1,397 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Job Tracker | Kinetic Archive Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@700;800&amp;family=Space+Grotesk:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-bright": "#f8f9fa",
+                      "surface-container-low": "#f3f4f5",
+                      "primary": "#005d8f",
+                      "outline": "#707881",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-dim": "#d9dadb",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#bfc7d1",
+                      "error-container": "#ffdad6",
+                      "surface-container-high": "#e7e8e9",
+                      "on-surface-variant": "#404850",
+                      "inverse-surface": "#2e3132",
+                      "tertiary-fixed-dim": "#ffb690",
+                      "secondary-container": "#6bff8f",
+                      "secondary-fixed-dim": "#4ae176",
+                      "on-primary-fixed": "#001d32",
+                      "on-surface": "#191c1d",
+                      "on-tertiary-fixed-variant": "#783200",
+                      "tertiary-fixed": "#ffdbca",
+                      "on-tertiary-fixed": "#341100",
+                      "inverse-primary": "#93ccff",
+                      "tertiary-container": "#bb5100",
+                      "on-primary-fixed-variant": "#004b74",
+                      "tertiary": "#943f00",
+                      "on-error-container": "#93000a",
+                      "inverse-on-surface": "#f0f1f2",
+                      "secondary": "#006e2f",
+                      "on-secondary-container": "#007432",
+                      "surface-variant": "#e1e3e4",
+                      "surface-tint": "#006398",
+                      "surface-container": "#edeeef",
+                      "on-primary-container": "#f3f7ff",
+                      "error": "#ba1a1a",
+                      "background": "#f8f9fa",
+                      "on-secondary-fixed": "#002109",
+                      "primary-fixed-dim": "#93ccff",
+                      "primary-container": "#0077b5",
+                      "on-primary": "#ffffff",
+                      "surface": "#f8f9fa",
+                      "on-secondary-fixed-variant": "#005321",
+                      "on-tertiary-container": "#fff4f0",
+                      "on-error": "#ffffff",
+                      "surface-container-highest": "#e1e3e4",
+                      "secondary-fixed": "#6bff8f",
+                      "primary-fixed": "#cde5ff",
+                      "on-tertiary": "#ffffff",
+                      "on-background": "#191c1d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "1rem",
+                      "lg": "2rem",
+                      "xl": "3rem",
+                      "full": "9999px"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Space Grotesk"]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .kinetic-gradient {
+            background: linear-gradient(135deg, #005d8f 0%, #0077b5 100%);
+        }
+        .glass-nav {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body min-h-screen">
+<!-- TopNavBar Component -->
+<header class="bg-[#F8F9FA] dark:bg-[#191C1D] backdrop-blur-md bg-opacity-80 flex justify-between items-center w-full px-8 h-20 docked full-width top-0 z-50 fixed glass-nav">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-black font-['Manrope'] text-[#0077B5] dark:text-[#00A0DC]" style="">Job Tracker</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-[#0077B5] dark:text-[#00A0DC] border-b-2 border-[#0077B5] pb-1 font-bold font-['Manrope'] tracking-tight" href="#" style="">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium font-['Inter'] hover:bg-[#F3F4F5] dark:hover:bg-[#2A2D2E] transition-colors duration-300 px-3 py-1 rounded-full" href="#" style="">Applications</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium font-['Inter'] hover:bg-[#F3F4F5] dark:hover:bg-[#2A2D2E] transition-colors duration-300 px-3 py-1 rounded-full" href="#" style="">My CVs</a>
+<a class="text-slate-500 dark:text-slate-400 font-medium font-['Inter'] hover:bg-[#F3F4F5] dark:hover:bg-[#2A2D2E] transition-colors duration-300 px-3 py-1 rounded-full" href="#" style="">Archive</a>
+</div>
+</div>
+<div class="flex items-center gap-4 flex-1 max-w-md mx-8">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" style="">search</span>
+<input class="w-full bg-surface-container-high border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary-container text-sm" placeholder="Search applications..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-[#F3F4F5] transition-colors" style="">
+<span class="material-symbols-outlined text-on-surface-variant" style="">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-[#F3F4F5] transition-colors" style="">
+<span class="material-symbols-outlined text-on-surface-variant" style="">settings</span>
+</button>
+<img alt="Talent Executive Profile" class="w-10 h-10 rounded-full object-cover border-2 border-primary-container" data-alt="Portrait of a professional man in a tailored suit with a confident expression, soft studio lighting, modern corporate aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtlSU4epe-rxTh1Y9Kx4wp-bU4JP5RhBYJ47SRgFttHdlxYU5BNxbGTHplOIGGwPtuf9bytdQXdKpRZtz31lWxP5iJpi8GOU1tlgw2k1YEGHStD6lo-RbiHSmuU2wpBZgtYyqZZEqFGqcTa6BWFHlheQyRm8QTFtyT7vzfBLb_UCo-grjBtq-ynVCz79Bs2bN1xR78uuxr51IHVYA3XxpqbNNzdcX5n8EbFUhkX5fCn_OKFQvHPi9qq6l6hCgQM0mgmwu1SP6iGuM" style="">
+</div>
+</header>
+<main class="pt-28 pb-12 px-8 max-w-[1600px] mx-auto">
+<!-- Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-xs uppercase tracking-widest text-outline" style="">Total Jobs</span>
+<span class="material-symbols-outlined text-primary" style="">assessment</span>
+</div>
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline text-4xl font-extrabold text-on-surface" style="">131</h2>
+<span class="text-secondary text-sm font-medium" style="">+12%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-xs uppercase tracking-widest text-outline" style="">High Match</span>
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+</div>
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline text-4xl font-extrabold text-on-surface" style="">45</h2>
+<span class="font-label text-xs text-outline" style=""><br></span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-xs uppercase tracking-widest text-outline" style="">Likely Match</span>
+<div class="w-3 h-3 rounded-full bg-tertiary-container"></div>
+</div>
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline text-4xl font-extrabold text-on-surface" style="">32</h2>
+<span class="font-label text-xs text-outline" style=""><br></span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<span class="font-label text-xs uppercase tracking-widest text-outline" style="">Developing</span>
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+</div>
+<div class="flex items-baseline gap-2">
+<h2 class="font-headline text-4xl font-extrabold text-on-surface" style="">28</h2>
+<span class="font-label text-xs text-outline" style=""><br></span>
+</div>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-low p-4 rounded-lg mb-8 flex flex-col lg:flex-row gap-8 items-end">
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs uppercase tracking-widest text-outline ml-1" style="">Group Filter</label>
+<div class="flex bg-surface-container-highest p-1 rounded-full">
+<button class="px-6 py-1.5 rounded-full text-sm font-medium bg-surface-container-lowest shadow-sm text-primary" style="">All</button>
+<button class="px-6 py-1.5 rounded-full text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" style="">pdm</button>
+<button class="px-6 py-1.5 rounded-full text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" style="">pmo</button>
+<button class="px-6 py-1.5 rounded-full text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" style="">da</button>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label text-xs uppercase tracking-widest text-outline ml-1" style="">Source Origin</label>
+<div class="flex bg-surface-container-highest p-1 rounded-full">
+<button class="px-6 py-1.5 rounded-full text-sm font-medium bg-surface-container-lowest shadow-sm text-primary" style="">All</button>
+<button class="px-6 py-1.5 rounded-full text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" style="">LinkedIn</button>
+<button class="px-6 py-1.5 rounded-full text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" style="">Stepstone</button>
+</div>
+</div>
+<div class="flex-1 min-w-[200px] flex flex-col gap-4">
+<div class="flex justify-between items-center">
+<label class="font-label text-xs uppercase tracking-widest text-outline ml-1" style="">Score Range</label>
+<span class="font-label text-xs font-bold text-primary" style="">45 - 100</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-full appearance-none cursor-pointer" type="range">
+</div>
+<button class="kinetic-gradient text-on-primary px-8 py-3 rounded-full font-headline text-sm font-bold flex items-center gap-2 hover:opacity-90 transition-opacity" style="">
+<span class="material-symbols-outlined text-sm" style="">filter_alt</span>
+                Apply Filters
+            </button>
+</div>
+<!-- Data Table (Kinetic Archive Style) -->
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead>
+<tr class="bg-surface-container-high text-left">
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">#</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Score</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Group</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Source</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Company</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Title</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline text-center" style="">Size</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Analysis</th>
+<th class="px-6 py-4 font-label text-xs uppercase tracking-widest text-outline" style="">Skills Gap</th>
+<th class="px-4 py-4 font-label text-xs uppercase tracking-widest text-outline" style=""></th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1: High Match -->
+<tr class="hover:bg-primary-fixed hover:bg-opacity-30 transition-colors group">
+<td class="px-6 py-4 font-label text-xs text-outline" style="">001</td>
+<td class="px-6 py-4" style="">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label text-xs font-bold" style="">89</span></td>
+<td class="px-6 py-4" style="">
+<span class="font-label text-xs text-on-surface-variant bg-surface-container p-1 rounded" style="">PDM</span>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2 text-sm" style="">
+<span class="material-symbols-outlined text-primary text-lg" style="">link</span>
+                                    LinkedIn
+                                </div>
+</td>
+<td class="px-6 py-4 font-headline font-bold text-on-surface" style="">TechGlobal Inc.</td>
+<td class="px-6 py-4" style="">
+<p class="text-sm text-on-surface-variant truncate max-w-[150px]" style="">Senior Product Director</p>
+</td>
+<td class="px-6 py-4 text-center font-label text-xs text-outline" style="">10k+</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-sm" title="High strategic alignment recommended" style="">verified</span>
+<span class="font-label text-[10px] text-outline" style="">24 OCT 2023</span>
+</div>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex gap-1 flex-wrap">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">Rust</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">Web3</span>
+</div>
+</td>
+<td class="px-4 py-4 text-right" style="">
+<a class="text-outline hover:text-primary" href="#" style="">
+<span class="material-symbols-outlined" style="">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Row 2: Medium Match -->
+<tr class="bg-surface-container-low hover:bg-primary-fixed hover:bg-opacity-30 transition-colors group">
+<td class="px-6 py-4 font-label text-xs text-outline" style="">002</td>
+<td class="px-6 py-4" style="">
+<span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-3 py-1 rounded-full font-label text-xs font-bold" style="">68</span></td>
+<td class="px-6 py-4" style="">
+<span class="font-label text-xs text-on-surface-variant bg-surface-container p-1 rounded" style="">PMO</span>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2 text-sm" style="">
+<span class="material-symbols-outlined text-primary text-lg" style="">description</span>
+                                    Stepstone
+                                </div>
+</td>
+<td class="px-6 py-4 font-headline font-bold text-on-surface" style="">Innovate Solutions</td>
+<td class="px-6 py-4" style="">
+<p class="text-sm text-on-surface-variant truncate max-w-[150px]" style="">Operations Lead</p>
+</td>
+<td class="px-6 py-4 text-center font-label text-xs text-outline" style="">500-1k</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline text-sm" title="Moderate overlap" style="">info</span>
+<span class="font-label text-[10px] text-outline" style="">22 OCT 2023</span>
+</div>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex gap-1 flex-wrap">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">Six Sigma</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">PMP</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">+2</span>
+</div>
+</td>
+<td class="px-4 py-4 text-right" style="">
+<a class="text-outline hover:text-primary" href="#" style="">
+<span class="material-symbols-outlined" style="">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Row 3: Developing Match -->
+<tr class="hover:bg-primary-fixed hover:bg-opacity-30 transition-colors group">
+<td class="px-6 py-4 font-label text-xs text-outline" style="">003</td>
+<td class="px-6 py-4" style="">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full font-label text-xs font-bold" style="">51</span></td>
+<td class="px-6 py-4" style="">
+<span class="font-label text-xs text-on-surface-variant bg-surface-container p-1 rounded" style="">DA</span>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2 text-sm" style="">
+<span class="material-symbols-outlined text-primary text-lg" style="">link</span>
+                                    LinkedIn
+                                </div>
+</td>
+<td class="px-6 py-4 font-headline font-bold text-on-surface" style="">DataCrunch Ltd.</td>
+<td class="px-6 py-4" style="">
+<p class="text-sm text-on-surface-variant truncate max-w-[150px]" style="">Junior Data Analyst</p>
+</td>
+<td class="px-6 py-4 text-center font-label text-xs text-outline" style="">50-200</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-sm" title="Skill development required" style="">error</span>
+<span class="font-label text-[10px] text-outline" style="">21 OCT 2023</span>
+</div>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex gap-1 flex-wrap">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">Tableau</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">SQL</span>
+</div>
+</td>
+<td class="px-4 py-4 text-right" style="">
+<a class="text-outline hover:text-primary" href="#" style="">
+<span class="material-symbols-outlined" style="">open_in_new</span>
+</a>
+</td>
+</tr>
+<!-- Row 4: Low Match -->
+<tr class="bg-surface-container-low hover:bg-primary-fixed hover:bg-opacity-30 transition-colors group">
+<td class="px-6 py-4 font-label text-xs text-outline" style="">004</td>
+<td class="px-6 py-4" style="">
+<span class="bg-error-container text-on-error-container px-3 py-1 rounded-full font-label text-xs font-bold" style="">34</span></td>
+<td class="px-6 py-4" style="">
+<span class="font-label text-xs text-on-surface-variant bg-surface-container p-1 rounded" style="">PDM</span>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2 text-sm" style="">
+<span class="material-symbols-outlined text-primary text-lg" style="">work</span>
+                                    Stepstone
+                                </div>
+</td>
+<td class="px-6 py-4 font-headline font-bold text-on-surface" style="">Creative Core</td>
+<td class="px-6 py-4" style="">
+<p class="text-sm text-on-surface-variant truncate max-w-[150px]" style="">Design Strategist</p>
+</td>
+<td class="px-6 py-4 text-center font-label text-xs text-outline" style="">10-50</td>
+<td class="px-6 py-4" style="">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-sm" title="Significant misalignment" style="">cancel</span>
+<span class="font-label text-[10px] text-outline" style="">20 OCT 2023</span>
+</div>
+</td>
+<td class="px-6 py-4" style="">
+<div class="flex gap-1 flex-wrap">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">Figma</span>
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-medium" style="">UX Research</span>
+</div>
+</td>
+<td class="px-4 py-4 text-right" style="">
+<a class="text-outline hover:text-primary" href="#" style="">
+<span class="material-symbols-outlined" style="">open_in_new</span>
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 flex justify-between items-center bg-surface-container">
+<p class="font-label text-xs text-outline uppercase tracking-tighter" style="">Showing 4 of 131 RECORDS_RETRIEVED</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-outline hover:text-primary transition-all shadow-sm" style="">
+<span class="material-symbols-outlined text-lg" style="">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-on-primary shadow-md" style="">
+<span class="font-label text-xs" style="">1</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-outline hover:text-primary transition-all shadow-sm" style="">
+<span class="font-label text-xs" style="">2</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-full bg-surface-container-lowest text-outline hover:text-primary transition-all shadow-sm" style="">
+<span class="material-symbols-outlined text-lg" style="">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- SideNavBar Logic for FAB -->
+<div class="fixed bottom-8 right-8">
+<button class="bg-primary text-on-primary w-16 h-16 rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all duration-150 group" style="">
+<span class="material-symbols-outlined text-3xl font-variation-settings-fill" style="">add</span>
+<span class="absolute right-full mr-4 bg-inverse-surface text-inverse-on-surface px-4 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none" style="">Add New Application</span>
+</button>
+</div>
+</body></html>
