@@ -1,0 +1,58 @@
+{
+  "job_id": "4385737944",
+  "title": "Junior Sales Manager/in – Inbound & Account Development (m/w/d)",
+  "company": "SIGN8",
+  "location": "Munich / Oldenburg, Germany",
+  "url": "https://www.linkedin.com/jobs/view/4385737944/",
+  "match_score": 76.0,
+  "grade": "strong_match",
+  "_source": "linkedin",
+  "_group_id": "group-pdm",
+  "_keyword": "Product Marketing Manager",
+  "_note": "Formula score is high due to generic soft-skill requirements; core role is B2B inbound sales which is structurally outside Boru's marketing/PMM profile. Practical fit is moderate.",
+  "required_skills": [
+    "Selbstständige, strukturierte Arbeitsweise mit Ownership-Drive",
+    "Freude an strukturierter, nachhaltiger Vertriebsarbeit mit Fokus auf Beziehungsmanagement",
+    "Ausgeprägtes Gespür für Kundenbedarfe und die Fähigkeit, komplexe Lösungen verständlich zu vermitteln",
+    "Bereitschaft, technisches Know-how über das Produkt aufzubauen",
+    "Strategisches Denken mit Blick auf langfristige Kundenentwicklung",
+    "Exzellente Kommunikationsfähigkeiten und Authentizität im Umgang mit Kunden",
+    "Souveränes Auftreten auf Deutsch und Englisch",
+    "Teamplayer-Mentalität mit Schaffensdrang und Schnittstellenkompetenz"
+  ],
+  "bonus_skills": [
+    "Erste Erfahrung im B2B-Vertrieb, Account Management oder Customer Success – idealerweise im SaaS-Umfeld"
+  ],
+  "matched_skills": [
+    "Selbstständige strukturierte Arbeitsweise — evidenced across PMO (HSBC), project coordination (Hapag-Lloyd), and GTM ownership (IPC, GRG)",
+    "Komplexe Lösungen verständlich vermitteln — IPC IoT product positioning, argumentation guides, and live B2B demos to 100+ clients at trade fairs (GRG)",
+    "Technisches Know-how aufbauen — IoT/IT sector background at IPC; FinTech digital transformation at HSBC",
+    "Strategisches Denken Kundenentwicklung — B2B GTM strategy across 4 product launches (IPC), portfolio gap analysis (GRG), competitive intelligence (ECE)",
+    "Kommunikationsfähigkeit — C-suite reporting (HSBC), multi-stakeholder coordination, sales enablement materials",
+    "Englisch souverän — C1 confirmed",
+    "Teamplayer — cross-functional collaboration in all roles (HSBC 6 workstreams, Hapag-Lloyd agile teams)"
+  ],
+  "missing_skills": [
+    "B2B-Vertrieb / Account Management Erfahrung — Boru's background is product marketing and PMO, not direct sales; GRG pre-sales support is closest but title was Product Marketing Manager",
+    "Freude an Vertriebsarbeit — no demonstrated sales career trajectory; CV is marketing/PMM focused",
+    "Deutsch souverän (implizit C1) — CV states B1+, insufficient for client-facing German-language sales role",
+    "CRM-System management (Salesforce/HubSpot pipeline forecasting) — not mentioned in CV",
+    "Inbound lead qualification experience — no direct evidence of owning a sales funnel"
+  ],
+  "core_responsibilities": [
+    "Strukturierte Bearbeitung und Qualifizierung eingehender Leads (Inbound) von der Anfrage bis zur Conversion",
+    "Ganzheitliches Account Management bestehender Kunden — Aufbau vertrauensvoller Kundenbeziehungen",
+    "Bedarfsanalyse und Identifikation von Cross-/Upselling-Potenzialen für eIDAS/Signatur-Lösungen",
+    "CRM-Pflege inkl. Forecasting und KPI-Reporting (Pipeline, Bestandskunden, Verlängerungen)",
+    "Messe-Support bei relevanten Ausstellungen",
+    "Enge Zusammenarbeit mit Sales, Produktmanagement, Technical Customer Success und Marketing"
+  ],
+  "recommended_emphasis": [
+    "Lead with GRG pre-sales: 'Delivered product demonstrations and pre-sales support to 100+ B2B clients at trade fairs; coordinated lead capture supporting the sales pipeline' — this is the closest analogue to inbound account development",
+    "Frame IPC GTM work as sales-adjacent: B2B GTM strategy across 4 product launches including channel partner management, SOPs, and sales training materials — positions Boru as someone who has bridged marketing and sales",
+    "Highlight HSBC cross-functional influencing without authority (Product, Engineering, Marketing, C-suite) as evidence of stakeholder/relationship management capability relevant to account development",
+    "Reference IPC and GRG trade fair experience directly — the JD explicitly calls out Messe-Support as a core responsibility",
+    "Acknowledge the marketing-to-sales pivot in the cover letter; frame it as adding a strategic dimension to sales that a pure sales hire wouldn't bring (customer insight, positioning, data storytelling)"
+  ],
+  "summary": "Formula score of 76.0 is inflated by strong generic skill matches (communication, structured work, strategic thinking, technical learning) but masks a structural gap: this is an inbound B2B sales and account management role while Boru's profile is product marketing and PMO. The closest relevant experience is GRG's pre-sales support (B2B demos to 100+ clients) and IPC's channel partner management — both sales-adjacent but from a marketing seat. Hard gaps are German language fluency (B1+ vs. implied C1 for client-facing German role) and no CRM/pipeline ownership history. Worth applying only if Boru is deliberately pivoting toward sales/account management; the cover letter must proactively address the marketing-to-sales transition and position it as a strength."
+}
