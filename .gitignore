@@ -1,0 +1,20 @@
+# User data — personal/generated, not code
+1_generate_linkedin_cv/users/*/output/
+1_generate_linkedin_cv/users/*/my_cv/
+1_generate_linkedin_cv/users/*/memory/
+
+# Junction point directories (shared, not owned by user workspace)
+1_generate_linkedin_cv/users/*/.claude/
+1_generate_linkedin_cv/users/*/scripts/
+1_generate_linkedin_cv/users/*/graphify-out/
+
+# Hard-linked shared files
+1_generate_linkedin_cv/users/*/SPEC.md
+
+# Planning artifacts
+PLAN-multi-user.py
+__pycache__/
+*.pyc
+
+# Desktop output
+C:/Users/*/Desktop/

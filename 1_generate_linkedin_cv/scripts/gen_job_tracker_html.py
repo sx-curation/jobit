@@ -222,6 +222,16 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
         style="display:none;" title="Clear search">✕</button>
     </div>
   </div>
+  <div class="dropdown-wrap flex-shrink-0" style="position:relative;">
+    <button id="user-switcher-btn" onclick="toggleDropdown('user-menu')"
+      class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-gray-100 hover:bg-gray-200 text-sm font-semibold text-slate-700"
+      style="font-family:'Space Grotesk';">
+      <span class="material-symbols-outlined" style="font-size:16px;">person</span>
+      <span id="user-switcher-label">...</span>
+      <span class="material-symbols-outlined" style="font-size:14px;">expand_more</span>
+    </button>
+    <div class="dropdown-menu" id="user-menu"></div>
+  </div>
   <span id="result-count" class="text-xs text-slate-400 font-mono hidden lg:block"></span>
 </header>
 
@@ -612,8 +622,14 @@ let detailJob      = null;
 let _filterTimer   = null;
 let _skillGapVisible = false;
 
-// ── Skill classification — taxonomy injected from config.json at build time ───
-const SKILL_TAXONOMY = __SKILL_TAXONOMY_JSON__;
+// ── Skill classification — taxonomy loaded at runtime from /api/taxonomy ──────
+let SKILL_TAXONOMY = {};
+async function fetchTaxonomy() {
+  try {
+    const r = await fetch('/api/taxonomy');
+    if (r.ok) SKILL_TAXONOMY = await r.json();
+  } catch(e) { /* silent fallback — classifySkill ||[] guards cover missing data */ }
+}
 // Priority: tools → cert → langs → academic → domain → soft
 // (cert before academic: avoids "certified engineer" landing in academic;
 //  academic before domain: avoids "economics degree" landing in domain)
@@ -691,6 +707,7 @@ function esc(s) {
 
 // ── Load jobs from server ─────────────────────────────────────────────────────
 async function loadJobs() {
+  await fetchTaxonomy();
   try {
     const resp = await fetch('/api/jobs');
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
@@ -1359,7 +1376,7 @@ function debounceFilters() {
 // ── Filter persistence (localStorage) ────────────────────────────────────────
 function saveFilterState() {
   try {
-    localStorage.setItem('jt_filter', JSON.stringify({
+    localStorage.setItem('jt_filter_' + (_currentUserId || 'default'), JSON.stringify({
       activeGroup, activeSource, filterRecord,
       scoreMin: document.getElementById('score-min').value,
       scoreMax: document.getElementById('score-max').value,
@@ -1373,7 +1390,7 @@ function saveFilterState() {
 
 function restoreFilterState() {
   try {
-    const s = JSON.parse(localStorage.getItem('jt_filter') || 'null');
+    const s = JSON.parse(localStorage.getItem('jt_filter_' + (_currentUserId || 'default')) || 'null');
     if (!s) return;
     activeGroup  = s.activeGroup  || 'all';
     activeSource = s.activeSource || 'all';
@@ -1606,15 +1623,15 @@ function toggleCol(cb) {
   });
   // Persist to localStorage
   try {
-    const vis = JSON.parse(localStorage.getItem('jt_col_vis') || '{}');
+    const vis = JSON.parse(localStorage.getItem('jt_col_vis_' + (_currentUserId || 'default')) || '{}');
     vis[col] = show;
-    localStorage.setItem('jt_col_vis', JSON.stringify(vis));
+    localStorage.setItem('jt_col_vis_' + (_currentUserId || 'default'), JSON.stringify(vis));
   } catch(e) {}
 }
 
 function restoreColVisibility() {
   try {
-    const vis = JSON.parse(localStorage.getItem('jt_col_vis') || '{}');
+    const vis = JSON.parse(localStorage.getItem('jt_col_vis_' + (_currentUserId || 'default')) || '{}');
     document.querySelectorAll('#col-toggle-panel input[data-col]').forEach(cb => {
       const col = cb.dataset.col;
       if (col in vis && !vis[col]) {
@@ -1815,6 +1832,9 @@ function renderCVCards(groups) {
             class="text-xs font-bold px-3 py-1.5 rounded-full text-white"
             style="font-family:'Space Grotesk';background:linear-gradient(135deg,#005d8f,#0077b5);">
             Search Jobs</button>
+          <button onclick="generateJobFamily('${esc(g.group_id)}')"
+            class="text-xs font-bold px-3 py-1.5 rounded-full border border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#EDE9FE] transition"
+            style="font-family:'Space Grotesk';">✨ Generate</button>
           <button disabled title="Coming soon"
             class="text-xs font-bold px-3 py-1.5 rounded-full border border-slate-200 text-slate-300 cursor-not-allowed"
             style="font-family:'Space Grotesk';">Edit</button>
@@ -2090,22 +2110,166 @@ function _renderAnalysisChart() {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
+var _currentUserId = null;
+var _genGroupId = null, _genResult = null;
 loadJobs();
+</script>
+
+<!-- ─── User switcher + Job family modal ─────────────────────────────────────── -->
+<div id="gen-modal" style="display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.45);align-items:center;justify-content:center;">
+  <div style="background:#fff;border-radius:16px;padding:28px;width:520px;max-width:95vw;max-height:85vh;overflow-y:auto;box-shadow:0 24px 48px rgba(0,0,0,.2);">
+    <div class="flex items-center justify-between mb-4">
+      <div style="font-family:Manrope;font-size:18px;font-weight:800;">Generate Job Family</div>
+      <button onclick="closeGenModal()" class="cv-action-btn text-slate-400 hover:text-slate-700">&#x2715;</button>
+    </div>
+    <div id="gen-modal-body"></div>
+    <div class="flex gap-3 mt-5 justify-end">
+      <button onclick="closeGenModal()" class="px-4 py-2 rounded-full border border-gray-200 text-sm font-semibold text-slate-500">Cancel</button>
+      <button onclick="regenerateJobFamily()" id="gen-regen-btn" class="px-4 py-2 rounded-full border border-[#8B5CF6] text-[#8B5CF6] text-sm font-semibold">&#x21BA; Regenerate</button>
+      <button onclick="acceptJobFamily()" id="gen-accept-btn" class="px-4 py-2 rounded-full bg-[#8B5CF6] text-white text-sm font-semibold">&#x2713; Accept</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── User switcher ─────────────────────────────────────────────────────────────
+async function loadUsers() {
+  try {
+    const r = await fetch('/api/users');
+    if (!r.ok) return;
+    const data = await r.json();
+    _currentUserId = data.current;
+    const matched = (data.users || []).find(function(u) { return u.id === data.current; });
+    document.getElementById('user-switcher-label').textContent = matched ? matched.name : data.current;
+    const menu = document.getElementById('user-menu');
+    menu.innerHTML = (data.users || []).map(function(u) {
+      return '<span class="dropdown-item' + (u.id === data.current ? ' font-semibold' : '') + '"' +
+             ' onclick="switchUser(\'' + esc(u.id) + '\')">' + esc(u.name) + '</span>';
+    }).join('') +
+    '<hr style="margin:4px 0;border-color:#f3f4f6;">' +
+    '<span class="dropdown-item text-[#005d8f]" onclick="showNewUserDialog()">' +
+    '<span class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px;">add</span>' +
+    ' New User</span>';
+  } catch(e) { /* non-fatal */ }
+}
+
+async function switchUser(newUid) {
+  document.getElementById('user-menu').classList.remove('open');
+  if (newUid === _currentUserId) return;
+  try {
+    const r = await fetch('/api/switch-user', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({user_id: newUid})
+    });
+    const d = await r.json();
+    if (d.ok) {
+      await loadUsers();
+      await loadJobs();
+      loadGroupStats();
+      _analysisData = null;
+    } else if (d.error === 'search_running') {
+      showToast('Cannot switch \u2014 search is running');
+    } else {
+      showToast('Error: ' + (d.error || 'switch failed'));
+    }
+  } catch(e) { showToast('Error: ' + e.message); }
+}
+
+async function showNewUserDialog() {
+  document.getElementById('user-menu').classList.remove('open');
+  const name = prompt('New user name:');
+  if (!name || !name.trim()) return;
+  const uid = name.trim().toLowerCase().replace(/[^a-z0-9]/g, '').slice(0, 20);
+  if (!uid) { showToast('Invalid name \u2014 use letters/numbers only'); return; }
+  try {
+    const r = await fetch('/api/create-user', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({name: name.trim(), user_id: uid})
+    });
+    const d = await r.json();
+    if (d.ok) { await loadUsers(); showToast('User created: ' + uid); }
+    else showToast('Error: ' + d.error);
+  } catch(e) { showToast('Error: ' + e.message); }
+}
+
+// ── Job family generation ─────────────────────────────────────────────────────
+async function generateJobFamily(gid) {
+  _genGroupId = gid; _genResult = null;
+  document.getElementById('gen-modal').style.display = 'flex';
+  _setGenState('loading', null);
+  try {
+    const r = await fetch('/api/generate-job-family', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({group_id: gid})
+    });
+    const d = await r.json();
+    if (d.ok && d.result) { _genResult = d.result; _setGenState('result', d.result); }
+    else _setGenState('error', {msg: d.error || 'Unknown error', raw: d.raw || ''});
+  } catch(e) { _setGenState('error', {msg: e.message, raw: ''}); }
+}
+
+async function regenerateJobFamily() {
+  if (_genGroupId) await generateJobFamily(_genGroupId);
+}
+
+async function acceptJobFamily() {
+  if (!_genResult || !_genGroupId) return;
+  var btn = document.getElementById('gen-accept-btn');
+  btn.disabled = true;
+  try {
+    var r = await fetch('/api/save-job-family', {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({group_id: _genGroupId, job_family: _genResult})
+    });
+    var d = await r.json();
+    if (d.ok) { closeGenModal(); loadGroupStats(); showToast('Job family saved!'); }
+    else { showToast('Error: ' + d.error); btn.disabled = false; }
+  } catch(e) { showToast('Error: ' + e.message); btn.disabled = false; }
+}
+
+function closeGenModal() {
+  document.getElementById('gen-modal').style.display = 'none';
+}
+
+function _setGenState(state, data) {
+  var body = document.getElementById('gen-modal-body');
+  var regenBtn = document.getElementById('gen-regen-btn');
+  var acceptBtn = document.getElementById('gen-accept-btn');
+  if (state === 'loading') {
+    body.innerHTML = '<div class="text-center py-8 text-slate-400">' +
+      '<div style="font-size:28px;">\u2728</div>' +
+      '<div style="font-size:13px;margin-top:8px;">Generating with Claude\u2026 (~15s)</div></div>';
+    regenBtn.disabled = true; acceptBtn.disabled = true;
+  } else if (state === 'result') {
+    function chips(arr, cls) {
+      return (arr || []).map(function(s) { return '<span class="' + cls + '">' + esc(s) + '</span>'; }).join(' ');
+    }
+    body.innerHTML =
+      '<div class="mb-3"><div class="card-section-label">EN (' + ((data.en||[]).length) + ')</div>' +
+      '<div class="flex flex-wrap gap-1.5">' + chips(data.en, 'kw-chip-en') + '</div></div>' +
+      '<div><div class="card-section-label">DE (' + ((data.de||[]).length) + ')</div>' +
+      '<div class="flex flex-wrap gap-1.5">' + chips(data.de, 'kw-chip-de') + '</div></div>';
+    regenBtn.disabled = false; acceptBtn.disabled = false;
+  } else {
+    var raw = (data && data.raw) ? data.raw.slice(0, 400) : '';
+    body.innerHTML =
+      '<div class="text-red-600 text-sm font-semibold mb-1">Generation failed</div>' +
+      '<div class="text-slate-500 text-xs mb-2">' + esc((data && data.msg) || '') + '</div>' +
+      (raw ? '<pre style="font-size:10px;background:#f3f4f6;padding:8px;border-radius:6px;overflow:auto;max-height:120px;">' + esc(raw) + '</pre>' : '');
+    regenBtn.disabled = false; acceptBtn.disabled = true;
+  }
+}
+
+// ── Startup ───────────────────────────────────────────────────────────────────
+loadUsers();
 </script>
 </body>
 </html>"""
 
 
 if __name__ == '__main__':
-    config_path = Path("config.json")
-    taxonomy = {}
-    if config_path.exists():
-        try:
-            cfg = json.loads(config_path.read_text(encoding="utf-8"))
-            taxonomy = cfg.get("skill_taxonomy", {})
-        except Exception as e:
-            print(f"WARN: could not read skill_taxonomy from config.json: {e}", file=sys.stderr)
-    html = HTML.replace("__SKILL_TAXONOMY_JSON__", json.dumps(taxonomy, ensure_ascii=False))
+    # Taxonomy is now loaded at runtime via /api/taxonomy — inject empty placeholder
+    html = HTML.replace("__SKILL_TAXONOMY_JSON__", '{}')
     DEST.parent.mkdir(parents=True, exist_ok=True)
     DEST.write_text(html, encoding='utf-8')
     size_kb = os.path.getsize(DEST) // 1024
