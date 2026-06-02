@@ -41,14 +41,18 @@ import json
 import argparse
 import os
 import sys
-from datetime import date
+import threading
+from datetime import date, datetime
 from functools import lru_cache
 from pathlib import Path
 import re
 
-HISTORY_PATH = Path("output/search_history.json")
-OUTPUT_DIR   = Path("output")
-TEMP_DIR     = Path("output/temp")
+HISTORY_PATH    = Path("output/search_history.json")
+OUTPUT_DIR      = Path("output")
+TEMP_DIR        = Path("output/temp")
+BATCH_STATE_TSV = TEMP_DIR / "batch_state.tsv"
+LOCK_FILE       = TEMP_DIR / ".search.lock"
+_tsv_lock       = threading.Lock()
 
 
 # ─────────────────────────────────────────────
@@ -96,6 +100,69 @@ def raw_results_path(batch_id: str) -> Path:
     if legacy.exists():
         return legacy
     return temp_path  # 新文件默认写入 temp/
+
+
+# ─────────────────────────────────────────────
+# 批处理容错：TSV 状态、锁文件、失败追踪
+# ─────────────────────────────────────────────
+
+def append_batch_state(batch_id: str, job_id: str, source: str,
+                       status: str, score: int = -1,
+                       error: str = "-") -> None:
+    """追加一行到 batch_state.tsv（append-only，线程安全）。
+    status 枚举：done / failed / skipped_dup / skipped_score / pending
+    """
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    with _tsv_lock:
+        if not BATCH_STATE_TSV.exists():
+            BATCH_STATE_TSV.write_text(
+                "batch_id\tjob_id\tsource\tstatus\tscore\terror\tcompleted_at\n",
+                encoding="utf-8"
+            )
+        ts = datetime.now().isoformat(timespec="seconds")
+        line = f"{batch_id}\t{job_id}\t{source}\t{status}\t{score}\t{error}\t{ts}\n"
+        with open(BATCH_STATE_TSV, "a", encoding="utf-8") as f:
+            f.write(line)
+
+
+def acquire_lock() -> bool:
+    """尝试获取搜索进程锁。返回 True=成功，False=另一进程在运行。"""
+    TEMP_DIR.mkdir(parents=True, exist_ok=True)
+    if LOCK_FILE.exists():
+        try:
+            pid = int(LOCK_FILE.read_text().strip())
+            import psutil
+            if psutil.pid_exists(pid):
+                return False
+        except Exception:
+            pass  # psutil 未安装或读取失败 → 跳过存活检测，直接覆盖锁
+    LOCK_FILE.write_text(str(os.getpid()), encoding="utf-8")
+    return True
+
+
+def release_lock() -> None:
+    """释放搜索进程锁。"""
+    LOCK_FILE.unlink(missing_ok=True)
+
+
+def mark_job_failed(batch_id: str, job_id: str) -> None:
+    """将 job_id 标记为失败，写入对应 batch 的 failed_jobs 列表。"""
+    h = load_history()
+    b = get_batch(h, batch_id)
+    if b is None:
+        return
+    b.setdefault("failed_jobs", [])
+    if job_id not in b["failed_jobs"]:
+        b["failed_jobs"].append(job_id)
+    b.setdefault("retry_count", 0)
+    save_history(h)
+
+
+def get_failed_jobs(batch_id: str) -> list[str]:
+    """返回指定 batch 的失败 job_id 列表（旧批次无此字段时返回 []）。"""
+    h = load_history()
+    b = get_batch(h, batch_id)
+    return b.get("failed_jobs", []) if b else []
 
 
 # ─────────────────────────────────────────────
@@ -471,13 +538,15 @@ if __name__ == "__main__":
         description="LinkedIn CV Agent — 搜索状态管理"
     )
     parser.add_argument("--mode",
-        choices=["offset", "save-raw", "dedup", "summary"],
+        choices=["offset", "save-raw", "dedup", "summary", "retry-failed"],
         required=True)
     parser.add_argument("--config",   default="config.json")
     parser.add_argument("--batch-id", default=None,
-        help="save-raw / dedup 模式必填")
+        help="save-raw / dedup / retry-failed 模式必填")
     parser.add_argument("--input",    default=None,
         help="save-raw 模式：原始搜索结果 JSON 文件路径")
+    parser.add_argument("--force",    action="store_true",
+        help="dedup 模式：即使 dedup_done=true 也强制重跑")
     args = parser.parse_args()
 
     cfg = {}
@@ -511,8 +580,25 @@ if __name__ == "__main__":
         if not args.batch_id:
             print("ERROR: dedup 模式需要 --batch-id", file=sys.stderr)
             sys.exit(1)
+        # 步骤 2-D：断点续传 — 已完成去重时跳过（除非 --force）
+        h = load_history()
+        b = get_batch(h, args.batch_id)
+        if b and b.get("dedup_done") and not args.force:
+            print(f"[skip] {args.batch_id} 已完成去重，使用 --force 强制重跑")
+            sys.exit(0)
         result = dedup_and_sort(args.batch_id, cfg)
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
     elif args.mode == "summary":
         print_summary()
+
+    elif args.mode == "retry-failed":
+        if not args.batch_id:
+            print("ERROR: retry-failed 模式需要 --batch-id", file=sys.stderr)
+            sys.exit(1)
+        failed = get_failed_jobs(args.batch_id)
+        if not failed:
+            print(f"[info] {args.batch_id} 无失败任务")
+        else:
+            print(json.dumps({"batch_id": args.batch_id, "failed_jobs": failed},
+                             ensure_ascii=False, indent=2))

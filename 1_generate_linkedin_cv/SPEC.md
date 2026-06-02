@@ -59,7 +59,7 @@
 | LinkedIn 数据来源 | linkedin-scraper-mcp（uvx） | 无需官方 API |
 | Stepstone 数据来源 | mcp-stepstone HTTP SSE server（本地） | 第二职缺源，覆盖 DE 主要城市 |
 | CV 解析 | PyMuPDF | 轻量，无需 LibreOffice |
-| PDF 生成 | weasyprint + markdown + theme-factory | 纯 Python，支持主题 |
+| PDF 生成 | fpdf2（pure Python） | Windows 无 GTK/Pango，WeasyPrint 不可用；fpdf2 零外部依赖 |
 | 搜索状态 | output/search_history.json | 可读，无需数据库 |
 | 中间文件 | output/temp/raw_results_<batch_id>.json | 不用 /tmp，可调试；temp/ 隔离中间文件 |
 | 预评分 vs 精确分 | 两阶段 | 预评分快速排序，精确分在 Phase 3A |
@@ -70,23 +70,49 @@
 
 ---
 
+## 多用户架构
+
+server.py 以全局变量 `_current_user`（默认 `leon`）管理当前活跃用户。  
+所有数据读写均经由 `_user_dir(uid)` / `get_output_dir(uid)` 等路径函数隔离。
+
+**用户注册表**：`users.json`（项目根目录），格式：`[{"id": "leon", "name": "Leon"}, ...]`
+
+**用户切换**：`POST /api/switch-user { uid }` → 更新 `_current_user`；若搜索进行中返回 409。
+
+**并发锁**：`_user_lock`（用户切换）、`_write_lock`（config/JD 文件写入）、`_search_lock`（子进程管理）、`_jobs_cache_lock`（缓存读写）。
+
+**新用户创建**：`POST /api/create-user` → 在 `users/{uid}/` 下建立 `output/`、`my_cv/`，创建模板 `config.json`，并创建 `scripts/` symlink 和 `graphify-out/` symlink。
+
+---
+
 ## 文件结构
 
 ```
-output/
-  temp/                          ← 所有中间文件
-    _phase2_temp.json            LinkedIn 原始搜索结果
-    _phase2_temp_stepstone.json  Stepstone 原始搜索结果
-    _phase2_temp_merged.json     合并后待保存
-    raw_results_<batch_id>.json  保存的批次数据
-  search_history.json            去重状态 + batch 索引（持久）
-  cv_parsed_<group_id>.json      CV 解析缓存（持久）
-  job_summary.md                 汇总表（持久）
-  <group_id>_<company>_<title>_<YYYYMMDD>/   每职缺输出文件夹
-    jd_analysis.json
-    cv_draft.md / cv_final.pdf
-    cover_letter_draft.md / cover_letter_final.pdf
-    cv_changes.md / eval_report.json
+1_generate_linkedin_cv/
+  users.json                        ← 全用户注册表（id + name）
+  users/
+    {uid}/                          ← 每用户独立工作区
+      config.json                   ← 该用户的 keyword groups + skill_taxonomy
+      my_cv/                        ← 该用户的 CV PDF 文件
+      scripts/                      ← symlink → ../../scripts/（共享）
+      graphify-out/                 ← symlink → ../../graphify-out/（共享）
+      SPEC.md                       ← hardlink → ../../SPEC.md（共享）
+      output/
+        temp/                       ← 所有中间文件
+          _phase2_temp.json         LinkedIn 原始搜索结果
+          _phase2_temp_stepstone.json  Stepstone 原始搜索结果
+          _phase2_temp_merged.json  合并后待保存
+          raw_results_<batch_id>.json  保存的批次数据
+        search_history.json         ← 去重状态 + batch 索引（持久）
+        cv_parsed_<group_id>.json   ← CV 解析缓存（持久）
+        job_summary.md              ← 汇总表（持久）
+        <group_id>_<company>_<title>_<YYYYMMDD>/   每职缺输出文件夹
+          jd_analysis.json
+          cv_draft.md / cv_final.pdf
+          cover_letter_draft.md / cover_letter_final.pdf
+          cv_changes.md / eval_report.json
+  scripts/                          ← 权威脚本目录（所有用户共享）
+  graphify-out/                     ← 知识图谱（所有用户共享）
 ```
 
 ---
@@ -98,7 +124,8 @@ output/
 - Stepstone MCP server 需每次 Phase 2 前手动启动（无自动守护进程）
 - PyMuPDF 对扫描版 PDF 效果较差，建议使用文字版 CV
 - match_score_preview 是关键词重叠估算，不代表实际匹配度
-- theme-factory 需要单独安装（setup.sh 自动处理）
+- fpdf2 不支持 HTML/CSS 渲染，PDF 样式需通过 fpdf2 原生 API 实现；若需复杂主题需换库
+- 多用户切换为全局单一进程（_current_user），搜索进行中不可切换用户
 
 ---
 
@@ -113,7 +140,7 @@ output/
 运行方式：python scripts/server.py → 自动打开 http://localhost:8080
 
 服务端点（已实现）：
-  GET  /                        → 返回 C:/Users/Leon/Desktop/job_tracker/index.html
+  GET  /                        → 返回 index.html（由 gen_job_tracker_html.py 生成）
   GET  /api/jobs                → 解析 job_summary.md + 合并所有 jd_analysis.json → JSON 数组
   GET  /api/status              → { "mtime": float }，供客户端轮询检测 job_summary.md 变更
   GET  /api/cvfiles             → 列出 my_cv/ 目录下的 PDF 文件名
@@ -123,6 +150,17 @@ output/
   POST /api/note                → { jd_path, note } → 写入 user_note 字段到 jd_analysis.json
   POST /api/group-delete        → { group_id } → 从 config.json 删除该 group
   POST /api/group-dup           → { group_id } → 在 config.json 中复制该 group（加 -copy 后缀）
+  GET  /api/search-status       → { "running": bool }，轮询搜索子进程状态
+  GET  /api/search-log          → SSE 实时流，输出搜索子进程的 stdout（ANSI stripped）
+  GET  /api/search-analysis     → 全批次关键词分析（每 keyword 的 fetch/seen/new 数、source 分布）
+  GET  /api/users               → { "users": [{id, name}], "current": uid }
+  GET  /api/taxonomy            → 从 config.json 读取 skill_taxonomy
+  POST /api/search              → { group_id? } → 启动搜索子进程（claude -p 搜索职缺）
+  POST /api/switch-user         → { uid } → 切换当前用户（搜索中时返回 409）
+  POST /api/create-user         → { uid, name } → 创建新用户工作区并注册到 users.json
+  POST /api/group-save          → { group_id, group_label, cv_file, ... } → 新增 group 到 config.json
+  POST /api/generate-job-family → { group_id } → 调用 Claude LLM 生成 EN+DE job titles
+  POST /api/save-job-family     → { group_id, job_family } → 写入 job_family 到 config.json
 ```
 
 ### 页面路由
@@ -367,7 +405,7 @@ POST /api/group-save   → { group } → 新增或更新 config.json 中的 grou
 ```python
 # 扫描 OUTPUT_DIR，找出以 group_id + "_" 开头的所有文件夹
 # 读取每个文件夹内的 jd_analysis.json：
-#   - 收集 match_score → 计算均值
+#   - 收集 score（新 schema）或 match_score（旧 schema 兼容）→ 计算均值
 #   - 收集所有 missing_skills → Counter 取 top 6 高频词
 #   - 收集所有 matched_skills → Counter 取 top 6 高频词
 #   - 取最新 jd_analysis.json 的 mtime → 格式化为 "Apr 17"
@@ -403,15 +441,11 @@ search_timeline 每条：{date, new_net, fetched_total, sources}
 | Edit | 打开 Page 3 表单，预填该 group 数据 | 🚧 禁用（Page 3 待实现） |
 | ··· → Duplicate | `POST /api/group-dup` → 复制 group，新 group_id = 原 id + `-copy`；重复时加 `-2`/`-3` | ✅ 已实现 |
 | ··· → Delete | `POST /api/group-delete` → 从 config.json 删除；显示 confirm 对话框 | ✅ 已实现 
-#### 当前 Groups（来自 config.json，可随时扩充）
+#### Groups 数据来源
 
-| Group ID | Label | CV File | 状态 |
-|----------|-------|---------|------|
-| `group-da` | Marketing Analytics | `my_cv_da.pdf` | Active（24 jobs） |
-| `group-pmo` | Project Management Office | `my_cv_pmo.pdf` | Active（27 jobs） |
-| `group-pdm` | Product Marketing Management | `my_cv_pdm.pdf` | Active（46 jobs） |
-| `group-internal-marketing` | Internal Marketing & Communications | `my_cv_img.pdf` | Draft（无搜索结果） |
-| `group-event-management` | Event Management | `my_cv_em.pdf` | Draft（无搜索结果） |
+Groups 由各用户的 `config.json` 动态加载，通过 `/api/group-stats` 返回。  
+切换用户后，Page 4 自动重新渲染该用户的 group 卡片。  
+初始 groups 可在 `users/{uid}/config.json` 的 `keyword_groups` 数组中配置。
 
 #### 搜索历史时间轴（Search Timeline）✅ 已实现
  - Page 4 My CVs 卡片 Footer：展示该 group 最近 3 次搜索记录

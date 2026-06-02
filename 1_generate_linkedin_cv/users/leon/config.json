@@ -638,5 +638,12 @@
     ],
     "radius_km": 50,
     "max_jobs_per_group": 20
+  },
+  "preferences": {
+    "preferred_level": "entry, experienced",
+    "preferred_locations": ["Hamburg", "Berlin", "Munich", "Frankfurt", "Düsseldorf", "Köln", "Lüneburg", "Remote"],
+    "preferred_work_mode": ["hybrid", "remote"],
+    "salary_expectation_eur_monthly": 3500,
+    "preferred_domains": ["supply-chain", "logistics", "commercial", "finance", "it"]
   }
 }

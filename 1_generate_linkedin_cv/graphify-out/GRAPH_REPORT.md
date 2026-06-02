@@ -1,193 +1,217 @@
-# Graph Report - .  (2026-04-22)
+# Graph Report - F:/Claude code project/jobit/1_generate_linkedin_cv  (2026-05-31)
 
 ## Corpus Check
-- 78 files °§ ~83,686 words
+- 248 files ¬∑ ~120,000 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 348 nodes °§ 545 edges °§ 22 communities detected
-- Extraction: 93% EXTRACTED °§ 7% INFERRED °§ 0% AMBIGUOUS °§ INFERRED: 38 edges (avg confidence: 0.82)
-- Token cost: 0 input °§ 0 output
+- 711 nodes ¬∑ 1023 edges ¬∑ 26 communities detected
+- Extraction: 94% EXTRACTED ¬∑ 6% INFERRED ¬∑ 0% AMBIGUOUS ¬∑ INFERRED: 62 edges (avg confidence: 0.81)
+- Token cost: 0 input ¬∑ 0 output
 
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_Project Architecture & Pipeline|Project Architecture & Pipeline]]
-- [[_COMMUNITY_Target Companies & Job Descriptions|Target Companies & Job Descriptions]]
-- [[_COMMUNITY_UI Design & API Layer|UI Design & API Layer]]
-- [[_COMMUNITY_Application Outputs & Candidate|Application Outputs & Candidate]]
-- [[_COMMUNITY_HTTP Server Module|HTTP Server Module]]
-- [[_COMMUNITY_Search State Engine|Search State Engine]]
-- [[_COMMUNITY_Candidate Work History|Candidate Work History]]
-- [[_COMMUNITY_Sanity Check Module|Sanity Check Module]]
-- [[_COMMUNITY_LinkedIn Phase 2 Search|LinkedIn Phase 2 Search]]
-- [[_COMMUNITY_Group Search Runner|Group Search Runner]]
-- [[_COMMUNITY_Marketing CV Applications|Marketing CV Applications]]
-- [[_COMMUNITY_Summary Generator|Summary Generator]]
-- [[_COMMUNITY_PDF Generator|PDF Generator]]
-- [[_COMMUNITY_Job Detail Refetcher|Job Detail Refetcher]]
-- [[_COMMUNITY_Stepstone Search|Stepstone Search]]
-- [[_COMMUNITY_LinkedIn MCP Client|LinkedIn MCP Client]]
-- [[_COMMUNITY_Review Gate|Review Gate]]
-- [[_COMMUNITY_Phase 4 Summary|Phase 4 Summary]]
-- [[_COMMUNITY_IMG CV Group|IMG CV Group]]
-- [[_COMMUNITY_EM CV Group|EM CV Group]]
-- [[_COMMUNITY_EM Source CV|EM Source CV]]
-- [[_COMMUNITY_IMG Source CV|IMG Source CV]]
+- [[_COMMUNITY_Leon Job Application Materials|Leon Job Application Materials]]
+- [[_COMMUNITY_Candidate Profile & Skills|Candidate Profile & Skills]]
+- [[_COMMUNITY_Web UI & Project Spec|Web UI & Project Spec]]
+- [[_COMMUNITY_PMO Group Job Listings|PMO Group Job Listings]]
+- [[_COMMUNITY_MCP Common Utilities|MCP Common Utilities]]
+- [[_COMMUNITY_HTTP Server & API Backend|HTTP Server & API Backend]]
+- [[_COMMUNITY_Product Marketing Job Listings|Product Marketing Job Listings]]
+- [[_COMMUNITY_Stepstone Search & State|Stepstone Search & State]]
+- [[_COMMUNITY_Digital Marketing Job Listings|Digital Marketing Job Listings]]
+- [[_COMMUNITY_LinkedIn Search Pipeline|LinkedIn Search Pipeline]]
+- [[_COMMUNITY_Kelebogie Applications|Kelebogie Applications]]
+- [[_COMMUNITY_Sanity Check System|Sanity Check System]]
+- [[_COMMUNITY_Specialist Role Listings|Specialist Role Listings]]
+- [[_COMMUNITY_Leon User Profile & Groups|Leon User Profile & Groups]]
+- [[_COMMUNITY_Job Summary Generator|Job Summary Generator]]
+- [[_COMMUNITY_Multi-user Migration Tools|Multi-user Migration Tools]]
+- [[_COMMUNITY_PDF Generation Engine|PDF Generation Engine]]
+- [[_COMMUNITY_Analytics Group Job Listings|Analytics Group Job Listings]]
+- [[_COMMUNITY_Skills Translation Utility|Skills Translation Utility]]
+- [[_COMMUNITY_Brand Marketing Listings|Brand Marketing Listings]]
+- [[_COMMUNITY_JD Analysis & Scoring|JD Analysis & Scoring]]
+- [[_COMMUNITY_UI HTML Templates|UI HTML Templates]]
+- [[_COMMUNITY_CV Parser Agent|CV Parser Agent]]
+- [[_COMMUNITY_Config & Keyword Groups|Config & Keyword Groups]]
+- [[_COMMUNITY_Community 36|Community 36]]
+- [[_COMMUNITY_Community 37|Community 37]]
 
 ## God Nodes (most connected - your core abstractions)
-1. `Project Spec °™ LinkedIn CV Agent` - 25 edges
-2. `CV Draft °™ Zenith Deutschland Media Performance Analyst` - 16 edges
-3. `record()` - 12 edges
-4. `Boru Lai (Candidate)` - 11 edges
-5. `CV Group: group-pdm (Product/Digital Marketing)` - 11 edges
-6. `main()` - 10 edges
+1. `Boru Lai (Candidate)` - 29 edges
+2. `record()` - 12 edges
+3. `A/B Testing & Experimentation` - 12 edges
+4. `CV Group: group-pdm (Product Marketing Management)` - 11 edges
+5. `main()` - 10 edges
+6. `search_keyword()` - 10 edges
 7. `get_job_details_batch()` - 9 edges
 8. `dedup_and_sort()` - 9 edges
-9. `get_job_details_batch()` - 9 edges
-10. `Job Analysis Summary (All Groups)` - 9 edges
+9. `send_recv()` - 9 edges
+10. `get_job_details_batch()` - 9 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `CV Draft °™ Zenith Deutschland Media Performance Analyst` --references--> `Source CV °™ Data Analytics (my_cv_da.pdf)`  [INFERRED]
-  output/Zenith-Deutschland_Media-Performance-Analyst/cv_draft.md °˙ my_cv/my_cv_da.pdf
-- `Skills Analysis Panel (Matched / Missing)` --semantically_similar_to--> `CV Changes Summary °™ Zenith Deutschland Media Performance Analyst`  [INFERRED] [semantically similar]
-  UI/job_detail_page/code.html °˙ output/Zenith-Deutschland_Media-Performance-Analyst/cv_changes.md
-- `Match Score Gauge (SVG Ring)` --semantically_similar_to--> `Attribution Analytics & Performance Measurement`  [INFERRED] [semantically similar]
-  UI/job_detail_page/code.html °˙ output/Zenith-Deutschland_Media-Performance-Analyst/cv_draft.md
-- `Backlog: Application Funnel View (Sankey/Horizontal Bar)` --semantically_similar_to--> `Application Record 4-State Tracking`  [INFERRED] [semantically similar]
-  BACKLOG.md °˙ SPEC.md
-- `CV Group: DA (Data Analytics)` --references--> `Source CV °™ Data Analytics (my_cv_da.pdf)`  [INFERRED]
-  UI/My_CVs/code.html °˙ my_cv/my_cv_da.pdf
+- `UI Component: Skills Analysis Panel (Matched / Missing)` --semantically_similar_to--> `Zenith Deutschland CV Changes Summary`  [INFERRED] [semantically similar]
+  UI/job_detail_page/code.html ‚Üí ARCHIVE_pre_multiuser/output/Zenith-Deutschland_Media-Performance-Analyst/cv_changes.md
+- `UI Component: Match Score Gauge (SVG Ring)` --semantically_similar_to--> `Attribution Analytics & Performance Measurement`  [INFERRED] [semantically similar]
+  UI/job_detail_page/code.html ‚Üí ARCHIVE_pre_multiuser/output/Zenith-Deutschland_Media-Performance-Analyst/cv_draft.md
+- `Role: Franke E-Commerce Growth Specialist` --conceptually_related_to--> `E-Commerce & Multi-channel Analytics`  [INFERRED]
+  users/leon/output/group-pdm_Franke-Group_E-Commerce-Growth-Specialist-fmd/jd_text.txt ‚Üí ARCHIVE_pre_multiuser/output/group-pdm_ROSE-Bikes_Sales-and-Marketing-Analyst-Commerce-mwd/jd_text.txt
+- `_mcp_handshake_ok()` --calls--> `make_mcp_proc()`  [INFERRED]
+  F:\Claude code project\jobit\1_generate_linkedin_cv\scripts\check.py ‚Üí F:\Claude code project\jobit\1_generate_linkedin_cv\scripts\common.py
+- `_mcp_handshake_ok()` --calls--> `send_recv()`  [INFERRED]
+  F:\Claude code project\jobit\1_generate_linkedin_cv\scripts\check.py ‚Üí F:\Claude code project\jobit\1_generate_linkedin_cv\scripts\_run_group_search.py
 
 ## Hyperedges (group relationships)
-- **CV Tailoring Pipeline: Parsed CV + JD Analysis °˙ Tailored CV + Cover Letter** °™ cv_parsed_boru_lai, concept_jd_analysis_json, concept_phase3a_cv_cl_gen, concept_cv_rewrite_rules [EXTRACTED 0.95]
-- **Web UI Data Flow: server.py + config.json + jd_analysis.json °˙ Dashboard Pages** °™ concept_server_py, concept_config_json, concept_jd_analysis_json, concept_web_ui_page1_dashboard [EXTRACTED 0.90]
-- **Job Search Pipeline: LinkedIn MCP + Stepstone MCP °˙ search_history.json** °™ concept_linkedin_scraper_mcp, concept_stepstone_mcp, concept_phase2_job_search, concept_search_history_json [EXTRACTED 0.90]
-- **group-pdm Job Descriptions Cluster** °™ jd_datasite_product_marketing_specialist, jd_wack_junior_online_marketing_seo, jd_eao_marketing_content_specialist, jd_emnify_digital_marketing_specialist, jd_franke_ecommerce_growth_specialist, jd_haystack_marketing_graduate, jd_jobgether_marketing_operations_specialist, jd_mintos_junior_lifecycle_retention, jd_renesas_product_marketing_specialist, jd_reonic_digital_marketing_specialist, jd_rose_bikes_sales_marketing_analyst [EXTRACTED 1.00]
-- **Tailored CV + Cover Letter + Changes per Application** °™ messe_cv_draft, messe_cover_letter, messe_cv_changes [EXTRACTED 1.00]
-- **Candidate Core Differentiating Skills (PL-300, Customer Journey, Cohort Analysis)** °™ skill_powerbi_pl300, skill_customer_journey_mapping, skill_cohort_analysis [INFERRED 0.80]
-- **Kinetic Archive Design System Applied Across All UI Pages** °™ ui_velocity_talent_design, ui_job_detail_html, ui_dashboard_html, ui_my_cvs_html [EXTRACTED 0.95]
-- **Zenith Deutschland Application Bundle (CV Draft + Changes + Cover Letter)** °™ zenith_cv_draft, zenith_cv_changes, zenith_cover_letter [EXTRACTED 1.00]
-- **CV Groups Mapped to Source PDF Files** °™ cv_group_da, cv_group_pm, cv_group_pdm [INFERRED 0.85]
+- **Startup Sequence** ‚Äî  [INFERRED 1.00]
+- **CV Generation Pipeline** ‚Äî  [INFERRED 1.00]
+- **Dual Source Search** ‚Äî  [INFERRED 1.00]
+- **Candidate Strength Profile** ‚Äî  [INFERRED 0.90]
+- **Group-CV Mapping** ‚Äî  [INFERRED 1.00]
+- **Product & Digital Marketing Job Group (group-pdm)** ‚Äî appinio_role_csm, datasite_role_pms, drwack_role_joms, eao_role_mcs, emnify_role_dms, franke_role_egs, haystack_role_mg, innonature_role_crm, jobgether_role_mos, lekkerland_role_uxram, mintos_role_jlrm, rebuy_role_apro, renesas_role_pms, reonic_role_dms, rosebikes_role_sma, trivago_role_da, hela_role_pmm [EXTRACTED 1.00]
+- **PMO / Project Management Job Group (group-pmo)** ‚Äî aldi_role_pmo, climatepartner_role_spmo, digooh_role_pm, koenigneumath_role_spmo [EXTRACTED 1.00]
+- **Digital Advertising Job Group (group-da)** ‚Äî zweidigital_role_pmm [EXTRACTED 1.00]
+- **A/B Testing required across multiple roles** ‚Äî innonature_role_crm, lekkerland_role_uxram, mintos_role_jlrm, rebuy_role_apro, trivago_role_da [EXTRACTED 1.00]
+- **PMO Group JD Cluster (LA Lernallianz + MEAG)** ‚Äî  [EXTRACTED 1.00]
+- **Messe D√ºsseldorf Application Bundle (CV Draft + Changes + Cover Letter)** ‚Äî  [EXTRACTED 1.00]
+- **PUMA Group Application Bundle (CV Tailored + Changes + Cover Letter)** ‚Äî  [EXTRACTED 1.00]
+- **SOFTGAMES Application Bundle (CV Draft + Changes + Cover Letter)** ‚Äî  [EXTRACTED 1.00]
+- **Zenith Deutschland Application Bundle (CV Draft + Changes + Cover Letter)** ‚Äî  [EXTRACTED 1.00]
+- **Kinetic Archive Design System Applied Across All UI Pages** ‚Äî  [EXTRACTED 0.95]
+- **Candidate Core Differentiating Skills (PL-300, Customer Journey, Cohort Analysis, A/B Testing)** ‚Äî  [INFERRED 0.80]
+- **Kelebogie Batch 20260531: 3 Job Applications (CV + CL + Changes)** ‚Äî kelebogie_batch_20260531, kelebogie_crossing_hurdles_cv, kelebogie_crossing_hurdles_cl, kelebogie_crossing_hurdles_changes, kelebogie_alignerr_cv, kelebogie_alignerr_cl, kelebogie_alignerr_changes, kelebogie_fti_cv, kelebogie_fti_cl, kelebogie_fti_changes [EXTRACTED 1.00]
+- **Kelebogie group-econ-research: 54 jobs analyzed** ‚Äî kelebogie_group_econ_research, job_crossing_hurdles_policy, job_alignerr_ai_policy, job_fti_consulting [EXTRACTED 1.00]
+- **Kelebogile Riet Work History (4 internships)** ‚Äî kelebogie_candidate_profile, kelebogie_nc_treasury, kelebogie_dedat, kelebogie_dept_education, kelebogie_salga [EXTRACTED 1.00]
+- **Leon Three Active Search Groups (da, pmo, pdm)** ‚Äî leon_candidate_profile, leon_group_da, leon_group_pmo, leon_group_pdm [EXTRACTED 1.00]
+- **LinkedIn CV Agent Complete Workflow** ‚Äî agent_workflow_phases, kelebogie_spec, leon_spec, pdf_generation_fpdf2 [INFERRED 0.85]
 
 ## Communities
 
-### Community 0 - "Project Architecture & Pipeline"
+### Community 0 - "Leon Job Application Materials"
+Cohesion: 0.05
+Nodes (69): Boru Lai, Microsoft Certified: Power BI Data Analyst Associate PL-300, SOFTGAMES: GRG bullets reordered to lead with performance analytics over product/market work, SOFTGAMES: HSBC bullet label changed to Dashboard Development, added 'in Power BI' factually, SOFTGAMES: Moli Media bullet 1 reframed to foreground cohort analytics without adding new content, SOFTGAMES: Moli Media KOL bullet reframed as performance measurement / UA analogue, SOFTGAMES: Skills reordered to lead with cohort analysis and A/B testing per JD requirements, SOFTGAMES: Summary rewritten to foreground cohort analysis, A/B testing, PL-300 certification (+61 more)
+
+### Community 1 - "Candidate Profile & Skills"
+Cohesion: 0.05
+Nodes (62): GET /api/group-stats, GET /api/jobs, POST /api/search, Application Record (4-state), Boru Lai (Candidate), CLAUDE.md, Color System, config.json (+54 more)
+
+### Community 2 - "Web UI & Project Spec"
+Cohesion: 0.04
+Nodes (57): Cover Letter: ADAC Marketinganalyst, CV Changes: ADAC Marketinganalyst, CV Draft: ADAC Marketinganalyst, Cover Letter: Bionorica SE Marketing Analyst, CV Changes: Bionorica SE Marketing Analyst, CV Tailored: Bionorica SE Marketing Analyst, Company: ADAC, Company: All for One (+49 more)
+
+### Community 3 - "PMO Group Job Listings"
+Cohesion: 0.04
+Nodes (52): ALDI Einkauf SE & Co. oHG, PMO ERP Transformation (ALDI), ClimatePartner GmbH, Senior PMO Manager (ClimatePartner), ALDI Einkauf SE & Co. oHG, ClimatePartner GmbH, DIGOOH Media GmbH, K√∂nig + Neurath AG (+44 more)
+
+### Community 4 - "MCP Common Utilities"
+Cohesion: 0.05
+Nodes (48): Lekkerland SE (REWE Group), Rebuy Recommerce GmbH, trivago NV, Zenith Deutschland (Publicis Groupe), Franke Group, E-Commerce Growth Specialist (Franke), InnoNature GmbH, Senior CRM Manager (InnoNature) (+40 more)
+
+### Community 5 - "HTTP Server & API Backend"
+Cohesion: 0.07
+Nodes (46): Boru Lai (Candidate), Company: Glow25, Messe D√ºsseldorf, Messe D√ºsseldorf, PUMA Group, PUMA Group, ROSE Bikes, SOFTGAMES (+38 more)
+
+### Community 6 - "Product Marketing Job Listings"
 Cohesion: 0.08
-Nodes (47): All for One I Analytics Senior Consultant JD Text, Project Backlog, LinkedIn CV Agent CLAUDE.md, POST /api/group-save Endpoint (Pending), POST /api/search + SSE Log Streaming, Backlog: Application Funnel View (Sankey/Horizontal Bar), Application Record 4-State Tracking, classifySkill() °™ 6-Category Skill Classifier (+39 more)
+Nodes (37): make_mcp_proc(), Background thread: drain stdout into queue; put None sentinel on EOF., Spawn linkedin-scraper-mcp with a background reader thread.      Fixes two bug, Send a JSON-RPC message and return the matching response within *timeout* second, send_recv(), _stdout_reader_loop(), Launch linkedin-scraper-mcp, perform initialize handshake,     call search_jobs, search_jobs() (+29 more)
 
-### Community 1 - "Target Companies & Job Descriptions"
+### Community 7 - "Stepstone Search & State"
+Cohesion: 0.1
+Nodes (34): BaseHTTPRequestHandler, HTTPServer, _build_job_family_prompt(), compute_group_stats(), compute_search_analysis(), _cur_uid(), get_config_path(), get_cv_dir() (+26 more)
+
+### Community 8 - "Digital Marketing Job Listings"
 Cohesion: 0.08
-Nodes (30): Datasite / Sherpany, EAO, emnify, Franke Group, Haystack (recruiting for FMCG brand), Intersnack Group, Jobgether (partner company), Renesas Electronics (+22 more)
+Nodes (36): _extract_posted_days_ago(), main(), make_stepstone_job_id(), parse_job_details_response(), parse_search_response(), Parse get_job_details text response into structured fields.     Handles new emo, Open one SSE session, search all keywords for a group at one zip_code,     then, Run searches for all groups √ó zip_codes sequentially. (+28 more)
 
-### Community 2 - "UI Design & API Layer"
-Cohesion: 0.11
-Nodes (28): API Endpoint /api/search (localhost:8080), API SSE Endpoint /api/search-log, CV Group: DA (Data Analytics), CV Group: PDM (Product Marketing), CV Group: PMO (Project Management Office), Glass Navigation (backdrop-filter blur), Kinetic Archive Design Philosophy, Kinetic Gradient (Primary #005D8F °˙ #0077B5 135deg) (+20 more)
+### Community 9 - "LinkedIn Search Pipeline"
+Cohesion: 0.06
+Nodes (32): APPINIO GmbH, Senior Customer Success Manager DACH (APPINIO), InnoNature GmbH, Mintos, Reonic, emnify, Digital Marketing Specialist (emnify), Senior CRM Manager ‚Äî InnoNature GmbH (+24 more)
 
-### Community 3 - "Application Outputs & Candidate"
-Cohesion: 0.14
-Nodes (24): Boru Lai (Candidate), Messe D®πsseldorf, Mintos, PUMA Group, SOFTGAMES, Mintos Junior Lifecycle & Retention Marketing Specialist JD, Messe D®πsseldorf Cover Letter Draft, Messe D®πsseldorf CV Changes Summary (+16 more)
+### Community 10 - "Kelebogie Applications"
+Cohesion: 0.13
+Nodes (26): call_tool(), extract_job_ids_from_result(), get_job_details_batch(), initialize_proc(), _is_jp_noise(), _is_ui_noise(), is_valid_job(), kill_proc() (+18 more)
 
-### Community 4 - "HTTP Server Module"
-Cohesion: 0.15
-Nodes (15): BaseHTTPRequestHandler, HTTPServer, compute_group_stats(), get_keyword_groups(), Handler, _load_search_batches(), parse_jobs(), Return keyword_groups list from config regardless of nesting. (+7 more)
+### Community 11 - "Sanity Check System"
+Cohesion: 0.1
+Nodes (26): Job: Alignerr ‚Äî AI Policy Ethics & Compliance Analyst (Score 52), Job: Crossing Hurdles ‚Äî Policy Analyst $25/hour Remote (Score 88), Job: FTI Consulting ‚Äî Consultant German Markets Economic Financial (Score 52), CV Changes ‚Äî Alignerr AI Policy Analyst, Cover Letter ‚Äî Alignerr AI Policy Analyst, CV Draft ‚Äî Alignerr AI Policy Analyst, Kelebogie Batch 20260531_001, Kelebogile Riet ‚Äî Candidate Profile (+18 more)
 
-### Community 5 - "Search State Engine"
-Cohesion: 0.15
-Nodes (21): build_group_meta(), compute_offsets(), dedup_and_sort(), flatten_keywords(), get_batch(), load_cv_skills(), load_history(), new_batch_id() (+13 more)
+### Community 12 - "Specialist Role Listings"
+Cohesion: 0.1
+Nodes (23): Project Spec ‚Äî LinkedIn CV Agent (Amy user), Design Component: Glass Navigation (backdrop-filter blur), Design Token: Kinetic Gradient (#005D8F ‚Üí #0077B5 135deg), Design Principle: No-Line Rule (tonal separation), Design Typography Triad: Manrope / Inter / Space Grotesk, Feature: CV Tailoring Pipeline (Phase 3A), Feature: Dual-Source Job Search (LinkedIn + Stepstone), Feature: Multi-User Support (users/ directory) (+15 more)
 
-### Community 6 - "Candidate Work History"
-Cohesion: 0.12
-Nodes (22): Boru Lai °™ Job Applicant, ECE Group Hamburg °™ Working Student Business Development (2024), GRG Banking Corporation Limited °™ Product Marketing Manager (2019), Hapag-Lloyd AG °™ Working Student Project Coordination (2024®C2025), HSBC °™ Strategy PMO (2021®C2022), Intelligent Power Corporation Limited °™ Marketing Manager (2020), Moli Media Corporation Limited °™ Marketing & Project Coordinator (2019), Glow25 Senior Marketing Analyst °™ Cover Letter Final PDF (+14 more)
-
-### Community 7 - "Sanity Check Module"
+### Community 13 - "Leon User Profile & Groups"
 Cohesion: 0.22
 Nodes (20): check_config(), check_cv_files(), check_cv_parsed_cache(), check_linkedin_mcp(), check_output_dir(), check_progress_files(), _check_schema(), check_search_history() (+12 more)
 
-### Community 8 - "LinkedIn Phase 2 Search"
-Cohesion: 0.19
-Nodes (19): call_tool(), extract_job_ids_from_result(), get_job_details_batch(), initialize_proc(), _is_ui_noise(), is_valid_job(), kill_proc(), main() (+11 more)
+### Community 14 - "Job Summary Generator"
+Cohesion: 0.11
+Nodes (18): Jobgether, Dr. O.K. Wack Chemie GmbH, Junior Online Marketing Specialist SEO (Dr. Wack), EAO, Marketing Content Specialist (EAO), Marketing Operations Specialist ‚Äî Jobgether, Jobgether (partner), Marketing Operations Specialist (Jobgether) (+10 more)
 
-### Community 9 - "Group Search Runner"
-Cohesion: 0.19
-Nodes (19): call_tool(), extract_job_ids_from_result(), get_job_details_batch(), initialize_proc(), _is_ui_noise(), is_valid_job(), kill_proc(), main() (+11 more)
+### Community 15 - "Multi-user Migration Tools"
+Cohesion: 0.15
+Nodes (16): Leon ‚Äî Candidate Profile (Data-driven marketing analytics), Leon CV Parsed, ECE Group Hamburg ‚Äî Working Student Business Development (Leon), Leon Group: Marketing Analytics (group-da), Leon Group: Product Marketing Management (group-pdm), Leon Group: Project Management Office (group-pmo), HSBC ‚Äî Strategy PMO (Leon Work Experience), Job: CROWDCONSULTANTS ‚Äî PMO Product Portfolio Lead (Score 95) (+8 more)
 
-### Community 10 - "Marketing CV Applications"
-Cohesion: 0.12
-Nodes (20): ADAC Marketing Analyst Cover Letter Draft, ADAC CV Changes Summary, ADAC CV Draft, Bionorica SE Cover Letter, Bionorica SE CV Changes, Bionorica SE Tailored CV, CV Rewrite Rules (Rewording Only, No Fabrication), CV Group: group-pmo (Project Management Office) (+12 more)
+### Community 16 - "PDF Generation Engine"
+Cohesion: 0.2
+Nodes (14): build_markdown(), cross_source_dedup(), extract_group_id(), fmt_list(), load_all_analyses(), load_last_seen(), main(), ‰ªéÊñá‰ª∂Â§πÂêçÁß∞Âä®ÊÄÅÊèêÂèñ group-idÔºàÂèñÈ¶ñ‰∏™‰∏ãÂàíÁ∫øÂâçÁöÑ group- ÂâçÁºÄÔºâ„ÄÇ (+6 more)
 
-### Community 11 - "Summary Generator"
-Cohesion: 0.23
-Nodes (12): build_markdown(), cross_source_dedup(), extract_group_id(), fmt_list(), load_all_analyses(), main(), ∏˘æ›º«¬º¡–±Ì…˙≥… Markdown ª„◊‹±Ì£®¡–À≥–Ú∞¥ Orchestrator.md πÊ∑∂£©°£, …®√Ë output/*/jd_analysis.json£¨∑µªÿÀ˘”–≥…π¶Ω‚Œˆµƒº«¬º¡–±Ì°£ (+4 more)
+### Community 17 - "Analytics Group Job Listings"
+Cohesion: 0.21
+Nodes (9): _copy_tree(), _create_hardlink(), _create_junction(), _create_user_workspace(), migrate_leon(), Create Windows junction point (no admin required)., Create hard link (same filesystem, no admin required)., Copy directory tree, skip existing files. (+1 more)
 
-### Community 12 - "PDF Generator"
+### Community 18 - "Skills Translation Utility"
 Cohesion: 0.27
-Nodes (11): build_css_from_theme(), generate_pdf(), get_all_themes(), list_themes(), load_theme_factory_themes(), ∫œ≤¢ theme-factory ÷˜Ã‚∫Õƒ⁄Ω®÷˜Ã‚£®theme-factory ”≈œ»£©°£, Ω‚Œˆ÷˜Ã‚√˚≥∆£¨∑µªÿ (css_string, theme_dict)°£     ”≈œ»º∂£∫theme-factory CSS Œƒº˛ > theme-factory, Strip <script>/<style> tags and on* event attributes to prevent injection. (+3 more)
+Nodes (11): build_css_from_theme(), generate_pdf(), get_all_themes(), list_themes(), load_theme_factory_themes(), ÂêàÂπ∂ theme-factory ‰∏ªÈ¢òÂíåÂÜÖÂª∫‰∏ªÈ¢òÔºàtheme-factory ‰ºòÂÖàÔºâ„ÄÇ, Ëß£Êûê‰∏ªÈ¢òÂêçÁß∞ÔºåËøîÂõû (css_string, theme_dict)„ÄÇ     ‰ºòÂÖàÁ∫ßÔºötheme-factory CSS Êñá‰ª∂ > theme-factor, Strip <script>/<style> tags and on* event attributes to prevent injection. (+3 more)
 
-### Community 13 - "Job Detail Refetcher"
-Cohesion: 0.3
-Nodes (11): get_details_batch(), initialize(), _is_ui_noise(), main(), make_proc(), parse_job_details(), parse_job_posting(), Fetch details for a batch of job_ids. Returns {job_id: parsed_dict}. (+3 more)
+### Community 19 - "Brand Marketing Listings"
+Cohesion: 0.2
+Nodes (11): LA Lernallianz GmbH, MEAG MUNICH ERGO AssetManagement GmbH, LA Lernallianz GmbH ‚Äî PMO / Transformation Manager JD, MEAG MUNICH ERGO ‚Äî Project Manager Organization Transformation & Strategy JD, PMO / Transformation Manager (m/w/d), Project Manager Organization ‚Äî Transformation & Strategy, Asset Management / Financial Services Domain, Change Management & Transformation (+3 more)
 
-### Community 14 - "Stepstone Search"
-Cohesion: 0.24
-Nodes (11): main(), make_stepstone_job_id(), parse_job_details_response(), parse_search_response(), Parse get_job_details text response into structured fields.     Handles new emoj, Open one SSE session, search all keywords for a group at one zip_code,     then, Run searches for all groups °¡ zip_codes sequentially., Generate stable ID: st_ + first 16 hex chars of SHA256(url).     16 hex = 64-bit (+3 more)
+### Community 20 - "JD Analysis & Scoring"
+Cohesion: 0.43
+Nodes (6): collect_german_entries(), is_german(), main(), Return list of (jd_file, field_name, index, original_text) for German entries., Translate all texts in batches via claude -p (file-based I/O)., translate_batch()
 
-### Community 16 - "LinkedIn MCP Client"
+### Community 21 - "UI HTML Templates"
+Cohesion: 0.33
+Nodes (7): Haystack, Haystack (recruiter), Marketing Graduate / Brand Manager (Haystack), Brand Manager (Marketing Graduate) ‚Äî Haystack, Hesse, Germany, Brand Management, Consumer & Shopper Insights
+
+### Community 23 - "CV Parser Agent"
 Cohesion: 0.5
-Nodes (4): Send a JSON-RPC message and read a matching response., Launch linkedin-scraper-mcp, perform initialize handshake,     call search_jobs, search_jobs(), send_recv()
+Nodes (4): DIGOOH Media GmbH, Projektmanager Portfoliomanagement (DIGOOH), Advanced Excel (SVERWEIS, Pivot), Portfolio & Partner Management (DOOH)
 
-### Community 21 - "Review Gate"
-Cohesion: 1.0
-Nodes (1): Phase 3B: Human Review
+### Community 24 - "Config & Keyword Groups"
+Cohesion: 0.67
+Nodes (4): LinkedIn CV Agent Workflow Phases (Phase 1-4), Kelebogie User SPEC, Leon User SPEC, Web UI Specification (job_tracker server)
 
-### Community 22 - "Phase 4 Summary"
+### Community 36 - "Community 36"
 Cohesion: 1.0
-Nodes (1): Phase 4: Summary
+Nodes (1): Multi-Channel Data Activation & Personalisation
 
-### Community 23 - "IMG CV Group"
+### Community 37 - "Community 37"
 Cohesion: 1.0
-Nodes (1): CV Group: group-internal-marketing
-
-### Community 24 - "EM CV Group"
-Cohesion: 1.0
-Nodes (1): CV Group: group-event-management
-
-### Community 25 - "EM Source CV"
-Cohesion: 1.0
-Nodes (1): Source CV °™ Event Management (my_cv_em.pdf)
-
-### Community 26 - "IMG Source CV"
-Cohesion: 1.0
-Nodes (1): Source CV °™ Internal Marketing (my_cv_img.pdf)
+Nodes (1): MS Excel
 
 ## Knowledge Gaps
-- **97 isolated node(s):** `ºÏ≤È theme-factory skill  «∑Ò“—∞≤◊∞°£`, `Launch uvx linkedin-scraper-mcp as a subprocess, send an MCP initialize     mess`, `Spawn uvx linkedin-scraper-mcp briefly to trigger package download/cache,     th`, `Verify that uvx linkedin-scraper-mcp is reachable via MCP initialize.     On fir`, `HTTP GET to Stepstone MCP server to verify it is running.     Uses stepstone.ser` (+92 more)
-  These have °‹1 connection - possible missing edges or undocumented components.
-- **Thin community `Review Gate`** (1 nodes): `Phase 3B: Human Review`
+- **227 isolated node(s):** `Ê£ÄÊü• theme-factory skill ÊòØÂê¶Â∑≤ÂÆâË£Ö„ÄÇ`, `Launch uvx linkedin-scraper-mcp and verify it responds to MCP initialize.`, `Spawn uvx linkedin-scraper-mcp briefly to trigger package download/cache,     t`, `Verify that uvx linkedin-scraper-mcp is reachable via MCP initialize.     On fi`, `HTTP GET to Stepstone MCP server to verify it is running.     Uses stepstone.se` (+222 more)
+  These have ‚â§1 connection - possible missing edges or undocumented components.
+- **Thin community `Community 36`** (1 nodes): `Multi-Channel Data Activation & Personalisation`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `Phase 4 Summary`** (1 nodes): `Phase 4: Summary`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `IMG CV Group`** (1 nodes): `CV Group: group-internal-marketing`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `EM CV Group`** (1 nodes): `CV Group: group-event-management`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `EM Source CV`** (1 nodes): `Source CV °™ Event Management (my_cv_em.pdf)`
-  Too small to be a meaningful cluster - may be noise or needs more connections extracted.
-- **Thin community `IMG Source CV`** (1 nodes): `Source CV °™ Internal Marketing (my_cv_img.pdf)`
+- **Thin community `Community 37`** (1 nodes): `MS Excel`
   Too small to be a meaningful cluster - may be noise or needs more connections extracted.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Project Spec °™ LinkedIn CV Agent` connect `Project Architecture & Pipeline` to `Marketing CV Applications`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
-- **Why does `search_group_zip()` connect `Stepstone Search` to `Group Search Runner`, `Job Detail Refetcher`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `call_tool()` connect `Group Search Runner` to `Stepstone Search`?**
-  _High betweenness centrality (0.016) - this node is a cross-community bridge._
-- **What connects `ºÏ≤È theme-factory skill  «∑Ò“—∞≤◊∞°£`, `Launch uvx linkedin-scraper-mcp as a subprocess, send an MCP initialize     mess`, `Spawn uvx linkedin-scraper-mcp briefly to trigger package download/cache,     th` to the rest of the system?**
-  _97 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Project Architecture & Pipeline` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
-- **Should `Target Companies & Job Descriptions` be split into smaller, more focused modules?**
-  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
-- **Should `UI Design & API Layer` be split into smaller, more focused modules?**
-  _Cohesion score 0.11 - nodes in this community are weakly interconnected._
+- **Why does `Boru Lai (Candidate)` connect `HTTP Server & API Backend` to `Web UI & Project Spec`, `MCP Common Utilities`, `Specialist Role Listings`?**
+  _High betweenness centrality (0.068) - this node is a cross-community bridge._
+- **What connects `Ê£ÄÊü• theme-factory skill ÊòØÂê¶Â∑≤ÂÆâË£Ö„ÄÇ`, `Launch uvx linkedin-scraper-mcp and verify it responds to MCP initialize.`, `Spawn uvx linkedin-scraper-mcp briefly to trigger package download/cache,     t` to the rest of the system?**
+  _227 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `Leon Job Application Materials` be split into smaller, more focused modules?**
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
+- **Should `Candidate Profile & Skills` be split into smaller, more focused modules?**
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
+- **Should `Web UI & Project Spec` be split into smaller, more focused modules?**
+  _Cohesion score 0.04 - nodes in this community are weakly interconnected._
+- **Should `PMO Group Job Listings` be split into smaller, more focused modules?**
+  _Cohesion score 0.04 - nodes in this community are weakly interconnected._
+- **Should `MCP Common Utilities` be split into smaller, more focused modules?**
+  _Cohesion score 0.05 - nodes in this community are weakly interconnected._

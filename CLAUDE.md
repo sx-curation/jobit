@@ -46,7 +46,7 @@
 | `显示全部` | 显示低分隐藏职缺 |
 | `/check` | 单独运行 sanity check |
 | `/check --verbose` | 显示所有通过项 |
-| `/themes` | 列出可用 PDF 主题 |
+| `/themes` | 列出可用 PDF 视觉主题（不含 ats——ats 版本每次 --dual 时自动生成，无需指定） |
 | `/status` | progress.json + 搜索历史摘要 |
 | `/progress` | memory/notes.md 最近 3 条笔记 |
 | `/reset-history` | 清空 search_history.json（慎用）|

@@ -23,15 +23,11 @@ except Exception:
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
 PROJECT_DIR = Path(__file__).resolve().parent.parent
-OUTPUT_DIR  = PROJECT_DIR / 'output'
-MY_CV_DIR   = PROJECT_DIR / 'my_cv'
-JOB_SUMMARY = OUTPUT_DIR / 'job_summary.md'
-CONFIG_PATH = PROJECT_DIR / 'config.json'
 USERS_DIR   = PROJECT_DIR / '1_generate_linkedin_cv' / 'users'
 USERS_JSON  = PROJECT_DIR / '1_generate_linkedin_cv' / 'users.json'
 HTML_PATH   = Path("C:/Users/Leon/Desktop/job_tracker/index.html")
 PORT        = 8080
-_write_lock      = threading.Lock()
+_write_lock      = threading.RLock()   # reentrant: handlers can nest around write_config
 ANSI_RE          = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
 _search_proc     = None
 _search_log      = []
@@ -47,10 +43,6 @@ _current_user_lock = threading.Lock()
 def _user_paths(uid: str) -> dict:
     user_dir = USERS_DIR / uid
     out_dir  = user_dir / 'output'
-    # leon: users/leon/output is a junction to PROJECT_DIR/output — fall back if needed
-    if uid == 'leon' and not out_dir.exists():
-        out_dir  = OUTPUT_DIR
-        user_dir = PROJECT_DIR
     return {
         'output_dir':  out_dir,
         'my_cv_dir':   user_dir / 'my_cv',
@@ -108,7 +100,7 @@ def parse_jobs(uid=None):
         mtime = 0.0
     with _jobs_cache_lock:
         if mtime and mtime == _jobs_cache_mtime.get(uid, 0.0) and _jobs_cache.get(uid):
-            return list(_jobs_cache[uid])  # shallow copy so callers can't mutate cache
+            return [dict(j) for j in _jobs_cache[uid]]  # per-job copy prevents cross-request mutation
 
     jobs = []
     header_done = False
@@ -303,22 +295,21 @@ def parse_jobs(uid=None):
 
 
 # ── Config helpers ────────────────────────────────────────────────────────────
-def read_config(config_path=None):
-    return json.loads((config_path or CONFIG_PATH).read_text(encoding='utf-8'))
+def read_config(config_path: Path) -> dict:
+    return json.loads(config_path.read_text(encoding='utf-8'))
 
-def write_config(data, config_path=None):
-    p = config_path or CONFIG_PATH
+def write_config(data, config_path: Path):
     with _write_lock:
-        p.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
+        config_path.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
 
 def _set_nested(obj, path_keys, value):
     for k in path_keys[:-1]:
         obj = obj[k]
     obj[path_keys[-1]] = value
 
-def get_keyword_groups(data=None):
+def get_keyword_groups(data: dict):
     """Return keyword_groups list from config regardless of nesting."""
-    cfg = data or read_config()
+    cfg = data
     # Support both top-level and nested under job_search
     if 'keyword_groups' in cfg:
         return cfg, cfg['keyword_groups'], ['keyword_groups']
@@ -548,13 +539,12 @@ def _run_search(cmd):
         )
 
     # Watchdog：超时后强制 kill，防止 MCP 挂起导致线程永久占用
-    def _watchdog():
+    def _watchdog(proc):
         time.sleep(_SEARCH_MAX_S)
-        proc = _search_proc
         if proc and proc.poll() is None:
             proc.kill()
             _search_log.append('[TIMEOUT] Search process killed after 30 min')
-    threading.Thread(target=_watchdog, daemon=True).start()
+    threading.Thread(target=_watchdog, args=(_search_proc,), daemon=True).start()
 
     try:
         for line in _search_proc.stdout:
@@ -727,13 +717,14 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 uid = _get_current_uid()
                 cfg_path = _user_paths(uid)['config_path']
-                cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
-                new_groups = [g for g in groups if g.get('group_id') != gid]
-                if len(new_groups) == len(groups):
-                    self._send(json.dumps({'error': f'group_id not found: {gid}'}), status=404)
-                    return
-                _set_nested(cfg, path_keys, new_groups)
-                write_config(cfg, cfg_path)
+                with _write_lock:
+                    cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
+                    new_groups = [g for g in groups if g.get('group_id') != gid]
+                    if len(new_groups) == len(groups):
+                        self._send(json.dumps({'error': f'group_id not found: {gid}'}), status=404)
+                        return
+                    _set_nested(cfg, path_keys, new_groups)
+                    write_config(cfg, cfg_path)
                 self._send(json.dumps({'ok': True}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -747,24 +738,25 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 uid = _get_current_uid()
                 cfg_path = _user_paths(uid)['config_path']
-                cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
-                originals = [g for g in groups if g.get('group_id') == gid]
-                if not originals:
-                    self._send(json.dumps({'error': f'group_id not found: {gid}'}), status=404)
-                    return
-                new_grp   = copy.deepcopy(originals[0])
-                taken     = {g.get('group_id', '') for g in groups}
-                base      = gid + '-copy'
-                new_id    = base
-                i = 2
-                while new_id in taken:
-                    new_id = f'{base}-{i}'
-                    i += 1
-                new_grp['group_id']    = new_id
-                new_grp['group_label'] = new_grp.get('group_label', gid) + ' (Copy)'
-                groups.append(new_grp)
-                _set_nested(cfg, path_keys, groups)
-                write_config(cfg, cfg_path)
+                with _write_lock:
+                    cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
+                    originals = [g for g in groups if g.get('group_id') == gid]
+                    if not originals:
+                        self._send(json.dumps({'error': f'group_id not found: {gid}'}), status=404)
+                        return
+                    new_grp   = copy.deepcopy(originals[0])
+                    taken     = {g.get('group_id', '') for g in groups}
+                    base      = gid + '-copy'
+                    new_id    = base
+                    i = 2
+                    while new_id in taken:
+                        new_id = f'{base}-{i}'
+                        i += 1
+                    new_grp['group_id']    = new_id
+                    new_grp['group_label'] = new_grp.get('group_label', gid) + ' (Copy)'
+                    groups.append(new_grp)
+                    _set_nested(cfg, path_keys, groups)
+                    write_config(cfg, cfg_path)
                 self._send(json.dumps({'ok': True, 'new_group_id': new_id}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -782,13 +774,14 @@ class Handler(BaseHTTPRequestHandler):
                     return
                 uid = _get_current_uid()
                 cfg_path = _user_paths(uid)['config_path']
-                cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
-                if any(g.get('group_id') == gid for g in groups):
-                    self._send(json.dumps({'error': f'group_id already exists: {gid}'}), status=409)
-                    return
-                groups.append(grp)
-                _set_nested(cfg, path_keys, groups)
-                write_config(cfg, cfg_path)
+                with _write_lock:
+                    cfg, groups, path_keys = get_keyword_groups(read_config(cfg_path))
+                    if any(g.get('group_id') == gid for g in groups):
+                        self._send(json.dumps({'error': f'group_id already exists: {gid}'}), status=409)
+                        return
+                    groups.append(grp)
+                    _set_nested(cfg, path_keys, groups)
+                    write_config(cfg, cfg_path)
                 self._send(json.dumps({'ok': True, 'group_id': gid}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -826,7 +819,7 @@ class Handler(BaseHTTPRequestHandler):
                     if _search_proc and _search_proc.poll() is None:
                         self._send(json.dumps({'error': 'search_running'}), status=409)
                         return
-                _set_current_uid(new_uid)
+                    _set_current_uid(new_uid)   # inside lock: atomic check-then-switch
                 with _jobs_cache_lock:
                     _jobs_cache_mtime[new_uid] = 0.0
                 self._send(json.dumps({'ok': True}))
@@ -882,6 +875,8 @@ def _update_jd_field(jd_path: str, field: str, value, uid=None):
         detail = json.loads(jd_file.read_text(encoding='utf-8'))
         detail[field] = value
         jd_file.write_text(json.dumps(detail, ensure_ascii=False, indent=2), encoding='utf-8')
+    with _jobs_cache_lock:
+        _jobs_cache_mtime[uid] = 0.0
     return {'ok': True}, 200
 
 
@@ -908,7 +903,7 @@ if __name__ == '__main__':
     url    = f'http://localhost:{PORT}'
     print(f'Job Tracker  →  {url}')
     print(f'HTML:  {HTML_PATH}')
-    print(f'Data:  {OUTPUT_DIR}')
+    print(f'Users: {USERS_DIR}')
     print('Ctrl+C to stop.\n')
     threading.Timer(1.2, lambda: webbrowser.open(url)).start()
     try:

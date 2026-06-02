@@ -61,7 +61,22 @@
       "Bash(where wkhtmltopdf:*)",
       "Bash(ls:*)",
       "Bash(python3:*)",
-      "Bash(python3.12 -c ':*)"
+      "Bash(python3.12 -c ':*)",
+      "Bash(xargs -I {} sh -c 'echo \"=== {} ===\" && ls \"F:\\\\Claude code project\\\\jobit\\\\1_generate_linkedin_cv\\\\users\\\\leon\\\\output/{}\" 2>/dev/null | head -10')",
+      "Bash(awk '{print $NF}')",
+      "Bash(grep -v \"^$\")",
+      "Bash(dir:*)",
+      "Bash(powershell.exe -Command \"\\(Get-Item '1_generate_linkedin_cv/output' -Force\\).LinkType\")",
+      "Bash(powershell.exe -Command \"\\(Get-Item '1_generate_linkedin_cv/users/leon/output' -Force\\).LinkType\")",
+      "Bash(mkdir -p 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize')",
+      "Bash(mv 'F:/Claude code project/jobit/scripts' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
+      "Bash(mv 'F:/Claude code project/jobit/graphify-out' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
+      "Bash(mv 'F:/Claude code project/jobit/config.json' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
+      "Bash(mv 'F:/Claude code project/jobit/output' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
+      "Bash(rmdir \"F:\\\\Claude code project\\\\jobit\\\\1_generate_linkedin_cv\\\\users\\\\leon\\\\.claude\")",
+      "Bash(rmdir \"F:\\\\Claude code project\\\\jobit\\\\1_generate_linkedin_cv\\\\users\\\\kelebogie\\\\.claude\")",
+      "Bash(rm \"F:/Claude code project/jobit/1_generate_linkedin_cv/users/leon/.claude\")",
+      "Bash(rm \"F:/Claude code project/jobit/1_generate_linkedin_cv/users/kelebogie/.claude\")"
     ]
   }
 }

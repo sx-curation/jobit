@@ -1,0 +1,86 @@
+# ATS field label mappings per ATS type
+# key: field path in cv_parsed (experience[].{key} or education[].{key})
+# label: displayed in the form field card
+
+workday:
+  work_experience:
+    - key: company       label: "Employer"
+    - key: title         label: "Job Title"
+    - key: start_month   label: "Start Month (MM)"
+    - key: start_year    label: "Start Year (YYYY)"
+    - key: end_month     label: "End Month (MM)"      optional: true
+    - key: end_year      label: "End Year (YYYY)"
+    - key: country       label: "Country"
+    - key: city          label: "City"
+    - key: desc_short    label: "Description (1 line)"
+    - key: desc_full     label: "Description (full)"
+  education:
+    - key: institution   label: "School / Institution"
+    - key: degree        label: "Degree"
+    - key: field         label: "Field of Study"
+    - key: start_year    label: "Start Year"
+    - key: end_year      label: "End Year"
+    - key: gpa           label: "GPA"                 optional: true
+
+sap_custom:
+  work_experience:
+    - key: company       label: "Unternehmen / Company"
+    - key: title         label: "Stelle / Job Title"
+    - key: start_month   label: "Von (MM)"
+    - key: start_year    label: "Von (JJJJ)"
+    - key: end_month     label: "Bis (MM)"            optional: true
+    - key: end_year      label: "Bis (JJJJ)"
+    - key: country       label: "Land / Country"
+    - key: city          label: "Stadt / City"
+    - key: desc_full     label: "Aufgaben / Responsibilities"
+  education:
+    - key: institution   label: "Bildungseinrichtung"
+    - key: degree        label: "Abschluss"
+    - key: field         label: "Fachrichtung"
+    - key: start_year    label: "Von (JJJJ)"
+    - key: end_year      label: "Bis (JJJJ)"
+
+greenhouse:
+  work_experience:
+    - key: company       label: "Company"
+    - key: title         label: "Title"
+    - key: start_month   label: "Start Month"
+    - key: start_year    label: "Start Year"
+    - key: end_month     label: "End Month"           optional: true
+    - key: end_year      label: "End Year"
+    - key: desc_full     label: "Job Description"
+  education:
+    - key: institution   label: "School"
+    - key: degree        label: "Degree"
+    - key: field         label: "Discipline"
+    - key: start_year    label: "Start Year"
+    - key: end_year      label: "End Year"
+
+lever:
+  work_experience:
+    - key: company       label: "Employer"
+    - key: title         label: "Position"
+    - key: start_year    label: "Year Started"
+    - key: end_year      label: "Year Ended"
+    - key: desc_full     label: "Summary"
+  education:
+    - key: institution   label: "University"
+    - key: degree        label: "Degree"
+    - key: field         label: "Major"
+    - key: end_year      label: "Graduation Year"
+
+generic:
+  work_experience:
+    - key: company       label: "Company"
+    - key: title         label: "Job Title"
+    - key: start_month   label: "Start Month"
+    - key: start_year    label: "Start Year"
+    - key: end_month     label: "End Month"           optional: true
+    - key: end_year      label: "End Year"
+    - key: desc_full     label: "Description"
+  education:
+    - key: institution   label: "School"
+    - key: degree        label: "Degree"
+    - key: field         label: "Field"
+    - key: start_year    label: "Start Year"
+    - key: end_year      label: "End Year"

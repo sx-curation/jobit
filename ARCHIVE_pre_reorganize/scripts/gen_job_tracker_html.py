@@ -689,9 +689,18 @@ function esc(s) {
     .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
 }
 
+// ── Current user (for localStorage namespacing) ───────────────────────────────
+let _currentUid = '';
+
 // ── Load jobs from server ─────────────────────────────────────────────────────
 async function loadJobs() {
   try {
+    // Fetch current uid first so filter/col-vis state is namespaced per user
+    try {
+      const ur = await fetch('/api/users');
+      const ud = await ur.json();
+      _currentUid = ud.current || '';
+    } catch(_) {}
     const resp = await fetch('/api/jobs');
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     JOBS = await resp.json();
@@ -1359,7 +1368,7 @@ function debounceFilters() {
 // ── Filter persistence (localStorage) ────────────────────────────────────────
 function saveFilterState() {
   try {
-    localStorage.setItem('jt_filter', JSON.stringify({
+    localStorage.setItem('jt_filter_' + _currentUid, JSON.stringify({
       activeGroup, activeSource, filterRecord,
       scoreMin: document.getElementById('score-min').value,
       scoreMax: document.getElementById('score-max').value,
@@ -1373,7 +1382,7 @@ function saveFilterState() {
 
 function restoreFilterState() {
   try {
-    const s = JSON.parse(localStorage.getItem('jt_filter') || 'null');
+    const s = JSON.parse(localStorage.getItem('jt_filter_' + _currentUid) || 'null');
     if (!s) return;
     activeGroup  = s.activeGroup  || 'all';
     activeSource = s.activeSource || 'all';
@@ -1606,15 +1615,15 @@ function toggleCol(cb) {
   });
   // Persist to localStorage
   try {
-    const vis = JSON.parse(localStorage.getItem('jt_col_vis') || '{}');
+    const vis = JSON.parse(localStorage.getItem('jt_col_vis_' + _currentUid) || '{}');
     vis[col] = show;
-    localStorage.setItem('jt_col_vis', JSON.stringify(vis));
+    localStorage.setItem('jt_col_vis_' + _currentUid, JSON.stringify(vis));
   } catch(e) {}
 }
 
 function restoreColVisibility() {
   try {
-    const vis = JSON.parse(localStorage.getItem('jt_col_vis') || '{}');
+    const vis = JSON.parse(localStorage.getItem('jt_col_vis_' + _currentUid) || '{}');
     document.querySelectorAll('#col-toggle-panel input[data-col]').forEach(cb => {
       const col = cb.dataset.col;
       if (col in vis && !vis[col]) {

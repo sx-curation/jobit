@@ -162,6 +162,24 @@ def parse_jobs(uid: str):
             'bonus_skills':             [],
             'required_skills':          [],
             'recommended_emphasis':     [],
+            'decision_score':           -1,
+            'decision_signals':         {},
+            'decision_notes':           [],
+            'job_family_detected':      {},
+            'legitimacy_verdict':       'UNKNOWN',
+            'legitimacy_score':         -1,
+            'legitimacy_flags':         [],
+            'legitimacy_repost':        False,
+            'legitimacy_hiring':        'unknown',
+            'gap_summary':              {},
+            'customization_potential':  {},
+            'estimated_max_score':      -1,
+            'company_profile':          {},
+            'kununu_overall':           None,
+            'kununu_wlb':               None,
+            'salary_range':             None,
+            'salary_vs_expect':         'unknown',
+            'culture_signals':          {},
         })
 
     # Merge jd_analysis.json for each job
@@ -177,11 +195,35 @@ def parse_jobs(uid: str):
             job['core_responsibilities'] = detail.get('core_responsibilities', [])
             job['culture_keywords']      = detail.get('culture_keywords', [])
             job['matched_skills']        = detail.get('matched_skills', [])
-            job['missing_skills']        = detail.get('missing_skills', [])
+            raw_ms = detail.get('missing_skills', [])
+            job['missing_skills']        = [
+                item if isinstance(item, dict) else {'skill': item, 'severity': 'unknown'}
+                for item in raw_ms if item
+            ]
             job['bonus_skills']          = detail.get('bonus_skills', [])
             job['required_skills']       = detail.get('required_skills', [])
             job['recommended_emphasis']  = detail.get('recommended_emphasis', [])
             job['user_note']             = detail.get('user_note', '')
+            job['decision_score']        = detail.get('decision_score', -1)
+            job['decision_signals']      = detail.get('decision_signals', {})
+            job['decision_notes']        = detail.get('decision_notes', [])
+            job['job_family_detected']   = detail.get('job_family', {})
+            leg = detail.get('legitimacy', {})
+            job['legitimacy_verdict']    = leg.get('verdict', 'UNKNOWN')
+            job['legitimacy_score']      = leg.get('score', -1)
+            job['legitimacy_flags']      = leg.get('red_flags', [])
+            job['legitimacy_repost']     = leg.get('repost_info', {}).get('detected', False)
+            job['legitimacy_hiring']     = leg.get('hiring_signal', {}).get('verdict', 'unknown')
+            job['gap_summary']           = detail.get('gap_summary', {})
+            job['customization_potential'] = detail.get('customization_potential', {})
+            job['estimated_max_score']   = detail.get('customization_potential', {}).get('estimated_max_score', -1)
+            cp = detail.get('company_profile', {})
+            job['company_profile']       = cp
+            job['kununu_overall']        = (cp.get('kununu') or {}).get('overall')
+            job['kununu_wlb']            = (cp.get('kununu') or {}).get('wlb')
+            job['salary_range']          = (cp.get('salary_research') or {}).get('estimated_range_eur')
+            job['salary_vs_expect']      = (cp.get('salary_research') or {}).get('vs_expectation', 'unknown')
+            job['culture_signals']       = cp.get('jd_culture_signals', {})
             ci = detail.get('company_info') or {}
             if ci.get('size'):
                 job['size'] = ci['size']
@@ -195,7 +237,7 @@ def parse_jobs(uid: str):
         if not job['jd_path']:
             continue
         job_dir = output_dir / Path(job['jd_path']).parent
-        job['materials_ready'] = (job_dir / 'cv_final.pdf').exists()
+        job['materials_ready'] = (job_dir / 'cv_ats.pdf').exists() or (job_dir / 'cv_final.pdf').exists()
 
     # ── Load raw (unanalyzed) candidates from temp raw_results files ────────────
     TEMP_DIR = output_dir / 'temp'
@@ -255,6 +297,24 @@ def parse_jobs(uid: str):
                     'bonus_skills':             [],
                     'required_skills':          [],
                     'recommended_emphasis':     [],
+                    'decision_score':           -1,
+                    'decision_signals':         {},
+                    'decision_notes':           [],
+                    'job_family_detected':      {},
+                    'legitimacy_verdict':       'UNKNOWN',
+                    'legitimacy_score':         -1,
+                    'legitimacy_flags':         [],
+                    'legitimacy_repost':        False,
+                    'legitimacy_hiring':        'unknown',
+                    'gap_summary':              {},
+                    'customization_potential':  {},
+                    'estimated_max_score':      -1,
+                    'company_profile':          {},
+                    'kununu_overall':           None,
+                    'kununu_wlb':               None,
+                    'salary_range':             None,
+                    'salary_vs_expect':         'unknown',
+                    'culture_signals':          {},
                 })
 
     # Detect cross-source duplicates → remark = "multiple source"
@@ -343,7 +403,11 @@ def compute_group_stats(uid: str):
                 sc = detail.get('match_score')
                 if sc is not None:
                     scores.append(float(sc))
-                missing_all.extend(detail.get('missing_skills', []))
+                raw_ms_agg = detail.get('missing_skills', [])
+                missing_all.extend(
+                    item['skill'] if isinstance(item, dict) else item
+                    for item in raw_ms_agg if item
+                )
                 matched_all.extend(detail.get('matched_skills', []))
                 mt = jd.stat().st_mtime
                 if latest_mtime is None or mt > latest_mtime:
@@ -503,6 +567,163 @@ def compute_search_analysis(uid: str) -> dict:
 
 # ── Search subprocess ────────────────────────────────────────────────────────
 _SEARCH_MAX_S = 1800  # 30 分钟硬上限
+
+# ── ATS Field Map (form-assist) ───────────────────────────────────────────────
+_ATS_FIELD_MAP = {
+    "workday": {
+        "work_experience": [
+            {"key": "company",     "label": "Employer"},
+            {"key": "title",       "label": "Job Title"},
+            {"key": "start_month", "label": "Start Month (MM)"},
+            {"key": "start_year",  "label": "Start Year (YYYY)"},
+            {"key": "end_month",   "label": "End Month (MM)",      "optional": True},
+            {"key": "end_year",    "label": "End Year (YYYY)"},
+            {"key": "country",     "label": "Country"},
+            {"key": "city",        "label": "City"},
+            {"key": "desc_short",  "label": "Description (1 line)"},
+            {"key": "desc_full",   "label": "Description (full)"},
+        ],
+        "education": [
+            {"key": "institution", "label": "School / Institution"},
+            {"key": "degree",      "label": "Degree"},
+            {"key": "field",       "label": "Field of Study"},
+            {"key": "start_year",  "label": "Start Year"},
+            {"key": "end_year",    "label": "End Year"},
+            {"key": "gpa",         "label": "GPA",                 "optional": True},
+        ],
+    },
+    "sap_custom": {
+        "work_experience": [
+            {"key": "company",     "label": "Unternehmen / Company"},
+            {"key": "title",       "label": "Stelle / Job Title"},
+            {"key": "start_month", "label": "Von (MM)"},
+            {"key": "start_year",  "label": "Von (JJJJ)"},
+            {"key": "end_month",   "label": "Bis (MM)",            "optional": True},
+            {"key": "end_year",    "label": "Bis (JJJJ)"},
+            {"key": "country",     "label": "Land / Country"},
+            {"key": "city",        "label": "Stadt / City"},
+            {"key": "desc_full",   "label": "Aufgaben / Responsibilities"},
+        ],
+        "education": [
+            {"key": "institution", "label": "Bildungseinrichtung"},
+            {"key": "degree",      "label": "Abschluss"},
+            {"key": "field",       "label": "Fachrichtung"},
+            {"key": "start_year",  "label": "Von (JJJJ)"},
+            {"key": "end_year",    "label": "Bis (JJJJ)"},
+        ],
+    },
+    "greenhouse": {
+        "work_experience": [
+            {"key": "company",     "label": "Company"},
+            {"key": "title",       "label": "Title"},
+            {"key": "start_month", "label": "Start Month"},
+            {"key": "start_year",  "label": "Start Year"},
+            {"key": "end_month",   "label": "End Month",           "optional": True},
+            {"key": "end_year",    "label": "End Year"},
+            {"key": "desc_full",   "label": "Job Description"},
+        ],
+        "education": [
+            {"key": "institution", "label": "School"},
+            {"key": "degree",      "label": "Degree"},
+            {"key": "field",       "label": "Discipline"},
+            {"key": "start_year",  "label": "Start Year"},
+            {"key": "end_year",    "label": "End Year"},
+        ],
+    },
+    "lever": {
+        "work_experience": [
+            {"key": "company",     "label": "Employer"},
+            {"key": "title",       "label": "Position"},
+            {"key": "start_year",  "label": "Year Started"},
+            {"key": "end_year",    "label": "Year Ended"},
+            {"key": "desc_full",   "label": "Summary"},
+        ],
+        "education": [
+            {"key": "institution", "label": "University"},
+            {"key": "degree",      "label": "Degree"},
+            {"key": "field",       "label": "Major"},
+            {"key": "end_year",    "label": "Graduation Year"},
+        ],
+    },
+}
+_ATS_FIELD_MAP["generic"] = _ATS_FIELD_MAP["workday"]   # fallback alias
+
+
+def _parse_duration(duration: str) -> dict:
+    '''Parse "2024", "2024 – 2025", "09/2024 – 12/2025" → {start_year, start_month, end_year, end_month}.'''
+    parts = re.split(r'\s*[–—\-]\s*', str(duration).strip(), maxsplit=1)
+    def _part(s):
+        s = s.strip()
+        m = re.match(r'(\d{1,2})[/.](\d{4})$', s)
+        if m:
+            return m.group(2), m.group(1).zfill(2)
+        m = re.match(r'(\d{4})$', s)
+        if m:
+            return m.group(1), ''
+        if re.search(r'present|current|heute|bis heute', s, re.I):
+            return 'Present', ''
+        return s, ''
+    sy, sm = _part(parts[0]) if parts else ('', '')
+    ey, em = _part(parts[1]) if len(parts) > 1 else ('', '')
+    return {'start_year': sy, 'start_month': sm, 'end_year': ey, 'end_month': em}
+
+
+def _build_form_fields(cv_parsed: dict, ats_type: str) -> dict:
+    '''Map cv_parsed to ATS form field cards.'''
+    fmap = _ATS_FIELD_MAP.get(ats_type, _ATS_FIELD_MAP['workday'])
+
+    def _exp_cards(exp_list):
+        cards = []
+        for exp in exp_list:
+            dur = _parse_duration(exp.get('duration', ''))
+            bullets = exp.get('bullets', [])
+            raw = {
+                'company':     exp.get('company', ''),
+                'title':       exp.get('title', ''),
+                'start_month': dur['start_month'],
+                'start_year':  dur['start_year'],
+                'end_month':   dur['end_month'],
+                'end_year':    dur['end_year'],
+                'country':     'Germany',
+                'city':        '',
+                'desc_short':  (bullets[0][:120] if bullets else ''),
+                'desc_full':   ' '.join(bullets),
+            }
+            fields = []
+            for f in fmap.get('work_experience', []):
+                val = raw.get(f['key'], '')
+                if f.get('optional') and not val:
+                    continue
+                fields.append({'label': f['label'], 'value': val, 'key': f['key']})
+            cards.append({'header': exp.get('company', ''), 'fields': fields})
+        return cards
+
+    def _edu_cards(edu_list):
+        cards = []
+        for edu in edu_list:
+            dur = _parse_duration(edu.get('duration', edu.get('years', '')))
+            raw = {
+                'institution': edu.get('institution', edu.get('school', '')),
+                'degree':      edu.get('degree', ''),
+                'field':       edu.get('field', edu.get('major', '')),
+                'start_year':  dur['start_year'],
+                'end_year':    dur['end_year'],
+                'gpa':         str(edu.get('gpa', '')),
+            }
+            fields = []
+            for f in fmap.get('education', []):
+                val = raw.get(f['key'], '')
+                if f.get('optional') and not val:
+                    continue
+                fields.append({'label': f['label'], 'value': val, 'key': f['key']})
+            cards.append({'header': raw['institution'], 'fields': fields})
+        return cards
+
+    return {
+        'ats_type': ats_type,
+        'work_experience': _exp_cards(cv_parsed.get('experience', [])),
+        'education': _edu_cards(cv_parsed.get('education', [])),
+    }
 
 def _run_search(cmd, uid: str):
     global _search_proc, _search_log
@@ -737,6 +958,37 @@ class Handler(BaseHTTPRequestHandler):
             except Exception as e:
                 self._send(json.dumps({}))  # silent fallback
 
+        elif path == '/api/form-fields':
+            try:
+                qs = parse_qs(urlparse(self.path).query)
+                job_folder = qs.get('job_folder', [''])[0].strip()
+                ats_type   = qs.get('ats_type', ['workday'])[0].strip()
+                if not job_folder:
+                    self._send(json.dumps({'error': 'job_folder required'}), status=400)
+                    return
+                output_dir = get_output_dir(uid)
+                job_path = (output_dir / job_folder).resolve()
+                # Path traversal guard
+                try:
+                    job_path.relative_to(output_dir.resolve())
+                except ValueError:
+                    self._send(json.dumps({'error': 'invalid path'}), status=400)
+                    return
+                jd_file = job_path / 'jd_analysis.json'
+                if not jd_file.exists():
+                    self._send(json.dumps({'error': 'jd_analysis.json not found'}), status=404)
+                    return
+                group_id = job_folder.split('_')[0]
+                cv_file = get_output_dir(uid) / f'cv_parsed_{group_id}.json'
+                if not cv_file.exists():
+                    self._send(json.dumps({'error': f'cv_parsed not found: {group_id}'}), status=404)
+                    return
+                cv_parsed = json.loads(cv_file.read_text(encoding='utf-8'))
+                result = _build_form_fields(cv_parsed, ats_type)
+                self._send(json.dumps(result, ensure_ascii=False))
+            except Exception as e:
+                self._send(json.dumps({'error': str(e)}), status=500)
+
         else:
             self._send(b'Not found', 'text/plain', 404)
 
@@ -951,6 +1203,62 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(json.dumps({'ok': True}))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
+
+        elif path == '/api/form-assist':
+            try:
+                data      = self._read_json_body()
+                job_folder = (data.get('job_folder') or '').strip()
+                form_fields = [f for f in (data.get('form_fields') or []) if str(f).strip()]
+                if not job_folder:
+                    self._send(json.dumps({'error': 'job_folder required'}), status=400)
+                    return
+                output_dir = get_output_dir(uid)
+                job_path   = (output_dir / job_folder).resolve()
+                try:
+                    job_path.relative_to(output_dir.resolve())
+                except ValueError:
+                    self._send(json.dumps({'error': 'invalid job_folder path'}), status=400)
+                    return
+                if not job_path.is_dir():
+                    self._send(json.dumps({'error': f'not found: {job_folder}'}), status=404)
+                    return
+                fields_text = '\n'.join(f'- {f}' for f in form_fields)
+                prompt = (
+                    f'表单助手\n'
+                    f'job_folder: "{job_folder}"\n'
+                    f'form_fields:\n{fields_text}'
+                )
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/event-stream')
+                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                claude_bin = shutil.which('claude') or 'claude'
+                proc = subprocess.Popen(
+                    [claude_bin, '-p', prompt],
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                    cwd=str(_user_dir(uid)), text=True,
+                    encoding='utf-8', errors='replace',
+                )
+                try:
+                    for line in proc.stdout:
+                        stripped = ANSI_RE.sub('', line.rstrip())
+                        if stripped:
+                            chunk = json.dumps({'text': stripped}, ensure_ascii=False)
+                            self.wfile.write(f'data: {chunk}\n\n'.encode('utf-8'))
+                            self.wfile.flush()
+                    proc.wait()
+                    self.wfile.write(b'data: {"done":true}\n\n')
+                    self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+            except Exception as e:
+                try:
+                    err = json.dumps({'error': str(e)}, ensure_ascii=False)
+                    self.wfile.write(f'data: {err}\n\n'.encode('utf-8'))
+                    self.wfile.flush()
+                except Exception:
+                    pass
 
         else:
             self._send(json.dumps({'error': 'Not found'}), status=404)

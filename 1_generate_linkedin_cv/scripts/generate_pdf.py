@@ -199,6 +199,57 @@ def build_css_from_theme(t: dict) -> str:
     """
 
 
+# ── ATS 兼容模式 ──────────────────────────────────────────────
+
+def get_ats_css() -> str:
+    """返回 ATS 兼容的最小化 CSS。无外部字体、无装饰。"""
+    return """
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+        font-family: Arial, Helvetica, 'Liberation Sans', sans-serif;
+        font-size: 11pt;
+        line-height: 1.4;
+        color: #000000;
+        background: #ffffff;
+        margin: 25mm;
+        max-width: none;
+    }
+    h1 { font-size: 16pt; font-weight: bold; margin-bottom: 6pt; }
+    h2 { font-size: 13pt; font-weight: bold;
+         border-bottom: 1pt solid #000000;
+         padding-bottom: 2pt; margin-top: 14pt; margin-bottom: 6pt;
+         text-transform: uppercase; }
+    h3 { font-size: 11pt; font-weight: bold; margin-top: 8pt; margin-bottom: 2pt; }
+    p, li { font-size: 11pt; margin-bottom: 3pt; }
+    ul { padding-left: 15pt; }
+    strong { font-weight: bold; }
+    a { color: #000000; text-decoration: none; }
+    hr { border: none; border-top: 1pt solid #000000; margin: 8pt 0; }
+    """
+
+
+def prepare_ats_html(cv_html: str) -> str:
+    """将 CV HTML 转换为 ATS 兼容格式：标准化 section 标题，移除 script 标签。"""
+    import re as _re
+    header_map = {
+        r'berufserfahrung|work history|experience|erfahrung': 'Work Experience',
+        r'ausbildung|bildung|education': 'Education',
+        r'kenntnisse|fähigkeiten|skills|kompetenzen': 'Skills',
+        r'kontakt|contact': 'Contact',
+        r'zusammenfassung|profil|summary|profile': 'Summary',
+        r'sprachen|languages': 'Languages',
+    }
+    for pattern, replacement in header_map.items():
+        cv_html = _re.sub(
+            rf'(<h[12][^>]*>)([^<]*(?:{pattern})[^<]*)(</h[12]>)',
+            rf'\g<1>{replacement}\g<3>',
+            cv_html, flags=_re.IGNORECASE
+        )
+    # Remove script tags (WeasyPrint ignores them but keep output clean)
+    cv_html = _re.sub(r'<script[^>]*>.*?</script>', '', cv_html, flags=_re.DOTALL)
+    return cv_html
+
+
 # ── HTML 净化 ─────────────────────────────────────────────────
 
 def _sanitize_html(html: str) -> str:
@@ -212,7 +263,17 @@ def _sanitize_html(html: str) -> str:
 
 # ── PDF 生成 ──────────────────────────────────────────────────
 
-def generate_pdf(md_path: str, pdf_path: str, theme_name: str = "default"):
+def generate_pdf(md_path: str, pdf_path: str, theme_name: str = "default",
+                 css_string: str | None = None, ats_mode: bool = False):
+    """Generate PDF from Markdown.
+
+    Args:
+        md_path:    Input Markdown file path.
+        pdf_path:   Output PDF file path.
+        theme_name: Theme name (ignored when css_string is provided).
+        css_string: Raw CSS string bypass. When provided, skips theme resolution.
+        ats_mode:   When True, apply prepare_ats_html() to normalize section headings.
+    """
     if not WEASYPRINT_OK:
         print("ERROR: weasyprint 未安装。请运行：pip3 install weasyprint --break-system-packages",
               file=sys.stderr)
@@ -226,12 +287,16 @@ def generate_pdf(md_path: str, pdf_path: str, theme_name: str = "default"):
         extensions=["tables", "fenced_code", "nl2br"]
     )
     html_body = _sanitize_html(html_body)
+    if ats_mode:
+        html_body = prepare_ats_html(html_body)
 
-    # 解析主题
-    css_string, theme_dict = resolve_theme(theme_name)
+    # 解析 CSS
+    theme_dict = None
     if css_string is None:
-        print(f"WARNING: 主题「{theme_name}」不存在，使用默认主题", file=sys.stderr)
-        css_string, _ = resolve_theme("default")
+        css_string, theme_dict = resolve_theme(theme_name)
+        if css_string is None:
+            print(f"WARNING: 主题「{theme_name}」不存在，使用默认主题", file=sys.stderr)
+            css_string, _ = resolve_theme("default")
 
     # 组装完整 HTML
     full_html = f"""
@@ -298,6 +363,8 @@ if __name__ == "__main__":
                         help="主题名称（默认：default）")
     parser.add_argument("--list-themes", action="store_true",
                         help="列出所有可用主题并退出")
+    parser.add_argument("--dual", action="store_true",
+                        help="同时生成 ATS 版（输出路径）和视觉版（cv_styled.pdf）两份 PDF")
     args = parser.parse_args()
 
     if args.list_themes:
@@ -308,4 +375,13 @@ if __name__ == "__main__":
         parser.print_help()
         sys.exit(1)
 
-    generate_pdf(args.input, args.output, args.theme)
+    if args.dual:
+        # ATS version → the specified output path (ATS CSS + section header normalization)
+        generate_pdf(args.input, args.output, css_string=get_ats_css(), ats_mode=True)
+        print("  ↑ ATS 机器可读版")
+        # Styled version → cv_styled.pdf in same directory
+        styled_path = str(Path(args.output).parent / "cv_styled.pdf")
+        generate_pdf(args.input, styled_path, args.theme)
+        print("  ↑ 视觉版")
+    else:
+        generate_pdf(args.input, args.output, args.theme)

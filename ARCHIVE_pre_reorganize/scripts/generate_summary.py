@@ -113,7 +113,7 @@ def cross_source_dedup(records: list[dict]) -> list[dict]:
                 kept["url"] = stepstone_recs[0]["url"]
             kept["_remark"] = "数据源重复"
         else:
-            kept = max(group, key=lambda r: r.get("match_score", 0))
+            kept = max(group, key=lambda r: r.get("score") or r.get("match_score") or 0)
 
         if earliest:
             kept["_analyzed_date"] = earliest

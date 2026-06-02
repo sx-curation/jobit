@@ -193,16 +193,21 @@ session 内已有 selected_theme 时确认复用；记录 selected_theme 到本 
 
 ### 步骤 D：生成 PDF
 ```bash
+# CV：生成 ATS 机器可读版（cv_ats.pdf）+ 视觉版（cv_styled.pdf）
 python3 scripts/generate_pdf.py \
     output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_draft.md \
-    output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_final.pdf \
-    --theme "<selected_theme>"
+    output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_ats.pdf \
+    --theme "<selected_theme>" \
+    --dual
 
+# Cover Letter：视觉版
 python3 scripts/generate_pdf.py \
     output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cover_letter_draft.md \
     output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cover_letter_final.pdf \
     --theme "<selected_theme>"
 ```
+
+`--dual` 同时输出两份 CV：`cv_ats.pdf`（ATS 机器可读，投递附件首选）和 `cv_styled.pdf`（视觉设计版，供人工审核）。
 
 ---
 

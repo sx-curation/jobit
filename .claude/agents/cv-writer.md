@@ -15,8 +15,14 @@ memory: project
 
 ## 执行步骤
 
-1. 阅读 jd_analysis.json 的 recommended_emphasis 和 matched_skills
-2. 重写 CV，规则如下：
+1. 读取 jd_analysis.json 中 `customization_potential.top_changes`（若存在且非空）：
+   - 按 rank 顺序执行每条 change：找到 target 段落 → 执行 reframe
+   - 记录到 cv_changes.md：`[改动N] {target}："{改前}" → "{改后}" (预计 +{score_boost}分)`
+   - 若 target 段落不存在 → 写入：`[跳过] {target} 未找到对应段落`
+   - 若 customization_potential 不存在 → 跳过此步骤，fallback 到步骤 2 的 recommended_emphasis 逻辑
+   - cv_changes.md 末尾追加：`预计优化后匹配分：{estimated_max_score}（原始：{current_match_score}）`
+
+2. 阅读 jd_analysis.json 的 recommended_emphasis 和 matched_skills，重写 CV，规则如下：
 
    **Summary 段**：用 JD 的 culture_keywords 和 core_responsibilities 语言重新表述，突出最相关的经历。限 3-4 句。
 

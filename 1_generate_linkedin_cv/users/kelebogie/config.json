@@ -191,6 +191,13 @@
 }
     ]
   },
+  "preferences": {
+    "preferred_level": "entry",
+    "preferred_locations": ["Hamburg", "Berlin", "Munich", "Bonn", "Cologne", "Frankfurt", "Remote"],
+    "preferred_work_mode": ["hybrid", "remote"],
+    "salary_expectation_eur_monthly": 2500,
+    "preferred_domains": ["supply-chain", "logistics", "commercial", "finance", "government"]
+  },
   "skill_taxonomy": {
     "tools": [
       "spreadsheet",

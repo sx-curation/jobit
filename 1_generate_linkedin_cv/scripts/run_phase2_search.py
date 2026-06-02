@@ -29,7 +29,7 @@ from datetime import datetime
 from pathlib import Path
 
 from common import UVX, make_mcp_proc, send_recv
-from search_state import load_cv_skills, quick_score
+from search_state import load_cv_skills, quick_score, acquire_lock, release_lock
 
 # Fix Windows GBK crash
 if hasattr(sys.stdout, "reconfigure"):
@@ -455,6 +455,16 @@ def main():
                         help="覆盖 config.json 的 date_range_days 推算结果")
     args = parser.parse_args()
 
+    if not acquire_lock():
+        print("[ERROR] 另一个搜索进程正在运行，退出。", file=sys.stderr)
+        sys.exit(1)
+    try:
+        _run(args)
+    finally:
+        release_lock()
+
+
+def _run(args):
     config = json.loads(CONFIG_PATH.read_text(encoding="utf-8"))
     job_search = config["job_search"]
     location = job_search["location"]
