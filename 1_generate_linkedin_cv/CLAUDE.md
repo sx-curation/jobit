@@ -42,7 +42,11 @@
 | `搜索职缺 [group-id]` | LinkedIn + Stepstone 双源搜索（Phase 2 完整流程） |
 | `搜索LinkedIn职缺 [group-id]` | 仅 LinkedIn 搜索（跳过 Stepstone） |
 | `搜索Stepstone职缺 [group-id]` | 仅 Stepstone 搜索（需 stepstone.enabled=true） |
+| `搜索Linkedin posting职缺 [group-id]` | 从 LinkedIn 社交帖子搜索招聘信号，提取职缺链接并执行 JD 分析；无 group-id 则搜索所有 group |
 | `生成 CV <编号>` | 只为指定职缺执行 Phase 3 |
+| `生成CL <job编号>` | 只生成 cover letter：cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先自动 Bootstrap；已有 cover_letter_draft.md 则跳过 CL 生成直接输出 PDF+DOCX） |
+| `面试准备 <job编号>` | 为指定职缺生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无故事库先自动 Bootstrap） |
+| `初始化故事库` | 从 cv_parsed 重新生成 story-bank.md（执行前自动备份 .bak） |
 | `显示全部` | 显示低分隐藏职缺 |
 | `/check` | 单独运行 sanity check |
 | `/check --verbose` | 显示所有通过项 |
@@ -50,6 +54,36 @@
 | `/status` | progress.json + 搜索历史摘要 |
 | `/progress` | memory/notes.md 最近 3 条笔记 |
 | `/reset-history` | 清空 search_history.json（慎用）|
+
+### `生成CL <job编号>` 执行流程
+
+1. 从 jobs 列表找到对应 job_folder（同 `生成 CV` 的编号查找逻辑）
+2. 检查 `users/{uid}/interview-prep/story-bank.md` 是否存在：
+   - 不存在 → 先调用 interview-prep agent 执行 Bootstrap
+3. 检查 `output/{job_folder}/cover_letter_draft.md` 是否存在：
+   - 不存在 → 调用 cover-letter agent 生成（读 story-bank + jd_analysis）
+   - 已存在 → 跳过，直接进入下一步
+4. 运行 `python scripts/gen_cover_letter_pdf.py --job_folder {job_folder} --uid {uid}`
+5. 运行 `python scripts/gen_cover_letter_docx.py --job_folder {job_folder} --uid {uid}`
+6. 汇报：三个文件路径 + 文件大小
+
+### `搜索Linkedin posting职缺 [group-id]` 执行流程
+
+完整流程见 `.claude/agents/Orchestrator.md` — Phase 2 LinkedIn Posting 变体。
+
+概要：
+1. 读 `users/{uid}/config.json`，确定目标 group（指定或全部）
+2. 对每个 group，取 `primary_keywords.en` 前 5 条关键词
+3. 每条关键词生成 2 条 Google 查询（共最多 10 条/group）：
+   - `site:linkedin.com/posts ("we're hiring" OR "now hiring" OR "hiring") ("{keyword}") Germany`
+   - `site:linkedin.com/posts ("welcome to our team" OR "excited to welcome" OR "join us") ("{keyword}") Germany`
+4. WebSearch 执行每条查询，收集 snippet + URL
+5. 正则提取 job_id：`linkedin\.com/jobs/view/(\d+)`
+6. 去重（对照 `search_history.json` 的 seen_jobs）
+7. 每个新 job_id → `mcp__linkedin__get_job_details`（LinkedIn MCP）
+8. 返回的 JD → jd-analyzer（并行上限 3，同 Phase 2E，`_source` 写入 `"linkedin_posting"`）
+9. 无 job_id 的帖子 URL → 列入 manual_review 清单（仅展示，不分析）
+10. 展示结果汇总表
 
 ---
 

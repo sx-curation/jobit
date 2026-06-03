@@ -42,7 +42,11 @@
 | `搜索职缺 [group-id]` | LinkedIn + Stepstone 双源搜索（Phase 2 完整流程） |
 | `搜索LinkedIn职缺 [group-id]` | 仅 LinkedIn 搜索（跳过 Stepstone） |
 | `搜索Stepstone职缺 [group-id]` | 仅 Stepstone 搜索（需 stepstone.enabled=true） |
+| `搜索Linkedin posting职缺 [group-id]` | 从 LinkedIn 社交帖子搜索招聘信号，提取职缺链接并执行 JD 分析；无 group-id 则搜索所有 group |
 | `生成 CV <编号>` | 只为指定职缺执行 Phase 3 |
+| `生成CL <job编号>` | 生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先
+     Bootstrap） |
+| `面试准备 <job编号>` | 自动读取 story-bank 选故事、匹配 JD archetype、生成 cover_letter_draft.md + PDF |
 | `显示全部` | 显示低分隐藏职缺 |
 | `/check` | 单独运行 sanity check |
 | `/check --verbose` | 显示所有通过项 |

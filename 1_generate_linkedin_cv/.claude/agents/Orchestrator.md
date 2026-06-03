@@ -62,6 +62,7 @@ python3 scripts/search_state.py --mode offset --config config.json
    - 「搜索职缺」/ 「开始」         → LinkedIn + Stepstone（若 stepstone.enabled=true）
    - 「搜索LinkedIn职缺」           → 仅 LinkedIn
    - 「搜索Stepstone职缺」          → 仅 Stepstone（需 stepstone.enabled=true）
+   - 「搜索Linkedin posting职缺」   → LinkedIn Posting 搜索（见下方独立流程，跳过步骤 B-C）
 
 3. LinkedIn 搜索（按需）：
    python3 scripts/run_phase2_search.py
@@ -217,3 +218,68 @@ python3 scripts/generate_pdf.py \
 
 Session 结束时由 Stop hook 自动触发 progress-writer sub-agent，
 写入 memory/progress.json + memory/notes.md。
+
+---
+
+## Phase 2 变体：LinkedIn Posting 搜索（`搜索Linkedin posting职缺`）
+
+此变体**跳过** Phase 2 步骤 A-C（不运行 run_phase2_search.py），直接通过 WebSearch 抓取社交帖招聘信号。
+
+### 步骤 1：确定 group 和关键词
+
+```
+group_ids = 从用户指令解析（指定 group-id 则只处理该 group，否则全部）
+for each group_id:
+  keywords = config.keyword_groups[group_id].primary_keywords.en[:5]  # 前 5 条
+```
+
+### 步骤 2：构建并执行 Google 查询
+
+每个关键词生成 2 条查询（最多 10 条/group）：
+
+```
+模板 A: site:linkedin.com/posts ("we're hiring" OR "now hiring" OR "hiring") ("{keyword}") Germany
+模板 B: site:linkedin.com/posts ("welcome to our team" OR "excited to welcome" OR "join us") ("{keyword}") Germany
+```
+
+用 WebSearch 工具执行，收集结果的 URL 和 snippet。
+
+### 步骤 3：提取 job_id
+
+从每条结果的 URL 和 snippet 中正则提取：
+```
+job_id_pattern = r'linkedin\.com/jobs/view/(\d+)'
+```
+
+- 命中 → `job_ids` 列表（去重）
+- 未命中 → `manual_review` 列表（仅保存 post URL，不分析）
+
+### 步骤 4：去重
+
+与 `search_history.json` 中现有 seen_jobs 比对，过滤已处理的 job_id。
+
+### 步骤 5：拉取 JD 详情
+
+对每个新 job_id：
+```
+mcp__linkedin__get_job_details(job_id="{job_id}")
+```
+
+若 MCP 调用失败，跳过该 job_id 并记录 WARN。
+
+### 步骤 6：JD 分析（同 Phase 2E）
+
+- 对返回 JD → jd-analyzer sub-agent（并行上限 3）
+- 输出目录：`output/{group_id}_{company_slug}_{title_slug}_{YYYYMMDD}/`
+- jd_analysis.json 中写入 `"_source": "linkedin_posting"`
+- 分析完成后更新 job_summary.md（调用 generate_summary.py）
+
+### 步骤 7：结果展示
+
+```
+汇报格式：
+✅ 新职缺分析完成：N 条（来自 LinkedIn 帖子）
+⚠️ 需人工跟进（帖子无直接职缺链接）：M 条 URL
+  - {post_url_1}
+  - {post_url_2}
+```

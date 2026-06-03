@@ -13,7 +13,7 @@ import jinja2
 
 SCRIPTS_DIR   = Path(__file__).resolve().parent
 TEMPLATES_DIR = SCRIPTS_DIR / 'templates'
-DEST          = Path('C:/Users/Admin/Desktop/job_tracker/index.html')
+DEST          = Path(__file__).resolve().parent.parent / 'dashboard' / 'index.html'
 
 
 def generate(dest: Path = DEST) -> Path:

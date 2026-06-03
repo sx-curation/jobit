@@ -25,7 +25,7 @@ except Exception:
 PROJECT_DIR  = Path(__file__).resolve().parent.parent
 USERS_DIR    = PROJECT_DIR / 'users'
 USERS_JSON   = PROJECT_DIR / 'users.json'
-HTML_PATH    = Path("C:/Users/Admin/Desktop/job_tracker/index.html")
+HTML_PATH    = PROJECT_DIR / 'dashboard' / 'index.html'
 PORT         = 8080
 _write_lock      = threading.Lock()
 ANSI_RE          = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
@@ -705,8 +705,8 @@ def _build_form_fields(cv_parsed: dict, ats_type: str, jd_data: dict | None = No
                 'start_year':  dur['start_year'],
                 'end_month':   dur['end_month'],
                 'end_year':    dur['end_year'],
-                'country':     'Germany',
-                'city':        '',
+                'country':     exp.get('country', 'Germany'),
+                'city':        exp.get('city', ''),
                 'desc_short':  (bullets[0][:120] if bullets else ''),
                 'desc_full':   '\n'.join(bullets),
             }
@@ -722,7 +722,7 @@ def _build_form_fields(cv_parsed: dict, ats_type: str, jd_data: dict | None = No
     def _edu_cards(edu_list):
         cards = []
         for edu in edu_list:
-            dur = _parse_duration(edu.get('duration', edu.get('years', '')))
+            dur = _parse_duration(edu.get('duration', edu.get('years', edu.get('year', ''))))
             raw = {
                 'institution': edu.get('institution', edu.get('school', '')),
                 'degree':      edu.get('degree', ''),
@@ -999,11 +999,20 @@ class Handler(BaseHTTPRequestHandler):
                 if not jd_file.exists():
                     self._send(json.dumps({'error': 'jd_analysis.json not found'}), status=404)
                     return
-                group_id = job_folder.split('_')[0]
+                # Resolve group_id: prefer explicit param, then folder prefix, then fallback scan
+                group_id_param = qs.get('group_id', [''])[0].strip()
+                if group_id_param and group_id_param != '—':
+                    group_id = group_id_param
+                else:
+                    group_id = job_folder.split('_')[0]
                 cv_file = get_output_dir(uid) / f'cv_parsed_{group_id}.json'
                 if not cv_file.exists():
-                    self._send(json.dumps({'error': f'cv_parsed not found: {group_id}'}), status=404)
-                    return
+                    # Fallback: scan for any cv_parsed_*.json in output dir
+                    candidates = sorted((get_output_dir(uid)).glob('cv_parsed_*.json'))
+                    cv_file = candidates[0] if candidates else None
+                    if not cv_file:
+                        self._send(json.dumps({'error': f'cv_parsed not found: {group_id}'}), status=404)
+                        return
                 cv_parsed = json.loads(cv_file.read_text(encoding='utf-8'))
                 jd_data   = json.loads(jd_file.read_text(encoding='utf-8'))
                 result = _build_form_fields(cv_parsed, ats_type, jd_data)
@@ -1483,6 +1492,10 @@ def _update_jd_field(jd_path: str, field: str, value, uid: str):
         detail = json.loads(jd_file.read_text(encoding='utf-8'))
         detail[field] = value
         jd_file.write_text(json.dumps(detail, ensure_ascii=False, indent=2), encoding='utf-8')
+    # Invalidate jobs cache so next /api/jobs re-reads from disk
+    with _jobs_cache_lock:
+        _jobs_cache.pop(uid, None)
+        _jobs_cache_mtime.pop(uid, None)
     return {'ok': True}, 200
 
 

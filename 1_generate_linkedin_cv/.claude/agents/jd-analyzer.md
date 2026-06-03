@@ -165,6 +165,22 @@ tools:
 
 `size_raw` 保留原始提取文本，方便 debug。
 
+---
+
+> ⚠️ **输出格式强制约束（必须逐字遵守，不得简化）**
+>
+> 1. `missing_skills` **必须是对象数组**，每项格式：
+>    `{"skill": "技能名", "severity": "hard_blocker|nice_to_have|learnable", "weeks_to_acquire": 整数|null, "adjacent_in_cv": "CV 原文片段"|null, "mitigation": "英文一句话"|null}`
+>    **禁止输出纯字符串**——输出字符串数组是严重错误。
+>
+> 2. `gap_summary` **必须输出**，格式：
+>    `{"hard_blockers": N, "nice_to_have": N, "learnable": N, "blocker_flag": true|false}`
+>    `blocker_flag = hard_blockers > 0`
+>
+> 3. `decision_score` 和 `decision_signals`（含全部7个子维度）**必须输出**，不得省略。
+
+---
+
 ### 步骤 5：计算 decision_score（非技能类评分）
 
 在 match_score 计算完成后，额外计算 `decision_score`（0-100 整数）。读取候选人偏好：先从传入的 `preferences` 对象读取；若未传入，尝试读取当前目录下 `config.json` 的顶层 `preferences` 字段；若均不存在，所有维度取中性值 50，并在 `decision_notes` 中加入「未配置偏好，所有维度取中性值」。
