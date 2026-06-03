@@ -136,7 +136,11 @@ def fmt_list(items: list[str], max_items: int = 3) -> str:
     shown = items[:max_items]
     rest = len(items) - max_items
     # 用分号分隔，避免逗号与 Markdown 表格混淆
-    result = "; ".join(s.replace("|", "/") for s in shown)
+    def _to_str(s):
+        if isinstance(s, dict):
+            return s.get("skill") or s.get("name") or str(s)
+        return str(s)
+    result = "; ".join(_to_str(s).replace("|", "/") for s in shown)
     if rest > 0:
         result += f" +{rest}"
     return result

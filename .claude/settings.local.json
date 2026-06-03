@@ -72,7 +72,29 @@
       "Bash(mv 'F:/Claude code project/jobit/scripts' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
       "Bash(mv 'F:/Claude code project/jobit/graphify-out' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
       "Bash(mv 'F:/Claude code project/jobit/config.json' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
-      "Bash(mv 'F:/Claude code project/jobit/output' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')"
+      "Bash(mv 'F:/Claude code project/jobit/output' 'F:/Claude code project/jobit/ARCHIVE_pre_reorganize/')",
+      "Bash(git fetch *)",
+      "Bash(git pull *)",
+      "Bash(git checkout *)",
+      "Bash(git stash *)",
+      "Bash(git add *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Set-Content *)",
+      "PowerShell(Test-Path *)",
+      "PowerShell(git checkout *)",
+      "PowerShell(python -c $script)",
+      "PowerShell(python 1_generate_linkedin_cv\\\\scripts\\\\gen_job_tracker_html.py 2>&1)",
+      "PowerShell(python 1_generate_linkedin_cv\\\\scripts\\\\check.py 2>&1)",
+      "PowerShell(python ..\\\\..\\\\scripts\\\\run_phase2_search.py --group group-pdm --date-posted past_week 2>&1)",
+      "PowerShell(python ..\\\\..\\\\scripts\\\\search_state.py --mode save-raw --input output\\\\temp\\\\_phase2_temp.json --config config.json 2>&1)",
+      "PowerShell(python ..\\\\..\\\\scripts\\\\search_state.py --mode dedup --batch-id 20260602_001 --config config.json 2>&1)",
+      "PowerShell(claude -p $prompt --disallowedTools \"Read,Glob,Grep,Write,Edit,WebFetch,WebSearch\" 2>&1)",
+      "Bash(git show *)",
+      "PowerShell(Start-Sleep -Seconds 2; try { $r = Invoke-WebRequest -Uri \"http://localhost:8080\" -UseBasicParsing -TimeoutSec 5; Write-Host \"HTTP $\\($r.StatusCode\\) — $\\($r.Content.Length\\) bytes\" } catch { Write-Host \"ERROR: $_\" })",
+      "PowerShell(Start-Process \"http://localhost:8080\")"
+    ],
+    "additionalDirectories": [
+      "d:\\JobIt\\1_generate_linkedin_cv"
     ]
   }
 }

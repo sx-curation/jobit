@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Generate C:/Users/Leon/Desktop/job_tracker/index.html from Jinja2 template.
+Generate C:/Users/Admin/Desktop/job_tracker/index.html from Jinja2 template.
 
 Template:  scripts/templates/index.html
 Run:       python scripts/gen_job_tracker_html.py
@@ -13,7 +13,7 @@ import jinja2
 
 SCRIPTS_DIR   = Path(__file__).resolve().parent
 TEMPLATES_DIR = SCRIPTS_DIR / 'templates'
-DEST          = Path('C:/Users/Leon/Desktop/job_tracker/index.html')
+DEST          = Path('C:/Users/Admin/Desktop/job_tracker/index.html')
 
 
 def generate(dest: Path = DEST) -> Path:

@@ -25,7 +25,7 @@ except Exception:
 PROJECT_DIR  = Path(__file__).resolve().parent.parent
 USERS_DIR    = PROJECT_DIR / 'users'
 USERS_JSON   = PROJECT_DIR / 'users.json'
-HTML_PATH    = Path("C:/Users/Leon/Desktop/job_tracker/index.html")
+HTML_PATH    = Path("C:/Users/Admin/Desktop/job_tracker/index.html")
 PORT         = 8080
 _write_lock      = threading.Lock()
 ANSI_RE          = re.compile(r'\x1B(?:[@-Z\\-_]|\[[0-?]*[ -/]*[@-~])')
@@ -66,6 +66,19 @@ def infer_location(job: dict) -> str:
             if f'-{slug}-' in url:
                 return display
     return job.get('location', '') or ''
+
+
+def _to_str_list(items) -> list:
+    """Normalize old-format object arrays or new-format string arrays to plain strings."""
+    result = []
+    for item in (items or []):
+        if isinstance(item, str):
+            result.append(item)
+        elif isinstance(item, dict):
+            result.append(
+                item.get('responsibility') or item.get('skill') or item.get('gap') or ''
+            )
+    return [s for s in result if s]
 
 
 # ── Parse + merge job data ────────────────────────────────────────────────────
@@ -192,7 +205,7 @@ def parse_jobs(uid: str):
         try:
             detail = json.loads(jd_file.read_text(encoding='utf-8'))
             job['application_record']    = detail.get('application_record', None)
-            job['core_responsibilities'] = detail.get('core_responsibilities', [])
+            job['core_responsibilities'] = _to_str_list(detail.get('core_responsibilities', []))
             job['culture_keywords']      = detail.get('culture_keywords', [])
             job['matched_skills']        = detail.get('matched_skills', [])
             raw_ms = detail.get('missing_skills', [])
@@ -201,7 +214,7 @@ def parse_jobs(uid: str):
                 for item in raw_ms if item
             ]
             job['bonus_skills']          = detail.get('bonus_skills', [])
-            job['required_skills']       = detail.get('required_skills', [])
+            job['required_skills']       = _to_str_list(detail.get('required_skills', []))
             job['recommended_emphasis']  = detail.get('recommended_emphasis', [])
             job['user_note']             = detail.get('user_note', '')
             job['decision_score']        = detail.get('decision_score', -1)
@@ -668,15 +681,23 @@ def _parse_duration(duration: str) -> dict:
     return {'start_year': sy, 'start_month': sm, 'end_year': ey, 'end_month': em}
 
 
-def _build_form_fields(cv_parsed: dict, ats_type: str) -> dict:
-    '''Map cv_parsed to ATS form field cards.'''
+def _build_form_fields(cv_parsed: dict, ats_type: str, jd_data: dict | None = None) -> dict:
+    '''Map cv_parsed to ATS form field cards, optionally reordering bullets by JD relevance.'''
     fmap = _ATS_FIELD_MAP.get(ats_type, _ATS_FIELD_MAP['workday'])
+
+    matched_kws = [s.lower() for s in (jd_data or {}).get('matched_skills', [])] if jd_data else []
+
+    def _score_bullet(bullet: str) -> int:
+        b = bullet.lower()
+        return sum(1 for kw in matched_kws if kw in b)
 
     def _exp_cards(exp_list):
         cards = []
         for exp in exp_list:
             dur = _parse_duration(exp.get('duration', ''))
             bullets = exp.get('bullets', [])
+            if matched_kws and bullets:
+                bullets = sorted(bullets, key=_score_bullet, reverse=True)
             raw = {
                 'company':     exp.get('company', ''),
                 'title':       exp.get('title', ''),
@@ -687,7 +708,7 @@ def _build_form_fields(cv_parsed: dict, ats_type: str) -> dict:
                 'country':     'Germany',
                 'city':        '',
                 'desc_short':  (bullets[0][:120] if bullets else ''),
-                'desc_full':   ' '.join(bullets),
+                'desc_full':   '\n'.join(bullets),
             }
             fields = []
             for f in fmap.get('work_experience', []):
@@ -984,7 +1005,11 @@ class Handler(BaseHTTPRequestHandler):
                     self._send(json.dumps({'error': f'cv_parsed not found: {group_id}'}), status=404)
                     return
                 cv_parsed = json.loads(cv_file.read_text(encoding='utf-8'))
-                result = _build_form_fields(cv_parsed, ats_type)
+                jd_data   = json.loads(jd_file.read_text(encoding='utf-8'))
+                result = _build_form_fields(cv_parsed, ats_type, jd_data)
+                result['recommended_emphasis'] = jd_data.get('recommended_emphasis', [])
+                result['matched_skills']       = jd_data.get('matched_skills', [])
+                result['exp_optimized']        = jd_data.get('exp_optimized', {})
                 self._send(json.dumps(result, ensure_ascii=False))
             except Exception as e:
                 self._send(json.dumps({'error': str(e)}), status=500)
@@ -1256,6 +1281,184 @@ class Handler(BaseHTTPRequestHandler):
                 try:
                     err = json.dumps({'error': str(e)}, ensure_ascii=False)
                     self.wfile.write(f'data: {err}\n\n'.encode('utf-8'))
+                    self.wfile.flush()
+                except Exception:
+                    pass
+
+        elif path == '/api/optimize-exp':
+            try:
+                import tempfile as _tmpmod
+                data       = self._read_json_body()
+                job_folder = (data.get('job_folder') or '').strip()
+                exp_header = (data.get('exp_header') or '').strip()
+                desc_full  = (data.get('desc_full') or '').strip()
+                if not job_folder:
+                    self._send(json.dumps({'error': 'job_folder required'}), status=400); return
+                # Read JD context for a self-contained prompt
+                jd_ctx = {}
+                try:
+                    _jd_p = get_output_dir(uid) / job_folder / 'jd_analysis.json'
+                    if _jd_p.exists():
+                        jd_ctx = json.loads(_jd_p.read_text(encoding='utf-8'))
+                except Exception:
+                    pass
+                matched  = ', '.join((jd_ctx.get('matched_skills') or [])[:8])
+                emphasis = '\n'.join(f'- {e}' for e in (jd_ctx.get('recommended_emphasis') or [])[:3])
+                prompt = (
+                    f'You are an ATS resume expert. Rewrite the following work experience bullets '
+                    f'for a "{jd_ctx.get("title","")}" role at {jd_ctx.get("company","")}.\n\n'
+                    f'JD matched skills: {matched}\n\n'
+                    f'Recommended emphasis:\n{emphasis}\n\n'
+                    f'Original bullets for {exp_header}:\n{desc_full}\n\n'
+                    f'Rules (MUST follow):\n'
+                    f'- Only use content from the original bullets — no fabrication\n'
+                    f'- Put the most JD-relevant bullet first\n'
+                    f'- Inject at most 2 JD keywords naturally into existing text\n'
+                    f'- Remove clichés: leveraged, facilitated, synergies, spearheaded\n'
+                    f'- Use varied action verbs (not repeated managed/led)\n'
+                    f'- Preserve all numbers and metrics exactly\n\n'
+                    f'Output ONLY the rewritten bullets, one per line starting with a verb. '
+                    f'No headers, no explanation, no markdown.'
+                )
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/event-stream')
+                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                claude_bin = shutil.which('claude') or 'claude'
+                proc = subprocess.Popen(
+                    [claude_bin, '-p', prompt,
+                     '--disallowedTools', 'Read,Glob,Grep,Write,Edit,WebFetch,WebSearch,TodoWrite,TodoRead'],
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                    stdin=subprocess.DEVNULL,
+                    cwd=_tmpmod.gettempdir(), text=True,
+                    encoding='utf-8', errors='replace',
+                )
+                try:
+                    full_lines = []
+                    _skip_prefixes = ('Warning:', 'The `', "To use it,", "Which would", "1. **", "2. **", "Available", "Please tell")
+                    for line in proc.stdout:
+                        stripped = ANSI_RE.sub('', line.rstrip())
+                        if stripped and not any(stripped.startswith(p) for p in _skip_prefixes):
+                            full_lines.append(stripped)
+                            chunk = json.dumps({'text': stripped + '\n'}, ensure_ascii=False)
+                            self.wfile.write(f'data: {chunk}\n\n'.encode('utf-8'))
+                            self.wfile.flush()
+                    proc.wait()
+                    # Save to jd_analysis.json cache
+                    if full_lines and job_folder and exp_header:
+                        jd_path = get_output_dir(uid) / job_folder / 'jd_analysis.json'
+                        if jd_path.exists():
+                            try:
+                                jd = json.loads(jd_path.read_text(encoding='utf-8'))
+                                if 'exp_optimized' not in jd:
+                                    jd['exp_optimized'] = {}
+                                jd['exp_optimized'][exp_header] = '\n'.join(full_lines)
+                                jd_path.write_text(json.dumps(jd, ensure_ascii=False, indent=2), encoding='utf-8')
+                            except Exception:
+                                pass
+                    self.wfile.write(b'data: {"done":true}\n\n')
+                    self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+            except Exception as e:
+                try:
+                    self.wfile.write(f'data: {json.dumps({"error": str(e)})}\n\n'.encode('utf-8'))
+                    self.wfile.flush()
+                except Exception:
+                    pass
+
+        elif path == '/api/default-answers':
+            try:
+                data       = self._read_json_body()
+                job_folder = (data.get('job_folder') or '').strip()
+                if not job_folder:
+                    self._send(json.dumps({'error': 'job_folder required'}), status=400); return
+                # Return cached result if available
+                jd_file = get_output_dir(uid) / job_folder / 'jd_analysis.json'
+                if jd_file.exists():
+                    jd = json.loads(jd_file.read_text(encoding='utf-8'))
+                    cached = jd.get('default_answers')
+                    if cached:
+                        self._send(json.dumps({'cached': True, 'default_answers': cached}, ensure_ascii=False))
+                        return
+                # Stream generate
+                prompt = f'default-answers\njob_folder: "{job_folder}"'
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/event-stream')
+                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                claude_bin = shutil.which('claude') or 'claude'
+                proc = subprocess.Popen(
+                    [claude_bin, '-p', prompt],
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                    cwd=str(_user_dir(uid)), text=True,
+                    encoding='utf-8', errors='replace',
+                )
+                try:
+                    for line in proc.stdout:
+                        stripped = ANSI_RE.sub('', line.rstrip())
+                        if stripped:
+                            chunk = json.dumps({'text': stripped}, ensure_ascii=False)
+                            self.wfile.write(f'data: {chunk}\n\n'.encode('utf-8'))
+                            self.wfile.flush()
+                    proc.wait()
+                    self.wfile.write(b'data: {"done":true}\n\n')
+                    self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+            except Exception as e:
+                try:
+                    self.wfile.write(f'data: {json.dumps({"error": str(e)})}\n\n'.encode('utf-8'))
+                    self.wfile.flush()
+                except Exception:
+                    pass
+
+        elif path == '/api/finetune-answer':
+            try:
+                data        = self._read_json_body()
+                job_folder  = (data.get('job_folder') or '').strip()
+                question    = (data.get('question') or '').strip()
+                cur_answer  = (data.get('current_answer') or '').strip()
+                direction   = (data.get('direction') or '').strip()
+                if not job_folder:
+                    self._send(json.dumps({'error': 'job_folder required'}), status=400); return
+                prompt = (
+                    f'default-answers\n'
+                    f'job_folder: "{job_folder}"\n'
+                    f'finetune: true\n'
+                    f'question: {question}\n'
+                    f'current_answer: {cur_answer}\n'
+                    f'direction: {direction}'
+                )
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/event-stream')
+                self.send_header('Cache-Control', 'no-cache')
+                self.send_header('Access-Control-Allow-Origin', '*')
+                self.end_headers()
+                claude_bin = shutil.which('claude') or 'claude'
+                proc = subprocess.Popen(
+                    [claude_bin, '-p', prompt],
+                    stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+                    cwd=str(_user_dir(uid)), text=True,
+                    encoding='utf-8', errors='replace',
+                )
+                try:
+                    for line in proc.stdout:
+                        stripped = ANSI_RE.sub('', line.rstrip())
+                        if stripped:
+                            chunk = json.dumps({'text': stripped}, ensure_ascii=False)
+                            self.wfile.write(f'data: {chunk}\n\n'.encode('utf-8'))
+                            self.wfile.flush()
+                    proc.wait()
+                    self.wfile.write(b'data: {"done":true}\n\n')
+                    self.wfile.flush()
+                except (BrokenPipeError, ConnectionResetError):
+                    pass
+            except Exception as e:
+                try:
+                    self.wfile.write(f'data: {json.dumps({"error": str(e)})}\n\n'.encode('utf-8'))
                     self.wfile.flush()
                 except Exception:
                     pass

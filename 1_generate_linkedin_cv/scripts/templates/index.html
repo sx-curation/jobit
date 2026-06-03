@@ -479,8 +479,8 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
           <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="size" checked onchange="toggleCol(this)"> Size</label>
           <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="location" checked onchange="toggleCol(this)"> Location</label>
           <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="emphasis" checked onchange="toggleCol(this)"> Emphasis</label>
+          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="legit" checked onchange="toggleCol(this)"> # Reliable</label>
           <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="missing" checked onchange="toggleCol(this)"> Missing Skills</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="legit" checked onchange="toggleCol(this)"> Legit</label>
           <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="search_date" checked onchange="toggleCol(this)"> Analyzed</label>
           <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="last_seen" checked onchange="toggleCol(this)"> Last Seen</label>
         </div>
@@ -493,6 +493,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
             <th>#</th>
             <th class="th-sort" id="th-score" onclick="setSortCol('score')"># JD Fit <span class="sort-icon" id="si-score">↓</span></th>
             <th class="th-sort" id="th-dscore" onclick="setSortCol('dscore')" title="Fit Score: level, location, mode, freshness, salary, job family, industry"># Prefer <span class="sort-icon" id="si-dscore">⇅</span></th>
+            <th data-col="legit" style="min-width:80px"># Reliable</th>
             <th data-col="group">Group</th>
             <th data-col="source">Source</th>
             <th class="th-sort" id="th-company" onclick="setSortCol('company')">Company <span class="sort-icon" id="si-company">⇅</span></th>
@@ -501,7 +502,6 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
             <th data-col="location" style="min-width:100px">Location</th>
             <th data-col="emphasis" style="min-width:190px">Recommended Emphasis</th>
             <th data-col="missing" style="min-width:170px">Missing Skills</th>
-            <th data-col="legit" style="min-width:80px">Legit</th>
             <th data-col="search_date" class="th-sort" id="th-analyzed" style="white-space:nowrap" onclick="setSortCol('analyzed')">Analyzed <span class="sort-icon" id="si-analyzed">⇅</span></th>
             <th data-col="last_seen" class="th-sort" id="th-last-seen" style="white-space:nowrap" onclick="setSortCol('last_seen')">Last Seen <span class="sort-icon" id="si-last-seen">⇅</span></th>
             <th>Record</th>
@@ -721,6 +721,26 @@ function renderSkillCategories(skills, icon, iconColor) {
   const mkRow = s => { const label = typeof s === 'object' ? (s.skill || '') : s; return `<div class="matched-row"><span class="material-symbols-outlined" style="font-size:16px;color:${iconColor};">${icon}</span><span>${esc(label)}</span></div>`; };
   return SKILL_CATS.map(({key, label}) =>
     groups[key].length ? catLabel(label) + groups[key].map(mkRow).join('') : ''
+  ).join('');
+}
+function renderMissingSkillsBySeverity(skills) {
+  if (!(skills||[]).length) return '';
+  const sevCls = sev => {
+    const s = (sev||'').toLowerCase();
+    if (s.includes('blocker')) return 'bg-red-50 border-red-200 text-red-700';
+    if (s.includes('nice') || s.includes('learnable')) return 'bg-yellow-50 border-yellow-200 text-yellow-700';
+    return 'bg-green-50 border-green-200 text-green-700';
+  };
+  const groups = categorizeMissingSkills(skills);
+  const catLabel = t => `<div class="text-[9px] uppercase tracking-wider text-slate-400 font-bold mb-1 mt-2" style="font-family:'Space Grotesk'">${t}</div>`;
+  const mkPill = s => {
+    const label = typeof s === 'object' ? (s.skill || '') : s;
+    const sev   = typeof s === 'object' ? (s.severity || '') : '';
+    const cls   = sevCls(sev);
+    return `<span class="inline-flex items-center px-2 py-0.5 rounded border text-xs mr-1 mb-1 ${cls}">${esc(label)}</span>`;
+  };
+  return SKILL_CATS.map(({key, label}) =>
+    groups[key].length ? catLabel(label) + `<div class="flex flex-wrap">` + groups[key].map(mkPill).join('') + `</div>` : ''
   ).join('');
 }
 function parseAnalyzedDate(s) {
@@ -1173,6 +1193,22 @@ function renderTable() {
         return `<span class="score-badge" style="color:${sc};background:${sbg};" title="View detail">${sd}</span>${custHint}`;
       })()}</td>
       <td><div class="dscore-wrap"><span class="dscore-badge" style="color:${dsc};background:${dsbg};">${dsd}</span>${dsTip}</div>${mismatchWarn}</td>
+      <td data-col="legit" class="text-center">${(() => {
+        const v = j.legitimacy_verdict || 'UNKNOWN';
+        const lscore = j.legitimacy_score ?? -1;
+        const icon = v === 'HIGH_CONFIDENCE' ? '🟢'
+                   : v === 'CAUTION'         ? '🟡'
+                   : v === 'SUSPICIOUS'      ? '🔴'
+                   : '⚪';
+        const flags = (j.legitimacy_flags || []);
+        const repost = j.legitimacy_repost ? ' 🔁' : '';
+        const hiring = j.legitimacy_hiring === 'negative' ? ' ⚠️' : '';
+        const tip = flags.length
+          ? flags.map(f => esc(f)).join('&#10;')
+          : (v === 'HIGH_CONFIDENCE' ? 'No issues detected' : v);
+        const scoreStr = lscore >= 0 ? ` ${lscore}` : '';
+        return `<div class="legit-wrap"><span class="legit-badge" title="${tip}">${icon}${scoreStr}${repost}${hiring}</span>${flags.length ? `<div class="legit-tooltip">${flags.map(f=>`<div>${esc(f)}</div>`).join('')}</div>` : ''}</div>`;
+      })()}</td>
       <td data-col="group">${grp}</td>
       <td data-col="source">${j.url
         ? `<a href="${esc(j.url)}" target="_blank" onclick="event.stopPropagation()"
@@ -1221,22 +1257,6 @@ function renderTable() {
         if (domain.length)   parts.push(catLbl('Domain') + mkPillsFrom(domain));
         if (soft.length)     parts.push(catLbl('Other') + mkPillsFrom(soft));
         return `<div title="${esc(skillStrings.join(', '))}">${parts.join('')}</div>`;
-      })()}</td>
-      <td data-col="legit" class="text-center">${(() => {
-        const v = j.legitimacy_verdict || 'UNKNOWN';
-        const lscore = j.legitimacy_score ?? -1;
-        const icon = v === 'HIGH_CONFIDENCE' ? '🟢'
-                   : v === 'CAUTION'         ? '🟡'
-                   : v === 'SUSPICIOUS'      ? '🔴'
-                   : '⚪';
-        const flags = (j.legitimacy_flags || []);
-        const repost = j.legitimacy_repost ? ' 🔁' : '';
-        const hiring = j.legitimacy_hiring === 'negative' ? ' ⚠️' : '';
-        const tip = flags.length
-          ? flags.map(f => esc(f)).join('&#10;')
-          : (v === 'HIGH_CONFIDENCE' ? 'No issues detected' : v);
-        const scoreStr = lscore >= 0 ? ` ${lscore}` : '';
-        return `<div class="legit-wrap"><span class="legit-badge" title="${tip}">${icon}${scoreStr}${repost}${hiring}</span>${flags.length ? `<div class="legit-tooltip">${flags.map(f=>`<div>${esc(f)}</div>`).join('')}</div>` : ''}</div>`;
       })()}</td>
       <td data-col="search_date" class="text-xs text-slate-400 whitespace-nowrap font-mono">${esc(j.analyzed)}</td>
       <td data-col="last_seen" class="text-xs text-slate-400 whitespace-nowrap font-mono">${esc(j.last_seen||'—')}</td>
@@ -1374,7 +1394,7 @@ function showDetail(job) {
 
   // Matched / Missing skills
   const matchHtml = renderSkillCategories(job.matched_skills, 'check_circle', '#22C55E');
-  const missHtml  = renderSkillCategories(job.missing_skills, 'cancel',       '#EF4444');
+  const missHtml  = renderMissingSkillsBySeverity(job.missing_skills);
 
   // Bonus skills
   const bonusHtml = (job.bonus_skills||[]).map(s =>
@@ -1394,8 +1414,16 @@ function showDetail(job) {
     `<li class="flex items-center gap-2 text-xs text-slate-500">
       <div class="w-1.5 h-1.5 rounded-full bg-slate-400 flex-shrink-0"></div>${esc(r)}</li>`).join('');
 
-  // Gauge ring offset (circumference 503)
-  const offset = job.score != null ? (503 * (1 - job.score/100)).toFixed(1) : 503;
+  // Prefer badge (decision_score)
+  const ds   = job.decision_score;
+  const dsd  = (ds != null && ds >= 0) ? Math.round(ds) : '—';
+  const dsc  = ds >= 80 ? '#22C55E' : ds >= 60 ? '#F59E0B' : ds >= 0 ? '#EF4444' : '#9CA3AF';
+  const dsbg = ds >= 80 ? '#DCFCE7' : ds >= 60 ? '#FEF3C7' : ds >= 0 ? '#FEE2E2' : '#F3F4F6';
+  // Reliable badge (legitimacy_score)
+  const ls   = job.legitimacy_score;
+  const lsd  = (ls != null && ls >= 0) ? Math.round(ls) : '—';
+  const lsc  = ls >= 75 ? '#22C55E' : ls >= 50 ? '#F59E0B' : ls >= 0 ? '#EF4444' : '#9CA3AF';
+  const lsbg = ls >= 75 ? '#DCFCE7' : ls >= 50 ? '#FEF3C7' : ls >= 0 ? '#FEE2E2' : '#F3F4F6';
 
   document.getElementById('detail-content').innerHTML = `
     <!-- Title card -->
@@ -1408,35 +1436,28 @@ function showDetail(job) {
             ${szBadge} ${srcBadge}
           </div>
         </div>
-        <span class="score-badge text-base px-5 py-2" style="color:${sc};background:${sbg};font-size:16px;">${sd}</span>
+        <div class="flex items-end gap-3">
+          <div class="flex flex-col items-center">
+            <span class="score-badge text-base px-4 py-1.5" style="color:${sc};background:${sbg};font-size:15px;">${sd}</span>
+            <span class="text-[9px] text-slate-400 mt-0.5 font-mono tracking-wide">JD FIT</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="score-badge text-base px-4 py-1.5" style="color:${dsc};background:${dsbg};font-size:15px;">${dsd}</span>
+            <span class="text-[9px] text-slate-400 mt-0.5 font-mono tracking-wide">PREFER</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="score-badge text-base px-4 py-1.5" style="color:${lsc};background:${lsbg};font-size:15px;">${lsd}</span>
+            <span class="text-[9px] text-slate-400 mt-0.5 font-mono tracking-wide"># RELIABLE</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Score gauge -->
-    <div class="flex justify-center mb-6">
-      <div class="detail-card flex flex-col items-center text-center max-w-xs w-full">
-        <div class="relative flex items-center justify-center" style="width:160px;height:160px;">
-          <svg width="160" height="160" viewBox="0 0 200 200">
-            <circle cx="100" cy="100" r="80" fill="none" stroke="#e7e8e9" stroke-width="18"/>
-            <circle cx="100" cy="100" r="80" fill="none" stroke="${sc}" stroke-width="18"
-              stroke-linecap="round"
-              style="stroke-dasharray:503;stroke-dashoffset:${offset};
-                     transform:rotate(-90deg);transform-origin:50% 50%;
-                     transition:stroke-dashoffset .6s ease;"/>
-          </svg>
-          <div class="absolute flex flex-col items-center">
-            <span class="font-extrabold" style="font-family:Manrope;font-size:44px;color:${sc};line-height:1;">${sd}</span>
-            <span class="text-[9px] tracking-widest text-slate-400 font-mono mt-1">MATCH SCORE</span>
-          </div>
-        </div>
-        <p class="mt-3 text-sm font-semibold text-slate-600">${slabel}</p>
-      </div>
-    </div>
 
     <!-- 3-col grid: 40% / 35% / 25% -->
     <div class="gap-5" style="display:grid; grid-template-columns: 2fr 1.75fr 1.25fr;">
 
-      <!-- Left: Core Responsibilities + Culture -->
+      <!-- Left: Core Responsibilities + Baseline Requirements + Culture -->
       <div class="flex flex-col gap-5">
         ${coreHtml ? `<div class="detail-card">
           <div class="flex items-center gap-2 mb-4">
@@ -1444,6 +1465,10 @@ function showDetail(job) {
             <h3 class="font-bold text-base" style="font-family:Manrope;">Core Responsibilities</h3>
           </div>
           <ol class="space-y-4">${coreHtml}</ol></div>` : ''}
+        ${reqHtml ? `<div class="detail-card">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+            Baseline Requirements</div>
+          <ul class="space-y-2">${reqHtml}</ul></div>` : ''}
         ${cultHtml ? `<div class="detail-card">
           <div class="flex items-center gap-2 mb-4">
             <span class="material-symbols-outlined text-[#005d8f]">diversity_3</span>
@@ -1485,10 +1510,6 @@ function showDetail(job) {
             <span class="material-symbols-outlined text-orange-600">tips_and_updates</span>
             <h3 class="font-bold text-base text-orange-950" style="font-family:Manrope;">Recommended Emphasis</h3>
           </div>${emphHtml}</div>` : ''}
-        ${reqHtml ? `<div class="detail-card">
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
-            Baseline Requirements</div>
-          <ul class="space-y-2">${reqHtml}</ul></div>` : ''}
       </div>
     </div><!-- /grid -->
   `;
@@ -1502,13 +1523,18 @@ function showDetail(job) {
   const hasSalary = salaryR.estimated_range_eur != null && salaryR.data_quality !== 'low';
   const hasCulture = (cultureS.growth||[]).length || (cultureS.wlb||[]).length
                    || (cultureS.team||[]).length || (cultureS.culture||[]).length;
+  const _coEnc = encodeURIComponent(job.company || '');
+  const kunuUrl = kununu.url || `https://www.kununu.com/de/search?q=${_coEnc}`;
+  const gdUrl   = `https://www.glassdoor.com/Search/results.htm?keyword=${_coEnc}`;
+  const gooUrl  = `https://www.google.com/search?q=${encodeURIComponent((job.company||'') + ' company culture reviews')}`;
+  const _srcLink = (href, label) => `<a href="${href}" target="_blank" rel="noopener" class="ml-1 text-[#005d8f] hover:underline text-[10px] normal-case tracking-normal font-normal">🔗 ${label}</a>`;
   const companyProfileSection = (hasKununu || hasSalary || hasCulture) ? `
     <details class="detail-card mt-4" open>
       <summary class="font-bold text-base cursor-pointer" style="font-family:Manrope;list-style:none;">
         <span style="user-select:none;">▼ 公司画像</span></summary>
       <div class="mt-3 space-y-3">
         ${hasKununu ? `<div>
-          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">kununu</div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">kununu${_srcLink(kunuUrl,'查看')}</div>
           <div class="flex flex-wrap gap-3 text-sm">
             <span>★ ${kununu.overall} 总分</span>
             ${kununu.wlb != null ? `<span>⚖️ ${kununu.wlb} WLB</span>` : ''}
@@ -1520,7 +1546,7 @@ function showDetail(job) {
           ${kununu.top_con ? `<div class="text-xs text-red-600 mt-1">👎 "${esc(kununu.top_con)}"</div>` : ''}
         </div>` : ''}
         ${hasSalary ? `<div>
-          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">薪资</div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">薪资${_srcLink(gdUrl,'Glassdoor')}</div>
           <div class="text-sm">€${esc(String(salaryR.estimated_range_eur))}/年
             ${salaryR.market_median_eur ? ` · 中位 €${salaryR.market_median_eur}` : ''}
             ${salaryR.vs_expectation === 'above' ? ' <span class="text-green-600">✅ 高于预期</span>'
@@ -1529,7 +1555,7 @@ function showDetail(job) {
             : ''}</div>
         </div>` : (salaryR.data_quality === 'low' ? `<div class="text-xs text-slate-400">薪资：数据样本不足</div>` : '')}
         ${hasCulture ? `<div>
-          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">文化信号</div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">文化信号${_srcLink(gooUrl,'Google')}</div>
           <div class="flex flex-col gap-0.5 text-xs text-slate-600">
             ${(cultureS.growth||[]).length ? `<div>🌱 ${(cultureS.growth).join(', ')}</div>` : ''}
             ${(cultureS.wlb||[]).length   ? `<div>⚖️ ${(cultureS.wlb).join(', ')}</div>` : ''}
@@ -1597,6 +1623,18 @@ function showDetail(job) {
 
         <!-- Tab 2: Open questions -->
         <div id="fa-pane-open" style="display:none;">
+          <!-- Job context search -->
+          <div class="mb-2 flex items-center gap-2 relative">
+            <span class="text-xs text-slate-500 shrink-0" style="font-family:'Space Grotesk';">职缺上下文:</span>
+            <input id="fa-job-search" type="text" placeholder="搜索职缺/公司名…" oninput="faSearchJob(this.value)"
+              autocomplete="off"
+              class="flex-1 border border-gray-200 rounded px-2 py-1 text-xs outline-none focus:border-[#005d8f]"
+              style="font-family:Inter,sans-serif;">
+            <span id="fa-job-ctx-label" class="text-xs text-[#005d8f] font-semibold truncate max-w-[100px]"
+              style="font-family:'Space Grotesk';">当前职缺</span>
+          </div>
+          <div id="fa-job-search-results" class="hidden mb-2 border border-gray-100 rounded-lg bg-white shadow-sm max-h-32 overflow-y-auto text-xs"></div>
+          <!-- Existing input -->
           <div class="mb-2">
             <label class="text-xs text-slate-500 font-semibold block mb-1" style="font-family:'Space Grotesk'">
               粘贴表单问题（每行一个）：
@@ -1619,6 +1657,18 @@ function showDetail(job) {
           </div>
           <pre id="fa-output" class="text-xs text-slate-700 whitespace-pre-wrap rounded-lg p-3 border border-gray-100"
             style="max-height:400px;overflow-y:auto;background:#F9FAFB;font-family:Inter,sans-serif;line-height:1.6;min-height:60px;"></pre>
+          <!-- 5 Default answers section -->
+          <div class="mt-4" id="fa-default-section">
+            <div class="flex items-center justify-between mb-2">
+              <div class="text-xs font-semibold text-slate-600" style="font-family:'Space Grotesk';">🎯 5 大常见问题答案</div>
+              <button onclick="faLoadDefaultAnswers(true)" id="fa-default-btn"
+                class="text-xs font-bold px-3 py-1 rounded-full border-2 transition hover:bg-gray-50"
+                style="border-color:rgba(0,93,143,.3);color:#005d8f;font-family:'Space Grotesk';">
+                🤖 生成默认答案
+              </button>
+            </div>
+            <div id="fa-default-content"></div>
+          </div>
         </div>
       </div>
     </details>`;
@@ -1637,6 +1687,10 @@ function showDetail(job) {
 }
 
 // ── Form Assistant (M3) ───────────────────────────────────────────────────────
+let faContextJobFolder = null;
+const _faDefaultCache = {};
+const _faFieldsAutoTriggered = new Set();
+
 function faShowTab(tab) {
   const isFields = tab === 'fields';
   document.getElementById('fa-pane-fields').style.display = isFields ? '' : 'none';
@@ -1650,6 +1704,11 @@ function faShowTab(tab) {
   } else {
     btnOpen.style.cssText   = 'background:#005d8f;color:#fff;border-color:#005d8f;font-family:\'Space Grotesk\';';
     btnFields.style.cssText = 'background:#fff;color:#005d8f;border-color:rgba(0,93,143,.3);font-family:\'Space Grotesk\';';
+    // Auto-load default answers on first open
+    const panel = document.getElementById('form-assist-panel');
+    const jf = faContextJobFolder || (panel && panel.dataset.jobFolder) || '';
+    if (jf && !_faDefaultCache[jf]) { faLoadDefaultAnswers(false); }
+    else if (jf && _faDefaultCache[jf]) { renderDefaultAnswers(_faDefaultCache[jf]); }
   }
 }
 
@@ -1666,19 +1725,58 @@ function faLoadFields() {
     .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
     .then(data => {
       let html = '';
+      // Recommended Emphasis panel
+      if ((data.recommended_emphasis||[]).length) {
+        html += `<div class="mb-3 p-3 rounded-lg bg-orange-50 border border-orange-200">
+          <div class="text-xs font-semibold text-orange-700 mb-1" style="font-family:'Space Grotesk';">💡 Recommended Emphasis</div>
+          <ol class="list-decimal list-inside space-y-1">
+            ${(data.recommended_emphasis).map(e => `<li class="text-xs text-orange-800">${esc(e)}</li>`).join('')}
+          </ol>
+        </div>`;
+      }
+      let _cardCounter = 0;
       const renderCards = (cards, sectionTitle) => {
         if (!cards || !cards.length) return '';
         let s = `<div class="mb-4"><div class="text-xs font-bold uppercase tracking-wide text-slate-400 mb-2" style="font-family:'Space Grotesk';">${sectionTitle}</div>`;
         cards.forEach(card => {
-          s += `<div class="mb-3 p-3 rounded-lg border border-gray-100 bg-white shadow-sm">`;
-          s += `<div class="font-semibold text-slate-700 mb-2 text-xs" style="font-family:'Space Grotesk';">${esc(card.header || '')}</div>`;
+          const cardIdx = _cardCounter++;
+          const fieldsJson = JSON.stringify(card.fields || []).replace(/'/g, '&#39;');
+          const safeHeader = (card.header || '').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+          s += `<div class="mb-3 p-3 rounded-lg border border-gray-100 bg-white shadow-sm" data-fields='${fieldsJson}'>`;
+          s += `<div class="flex items-center justify-between mb-2">
+            <div class="font-semibold text-slate-700 text-xs" style="font-family:'Space Grotesk';">${esc(card.header || '')}</div>
+            <button onclick="copyCard(this)" class="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 transition shrink-0" title="复制整段经历">
+              <span class="material-symbols-outlined" style="font-size:13px;">copy_all</span>
+              <span>复制全段</span>
+            </button>
+          </div>`;
           s += `<div class="grid gap-1">`;
-          (card.fields || []).forEach(f => {
-            const displayVal = f.value ? esc(String(f.value)) : `<span class="text-slate-300">—</span>`;
+          (card.fields || []).forEach((f, fIdx) => {
+            const rawVal = f.value ? String(f.value) : '';
+            const displayVal = rawVal ? esc(rawVal) : `<span class="text-slate-300">—</span>`;
+            const safeVal = rawVal.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n');
             s += `<div class="flex items-start gap-2">
               <span class="text-slate-400 shrink-0" style="min-width:140px;font-family:'Space Grotesk';">${esc(f.label)}</span>
-              <span class="text-slate-700 font-medium select-all">${displayVal}</span>
+              <button onclick="copyField(this,'${safeVal}')" class="shrink-0 w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-slate-600 hover:bg-slate-100 transition" title="复制">
+                <span class="material-symbols-outlined" style="font-size:13px;">content_copy</span>
+              </button>
+              <span class="text-slate-700 font-medium select-all text-xs">${displayVal}</span>
             </div>`;
+            if (f.key === 'desc_full') {
+              s += `<div class="mt-1 ml-[148px]" id="ai-exp-${cardIdx}-${fIdx}" data-exp-header="${esc(card.header||'')}">
+                <button onclick="optimizeExp(this,'${safeHeader}','${safeVal}')"
+                  class="text-xs flex items-center gap-1 text-[#005d8f] hover:text-[#003d5c] transition ai-exp-btn" style="font-family:'Space Grotesk';">
+                  <span class="material-symbols-outlined" style="font-size:13px;">auto_awesome</span>✨ AI Enhanced
+                </button>
+                <div class="flex items-start gap-1 mt-1">
+                  <button onclick="copyField(this, this.closest('[data-exp-header]').querySelector('.ai-exp-out').textContent)"
+                    class="shrink-0 w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-slate-600 hover:bg-slate-100 transition mt-0.5 hidden ai-exp-copy" title="复制 AI 优化版本">
+                    <span class="material-symbols-outlined" style="font-size:13px;">content_copy</span>
+                  </button>
+                  <div class="ai-exp-out hidden flex-1 p-2 rounded bg-blue-50 border border-blue-100 text-xs text-slate-700 whitespace-pre-wrap"></div>
+                </div>
+              </div>`;
+            }
           });
           s += `</div></div>`;
         });
@@ -1688,8 +1786,248 @@ function faLoadFields() {
       html += renderCards(data.work_experience, '工作经历');
       html += renderCards(data.education, '教育背景');
       content.innerHTML = html || '<span class="text-slate-400">无字段数据</span>';
+
+      // Load cached AI Enhanced text or auto-trigger on first open
+      const jobFolder = panel.dataset.jobFolder;
+      const cached = data.exp_optimized || {};
+      const hasCached = Object.keys(cached).length > 0;
+      if (hasCached) {
+        Object.entries(cached).forEach(([header, text]) => {
+          content.querySelectorAll('[data-exp-header]').forEach(el => {
+            if (el.dataset.expHeader === header) {
+              const out = el.querySelector('.ai-exp-out');
+              const btn = el.querySelector('.ai-exp-btn');
+              const copyBtn = el.querySelector('.ai-exp-copy');
+              if (out) { out.classList.remove('hidden'); out.textContent = text; }
+              if (btn) btn.textContent = '🔄 Re-optimize';
+              if (copyBtn) copyBtn.classList.remove('hidden');
+            }
+          });
+        });
+      } else if (!_faFieldsAutoTriggered.has(jobFolder)) {
+        _faFieldsAutoTriggered.add(jobFolder);
+        let delay = 200;
+        content.querySelectorAll('.ai-exp-btn').forEach(btn => {
+          setTimeout(() => btn.click(), delay);
+          delay += 400;
+        });
+      }
     })
     .catch(e => { content.textContent = `加载失败: ${e.message}`; });
+}
+
+function optimizeExp(btn, expHeader, descFull) {
+  const panel = document.getElementById('form-assist-panel');
+  const jobFolder = panel ? panel.dataset.jobFolder : '';
+  const container = btn.closest('[id^="ai-exp-"]') || btn.parentElement;
+  const output = container ? container.querySelector('.ai-exp-out') : null;
+  if (!output) return;
+  output.classList.remove('hidden');
+  output.textContent = '⏳ 优化中…';
+  btn.disabled = true;
+  const uid = _currentUserId || 'leon';
+  fetch('/api/optimize-exp?uid=' + encodeURIComponent(uid), {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({job_folder: jobFolder, exp_header: expHeader, desc_full: descFull})
+  }).then(r => {
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    output.textContent = '';
+    (function read() {
+      reader.read().then(({done, value}) => {
+        if (done) {
+          btn.disabled = false;
+          btn.innerHTML = '<span class="material-symbols-outlined" style="font-size:13px;">auto_awesome</span>🔄 Re-optimize';
+          const copyBtn = container.querySelector('.ai-exp-copy');
+          if (copyBtn) copyBtn.classList.remove('hidden');
+          return;
+        }
+        dec.decode(value).split('\n').forEach(line => {
+          if (line.startsWith('data: ')) {
+            try { const d = JSON.parse(line.slice(6)); if (d.text) output.textContent += d.text; } catch {}
+          }
+        });
+        read();
+      });
+    })();
+  }).catch(e => { output.textContent = '错误: ' + e.message; btn.disabled = false; });
+}
+
+function copyField(btn, value) {
+  navigator.clipboard.writeText(value).then(() => {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    if (icon) icon.textContent = 'check';
+    btn.classList.add('text-green-500');
+    setTimeout(() => { if (icon) icon.textContent = 'content_copy'; btn.classList.remove('text-green-500'); }, 1500);
+  }).catch(() => {});
+}
+function copyCard(btn) {
+  const card = btn.closest('[data-fields]');
+  if (!card) return;
+  const fields = JSON.parse(card.dataset.fields || '[]');
+  const text = fields.map(f => `${f.label}: ${f.value||''}`).join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const lbl = btn.querySelector('span:last-child');
+    if (lbl) lbl.textContent = '✓ 已复制';
+    setTimeout(() => { if (lbl) lbl.textContent = '复制全段'; }, 1500);
+  }).catch(() => {});
+}
+
+// ── Default answers + finetune ────────────────────────────────────────────────
+function faSearchJob(val) {
+  const results = document.getElementById('fa-job-search-results');
+  if (!results) return;
+  if (!val || val.length < 2) { results.classList.add('hidden'); return; }
+  const q = val.toLowerCase();
+  const matches = (allJobs || []).filter(j =>
+    (j.company||'').toLowerCase().includes(q) || (j.title||'').toLowerCase().includes(q)
+  ).slice(0, 8);
+  if (!matches.length) { results.classList.add('hidden'); return; }
+  results.classList.remove('hidden');
+  results.innerHTML = matches.map(j => {
+    const jf = (j.jd_path||'').replace('/jd_analysis.json','');
+    return `<div class="px-3 py-2 hover:bg-slate-50 cursor-pointer border-b border-gray-50 last:border-0"
+      onclick="faSelectJobCtx('${jf.replace(/'/g,"\\'")}','${esc(j.company||'')}')">
+      <div class="font-semibold text-slate-700">${esc(j.company||'')}</div>
+      <div class="text-slate-400">${esc(j.title||'')}</div>
+    </div>`;
+  }).join('');
+}
+
+function faSelectJobCtx(jobFolder, company) {
+  faContextJobFolder = jobFolder;
+  const lbl = document.getElementById('fa-job-ctx-label');
+  if (lbl) lbl.textContent = company || jobFolder;
+  const inp = document.getElementById('fa-job-search');
+  if (inp) inp.value = '';
+  const res = document.getElementById('fa-job-search-results');
+  if (res) res.classList.add('hidden');
+  // Reset default answers for new context
+  const content = document.getElementById('fa-default-content');
+  if (content) content.innerHTML = '';
+  const btn = document.getElementById('fa-default-btn');
+  if (btn) { btn.disabled = false; btn.textContent = '🤖 生成默认答案'; }
+}
+
+function faLoadDefaultAnswers(userTriggered) {
+  const panel = document.getElementById('form-assist-panel');
+  const jobFolder = faContextJobFolder || (panel && panel.dataset.jobFolder) || '';
+  const content = document.getElementById('fa-default-content');
+  const btn = document.getElementById('fa-default-btn');
+  if (!jobFolder || !content) return;
+  // Check in-memory cache
+  if (_faDefaultCache[jobFolder] && !userTriggered) {
+    renderDefaultAnswers(_faDefaultCache[jobFolder]); return;
+  }
+  btn.disabled = true; btn.textContent = '⏳ 生成中…';
+  content.innerHTML = '<div class="text-xs text-slate-400 py-2">正在生成，请稍候（首次约15秒）…</div>';
+  const uid = _currentUserId || 'leon';
+  fetch('/api/default-answers?uid=' + encodeURIComponent(uid), {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({job_folder: jobFolder})
+  }).then(async r => {
+    const ct = r.headers.get('content-type') || '';
+    if (ct.includes('application/json')) {
+      const d = await r.json();
+      if (d.default_answers) {
+        _faDefaultCache[jobFolder] = d.default_answers;
+        renderDefaultAnswers(d.default_answers);
+        btn.disabled = false; btn.textContent = '🔄 刷新';
+      }
+      return;
+    }
+    // SSE stream: collect all text, parse JSON at end
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    let buf = '';
+    (function read() {
+      reader.read().then(({done, value}) => {
+        if (done) {
+          // Try to find JSON in buf
+          const m = buf.match(/\{"default_answers"[\s\S]*\}/);
+          if (m) {
+            try {
+              const d = JSON.parse(m[0]);
+              _faDefaultCache[jobFolder] = d.default_answers;
+              renderDefaultAnswers(d.default_answers);
+            } catch { content.innerHTML = '<div class="text-xs text-red-500">解析失败，请重试</div>'; }
+          } else {
+            content.innerHTML = '<div class="text-xs text-red-500">生成失败，请重试</div>';
+          }
+          btn.disabled = false; btn.textContent = '🔄 刷新';
+          return;
+        }
+        dec.decode(value).split('\n').forEach(line => {
+          if (line.startsWith('data: ')) {
+            try { const d = JSON.parse(line.slice(6)); if (d.text) buf += d.text; } catch {}
+          }
+        });
+        read();
+      });
+    })();
+  }).catch(e => {
+    content.innerHTML = '<div class="text-xs text-red-500">错误: ' + e.message + '</div>';
+    btn.disabled = false; btn.textContent = '🤖 生成默认答案';
+  });
+}
+
+function renderDefaultAnswers(answers) {
+  const content = document.getElementById('fa-default-content');
+  if (!content || !answers) return;
+  content.innerHTML = answers.map((a, idx) => `
+    <div class="mb-3 p-3 rounded-lg border border-gray-100 bg-white shadow-sm">
+      <div class="text-xs font-semibold text-slate-600 mb-1" style="font-family:'Space Grotesk';">Q${idx+1}: ${esc(a.question||'')}</div>
+      <textarea id="fa-ans-${idx}" rows="4"
+        class="w-full border border-gray-100 rounded p-2 text-xs text-slate-700 outline-none focus:border-[#005d8f] resize-y"
+        style="font-family:Inter,sans-serif;line-height:1.6;">${esc(a.answer||'')}</textarea>
+      <div class="flex items-center gap-2 mt-1">
+        <input id="fa-ft-dir-${idx}" type="text" placeholder="微调方向（如：更简洁、偏数据驱动）"
+          class="flex-1 border border-gray-200 rounded px-2 py-1 text-xs outline-none focus:border-[#005d8f]"
+          style="font-family:Inter,sans-serif;">
+        <button onclick="faFinetuneAnswer(${idx},'${esc(a.question||'').replace(/'/g,"\\'")}')"
+          class="text-xs px-2 py-1 rounded border border-[rgba(0,93,143,.3)] text-[#005d8f] hover:bg-blue-50 transition shrink-0"
+          style="font-family:'Space Grotesk';">✨ 微调</button>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('fa-ans-${idx}').value)"
+          class="text-xs text-slate-400 hover:text-slate-600 transition shrink-0" title="复制">
+          <span class="material-symbols-outlined" style="font-size:14px;">content_copy</span>
+        </button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function faFinetuneAnswer(idx, question) {
+  const panel = document.getElementById('form-assist-panel');
+  const jobFolder = faContextJobFolder || (panel && panel.dataset.jobFolder) || '';
+  const textarea = document.getElementById('fa-ans-' + idx);
+  const dirInput = document.getElementById('fa-ft-dir-' + idx);
+  if (!textarea || !dirInput || !jobFolder) return;
+  const currentAnswer = textarea.value;
+  const direction = dirInput.value.trim();
+  if (!direction) { dirInput.focus(); return; }
+  const btn = dirInput.nextElementSibling;
+  btn.disabled = true; btn.textContent = '⏳';
+  const uid = _currentUserId || 'leon';
+  fetch('/api/finetune-answer?uid=' + encodeURIComponent(uid), {
+    method: 'POST', headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({job_folder: jobFolder, question, current_answer: currentAnswer, direction})
+  }).then(r => {
+    const reader = r.body.getReader();
+    const dec = new TextDecoder();
+    textarea.value = '';
+    (function read() {
+      reader.read().then(({done, value}) => {
+        if (done) { btn.disabled = false; btn.textContent = '✨ 微调'; return; }
+        dec.decode(value).split('\n').forEach(line => {
+          if (line.startsWith('data: ')) {
+            try { const d = JSON.parse(line.slice(6)); if (d.text) textarea.value += d.text; } catch {}
+          }
+        });
+        read();
+      });
+    })();
+  }).catch(e => { textarea.value = '错误: ' + e.message; btn.disabled = false; btn.textContent = '✨ 微调'; });
 }
 
 function faGenerateDraft() {
@@ -1925,7 +2263,7 @@ function exportExcel() {
     {key:'analyzed',          label:'Analyzed'},
     {key:'last_seen',         label:'Last Seen'},
     {key:'application_record',label:'Status'},
-    {key:'legitimacy_verdict',label:'Legit Verdict'},
+    {key:'legitimacy_verdict',label:'# Reliable'},
     {key:'legitimacy_score',  label:'Legit Score'},
     {key:'url',               label:'URL'},
     {key:'recommended_emphasis_raw', label:'Emphasis'},
