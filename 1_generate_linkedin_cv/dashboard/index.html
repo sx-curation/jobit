@@ -183,6 +183,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
   transition:.15s; max-width:96px; }
 .rec-select[data-state="applied"]   { background:#EFF6FF; color:#1D4ED8; border-color:#1D4ED8; }
 .rec-select[data-state="interview"] { background:#EDE9FE; color:#5B21B6; border-color:#5B21B6; }
+.rec-select[data-state="rejected"]  { background:#F3F4F6; color:#9CA3AF; border-color:#D1D5DB; }
 .rec-select[data-state="invalid"]   { background:#F3F4F6; color:#6B7280; border-color:#9CA3AF; }
 
 /* Materials ready badge */
@@ -203,6 +204,14 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
   padding:10px 14px; font-size:13px; font-family:'Inter',sans-serif; resize:vertical;
   outline:none; transition:border-color .15s; color:#191c1d; }
 .note-textarea:focus { border-color:#005d8f; }
+
+/* Column panel drag-and-drop */
+.col-drag-item { display:flex; align-items:center; gap:6px; padding:3px 2px; border-radius:5px; transition:background .1s; }
+.col-drag-item:hover { background:#F8F9FA; }
+.col-drag-item.drag-over { background:#EFF6FF; outline:1px solid #93C5FD; border-radius:4px; }
+.col-drag-item.dragging { opacity:.4; }
+.drag-handle { color:#CBD5E1; cursor:grab; font-size:14px; flex-shrink:0; line-height:1; padding:0 1px; }
+.drag-handle:active { cursor:grabbing; }
 </style>
 </head>
 <body>
@@ -294,19 +303,19 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
   <!-- Suspicious hidden notice -->
   <div id="suspicious-notice" style="display:none;margin-bottom:4px;font-family:'Space Grotesk',sans-serif;"
     class="text-xs text-amber-600 font-medium">
-    ⚠️ 已隐藏 <span id="suspicious-count">0</span> 个可疑职位
+    ⚠️ Hiding <span id="suspicious-count">0</span> suspicious jobs
     <button onclick="document.getElementById('hide-suspicious').checked=false;applyFilters();"
       style="background:none;border:none;color:inherit;font-size:inherit;cursor:pointer;margin-left:6px;text-decoration:underline;">
-      取消过滤
+      Show all
     </button>
   </div>
   <!-- Blockers hidden notice -->
   <div id="blockers-notice" style="display:none;margin-bottom:8px;font-family:'Space Grotesk',sans-serif;"
     class="text-xs font-medium" style="color:#DC2626;">
-    🔴 已隐藏 <span id="blockers-count">0</span> 个硬缺口职位
+    🔴 Hiding <span id="blockers-count">0</span> hard-blocker jobs
     <button onclick="document.getElementById('hide-blockers').checked=false;applyFilters();"
       style="background:none;border:none;color:inherit;font-size:inherit;cursor:pointer;margin-left:6px;text-decoration:underline;">
-      取消过滤
+      Show all
     </button>
   </div>
 
@@ -367,6 +376,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
         <option value="__none__">— Track</option>
         <option value="applied">Applied</option>
         <option value="interview">Interview</option>
+        <option value="rejected">Rejected</option>
         <option value="invalid">Invalid</option>
       </select>
     </div>
@@ -385,7 +395,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <label class="flex items-center gap-1.5 cursor-pointer text-xs font-semibold"
         style="font-family:'Space Grotesk';color:#005d8f;">
         <input type="checkbox" id="hide-suspicious" checked onchange="applyFilters(); saveFilterState();">
-        隐藏可疑职位
+        Hide suspicious
       </label>
     </div>
     <!-- Hide hard blocker jobs checkbox -->
@@ -393,7 +403,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <label class="flex items-center gap-1.5 cursor-pointer text-xs font-semibold"
         style="font-family:'Space Grotesk';color:#DC2626;">
         <input type="checkbox" id="hide-blockers" onchange="applyFilters(); saveFilterState();">
-        隐藏硬缺口职位
+        Hide hard blockers
       </label>
     </div>
     <!-- Reset all filters -->
@@ -432,7 +442,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
           style="font-family:'Space Grotesk'">Action</label>
         <button id="loading-btn" onclick="onLoadingClick()">
           <span class="material-symbols-outlined" style="font-size:15px;">refresh</span>
-          <span id="loading-btn-text">搜索职缺</span>
+          <span id="loading-btn-text">Search Jobs</span>
         </button>
         <div id="search-log-panel" style="display:none; margin-top:8px;">
           <div style="display:flex;justify-content:space-between;align-items:center;
@@ -476,18 +486,14 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
           style="border-color:rgba(0,93,143,.2);color:#005d8f;font-family:'Space Grotesk';">
           ⚙ Columns
         </button>
-        <div id="col-toggle-panel" class="hidden absolute right-0 top-9 bg-white border border-gray-200 rounded-xl shadow-lg z-20 p-3 min-w-[170px] text-xs space-y-1.5"
+        <div id="col-toggle-panel" class="hidden absolute right-0 top-9 bg-white border border-gray-200 rounded-xl shadow-lg z-20 p-3 min-w-[190px] text-xs"
           style="font-family:'Space Grotesk';">
-          <div class="font-bold text-slate-500 pb-1 border-b border-gray-100 mb-1">Toggle Columns</div>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="group" checked onchange="toggleCol(this)"> Group</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="source" checked onchange="toggleCol(this)"> Source</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="size" checked onchange="toggleCol(this)"> Size</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="location" checked onchange="toggleCol(this)"> Location</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="emphasis" checked onchange="toggleCol(this)"> Emphasis</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="legit" checked onchange="toggleCol(this)"> # Reliable</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="missing" checked onchange="toggleCol(this)"> Missing Skills</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="search_date" checked onchange="toggleCol(this)"> Analyzed</label>
-          <label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" data-col="last_seen" checked onchange="toggleCol(this)"> Last Seen</label>
+          <div class="flex items-center justify-between pb-1.5 border-b border-gray-100 mb-2">
+            <span class="font-bold text-slate-500">Columns</span>
+            <button onclick="resetColOrder();event.stopPropagation();"
+              class="text-[10px] text-slate-400 hover:text-slate-600 transition">↺ Reset</button>
+          </div>
+          <div id="col-drag-list" class="space-y-0.5"></div>
         </div>
       </div>
     </div>
@@ -495,22 +501,22 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <table class="jobs-table">
         <thead>
           <tr>
-            <th>#</th>
-            <th class="th-sort" id="th-score" onclick="setSortCol('score')"># JD Fit <span class="sort-icon" id="si-score">↓</span></th>
-            <th class="th-sort" id="th-dscore" onclick="setSortCol('dscore')" title="Fit Score: level, location, mode, freshness, salary, job family, industry"># Prefer <span class="sort-icon" id="si-dscore">⇅</span></th>
+            <th data-col-key="row_num">#</th>
+            <th data-col-key="score" data-col="score" class="th-sort" id="th-score" onclick="setSortCol('score')"># JD Fit <span class="sort-icon" id="si-score">↓</span></th>
+            <th data-col-key="dscore" data-col="dscore" class="th-sort" id="th-dscore" onclick="setSortCol('dscore')" title="Fit Score: level, location, mode, freshness, salary, job family, industry"># Prefer <span class="sort-icon" id="si-dscore">⇅</span></th>
             <th data-col="legit" class="th-sort" id="th-legit" style="min-width:80px" onclick="setSortCol('legit')"># Reliable <span class="sort-icon" id="si-legit">⇅</span></th>
             <th data-col="group">Group</th>
             <th data-col="source">Source</th>
-            <th class="th-sort" id="th-company" onclick="setSortCol('company')">Company <span class="sort-icon" id="si-company">⇅</span></th>
-            <th class="th-sort" id="th-title" style="min-width:160px" onclick="setSortCol('title')">Title <span class="sort-icon" id="si-title">⇅</span></th>
+            <th data-col-key="company" data-col="company" class="th-sort" id="th-company" onclick="setSortCol('company')">Company <span class="sort-icon" id="si-company">⇅</span></th>
+            <th data-col-key="title" data-col="title" class="th-sort" id="th-title" style="min-width:160px" onclick="setSortCol('title')">Title <span class="sort-icon" id="si-title">⇅</span></th>
             <th data-col="size">Size</th>
             <th data-col="location" style="min-width:100px">Location</th>
             <th data-col="emphasis" style="min-width:190px">Recommended Emphasis</th>
             <th data-col="missing" style="min-width:170px">Missing Skills</th>
             <th data-col="search_date" class="th-sort" id="th-analyzed" style="white-space:nowrap" onclick="setSortCol('analyzed')">Analyzed <span class="sort-icon" id="si-analyzed">⇅</span></th>
             <th data-col="last_seen" class="th-sort" id="th-last-seen" style="white-space:nowrap" onclick="setSortCol('last_seen')">Last Seen <span class="sort-icon" id="si-last-seen">⇅</span></th>
-            <th>Status</th>
-            <th>Notes</th>
+            <th data-col-key="status" data-col="status">Status</th>
+            <th data-col-key="notes" data-col="notes">Notes</th>
           </tr>
         </thead>
         <tbody id="jobs-tbody"></tbody>
@@ -789,6 +795,7 @@ async function loadJobs() {
     hideError();
     populateLocationDropdown();
     restoreFilterState();
+    restoreColOrder();
     buildGroupTabs();
     applyFilters();
     updateStats();
@@ -952,8 +959,9 @@ function updateStats() {
     const applied   = all.filter(j => j.application_record === 'applied' || j.application_record === 'success').length;
     const invalid   = all.filter(j => j.application_record === 'invalid').length;
     const interview = all.filter(j => j.application_record === 'interview').length;
-    const awaits    = all.length - applied - invalid - interview;
-    return { total: all.length, applied, invalid, awaits };
+    const rejected  = all.filter(j => j.application_record === 'rejected').length;
+    const awaits    = all.length - applied - invalid - interview - rejected;
+    return { total: all.length, applied, invalid, interview, rejected, awaits };
   };
   const g = tier(70, null), y = tier(45, 70), o = tier(30, 45), a = tier(30, null);
 
@@ -962,7 +970,7 @@ function updateStats() {
   document.getElementById('stat-yellow').textContent = y.total;
   document.getElementById('stat-orange').textContent = o.total;
 
-  const subText = t => `${t.applied} applied · ${t.invalid} invalid · ${t.awaits} awaits`;
+  const subText = t => `${t.applied} applied · ${t.rejected} rejected · ${t.invalid} invalid · ${t.awaits} awaits`;
   document.getElementById('stat-total-sub').textContent  = subText(a);
   document.getElementById('stat-green-sub').textContent  = subText(g);
   document.getElementById('stat-yellow-sub').textContent = subText(y);
@@ -982,15 +990,15 @@ function getCommand() {
     return btn ? btn.textContent.trim() : g;
   })();
   if (g === 'all') {
-    if (s === 'all')       return {display: '搜索职缺',            clipboard: '搜索职缺'};
-    if (s === 'LinkedIn')  return {display: '搜索LinkedIn职缺',    clipboard: '搜索LinkedIn职缺'};
-    if (s === 'Stepstone') return {display: '搜索Stepstone职缺',   clipboard: '搜索Stepstone职缺'};
+    if (s === 'all')       return {display: 'Search Jobs',            clipboard: '搜索职缺'};
+    if (s === 'LinkedIn')  return {display: 'Search LinkedIn',        clipboard: '搜索LinkedIn职缺'};
+    if (s === 'Stepstone') return {display: 'Search Stepstone',       clipboard: '搜索Stepstone职缺'};
   } else {
-    if (s === 'all')       return {display: '搜索职缺 ' + groupLabel,          clipboard: '搜索职缺 ' + g};
-    if (s === 'LinkedIn')  return {display: '搜索LinkedIn职缺 ' + groupLabel,  clipboard: '搜索LinkedIn职缺 ' + g};
-    if (s === 'Stepstone') return {display: '搜索Stepstone职缺 ' + groupLabel, clipboard: '搜索Stepstone职缺 ' + g};
+    if (s === 'all')       return {display: 'Search Jobs — ' + groupLabel,      clipboard: '搜索职缺 ' + g};
+    if (s === 'LinkedIn')  return {display: 'Search LinkedIn — ' + groupLabel,  clipboard: '搜索LinkedIn职缺 ' + g};
+    if (s === 'Stepstone') return {display: 'Search Stepstone — ' + groupLabel, clipboard: '搜索Stepstone职缺 ' + g};
   }
-  return {display: '搜索职缺', clipboard: '搜索职缺'};
+  return {display: 'Search Jobs', clipboard: '搜索职缺'};
 }
 
 function updateLoadingBtnText() {
@@ -1027,7 +1035,7 @@ async function onLoadingClick() {
 
   // Immediately show feedback so user knows the click registered
   btn.disabled = true;
-  span.textContent = '⏳ 连接中…';
+  span.textContent = '⏳ Connecting…';
 
   let started = false;
   try {
@@ -1121,6 +1129,7 @@ function renderTable() {
           style="font-family:'Space Grotesk'">Reset Filters</button>
       </div></td></tr>`;
     renderPagination(1);
+    _applyColOrder();
     return;
   }
 
@@ -1148,6 +1157,7 @@ function renderTable() {
              <option value=""${!ar?'selected':''}>— Track</option>
              <option value="applied"${(ar==='applied'||ar==='success')?'selected':''}>Applied</option>
              <option value="interview"${ar==='interview'?'selected':''}>Interview</option>
+             <option value="rejected"${ar==='rejected'?'selected':''}>Rejected</option>
              <option value="invalid"${ar==='invalid'?'selected':''}>Invalid</option>
                </select>
          </div>`
@@ -1191,8 +1201,8 @@ function renderTable() {
       ? `<span title="${esc(jfDet.group_mismatch_warning)}" style="cursor:help;margin-left:3px;">⚠️</span>` : '';
 
     return `<tr data-row-idx="${idx}" class="job-row">
-      <td class="text-slate-400 text-xs font-mono">${String(start+idx+1).padStart(3,'0')}</td>
-      <td>${(() => {
+      <td data-col-key="row_num" class="text-slate-400 text-xs font-mono">${String(start+idx+1).padStart(3,'0')}</td>
+      <td data-col-key="score" data-col="score">${(() => {
         const ems = j.estimated_max_score;
         const custHint = (ems != null && ems > 0 && j.score != null && ems > j.score)
           ? `<div style="font-size:9px;color:#16A34A;font-family:'Space Grotesk',sans-serif;margin-top:1px;cursor:pointer;" title="${
@@ -1202,7 +1212,7 @@ function renderTable() {
           : '';
         return `<span class="score-badge" style="color:${sc};background:${sbg};" title="View detail">${sd}</span>${custHint}`;
       })()}</td>
-      <td><div class="dscore-wrap"><span class="dscore-badge" style="color:${dsc};background:${dsbg};">${dsd}</span>${dsTip}</div>${mismatchWarn}</td>
+      <td data-col-key="dscore" data-col="dscore"><div class="dscore-wrap"><span class="dscore-badge" style="color:${dsc};background:${dsbg};">${dsd}</span>${dsTip}</div>${mismatchWarn}</td>
       <td data-col="legit" class="text-center">${(() => {
         const v = j.legitimacy_verdict || 'UNKNOWN';
         const lscore = j.legitimacy_score ?? -1;
@@ -1224,9 +1234,13 @@ function renderTable() {
         ? `<a href="${esc(j.url)}" target="_blank" onclick="event.stopPropagation()"
              class="${srcCls}" style="text-decoration:none;" title="${esc(j.url)}">${srcIcon} ${esc(j.source||'—')}</a>`
         : `<span class="${srcCls}">${srcIcon} ${esc(j.source||'—')}</span>`}</td>
-      <td class="font-bold text-sm max-w-[140px]">
-        <span class="block truncate" title="${esc(j.company)}">${esc(j.company)}</span></td>
-      <td style="max-width:170px;">
+      <td data-col-key="company" data-col="company" class="font-bold text-sm max-w-[140px]">
+        <span class="block truncate" title="${esc(j.company)}">${esc(j.company)}</span>
+        ${j.job_id ? `<span onclick="copyJobId(event,'${esc(j.job_id)}')" title="Click to copy: ${esc(j.job_id)}"
+          style="font-size:9px;font-family:monospace;color:#6B7280;cursor:pointer;display:inline-block;margin-top:1px;
+          background:#F3F4F6;border-radius:3px;padding:0 3px;line-height:16px;user-select:none;"
+          >${jobIdDisplay(j.job_id)}</span>` : ''}</td>
+      <td data-col-key="title" data-col="title" style="max-width:170px;">
         ${matBadge}<span class="block text-sm text-slate-600 line-clamp-3"
           title="${esc(j.title)}">${esc(j.title)}</span></td>
       <td data-col="size" class="text-center text-xs text-slate-400 whitespace-nowrap">${esc(j.size||'—')}</td>
@@ -1270,12 +1284,13 @@ function renderTable() {
       })()}</td>
       <td data-col="search_date" class="text-xs text-slate-400 whitespace-nowrap font-mono">${esc(j.analyzed)}</td>
       <td data-col="last_seen" class="text-xs text-slate-400 whitespace-nowrap font-mono">${esc(j.last_seen||'—')}</td>
-      <td>${recHtml}</td>
-      <td class="text-center">${noteCell}</td>
+      <td data-col-key="status" data-col="status">${recHtml}</td>
+      <td data-col-key="notes" data-col="notes" class="text-center">${noteCell}</td>
     </tr>`;
   }).join('');
 
   renderPagination(pages);
+  _applyColOrder();
 }
 
 // ── Application record (5-state select) ──────────────────────────────────────
@@ -1444,6 +1459,10 @@ function showDetail(job) {
           <div class="flex flex-wrap items-center gap-2">
             <span class="font-semibold text-slate-700">${esc(job.company)}</span>
             ${szBadge} ${srcBadge}
+            ${job.job_id ? `<span onclick="copyJobId(event,'${esc(job.job_id)}')" title="Job ID: ${esc(job.job_id)}&#10;Click to copy full ID"
+              style="font-size:10px;font-family:monospace;color:#4B5563;cursor:pointer;
+              background:#F3F4F6;border:1px solid #E5E7EB;border-radius:4px;padding:1px 6px;
+              line-height:18px;user-select:none;">${jobIdDisplay(job.job_id)}</span>` : ''}
           </div>
         </div>
         <div class="flex items-end gap-3">
@@ -1541,31 +1560,31 @@ function showDetail(job) {
   const companyProfileSection = (hasKununu || hasSalary || hasCulture) ? `
     <details class="detail-card mt-4" open>
       <summary class="font-bold text-base cursor-pointer" style="font-family:Manrope;list-style:none;">
-        <span style="user-select:none;">▼ 公司画像</span></summary>
+        <span style="user-select:none;">▼ Company Profile</span></summary>
       <div class="mt-3 space-y-3">
         ${hasKununu ? `<div>
-          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">kununu${_srcLink(kunuUrl,'查看')}</div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">kununu${_srcLink(kunuUrl,'view')}</div>
           <div class="flex flex-wrap gap-3 text-sm">
-            <span>★ ${kununu.overall} 总分</span>
+            <span>★ ${kununu.overall} Overall</span>
             ${kununu.wlb != null ? `<span>⚖️ ${kununu.wlb} WLB</span>` : ''}
-            ${kununu.culture != null ? `<span>🏢 ${kununu.culture} 文化</span>` : ''}
-            ${kununu.career_growth != null ? `<span>📈 ${kununu.career_growth} 发展</span>` : ''}
-            ${kununu.sample_size ? `<span class="text-slate-400">${kununu.sample_size} 条评价</span>` : ''}
+            ${kununu.culture != null ? `<span>🏢 ${kununu.culture} Culture</span>` : ''}
+            ${kununu.career_growth != null ? `<span>📈 ${kununu.career_growth} Career Growth</span>` : ''}
+            ${kununu.sample_size ? `<span class="text-slate-400">${kununu.sample_size} reviews</span>` : ''}
           </div>
           ${kununu.top_pro ? `<div class="text-xs text-green-700 mt-1">👍 "${esc(kununu.top_pro)}"</div>` : ''}
           ${kununu.top_con ? `<div class="text-xs text-red-600 mt-1">👎 "${esc(kununu.top_con)}"</div>` : ''}
         </div>` : ''}
         ${hasSalary ? `<div>
-          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">薪资${_srcLink(gdUrl,'Glassdoor')}</div>
-          <div class="text-sm">€${esc(String(salaryR.estimated_range_eur))}/年
-            ${salaryR.market_median_eur ? ` · 中位 €${salaryR.market_median_eur}` : ''}
-            ${salaryR.vs_expectation === 'above' ? ' <span class="text-green-600">✅ 高于预期</span>'
-            : salaryR.vs_expectation === 'within' ? ' <span class="text-green-600">✅ 在预期范围内</span>'
-            : salaryR.vs_expectation === 'below'  ? ' <span class="text-red-500">⚠️ 低于预期</span>'
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Salary${_srcLink(gdUrl,'Glassdoor')}</div>
+          <div class="text-sm">€${esc(String(salaryR.estimated_range_eur))}/yr
+            ${salaryR.market_median_eur ? ` · median €${salaryR.market_median_eur}` : ''}
+            ${salaryR.vs_expectation === 'above' ? ' <span class="text-green-600">✅ Above expectation</span>'
+            : salaryR.vs_expectation === 'within' ? ' <span class="text-green-600">✅ Within range</span>'
+            : salaryR.vs_expectation === 'below'  ? ' <span class="text-red-500">⚠️ Below expectation</span>'
             : ''}</div>
-        </div>` : (salaryR.data_quality === 'low' ? `<div class="text-xs text-slate-400">薪资：数据样本不足</div>` : '')}
+        </div>` : (salaryR.data_quality === 'low' ? `<div class="text-xs text-slate-400">Salary: insufficient data</div>` : '')}
         ${hasCulture ? `<div>
-          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">文化信号${_srcLink(gooUrl,'Google')}</div>
+          <div class="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Culture Signals${_srcLink(gooUrl,'Google')}</div>
           <div class="flex flex-col gap-0.5 text-xs text-slate-600">
             ${(cultureS.growth||[]).length ? `<div>🌱 ${(cultureS.growth).join(', ')}</div>` : ''}
             ${(cultureS.wlb||[]).length   ? `<div>⚖️ ${(cultureS.wlb).join(', ')}</div>` : ''}
@@ -1597,7 +1616,7 @@ function showDetail(job) {
     const formPanel = `
     <details id="form-assist-panel" class="detail-card mt-4">
       <summary class="font-bold text-base cursor-pointer" style="font-family:Manrope;list-style:none;">
-        <span>📋 申请表单助手</span>
+        <span>📋 Application Form Assistant</span>
       </summary>
       <div class="mt-3">
         <!-- Tab bar -->
@@ -1605,19 +1624,19 @@ function showDetail(job) {
           <button id="fa-tab-fields" onclick="faShowTab('fields')"
             class="text-xs font-semibold px-3 py-1 rounded-full border"
             style="background:#005d8f;color:#fff;border-color:#005d8f;font-family:'Space Grotesk';">
-            📋 结构化字段
+            📋 Structured Fields
           </button>
           <button id="fa-tab-open" onclick="faShowTab('open')"
             class="text-xs font-semibold px-3 py-1 rounded-full border"
             style="background:#fff;color:#005d8f;border-color:rgba(0,93,143,.3);font-family:'Space Grotesk';">
-            ✍️ 开放性问题
+            ✍️ Open Questions
           </button>
         </div>
 
         <!-- Tab 1: Structured fields -->
         <div id="fa-pane-fields">
           <div class="flex items-center gap-2 mb-2">
-            <label class="text-xs text-slate-500 font-semibold" style="font-family:'Space Grotesk'">ATS 类型:</label>
+            <label class="text-xs text-slate-500 font-semibold" style="font-family:'Space Grotesk'">ATS Type:</label>
             <select id="fa-ats-type" onchange="faLoadFields()"
               class="text-xs border border-gray-200 rounded px-2 py-1 outline-none">
               <option value="workday">Workday</option>
@@ -1626,28 +1645,28 @@ function showDetail(job) {
               <option value="lever">Lever</option>
               <option value="generic">Generic</option>
             </select>
-            <button onclick="faLoadFields()" class="text-xs text-[#005d8f] underline" style="font-family:'Space Grotesk'">刷新</button>
+            <button onclick="faLoadFields()" class="text-xs text-[#005d8f] underline" style="font-family:'Space Grotesk'">Refresh</button>
           </div>
-          <div id="fa-fields-content" class="text-xs text-slate-400">正在加载字段…</div>
+          <div id="fa-fields-content" class="text-xs text-slate-400">Loading fields…</div>
         </div>
 
         <!-- Tab 2: Open questions -->
         <div id="fa-pane-open" style="display:none;">
           <!-- Job context search -->
           <div class="mb-2 flex items-center gap-2 relative">
-            <span class="text-xs text-slate-500 shrink-0" style="font-family:'Space Grotesk';">职缺上下文:</span>
-            <input id="fa-job-search" type="text" placeholder="搜索职缺/公司名…" oninput="faSearchJob(this.value)"
+            <span class="text-xs text-slate-500 shrink-0" style="font-family:'Space Grotesk';">Job context:</span>
+            <input id="fa-job-search" type="text" placeholder="Search jobs/company…" oninput="faSearchJob(this.value)"
               autocomplete="off"
               class="flex-1 border border-gray-200 rounded px-2 py-1 text-xs outline-none focus:border-[#005d8f]"
               style="font-family:Inter,sans-serif;">
             <span id="fa-job-ctx-label" class="text-xs text-[#005d8f] font-semibold truncate max-w-[100px]"
-              style="font-family:'Space Grotesk';">当前职缺</span>
+              style="font-family:'Space Grotesk';">Current job</span>
           </div>
           <div id="fa-job-search-results" class="hidden mb-2 border border-gray-100 rounded-lg bg-white shadow-sm max-h-32 overflow-y-auto text-xs"></div>
           <!-- Existing input -->
           <div class="mb-2">
             <label class="text-xs text-slate-500 font-semibold block mb-1" style="font-family:'Space Grotesk'">
-              粘贴表单问题（每行一个）：
+              Paste form questions (one per line):
             </label>
             <textarea id="fa-questions" rows="4" placeholder="Why do you want to work here?&#10;Describe a data project"
               class="w-full border border-gray-200 rounded-lg p-2 text-xs outline-none focus:border-[#005d8f]"
@@ -1657,12 +1676,12 @@ function showDetail(job) {
             <button onclick="faGenerateDraft()"
               class="text-xs font-bold px-4 py-1.5 rounded-full border-2 transition hover:bg-gray-50"
               style="border-color:rgba(0,93,143,.3);color:#005d8f;font-family:'Space Grotesk';">
-              ✨ 生成草稿
+              ✨ Generate Draft
             </button>
             <button onclick="document.getElementById('fa-output').textContent=''"
-              class="text-xs text-slate-400 underline" style="font-family:'Space Grotesk'">清除</button>
+              class="text-xs text-slate-400 underline" style="font-family:'Space Grotesk'">Clear</button>
             <button onclick="navigator.clipboard.writeText(document.getElementById('fa-output').textContent)"
-              class="text-xs text-slate-400 underline" style="font-family:'Space Grotesk'">复制全部</button>
+              class="text-xs text-slate-400 underline" style="font-family:'Space Grotesk'">Copy All</button>
             <span id="fa-status" class="text-xs text-slate-400" style="font-family:'Space Grotesk'"></span>
           </div>
           <pre id="fa-output" class="text-xs text-slate-700 whitespace-pre-wrap rounded-lg p-3 border border-gray-100"
@@ -1670,11 +1689,11 @@ function showDetail(job) {
           <!-- 5 Default answers section -->
           <div class="mt-4" id="fa-default-section">
             <div class="flex items-center justify-between mb-2">
-              <div class="text-xs font-semibold text-slate-600" style="font-family:'Space Grotesk';">🎯 5 大常见问题答案</div>
+              <div class="text-xs font-semibold text-slate-600" style="font-family:'Space Grotesk';">🎯 Top 5 Common Questions</div>
               <button onclick="faLoadDefaultAnswers(true)" id="fa-default-btn"
                 class="text-xs font-bold px-3 py-1 rounded-full border-2 transition hover:bg-gray-50"
                 style="border-color:rgba(0,93,143,.3);color:#005d8f;font-family:'Space Grotesk';">
-                🤖 生成默认答案
+                🤖 Generate Answers
               </button>
             </div>
             <div id="fa-default-content"></div>
@@ -1729,8 +1748,8 @@ function faLoadFields() {
   if (!panel || !content) return;
   const jobFolder = panel.dataset.jobFolder;
   const atsType   = (document.getElementById('fa-ats-type') || {}).value || 'workday';
-  if (!jobFolder) { content.textContent = '无 job_folder，无法加载字段。'; return; }
-  content.textContent = '正在加载字段…';
+  if (!jobFolder) { content.textContent = 'No job folder found.'; return; }
+  content.textContent = 'Loading fields…';
   const groupId = panel.dataset.groupId || '';
   const uid = _currentUserId || 'leon';
   fetch(`/api/form-fields?job_folder=${encodeURIComponent(jobFolder)}&ats_type=${encodeURIComponent(atsType)}&uid=${encodeURIComponent(uid)}&group_id=${encodeURIComponent(groupId)}`)
@@ -1757,9 +1776,9 @@ function faLoadFields() {
           s += `<div class="mb-3 p-3 rounded-lg border border-gray-100 bg-white shadow-sm" data-fields='${fieldsJson}'>`;
           s += `<div class="flex items-center justify-between mb-2">
             <div class="font-semibold text-slate-700 text-xs" style="font-family:'Space Grotesk';">${esc(card.header || '')}</div>
-            <button onclick="copyCard(this)" class="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 transition shrink-0" title="复制整段经历">
+            <button onclick="copyCard(this)" class="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 transition shrink-0" title="Copy full entry">
               <span class="material-symbols-outlined" style="font-size:13px;">copy_all</span>
-              <span>复制全段</span>
+              <span>Copy all</span>
             </button>
           </div>`;
           s += `<div class="grid gap-1">`;
@@ -1769,7 +1788,7 @@ function faLoadFields() {
             const safeVal = rawVal.replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/\n/g,'\\n');
             s += `<div class="flex items-start gap-2">
               <span class="text-slate-400 shrink-0" style="min-width:140px;font-family:'Space Grotesk';">${esc(f.label)}</span>
-              <button onclick="copyField(this,'${safeVal}')" class="shrink-0 w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-slate-600 hover:bg-slate-100 transition" title="复制">
+              <button onclick="copyField(this,'${safeVal}')" class="shrink-0 w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-slate-600 hover:bg-slate-100 transition" title="Copy">
                 <span class="material-symbols-outlined" style="font-size:13px;">content_copy</span>
               </button>
               <span class="text-slate-700 font-medium select-all text-xs">${displayVal}</span>
@@ -1782,7 +1801,7 @@ function faLoadFields() {
                 </button>
                 <div class="flex items-start gap-1 mt-1">
                   <button onclick="copyField(this, this.closest('[data-exp-header]').querySelector('.ai-exp-out').textContent)"
-                    class="shrink-0 w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-slate-600 hover:bg-slate-100 transition mt-0.5 hidden ai-exp-copy" title="复制 AI 优化版本">
+                    class="shrink-0 w-5 h-5 flex items-center justify-center rounded text-slate-300 hover:text-slate-600 hover:bg-slate-100 transition mt-0.5 hidden ai-exp-copy" title="Copy AI-enhanced version">
                     <span class="material-symbols-outlined" style="font-size:13px;">content_copy</span>
                   </button>
                   <div class="ai-exp-out hidden flex-1 p-2 rounded bg-blue-50 border border-blue-100 text-xs text-slate-700 whitespace-pre-wrap"></div>
@@ -1795,9 +1814,9 @@ function faLoadFields() {
         s += `</div>`;
         return s;
       };
-      html += renderCards(data.work_experience, '工作经历');
-      html += renderCards(data.education, '教育背景');
-      content.innerHTML = html || '<span class="text-slate-400">无字段数据</span>';
+      html += renderCards(data.work_experience, 'Work Experience');
+      html += renderCards(data.education, 'Education');
+      content.innerHTML = html || '<span class="text-slate-400">No field data</span>';
 
       // Load cached AI Enhanced text or auto-trigger on first open
       const jobFolder = panel.dataset.jobFolder;
@@ -1825,7 +1844,7 @@ function faLoadFields() {
         });
       }
     })
-    .catch(e => { content.textContent = `加载失败: ${e.message}`; });
+    .catch(e => { content.textContent = `Load failed: ${e.message}`; });
 }
 
 function optimizeExp(btn, expHeader, descFull) {
@@ -1835,7 +1854,7 @@ function optimizeExp(btn, expHeader, descFull) {
   const output = container ? container.querySelector('.ai-exp-out') : null;
   if (!output) return;
   output.classList.remove('hidden');
-  output.textContent = '⏳ 优化中…';
+  output.textContent = '⏳ Optimizing…';
   btn.disabled = true;
   const uid = _currentUserId || 'leon';
   fetch('/api/optimize-exp?uid=' + encodeURIComponent(uid), {
@@ -1863,7 +1882,7 @@ function optimizeExp(btn, expHeader, descFull) {
         read();
       });
     })();
-  }).catch(e => { output.textContent = '错误: ' + e.message; btn.disabled = false; });
+  }).catch(e => { output.textContent = 'Error: ' + e.message; btn.disabled = false; });
 }
 
 function copyField(btn, value) {
@@ -1881,8 +1900,8 @@ function copyCard(btn) {
   const text = fields.map(f => `${f.label}: ${f.value||''}`).join('\n');
   navigator.clipboard.writeText(text).then(() => {
     const lbl = btn.querySelector('span:last-child');
-    if (lbl) lbl.textContent = '✓ 已复制';
-    setTimeout(() => { if (lbl) lbl.textContent = '复制全段'; }, 1500);
+    if (lbl) lbl.textContent = '✓ Copied';
+    setTimeout(() => { if (lbl) lbl.textContent = 'Copy all'; }, 1500);
   }).catch(() => {});
 }
 
@@ -1919,7 +1938,7 @@ function faSelectJobCtx(jobFolder, company) {
   const content = document.getElementById('fa-default-content');
   if (content) content.innerHTML = '';
   const btn = document.getElementById('fa-default-btn');
-  if (btn) { btn.disabled = false; btn.textContent = '🤖 生成默认答案'; }
+  if (btn) { btn.disabled = false; btn.textContent = '🤖 Generate Answers'; }
 }
 
 function faLoadDefaultAnswers(userTriggered) {
@@ -1932,8 +1951,8 @@ function faLoadDefaultAnswers(userTriggered) {
   if (_faDefaultCache[jobFolder] && !userTriggered) {
     renderDefaultAnswers(_faDefaultCache[jobFolder]); return;
   }
-  btn.disabled = true; btn.textContent = '⏳ 生成中…';
-  content.innerHTML = '<div class="text-xs text-slate-400 py-2">正在生成，请稍候（首次约15秒）…</div>';
+  btn.disabled = true; btn.textContent = '⏳ Generating…';
+  content.innerHTML = '<div class="text-xs text-slate-400 py-2">Generating, please wait (first run ~15s)…</div>';
   const uid = _currentUserId || 'leon';
   fetch('/api/default-answers?uid=' + encodeURIComponent(uid), {
     method: 'POST', headers: {'Content-Type':'application/json'},
@@ -1945,7 +1964,7 @@ function faLoadDefaultAnswers(userTriggered) {
       if (d.default_answers) {
         _faDefaultCache[jobFolder] = d.default_answers;
         renderDefaultAnswers(d.default_answers);
-        btn.disabled = false; btn.textContent = '🔄 刷新';
+        btn.disabled = false; btn.textContent = '🔄 Refresh';
       }
       return;
     }
@@ -1963,11 +1982,11 @@ function faLoadDefaultAnswers(userTriggered) {
               const d = JSON.parse(m[0]);
               _faDefaultCache[jobFolder] = d.default_answers;
               renderDefaultAnswers(d.default_answers);
-            } catch { content.innerHTML = '<div class="text-xs text-red-500">解析失败，请重试</div>'; }
+            } catch { content.innerHTML = '<div class="text-xs text-red-500">Parse failed, please retry</div>'; }
           } else {
-            content.innerHTML = '<div class="text-xs text-red-500">生成失败，请重试</div>';
+            content.innerHTML = '<div class="text-xs text-red-500">Generation failed, please retry</div>';
           }
-          btn.disabled = false; btn.textContent = '🔄 刷新';
+          btn.disabled = false; btn.textContent = '🔄 Refresh';
           return;
         }
         dec.decode(value).split('\n').forEach(line => {
@@ -1979,8 +1998,8 @@ function faLoadDefaultAnswers(userTriggered) {
       });
     })();
   }).catch(e => {
-    content.innerHTML = '<div class="text-xs text-red-500">错误: ' + e.message + '</div>';
-    btn.disabled = false; btn.textContent = '🤖 生成默认答案';
+    content.innerHTML = '<div class="text-xs text-red-500">Error: ' + e.message + '</div>';
+    btn.disabled = false; btn.textContent = '🤖 Generate Answers';
   });
 }
 
@@ -1994,14 +2013,14 @@ function renderDefaultAnswers(answers) {
         class="w-full border border-gray-100 rounded p-2 text-xs text-slate-700 outline-none focus:border-[#005d8f] resize-y"
         style="font-family:Inter,sans-serif;line-height:1.6;">${esc(a.answer||'')}</textarea>
       <div class="flex items-center gap-2 mt-1">
-        <input id="fa-ft-dir-${idx}" type="text" placeholder="微调方向（如：更简洁、偏数据驱动）"
+        <input id="fa-ft-dir-${idx}" type="text" placeholder="Fine-tune direction (e.g. more concise, data-driven)"
           class="flex-1 border border-gray-200 rounded px-2 py-1 text-xs outline-none focus:border-[#005d8f]"
           style="font-family:Inter,sans-serif;">
         <button onclick="faFinetuneAnswer(${idx},'${esc(a.question||'').replace(/'/g,"\\'")}')"
           class="text-xs px-2 py-1 rounded border border-[rgba(0,93,143,.3)] text-[#005d8f] hover:bg-blue-50 transition shrink-0"
-          style="font-family:'Space Grotesk';">✨ 微调</button>
+          style="font-family:'Space Grotesk';">✨ Fine-tune</button>
         <button onclick="navigator.clipboard.writeText(document.getElementById('fa-ans-${idx}').value)"
-          class="text-xs text-slate-400 hover:text-slate-600 transition shrink-0" title="复制">
+          class="text-xs text-slate-400 hover:text-slate-600 transition shrink-0" title="Copy">
           <span class="material-symbols-outlined" style="font-size:14px;">content_copy</span>
         </button>
       </div>
@@ -2030,7 +2049,7 @@ function faFinetuneAnswer(idx, question) {
     textarea.value = '';
     (function read() {
       reader.read().then(({done, value}) => {
-        if (done) { btn.disabled = false; btn.textContent = '✨ 微调'; return; }
+        if (done) { btn.disabled = false; btn.textContent = '✨ Fine-tune'; return; }
         dec.decode(value).split('\n').forEach(line => {
           if (line.startsWith('data: ')) {
             try { const d = JSON.parse(line.slice(6)); if (d.text) textarea.value += d.text; } catch {}
@@ -2039,7 +2058,7 @@ function faFinetuneAnswer(idx, question) {
         read();
       });
     })();
-  }).catch(e => { textarea.value = '错误: ' + e.message; btn.disabled = false; btn.textContent = '✨ 微调'; });
+  }).catch(e => { textarea.value = 'Error: ' + e.message; btn.disabled = false; btn.textContent = '✨ Fine-tune'; });
 }
 
 function faGenerateDraft() {
@@ -2050,24 +2069,24 @@ function faGenerateDraft() {
   const jobFolder = panel.dataset.jobFolder;
   const rawQ = (document.getElementById('fa-questions') || {}).value || '';
   const formFields = rawQ.split('\n').map(s => s.trim()).filter(Boolean);
-  if (!jobFolder) { if (status) status.textContent = '无 job_folder'; return; }
-  if (!formFields.length) { if (status) status.textContent = '请先输入问题'; return; }
+  if (!jobFolder) { if (status) status.textContent = 'No job folder'; return; }
+  if (!formFields.length) { if (status) status.textContent = 'Please enter questions first'; return; }
   output.textContent = '';
-  if (status) { status.textContent = '⏳ 生成中…'; status.style.color = '#6B7280'; }
+  if (status) { status.textContent = '⏳ Generating…'; status.style.color = '#6B7280'; }
   const uid = _currentUserId || 'leon';
   fetch(`/api/form-assist?uid=${encodeURIComponent(uid)}`, {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({job_folder: jobFolder, form_fields: formFields})
   }).then(r => {
-    if (!r.ok) { if (status) status.textContent = `错误 ${r.status}`; return; }
+    if (!r.ok) { if (status) status.textContent = `Error ${r.status}`; return; }
     const reader = r.body.getReader();
     const decoder = new TextDecoder();
     let buf = '';
     function pump() {
       reader.read().then(({done, value}) => {
         if (done) {
-          if (status) { status.textContent = '✅ 完成'; status.style.color = '#16A34A'; }
+          if (status) { status.textContent = '✅ Done'; status.style.color = '#16A34A'; }
           return;
         }
         buf += decoder.decode(value, {stream: true});
@@ -2078,16 +2097,16 @@ function faGenerateDraft() {
           if (!line.startsWith('data:')) return;
           try {
             const ev = JSON.parse(line.slice(5).trim());
-            if (ev.done) { if (status) { status.textContent = '✅ 完成'; status.style.color = '#16A34A'; } }
-            else if (ev.error) { output.textContent += '\n[错误] ' + ev.error; }
+            if (ev.done) { if (status) { status.textContent = '✅ Done'; status.style.color = '#16A34A'; } }
+            else if (ev.error) { output.textContent += '\n[Error] ' + ev.error; }
             else if (ev.text) { output.textContent += ev.text + '\n'; output.scrollTop = output.scrollHeight; }
           } catch(e) {}
         });
         pump();
-      }).catch(e => { if (status) status.textContent = '连接中断'; });
+      }).catch(e => { if (status) status.textContent = 'Connection interrupted'; });
     }
     pump();
-  }).catch(e => { if (status) status.textContent = `请求失败: ${e.message}`; });
+  }).catch(e => { if (status) status.textContent = `Request failed: ${e.message}`; });
 }
 
 // ── Debounce for score slider ─────────────────────────────────────────────────
@@ -2403,12 +2422,150 @@ function populateLocationDropdown() {
   locs.forEach(l => sel.add(new Option(l, l)));
 }
 
+// ── Column ordering ───────────────────────────────────────────────────────────
+const REORDERABLE_COLS = ['score','dscore','legit','group','source','company','title','size','location','emphasis','missing','search_date','last_seen','status','notes'];
+const COL_LABELS = {
+  score:'JD Fit', dscore:'Prefer', legit:'# Reliable', group:'Group', source:'Source',
+  company:'Company', title:'Title', size:'Size', location:'Location', emphasis:'Emphasis',
+  missing:'Missing Skills', search_date:'Analyzed', last_seen:'Last Seen',
+  status:'Status', notes:'Notes'
+};
+// Full order including fixed cols; this is the ground-truth sequence.
+const DEFAULT_COL_ORDER = [
+  'row_num','score','dscore',
+  'legit','group','source',
+  'company','title',
+  'size','location','emphasis','missing','search_date','last_seen',
+  'status','notes'
+];
+let COL_ORDER = [...DEFAULT_COL_ORDER];
+
+// Positions of reorderable cols in DEFAULT_COL_ORDER (used for rebuilding)
+const REORDERABLE_SLOTS = DEFAULT_COL_ORDER
+  .map((k, i) => REORDERABLE_COLS.includes(k) ? i : -1)
+  .filter(i => i >= 0);
+
+function saveColOrder() {
+  try {
+    const order = COL_ORDER.filter(k => REORDERABLE_COLS.includes(k));
+    localStorage.setItem('jt_col_order_' + (_currentUserId || 'default'), JSON.stringify(order));
+  } catch(e) {}
+}
+
+function restoreColOrder() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('jt_col_order_' + (_currentUserId || 'default')) || 'null');
+    if (!saved) { COL_ORDER = [...DEFAULT_COL_ORDER]; return; }
+    // Validate: keep only known keys, append any missing ones
+    const valid = saved.filter(k => REORDERABLE_COLS.includes(k));
+    REORDERABLE_COLS.forEach(k => { if (!valid.includes(k)) valid.push(k); });
+    // Rebuild full order: place validated reorderable cols into their slots
+    const newOrder = [...DEFAULT_COL_ORDER];
+    REORDERABLE_SLOTS.forEach((pos, i) => { newOrder[pos] = valid[i]; });
+    COL_ORDER = newOrder;
+  } catch(e) { COL_ORDER = [...DEFAULT_COL_ORDER]; }
+}
+
+function resetColOrder() {
+  COL_ORDER = [...DEFAULT_COL_ORDER];
+  saveColOrder();
+  rebuildColPanel();
+  _applyColOrder();
+}
+
+// Apply COL_ORDER to the table: sort thead tr and every tbody tr
+function _applyColOrder() {
+  const theadTr = document.querySelector('.jobs-table thead tr');
+  if (theadTr) _sortRowCols(theadTr);
+  document.querySelectorAll('.jobs-table tbody tr.job-row').forEach(tr => _sortRowCols(tr));
+  _applyHiddenCols();
+}
+
+function _sortRowCols(tr) {
+  const children = [...tr.children];
+  // Each cell's key: prefer data-col-key, fall back to data-col (for reorderable cells)
+  children.sort((a, b) => {
+    const ak = a.dataset.colKey || a.dataset.col || '';
+    const bk = b.dataset.colKey || b.dataset.col || '';
+    const ai = COL_ORDER.indexOf(ak);
+    const bi = COL_ORDER.indexOf(bk);
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
+  // Re-append in sorted order (appendChild moves existing nodes)
+  children.forEach(el => tr.appendChild(el));
+}
+
+// Build the draggable column list in the panel
+function rebuildColPanel() {
+  const list = document.getElementById('col-drag-list');
+  if (!list) return;
+  let vis = {};
+  try { vis = JSON.parse(localStorage.getItem('jt_col_vis_' + (_currentUserId || 'default')) || '{}'); } catch(e) {}
+
+  const ordered = COL_ORDER.filter(k => REORDERABLE_COLS.includes(k));
+  list.innerHTML = ordered.map(col => {
+    const checked = !(col in vis) || vis[col] ? 'checked' : '';
+    return `<div class="col-drag-item" data-col="${col}" draggable="true">
+      <span class="drag-handle" title="Drag to reorder">⠿</span>
+      <label class="flex items-center gap-1.5 cursor-pointer flex-1" onclick="event.stopPropagation()">
+        <input type="checkbox" data-col="${col}" ${checked} onchange="toggleCol(this)">
+        <span>${COL_LABELS[col] || col}</span>
+      </label>
+    </div>`;
+  }).join('');
+
+  _initColDrag();
+}
+
+let _dragSrc = null;
+
+function _initColDrag() {
+  document.querySelectorAll('#col-drag-list .col-drag-item').forEach(item => {
+    item.addEventListener('dragstart', e => {
+      _dragSrc = item;
+      e.dataTransfer.effectAllowed = 'move';
+      setTimeout(() => item.classList.add('dragging'), 0);
+    });
+    item.addEventListener('dragend', () => {
+      item.classList.remove('dragging');
+      document.querySelectorAll('.col-drag-item').forEach(el => el.classList.remove('drag-over'));
+    });
+    item.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (item !== _dragSrc) {
+        document.querySelectorAll('.col-drag-item').forEach(el => el.classList.remove('drag-over'));
+        item.classList.add('drag-over');
+      }
+    });
+    item.addEventListener('dragleave', () => item.classList.remove('drag-over'));
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (!_dragSrc || _dragSrc === item) return;
+      const list = item.parentElement;
+      const items = [...list.children];
+      const si = items.indexOf(_dragSrc);
+      const ti = items.indexOf(item);
+      list.insertBefore(_dragSrc, si < ti ? item.nextSibling : item);
+      item.classList.remove('drag-over');
+      // Sync COL_ORDER from new panel order
+      const panelOrder = [...list.querySelectorAll('.col-drag-item')].map(el => el.dataset.col);
+      const newOrder = [...DEFAULT_COL_ORDER];
+      REORDERABLE_SLOTS.forEach((pos, i) => { newOrder[pos] = panelOrder[i]; });
+      COL_ORDER = newOrder;
+      _applyColOrder();
+      saveColOrder();
+    });
+  });
+}
+
 // ── Column visibility toggle ──────────────────────────────────────────────────
 function toggleColPanel() {
   const panel = document.getElementById('col-toggle-panel');
   panel.classList.toggle('hidden');
-  // Close on outside click
   if (!panel.classList.contains('hidden')) {
+    rebuildColPanel();
     setTimeout(() => {
       document.addEventListener('click', closeColPanel, {once: true, capture: true});
     }, 0);
@@ -2442,14 +2599,16 @@ function toggleCol(cb) {
 }
 
 function restoreColVisibility() {
+  restoreColOrder();
+  rebuildColPanel();
+  _applyHiddenCols();
+}
+
+function _applyHiddenCols() {
   try {
     const vis = JSON.parse(localStorage.getItem('jt_col_vis_' + (_currentUserId || 'default')) || '{}');
-    document.querySelectorAll('#col-toggle-panel input[data-col]').forEach(cb => {
-      const col = cb.dataset.col;
-      if (col in vis && !vis[col]) {
-        cb.checked = false;
-        toggleCol(cb);
-      }
+    Object.entries(vis).forEach(([col, show]) => {
+      if (!show) document.querySelectorAll(`th[data-col="${col}"], td[data-col="${col}"]`).forEach(el => { el.style.display = 'none'; });
     });
   } catch(e) {}
 }
@@ -2741,6 +2900,16 @@ async function saveNote() {
     const orig = JOBS.find(j => j.jd_path === detailJob.jd_path);
     if (orig) orig.user_note = note;
   } catch(e) { /* silently fail */ }
+}
+
+function jobIdDisplay(jid) {
+  if (!jid) return '';
+  if (jid.startsWith('st_')) return 'st_' + jid.slice(3, 11);
+  return '#' + jid;
+}
+function copyJobId(e, fullId) {
+  e.stopPropagation();
+  navigator.clipboard.writeText(fullId).then(() => showToast('Copied: ' + fullId));
 }
 
 function showToast(msg) {

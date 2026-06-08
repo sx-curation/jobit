@@ -644,6 +644,6 @@
     "preferred_locations": ["Hamburg", "Berlin", "Munich", "Frankfurt", "Düsseldorf", "Köln", "Lüneburg", "Remote"],
     "preferred_work_mode": ["hybrid", "remote"],
     "salary_expectation_eur_monthly": 3500,
-    "preferred_domains": ["supply-chain", "logistics", "commercial", "finance", "it"]
+    "preferred_domains": ["game","supply-chain", "logistics", "commercial", "finance", "it"]
   }
 }

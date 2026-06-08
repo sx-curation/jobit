@@ -6,8 +6,8 @@
    - **首次 session**（文件不存在）：读 `SPEC.md` 获取架构背景
    - **非首次 session**：跳过 SPEC.md（架构不变，notes.md 已有摘要）
 2. 读 `memory/notes.md` — 上次决策脉络（不存在则跳过）
-3. 读 `config.json` — keyword groups 与 CV 对应关系（source of truth）
-4. 运行 sanity check：`python3 scripts/check.py`
+3. 读 `users/<user id>/config.json`和`users.json` — keyword groups 与 CV 对应关系（source of truth）
+4. 运行 sanity check：`python3 scripts/check.py --uid {current_user}`
    - ERROR → 停止，等用户修复
    - WARN  → 展示警告，询问是否继续
 
@@ -27,8 +27,8 @@
 - `my_cv/` 和 `SPEC.md` 只读
 - 不自动投递
 - 不编造经历（CV 只重新措辞，不添加虚构内容）
-- 输出目录命名：`output/<group_id>_<company>_<title>_<YYYYMMDD>/`（YYYYMMDD = batch_id 的前 8 位）
-- 中间文件：`output/temp/raw_results_<batch_id>.json`、`output/temp/_phase2_temp*.json`（不用 /tmp）
+- 输出目录命名：`users/<user id>/output/<group_id>_<company>_<title>_<YYYYMMDD>/`（YYYYMMDD = batch_id 的前 8 位）
+- 中间文件：`users/<user id>/output/temp/raw_results_<batch_id>.json`、`output/temp/_phase2_temp*.json`（不用 /tmp）
 - jd-analyzer 并行上限：3 个
 
 ---
@@ -44,8 +44,7 @@
 | `搜索Stepstone职缺 [group-id]` | 仅 Stepstone 搜索（需 stepstone.enabled=true） |
 | `搜索Linkedin posting职缺 [group-id]` | 从 LinkedIn 社交帖子搜索招聘信号，提取职缺链接并执行 JD 分析；无 group-id 则搜索所有 group |
 | `生成 CV <编号>` | 只为指定职缺执行 Phase 3 |
-| `生成CL <job编号>` | 生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先
-     Bootstrap） |
+| `生成CL <job编号>` | 生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先Bootstrap） |
 | `面试准备 <job编号>` | 自动读取 story-bank 选故事、匹配 JD archetype、生成 cover_letter_draft.md + PDF |
 | `显示全部` | 显示低分隐藏职缺 |
 | `/check` | 单独运行 sanity check |
@@ -58,7 +57,7 @@
 ---
 
 ## 上下文管理（自动 compact）
-
+默认英文输出/com
 以下两种情况，**必须**在回复末尾追加 compact 提示块，不得省略：
 
 ### 触发条件 1：Phase 切换

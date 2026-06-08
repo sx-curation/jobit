@@ -29,7 +29,7 @@ from datetime import datetime
 from pathlib import Path
 
 from common import UVX, make_mcp_proc, send_recv
-from search_state import load_cv_skills, quick_score, acquire_lock, release_lock
+from search_state import load_cv_skills, quick_score, acquire_lock, release_lock, init_paths
 
 # Fix Windows GBK crash
 if hasattr(sys.stdout, "reconfigure"):
@@ -37,11 +37,11 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-OUTPUT_DIR    = Path("output")
-TEMP_DIR      = Path("output/temp")
-CONFIG_PATH   = Path("config.json")
-PROGRESS_LOG  = TEMP_DIR / "_search_progress.log"
-PARTIAL_SAVE  = TEMP_DIR / "_phase2_temp_partial.json"
+OUTPUT_DIR:   Path = None  # type: ignore  # set in main()
+TEMP_DIR:     Path = None  # type: ignore
+CONFIG_PATH:  Path = None  # type: ignore
+PROGRESS_LOG: Path = None  # type: ignore
+PARTIAL_SAVE: Path = None  # type: ignore
 
 _progress_lock = threading.Lock()
 _seen_lock     = threading.Lock()
@@ -448,12 +448,22 @@ def get_job_details_batch(job_ids: list[str], timeout=120) -> list[dict]:
 # ─────────────────────────────────────────────
 
 def main():
+    global OUTPUT_DIR, TEMP_DIR, CONFIG_PATH, PROGRESS_LOG, PARTIAL_SAVE
     parser = argparse.ArgumentParser()
+    parser.add_argument("--uid",    default="leon", help="用户 ID（对应 users/{uid}/ 目录）")
     parser.add_argument("--group", help="只搜索指定 group_id（如 group-da）")
     parser.add_argument("--date-posted",
                         choices=["past_24_hours", "past_week", "past_month"],
                         help="覆盖 config.json 的 date_range_days 推算结果")
     args = parser.parse_args()
+
+    _base        = Path(__file__).resolve().parent.parent / "users" / args.uid
+    OUTPUT_DIR   = _base / "output"
+    TEMP_DIR     = OUTPUT_DIR / "temp"
+    CONFIG_PATH  = _base / "config.json"
+    PROGRESS_LOG = TEMP_DIR / "_search_progress.log"
+    PARTIAL_SAVE = TEMP_DIR / "_phase2_temp_partial.json"
+    init_paths(args.uid)
 
     if not acquire_lock():
         print("[ERROR] 另一个搜索进程正在运行，退出。", file=sys.stderr)
@@ -510,7 +520,7 @@ def _run(args):
         glabel = group["group_label"]
         group_entries: list[dict] = []
         group_seen_ids: set[str] = set()
-        cv_skills = load_cv_skills(f"output/cv_parsed_{gid}.json")
+        cv_skills = load_cv_skills(str(OUTPUT_DIR / f"cv_parsed_{gid}.json"))
 
         # ── Phase A: primary keywords (EN + DE) ──────────────────────────────
         primary_kws = [kw for lang in ("en", "de")

@@ -25,7 +25,7 @@ import time
 from datetime import date, timedelta
 from pathlib import Path
 
-from search_state import load_cv_skills, quick_score
+from search_state import load_cv_skills, quick_score, init_paths
 
 # Fix Windows GBK crash
 if hasattr(sys.stdout, "reconfigure"):
@@ -33,9 +33,9 @@ if hasattr(sys.stdout, "reconfigure"):
 if hasattr(sys.stderr, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
-OUTPUT_DIR  = Path("output")
-TEMP_DIR    = Path("output/temp")
-CONFIG_PATH = Path("config.json")
+OUTPUT_DIR:  Path = None  # type: ignore  # set in main()
+TEMP_DIR:    Path = None  # type: ignore
+CONFIG_PATH: Path = None  # type: ignore
 
 
 # ─── Stable job ID ────────────────────────────────────────────────────────────
@@ -71,6 +71,16 @@ def make_stepstone_job_id(url: str, fallback_seed: str = "") -> str:
     """
     seed = url if url else fallback_seed
     return "st_" + hashlib.sha256(seed.encode("utf-8")).hexdigest()[:16]
+
+
+def _title_from_stepstone_url(url: str) -> str:
+    """Best-effort title from Stepstone URL slug. Returns '' if URL doesn't match."""
+    m = re.search(r"stellenangebote--(.+?)--\d+-inline\.html", url, re.IGNORECASE)
+    if not m:
+        return ""
+    slug = m.group(1).replace("-", " ")
+    slug = re.sub(r"\b(m w d|f m x|all genders)\b", "", slug, flags=re.IGNORECASE)
+    return slug.strip()
 
 
 # ─── Response parsers ─────────────────────────────────────────────────────────
@@ -211,6 +221,9 @@ def parse_job_details_response(text: str) -> dict:
 
 # ─── Async MCP session ────────────────────────────────────────────────────────
 
+_DETAIL_BATCH_SIZE = 5  # max get_job_details calls per session before refreshing
+
+
 async def search_group_zip(
     group: dict,
     zip_entry: dict,
@@ -219,10 +232,10 @@ async def search_group_zip(
     keyword_type: str = "primary",
 ) -> list[dict]:
     """
-    Open one SSE session, search all keywords for a group at one zip_code,
-    then fetch details for each result. Returns list of unified-schema job dicts.
-    keyword_list: override keyword source (used for job_family fallback).
-    keyword_type: "primary" or "fallback", stored in _keyword_type field.
+    Search all keywords for a group at one zip_code, then fetch details.
+    Opens a fresh MCP session every _DETAIL_BATCH_SIZE jobs to avoid
+    the server-side session staleness limit (~8 fetches per session).
+    Returns list of unified-schema job dicts.
     """
     try:
         from mcp.client.streamable_http import streamablehttp_client
@@ -239,7 +252,6 @@ async def search_group_zip(
     gid         = group["group_id"]
     glabel      = group.get("group_label", gid)
 
-    # Collect keywords: use override if provided, else build from primary_keywords (EN + DE)
     if keyword_list is not None:
         keywords = keyword_list
     else:
@@ -251,100 +263,126 @@ async def search_group_zip(
                     seen_kws.add(kw)
                     keywords.append(kw)
 
-    results: list[dict] = []
+    search_args = {"search_terms": keywords, "zip_code": zip_code, "radius": radius}
+
+    # ── Phase 1: initial search → collect full job_list (titles + URLs) ───────
+    session_id_initial = ""
+    job_count  = 0
+    job_list: list[dict] = []
 
     try:
         async with streamablehttp_client(server_url) as (read, write, _):
             async with ClientSession(read, write) as session:
                 await session.initialize()
-
-                # One search_jobs call per group (all keywords as array)
                 try:
                     search_result = await asyncio.wait_for(
-                        session.call_tool("search_jobs", {
-                            "search_terms": keywords,
-                            "zip_code":     zip_code,
-                            "radius":       radius,
-                        }),
-                        timeout=30.0,
-                    )
+                        session.call_tool("search_jobs", search_args), timeout=30.0)
                 except asyncio.TimeoutError:
                     print(f"  [WARN] Stepstone search_jobs timeout for {glabel} @ {zip_label}",
                           file=sys.stderr)
                     return []
+                search_text = search_result.content[0].text or "" if search_result.content else ""
+                session_id_initial, job_count, job_list = parse_search_response(search_text)
+    except Exception as e:
+        print(f"  [ERROR] Stepstone initial search failed for {glabel} @ {zip_label}: {e}",
+              file=sys.stderr)
+        return []
 
-                search_text = ""
-                if search_result.content:
-                    search_text = search_result.content[0].text or ""
+    if not session_id_initial or job_count == 0:
+        print(f"  [WARN] Stepstone: no results for {glabel} @ {zip_label}", file=sys.stderr)
+        return []
 
-                session_id, job_count, job_list = parse_search_response(search_text)
+    if not job_list:
+        job_list = [{"title": f"job_{i}", "url": ""} for i in range(job_count)]
 
-                if not session_id or job_count == 0:
-                    print(f"  [WARN] Stepstone: no results for {glabel} @ {zip_label}",
-                          file=sys.stderr)
-                    return []
+    fetch_count = min(len(job_list), max_jobs)
+    n_batches   = (fetch_count + _DETAIL_BATCH_SIZE - 1) // _DETAIL_BATCH_SIZE
+    print(f"  Stepstone {glabel} @ {zip_label}: "
+          f"session={session_id_initial[:8]}... found={job_count}, "
+          f"fetching={fetch_count} ({n_batches} batch{'es' if n_batches != 1 else ''})")
 
-                # Use job_list from search if available, else generate dummy entries
-                if not job_list:
-                    job_list = [{"title": f"job_{i}", "url": ""} for i in range(job_count)]
+    results: list[dict] = []
 
-                fetch_count = min(len(job_list), max_jobs)
-                print(f"  Stepstone {glabel} @ {zip_label}: "
-                      f"session={session_id[:8]}... found={job_count}, fetching={fetch_count}")
+    # ── Phase 2: fetch details in fresh-session batches ───────────────────────
+    for batch_start in range(0, fetch_count, _DETAIL_BATCH_SIZE):
+        batch = job_list[batch_start:batch_start + _DETAIL_BATCH_SIZE]
 
-                for idx in range(fetch_count):
-                    job_meta = job_list[idx]
+        try:
+            async with streamablehttp_client(server_url) as (read, write, _):
+                async with ClientSession(read, write) as session:
+                    await session.initialize()
+
+                    # Re-run search_jobs to obtain a fresh session_id for this batch
                     try:
-                        detail_result = await asyncio.wait_for(
-                            session.call_tool("get_job_details", {
-                                "job_query":  job_meta["title"],
-                                "session_id": session_id,
-                            }),
-                            timeout=60.0,
-                        )
+                        fresh_result = await asyncio.wait_for(
+                            session.call_tool("search_jobs", search_args), timeout=30.0)
                     except asyncio.TimeoutError:
-                        print(f"  [WARN] get_job_details timeout idx={idx} @ {zip_label}",
-                              file=sys.stderr)
+                        print(f"  [WARN] session refresh timeout (batch starting at {batch_start}) "
+                              f"@ {zip_label}", file=sys.stderr)
+                        continue
+                    fresh_text = fresh_result.content[0].text or "" if fresh_result.content else ""
+                    fresh_id, _, _ = parse_search_response(fresh_text)
+                    if not fresh_id:
+                        print(f"  [WARN] could not refresh session_id (batch {batch_start}) "
+                              f"@ {zip_label}, skipping", file=sys.stderr)
                         continue
 
-                    detail_text = ""
-                    if detail_result.content:
-                        detail_text = detail_result.content[0].text or ""
+                    for batch_idx, job_meta in enumerate(batch):
+                        global_idx = batch_start + batch_idx
+                        try:
+                            detail_result = await asyncio.wait_for(
+                                session.call_tool("get_job_details", {
+                                    "job_query":  job_meta["title"],
+                                    "session_id": fresh_id,
+                                }),
+                                timeout=60.0,
+                            )
+                        except asyncio.TimeoutError:
+                            print(f"  [WARN] get_job_details timeout idx={global_idx} @ {zip_label}",
+                                  file=sys.stderr)
+                            continue
 
-                    parsed  = parse_job_details_response(detail_text)
-                    # Prefer URL from search results list; fallback to details response
-                    job_url = job_meta.get("url") or parsed.get("url", "")
-                    job_id  = make_stepstone_job_id(job_url, f"{session_id}_{idx}")
+                        detail_text = detail_result.content[0].text or "" if detail_result.content else ""
+                        parsed  = parse_job_details_response(detail_text)
+                        job_url = job_meta.get("url") or parsed.get("url", "")
+                        job_id  = make_stepstone_job_id(job_url, f"{fresh_id}_{global_idx}")
 
-                    job: dict = {
-                        "job_id":              job_id,
-                        "title":               parsed["title"],
-                        "company":             parsed["company"],
-                        "location":            parsed["location"],
-                        "posted_at":           None,
-                        "description_snippet": parsed["description_snippet"],
-                        "description_full":    parsed["description_full"],
-                        "url":                 job_url,
-                        "_keyword":            "; ".join(keywords[:3]),
-                        "_keyword_type":       keyword_type,
-                        "_group_id":           gid,
-                        "_group_label":        glabel,
-                        "_source":             "stepstone",
-                        "_zip_code":           zip_code,
-                        "_zip_label":          zip_label,
-                        "_salary":             parsed.get("salary", ""),
-                        "_needs_refetch":      False,
-                    }
-                    results.append(job)
-                    print(f"    [{idx+1}/{fetch_count}] {job_id}: "
-                          f"{job['title'][:50]} @ {job['company'][:25]}")
+                        # 3-tier title recovery when get_job_details returns empty
+                        if not parsed["title"]:
+                            parsed["title"] = (
+                                job_meta.get("title", "")             # tier 1: search-results list
+                                or _title_from_stepstone_url(job_url) # tier 2: URL slug
+                            )
 
-    except asyncio.TimeoutError:
-        print(f"  [ERROR] Stepstone session timed out (>600s) for {glabel} @ {zip_label}",
-              file=sys.stderr)
-    except Exception as e:
-        print(f"  [ERROR] Stepstone session failed for {glabel} @ {zip_label}: {e}",
-              file=sys.stderr)
+                        job: dict = {
+                            "job_id":              job_id,
+                            "title":               parsed["title"],
+                            "company":             parsed["company"],
+                            "location":            parsed["location"],
+                            "posted_at":           None,
+                            "description_snippet": parsed["description_snippet"],
+                            "description_full":    parsed["description_full"],
+                            "url":                 job_url,
+                            "_keyword":            "; ".join(keywords[:3]),
+                            "_keyword_type":       keyword_type,
+                            "_group_id":           gid,
+                            "_group_label":        glabel,
+                            "_source":             "stepstone",
+                            "_zip_code":           zip_code,
+                            "_zip_label":          zip_label,
+                            "_salary":             parsed.get("salary", ""),
+                            "_needs_refetch":      not bool(parsed["description_full"]),
+                        }
+                        results.append(job)
+                        print(f"    [{global_idx+1}/{fetch_count}] {job_id}: "
+                              f"{job['title'][:50]} @ {job['company'][:25]}")
+
+        except asyncio.TimeoutError:
+            print(f"  [ERROR] Stepstone batch (start={batch_start}) timed out @ {zip_label}",
+                  file=sys.stderr)
+        except Exception as e:
+            print(f"  [ERROR] Stepstone batch (start={batch_start}) failed @ {zip_label}: {e}",
+                  file=sys.stderr)
 
     return results
 
@@ -370,7 +408,7 @@ async def run_all(config: dict, group_id: str | None = None) -> list[dict]:
         gid            = group.get("group_id", "?")
         group_job_ids: set[str] = set()
         group_jobs:    list[dict] = []
-        cv_skills = load_cv_skills(f"output/cv_parsed_{gid}.json")
+        cv_skills = load_cv_skills(str(OUTPUT_DIR / f"cv_parsed_{gid}.json"))
 
         # ── Phase A: primary keywords across all zip codes ───────────────────
         for zip_entry in zip_codes:
@@ -425,13 +463,21 @@ async def run_all(config: dict, group_id: str | None = None) -> list[dict]:
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    global OUTPUT_DIR, TEMP_DIR, CONFIG_PATH
     import argparse
     parser = argparse.ArgumentParser(description="Stepstone Phase 2B search")
-    parser.add_argument("--config", default="config.json")
-    parser.add_argument("--group", default=None, help="Filter by group_id (e.g. group-da)")
+    parser.add_argument("--uid",    default="leon", help="用户 ID（对应 users/{uid}/ 目录）")
+    parser.add_argument("--config", default=None,   help="覆盖 config.json 路径")
+    parser.add_argument("--group",  default=None,   help="Filter by group_id (e.g. group-da)")
     args = parser.parse_args()
 
-    config_path = Path(args.config)
+    _base       = Path(__file__).resolve().parent.parent / "users" / args.uid
+    OUTPUT_DIR  = _base / "output"
+    TEMP_DIR    = OUTPUT_DIR / "temp"
+    CONFIG_PATH = _base / "config.json"
+    init_paths(args.uid)
+
+    config_path = Path(args.config) if args.config else CONFIG_PATH
     if not config_path.exists():
         print(f"[ERROR] config not found: {config_path}", file=sys.stderr)
         sys.exit(1)

@@ -47,12 +47,22 @@ from functools import lru_cache
 from pathlib import Path
 import re
 
-HISTORY_PATH    = Path("output/search_history.json")
-OUTPUT_DIR      = Path("output")
-TEMP_DIR        = Path("output/temp")
-BATCH_STATE_TSV = TEMP_DIR / "batch_state.tsv"
-LOCK_FILE       = TEMP_DIR / ".search.lock"
+HISTORY_PATH:    Path = None  # type: ignore  # set by init_paths()
+OUTPUT_DIR:      Path = None  # type: ignore
+TEMP_DIR:        Path = None  # type: ignore
+BATCH_STATE_TSV: Path = None  # type: ignore
+LOCK_FILE:       Path = None  # type: ignore
 _tsv_lock       = threading.Lock()
+
+
+def init_paths(uid: str):
+    global HISTORY_PATH, OUTPUT_DIR, TEMP_DIR, BATCH_STATE_TSV, LOCK_FILE
+    base            = Path(__file__).resolve().parent.parent / "users" / uid
+    OUTPUT_DIR      = base / "output"
+    TEMP_DIR        = OUTPUT_DIR / "temp"
+    HISTORY_PATH    = OUTPUT_DIR / "search_history.json"
+    BATCH_STATE_TSV = TEMP_DIR / "batch_state.tsv"
+    LOCK_FILE       = TEMP_DIR / ".search.lock"
 
 
 # ─────────────────────────────────────────────
@@ -540,7 +550,8 @@ if __name__ == "__main__":
     parser.add_argument("--mode",
         choices=["offset", "save-raw", "dedup", "summary", "retry-failed"],
         required=True)
-    parser.add_argument("--config",   default="config.json")
+    parser.add_argument("--uid",      default="leon", help="用户 ID（对应 users/{uid}/ 目录）")
+    parser.add_argument("--config",   default=None,   help="覆盖 config.json 路径")
     parser.add_argument("--batch-id", default=None,
         help="save-raw / dedup / retry-failed 模式必填")
     parser.add_argument("--input",    default=None,
@@ -548,12 +559,14 @@ if __name__ == "__main__":
     parser.add_argument("--force",    action="store_true",
         help="dedup 模式：即使 dedup_done=true 也强制重跑")
     args = parser.parse_args()
+    init_paths(args.uid)
 
+    _base = Path(__file__).resolve().parent.parent / "users" / args.uid
     cfg = {}
     if args.mode in ("offset", "dedup"):
-        p = Path(args.config)
+        p = Path(args.config) if args.config else _base / "config.json"
         if not p.exists():
-            print(f"ERROR: config 不存在：{args.config}", file=sys.stderr)
+            print(f"ERROR: config 不存在：{p}", file=sys.stderr)
             sys.exit(1)
         cfg = json.loads(p.read_text(encoding="utf-8"))
 

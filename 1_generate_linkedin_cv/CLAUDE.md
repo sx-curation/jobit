@@ -6,8 +6,8 @@
    - **首次 session**（文件不存在）：读 `SPEC.md` 获取架构背景
    - **非首次 session**：跳过 SPEC.md（架构不变，notes.md 已有摘要）
 2. 读 `memory/notes.md` — 上次决策脉络（不存在则跳过）
-3. 读 `config.json` — keyword groups 与 CV 对应关系（source of truth）
-4. 运行 sanity check：`python3 scripts/check.py`
+3. 读 `users/<user id>/config.json` 和 `users.json` — keyword groups 与 CV 对应关系（source of truth）
+4. 运行 sanity check：`python3 scripts/check.py --uid {current_user}`
    - ERROR → 停止，等用户修复
    - WARN  → 展示警告，询问是否继续
 
@@ -27,8 +27,8 @@
 - `my_cv/` 和 `SPEC.md` 只读
 - 不自动投递
 - 不编造经历（CV 只重新措辞，不添加虚构内容）
-- 输出目录命名：`output/<group_id>_<company>_<title>_<YYYYMMDD>/`（YYYYMMDD = batch_id 的前 8 位）
-- 中间文件：`output/temp/raw_results_<batch_id>.json`、`output/temp/_phase2_temp*.json`（不用 /tmp）
+- 输出目录命名：`users/<user id>/output/<group_id>_<company>_<title>_<YYYYMMDD>/`（YYYYMMDD = batch_id 的前 8 位）
+- 中间文件：`users/<user id>/output/temp/raw_results_<batch_id>.json`、`users/<user id>/output/temp/_phase2_temp*.json`（不用 /tmp）
 - jd-analyzer 并行上限：3 个
 
 ---
@@ -57,7 +57,10 @@
 
 ### `生成CL <job编号>` 执行流程
 
-1. 从 jobs 列表找到对应 job_folder（同 `生成 CV` 的编号查找逻辑）
+1. 解析参数，按以下优先级定位 job_folder：
+   - **job_id 精确匹配**：参数为纯数字（LinkedIn）或 `st_` 开头（Stepstone）→ 扫描 `users/{uid}/output/*/jd_analysis.json`，找 `job_id` 字段完全一致的目录
+   - **模糊匹配**：参数为公司名或职位关键词 → 在 output 目录名中 case-insensitive 子串匹配，唯一命中则使用，多个命中则列出让用户确认
+   - **行号**：参数为纯数字且无精确 job_id 匹配 → 按当前 job_summary.md 行号（同 `生成 CV` 逻辑）
 2. 检查 `users/{uid}/interview-prep/story-bank.md` 是否存在：
    - 不存在 → 先调用 interview-prep agent 执行 Bootstrap
 3. 检查 `output/{job_folder}/cover_letter_draft.md` 是否存在：

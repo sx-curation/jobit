@@ -57,7 +57,9 @@ cv_data = {
         {
             "company": "Hapag-Lloyd AG, Hamburg [Shipping / Logistics sector]",
             "title": "Working Student in Project Coordination Customer Experience",
-            "duration": "2024 - 2025",
+            "duration": "12/2024 - 06/2025",
+            "city": "Hamburg",
+            "country": "Germany",
             "bullets": [
                 "Stakeholder Management & Agile Project Delivery: Coordinated deliverables across cross-functional teams; tracked project milestones, tickets, and dependencies across agile sprints.",
                 "KPI Reporting: Analysed customer data and user research; translated findings into structured performance summaries and sprint review updates."
@@ -66,7 +68,9 @@ cv_data = {
         {
             "company": "ECE Group Hamburg [Marketplace / Real Estate sector]",
             "title": "Working Student in Business Development",
-            "duration": "2024",
+            "duration": "06/2024 - 12/2024",
+            "city": "Hamburg",
+            "country": "Germany",
             "bullets": [
                 "Market Research & Insights: Conducted competitive analysis and market research to support strategic planning and identify business development opportunities (e.g. automotive, furniture sector).",
                 "Event Coordination: Managed travel logistics and scheduling coordination for client visits and external meetings."
@@ -75,7 +79,9 @@ cv_data = {
         {
             "company": "Hongkong and Shanghai Banking Corporation Limited (HSBC)",
             "title": "Strategy Project Management Officer (PMO)",
-            "duration": "2021 - 2022",
+            "duration": "01/2021 - 09/2022",
+            "city": "Guangzhou",
+            "country": "China",
             "bullets": [
                 "Budget Management: Owned budget tracking across a $8M digital transformation programme, monitored spend and burn rate by producing weekly financial variance reports and escalated budget risks to C-level leadership.",
                 "Virtual Events & Speaker Management: Planned and delivered hybrid town hall events (300+ attendees per session), covering employee engagement, run-of-show, speaker management, and post-event communication with company-wide newsletter and promotion video."
@@ -84,7 +90,9 @@ cv_data = {
         {
             "company": "Intelligent Power Corporation Limited [IoT / IT sector]",
             "title": "Marketing Manager",
-            "duration": "2020",
+            "duration": "05/2020 - 12/2020",
+            "city": "Guangzhou",
+            "country": "China",
             "bullets": [
                 "Event Strategy & Lead Generation: Developed promotional event strategies across 4 major promotional events end-to-end, contributed to 4.6M CNY in signed contracts, demonstrating clear event-to-revenue impact.",
                 "Trade Fair / Messe: Represented the company at industry trade fairs (Messe), managing exhibition booth operations, delivering live product demonstrations, and coordinating lead capture for the sales team.",
@@ -94,7 +102,9 @@ cv_data = {
         {
             "company": "GRG Banking Corporation Limited [ATM Manufacturing sector]",
             "title": "Product Manager",
-            "duration": "2019",
+            "duration": "07/2019 - 12/2019",
+            "city": "Guangzhou",
+            "country": "China",
             "bullets": [
                 "On-site Event Operations & Brand Consistency: Developed and executed event strategy, coordinated cross-functional product launch events across 6 product lines and multiple markets, aligning marketing, sales, and technical teams on timelines, materials, and on-site delivery.",
                 "Trade Fair / Messe: Attended and represented GRG at industry trade fairs, managing exhibition presence, product showcasing, and client engagement to generate qualified leads.",
@@ -105,7 +115,9 @@ cv_data = {
         {
             "company": "Moli Media Corporation Limited [E-commerce live-stream agency]",
             "title": "Event Specialist & Project Coordinator",
-            "duration": "2019",
+            "duration": "10/2018 - 07/2019",
+            "city": "Guangzhou",
+            "country": "China",
             "bullets": [
                 "Corporate Events: Planned and delivered large-scale corporate events for 4,000+ attendees, overseeing end-to-end coordination, covering venue management, vendor negotiation, run-of-show, and on-site operations, managing digital production, platform setup, and live-event logistics.",
                 "Event Strategy & Partnership Management: Managed relationships with KOLs, corporate partners, and internal teams, ensuring seamless coordination across all partner touchpoints and digital channels.",
@@ -151,7 +163,7 @@ cv_data = {
     ]
 }
 
-output_path = r"D:\JobIt\1_generate_linkedin_cv\1_generate_linkedin_cv\output\cv_parsed_group-event-management.json"
+output_path = r"D:\JobIt\1_generate_linkedin_cv\1_generate_linkedin_cv\users\leon\output\cv_parsed_group-event-management.json"
 with open(output_path, "w", encoding="utf-8") as f:
     json.dump(cv_data, f, ensure_ascii=False, indent=2)
 

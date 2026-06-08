@@ -63,6 +63,21 @@ PROGRESS_REQUIRED    = {"last_updated": str, "session_count": int,
 
 # ── 检查函数 ──────────────────────────────────────────────────
 
+def check_users_json(verbose: bool):
+    name, path = "users.json", Path("users.json")
+    data = _load_json(path, name, "文件不存在（多用户模式不可用）")
+    if data is None:
+        return
+    if "users" not in data or not isinstance(data["users"], list):
+        record("ERROR", name, "缺少 'users' 数组"); return
+    for u in data["users"]:
+        if "id" not in u:
+            record("ERROR", name, f"用户条目缺少 'id' 字段: {u}")
+    if verbose:
+        ids = [u.get("id", "?") for u in data["users"]]
+        record("PASS", name, f"{len(ids)} 个用户：{', '.join(ids)}")
+
+
 def check_config(config_path: Path, verbose: bool) -> dict | None:
     name = "config.json"
     if not config_path.exists():
@@ -102,14 +117,14 @@ def check_config(config_path: Path, verbose: bool) -> dict | None:
     return cfg
 
 
-def check_cv_files(cfg: dict, verbose: bool):
+def check_cv_files(cfg: dict, user_dir: Path, verbose: bool):
     for g in cfg["job_search"].get("keyword_groups", []):
         gid, cv = g.get("group_id","?"), g.get("cv_file","")
         name = f"cv_file [{gid}]"
         if not cv: record("ERROR", name, "cv_file 字段为空"); continue
-        p = Path(cv)
-        if not p.exists(): record("ERROR", name, f"文件不存在：{cv}"); continue
-        if not str(p).startswith("my_cv"): record("WARN", name, f"CV 不在 my_cv/ 目录：{cv}")
+        p = user_dir / cv
+        if not p.exists(): record("ERROR", name, f"文件不存在：{p}"); continue
+        if not cv.startswith("my_cv"): record("WARN", name, f"CV 不在 my_cv/ 目录：{cv}")
         size = p.stat().st_size
         if size == 0: record("ERROR", name, f"文件为空：{cv}")
         elif size < 1024: record("WARN", name, f"文件过小（{size}B），可能不是有效 PDF")
@@ -121,10 +136,10 @@ def check_cv_files(cfg: dict, verbose: bool):
             except OSError as e: record("ERROR", name, f"无法读取：{e}")
 
 
-def check_cv_parsed_cache(cfg: dict, verbose: bool):
+def check_cv_parsed_cache(cfg: dict, user_dir: Path, verbose: bool):
     for g in cfg["job_search"].get("keyword_groups", []):
         gid  = g.get("group_id","?")
-        path = Path(f"output/cv_parsed_{gid}.json")
+        path = user_dir / "output" / f"cv_parsed_{gid}.json"
         name = f"cv_parsed [{gid}]"
         data = _load_json(path, name, absent_msg="缓存不存在（Phase 1 会生成）" if verbose else "")
         if data is None:
@@ -140,9 +155,9 @@ def check_cv_parsed_cache(cfg: dict, verbose: bool):
                 f"{len(data.get('experience',[]))} 段经历）")
 
 
-def check_search_history(verbose: bool):
+def check_search_history(user_dir: Path, verbose: bool):
     name = "search_history.json"
-    path = Path("output/search_history.json")
+    path = user_dir / "output" / "search_history.json"
     data = _load_json(path, name, absent_msg="不存在（Phase 2 会创建）" if verbose else "")
     if data is None:
         return
@@ -155,7 +170,7 @@ def check_search_history(verbose: bool):
         if rf:
             rf_path = Path(rf)
             bid = b.get("batch_id", "")
-            alt_path = Path("output/temp") / f"raw_results_{bid}.json"
+            alt_path = user_dir / "output" / "temp" / f"raw_results_{bid}.json"
             if not rf_path.exists() and not alt_path.exists():
                 record("WARN", name, f"批次 {bid} 的原始文件已删除：{rf}（不影响功能）")
     if verbose:
@@ -363,8 +378,9 @@ def check_stepstone_server(cfg: dict, verbose: bool, strict: bool = False) -> bo
         return False
 
 
-def check_output_dir(verbose: bool):
-    name, p = "output/", Path("output")
+def check_output_dir(user_dir: Path, verbose: bool):
+    p = user_dir / "output"
+    name = "output/"
     if not p.exists():
         try: p.mkdir(parents=True); record("WARN", name, "目录不存在，已自动创建")
         except OSError as e: record("ERROR", name, f"无法创建：{e}"); return
@@ -379,11 +395,15 @@ def check_output_dir(verbose: bool):
 
 def main():
     parser = argparse.ArgumentParser(description="LinkedIn CV Agent — baseline sanity check")
-    parser.add_argument("--config",  default="config.json")
+    parser.add_argument("--uid",     default="leon", help="用户 ID（对应 users/{uid}/ 目录）")
+    parser.add_argument("--config",  default=None,   help="覆盖 config.json 路径（默认 users/{uid}/config.json）")
     parser.add_argument("--verbose", action="store_true")
     parser.add_argument("--phase2",  action="store_true",
                         help="额外检查 LinkedIn MCP 可用性（Phase 2 搜索前必须通过）")
     args = parser.parse_args()
+
+    user_dir    = Path("users") / args.uid
+    config_path = Path(args.config) if args.config else user_dir / "config.json"
 
     t0 = time.monotonic()
     label = "Phase 2 Pre-flight Check" if args.phase2 else "Baseline Sanity Check"
@@ -391,14 +411,15 @@ def main():
     print(f"│   {label:<38}│")
     print(f"└─────────────────────────────────────────┘\n")
 
-    cfg = check_config(Path(args.config), args.verbose)
+    check_users_json(args.verbose)
+    cfg = check_config(config_path, args.verbose)
     if cfg:
-        check_cv_files(cfg, args.verbose)
-        check_cv_parsed_cache(cfg, args.verbose)
-    check_search_history(args.verbose)
+        check_cv_files(cfg, user_dir, args.verbose)
+        check_cv_parsed_cache(cfg, user_dir, args.verbose)
+    check_search_history(user_dir, args.verbose)
     check_progress_files(args.verbose)
     check_theme_factory(args.verbose)
-    check_output_dir(args.verbose)
+    check_output_dir(user_dir, args.verbose)
 
     # Phase 2 pre-flight: verify LinkedIn MCP + Stepstone server (strict → ERROR on failure)
     # Baseline (no --phase2): Stepstone check is WARN-only

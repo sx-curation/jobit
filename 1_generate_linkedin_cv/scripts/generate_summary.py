@@ -213,18 +213,24 @@ def main():
     sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     parser = argparse.ArgumentParser(description="生成职缺分析汇总表")
     parser.add_argument(
+        "--uid",
+        default="leon",
+        help="用户 ID（对应 users/{uid}/ 目录）",
+    )
+    parser.add_argument(
         "--output",
-        default="output/job_summary.md",
-        help="输出 Markdown 文件路径（默认 output/job_summary.md）",
+        default=None,
+        help="输出 Markdown 文件路径（默认 users/{uid}/output/job_summary.md）",
     )
     parser.add_argument(
         "--output-dir",
-        default="output",
-        help="扫描目录（默认 output）",
+        default=None,
+        help="扫描目录（默认 users/{uid}/output）",
     )
     args = parser.parse_args()
 
-    output_dir = Path(args.output_dir)
+    _base      = Path(__file__).resolve().parent.parent / "users" / args.uid
+    output_dir = Path(args.output_dir) if args.output_dir else _base / "output"
     if not output_dir.exists():
         print(f"[ERROR] 输出目录不存在: {output_dir}", file=sys.stderr)
         sys.exit(1)
@@ -237,7 +243,7 @@ def main():
     records = cross_source_dedup(records)
     md = build_markdown(records)
 
-    out_path = Path(args.output)
+    out_path = Path(args.output) if args.output else output_dir / "job_summary.md"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     # Atomic write: write to .tmp then rename to prevent corrupt file on crash
     tmp = out_path.with_suffix(".tmp")

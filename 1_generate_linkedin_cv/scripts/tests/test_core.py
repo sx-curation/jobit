@@ -251,7 +251,7 @@ class TestParseJobs:
         j = next(j for j in jobs if j['company'] == 'Corp')
         assert j['application_record'] == 'applied'
         assert j['matched_skills']     == ['Python']
-        assert j['missing_skills']     == ['Go']
+        assert j['missing_skills']     == [{'skill': 'Go', 'severity': 'unknown'}]
         assert j['user_note']          == 'great fit'
         assert j['size']               == 'Large'
         assert j['location']           == 'Berlin'

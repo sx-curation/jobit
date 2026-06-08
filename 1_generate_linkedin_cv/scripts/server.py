@@ -35,7 +35,14 @@ _search_lock     = threading.Lock()
 _jobs_cache: dict       = {}   # uid → list[dict]
 _jobs_cache_mtime: dict = {}   # uid → float
 _jobs_cache_lock = threading.Lock()
-_current_user    = 'leon'
+def _load_default_user() -> str:
+    try:
+        data = json.loads(USERS_JSON.read_text(encoding='utf-8'))
+        return data['users'][0]['id']
+    except Exception:
+        return 'leon'
+
+_current_user    = _load_default_user()
 _user_lock       = threading.Lock()
 
 # ── Multi-user path helpers ───────────────────────────────────────────────────
@@ -68,8 +75,40 @@ def infer_location(job: dict) -> str:
     return job.get('location', '') or ''
 
 
+def _extract_qa(text: str) -> list:
+    """Parse Q&A from either JSON or markdown output produced by claude CLI."""
+    # Try JSON first
+    try:
+        clean = re.sub(r'```(?:json)?\s*|\s*```', '', text)
+        m = re.search(r'\{"default_answers"\s*:\s*\[[\s\S]*?\]\s*\}', clean)
+        if m:
+            parsed = json.loads(m.group())
+            if parsed.get('default_answers'):
+                return parsed['default_answers']
+    except Exception:
+        pass
+    # Fallback: parse markdown ## Q<n> / **A:** format
+    pairs = []
+    parts = re.split(r'(?m)^##\s+Q\d+\s*', text)
+    for part in parts[1:]:
+        lines = part.strip().split('\n')
+        q = re.sub(r'^[^\w]*', '', lines[0]).strip()
+        rest = '\n'.join(lines[1:])
+        a_match = re.search(r'\*\*A(?:nswer)?:\*\*\s*([\s\S]+)', rest)
+        if not a_match:
+            continue
+        a_raw = a_match.group(1).strip()
+        a_raw = re.sub(r'\*\*(.*?)\*\*', r'\1', a_raw)
+        a_raw = re.sub(r'\*(.*?)\*', r'\1', a_raw)
+        a_raw = re.sub(r'^[-—]+$', '', a_raw, flags=re.MULTILINE)
+        a_clean = re.sub(r'\s+', ' ', a_raw).strip()
+        if q and a_clean:
+            pairs.append({'question': q, 'answer': a_clean})
+    return pairs[:5]
+
+
 def _to_str_list(items) -> list:
-    """Normalize old-format object arrays or new-format string arrays to plain strings."""
+    """Return string list from either plain strings or object-format items."""
     result = []
     for item in (items or []):
         if isinstance(item, str):
@@ -242,6 +281,7 @@ def parse_jobs(uid: str):
                 job['size'] = ci['size']
             job['location'] = ci.get('location', '')
             job['inferred_location'] = infer_location(job)
+            job['job_id'] = str(detail.get('job_id', '') or '')
         except Exception as e:
             print(f'  WARN {jd_file.name}: {e}', file=sys.stderr)
 
@@ -1391,14 +1431,36 @@ class Handler(BaseHTTPRequestHandler):
                     if cached:
                         self._send(json.dumps({'cached': True, 'default_answers': cached}, ensure_ascii=False))
                         return
-                # Stream generate
-                prompt = f'default-answers\njob_folder: "{job_folder}"'
+                else:
+                    jd = {}
+                # Check claude CLI is available before opening SSE stream
+                claude_bin = shutil.which('claude')
+                if not claude_bin:
+                    self._send(json.dumps({'error': 'claude CLI not found in PATH'}), status=503)
+                    return
+                # Build prompt from jd_analysis context
+                company     = jd.get('company', '')
+                title       = jd.get('title', '')
+                cores       = jd.get('core_responsibilities', [])[:5]
+                matched     = jd.get('matched_skills', [])[:8]
+                cores_str   = '\n'.join(
+                    f'- {r.get("responsibility", r) if isinstance(r, dict) else r}'
+                    for r in cores)
+                matched_str = ', '.join(
+                    (m if isinstance(m, str) else m.get('skill', '')) for m in matched)
+                prompt = (
+                    f'Generate exactly 5 common interview Q&A for the role: {title} at {company}.\n'
+                    f'Core responsibilities:\n{cores_str}\n'
+                    f'Candidate matched skills: {matched_str}\n'
+                    'Write answers in first person, 3-5 sentences each. English only.\n'
+                    'Output ONLY valid JSON, no markdown, no code fences, no extra text:\n'
+                    '{"default_answers":[{"question":"...","answer":"..."}]}'
+                )
                 self.send_response(200)
                 self.send_header('Content-Type', 'text/event-stream')
                 self.send_header('Cache-Control', 'no-cache')
                 self.send_header('Access-Control-Allow-Origin', '*')
                 self.end_headers()
-                claude_bin = shutil.which('claude') or 'claude'
                 proc = subprocess.Popen(
                     [claude_bin, '-p', prompt],
                     stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -1406,15 +1468,28 @@ class Handler(BaseHTTPRequestHandler):
                     encoding='utf-8', errors='replace',
                 )
                 try:
+                    buf_server = ''
                     for line in proc.stdout:
                         stripped = ANSI_RE.sub('', line.rstrip())
                         if stripped:
+                            buf_server += stripped + ' '
                             chunk = json.dumps({'text': stripped}, ensure_ascii=False)
                             self.wfile.write(f'data: {chunk}\n\n'.encode('utf-8'))
                             self.wfile.flush()
                     proc.wait()
                     self.wfile.write(b'data: {"done":true}\n\n')
                     self.wfile.flush()
+                    # Persist generated answers to jd_analysis.json for next-load cache
+                    try:
+                        answers = _extract_qa(buf_server)
+                        if answers and jd_file.exists():
+                            detail = json.loads(jd_file.read_text(encoding='utf-8'))
+                            detail['default_answers'] = answers
+                            jd_file.write_text(json.dumps(detail, ensure_ascii=False, indent=2), encoding='utf-8')
+                            with _jobs_cache_lock:
+                                _jobs_cache.pop(uid, None)
+                    except Exception:
+                        pass
                 except (BrokenPipeError, ConnectionResetError):
                     pass
             except Exception as e:
