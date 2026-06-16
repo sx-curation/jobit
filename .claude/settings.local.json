@@ -18,7 +18,23 @@
       "Bash(claude -p \"搜索LinkedIn职缺 group-da\")",
       "PowerShell(\\(Get-Content \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\scripts\\\\server.py\" -Raw\\) -split \"`n\" | Select-Object -Index \\(355..375\\) | Out-String)",
       "Bash(curl -s http://localhost:8080/api/search-analysis)",
-      "PowerShell(cd D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv; $r = python scripts/search_state.py --mode dedup --batch-id 20260531_001 --config config.json 2>&1 | ConvertFrom-Json; \"display_jobs: $\\($r.display_jobs.Count\\)\"; \"skipped_duplicate: $\\($r.skipped_duplicate\\)\"; \"hidden_low_score: $\\($r.hidden_low_score\\)\"; \"\"; \"Score >= 50:\"; $r.display_jobs | Where-Object { $_.quick_score -ge 50 } | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" }; \"\"; \"All jobs by score:\"; $r.display_jobs | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" })"
+      "PowerShell(cd D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv; $r = python scripts/search_state.py --mode dedup --batch-id 20260531_001 --config config.json 2>&1 | ConvertFrom-Json; \"display_jobs: $\\($r.display_jobs.Count\\)\"; \"skipped_duplicate: $\\($r.skipped_duplicate\\)\"; \"hidden_low_score: $\\($r.hidden_low_score\\)\"; \"\"; \"Score >= 50:\"; $r.display_jobs | Where-Object { $_.quick_score -ge 50 } | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" }; \"\"; \"All jobs by score:\"; $r.display_jobs | Sort-Object quick_score -Descending | ForEach-Object { \"$\\($_.quick_score\\)  $\\($_.company\\)  |  $\\($_.title\\)\" })",
+      "Skill(run)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:8080)",
+      "Bash(start *)",
+      "Bash(curl -s http://localhost:8080/api/jobs)",
+      "Bash(curl -s http://localhost:8080/)",
+      "Bash(python3 -c ' *)",
+      "Bash(python3 *)",
+      "Bash(Get-ChildItem d:\\\\JobIt -Exclude node_modules)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "PowerShell(Get-ChildItem d:\\\\JobIt\\\\1_generate_linkedin_cv -Recurse -Exclude node_modules | Where-Object { $_.FullName -notmatch 'node_modules' -and $_.Extension -match '\\\\.\\(html|tsx|jsx|ts|js|css|vue|svelte|py\\)$' } | Select-Object FullName)",
+      "PowerShell(Get-ChildItem d:\\\\JobIt | Where-Object { $_.Name -ne 'node_modules' } | Select-Object Name, PSIsContainer)",
+      "PowerShell(Start-Process \"http://localhost:8080\")",
+      "PowerShell(if \\(Test-Path \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\users\\\\leon\\\\output\\\\temp\\\\_phase2_temp.json\"\\) { $f = Get-Item \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\users\\\\leon\\\\output\\\\temp\\\\_phase2_temp.json\"; Write-Output \"EXISTS: $\\($f.Length\\) bytes, last modified $\\($f.LastWriteTime\\)\" } else { Write-Output \"NOT FOUND\" })",
+      "PowerShell(Get-ChildItem D:\\\\JobIt\\\\ | Where-Object { $_.Name -ne 'node_modules' })",
+      "PowerShell(Get-ChildItem D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\ -Recurse | Where-Object { !$_.PSIsContainer } | Select-Object FullName, LastWriteTime | Sort-Object LastWriteTime -Descending | Select-Object -First 50)",
+      "WebSearch"
     ]
   }
 }
