@@ -29,10 +29,10 @@
 ### CV 与 group 对应
 - 对应关系在 `config.json` 的 `keyword_groups[].cv_file` 定义（source of truth）
 - 任何情况不得混用不同 group 的 CV
-- Scale Up：将新 CV 放入 `my_cv/`，在 config.json 新增 group 对象即可
+- Scale Up：将新 CV 放入 `users/{uid}/my_cv/`，在 config.json 新增 group 对象即可
 
 ### 材料生成
-- 每个职缺生成：定制 CV（Markdown + PDF）、Cover Letter（Markdown + PDF）
+- 每个职缺生成：定制 CV（Markdown + PDF）、Cover Letter（Markdown + PDF + DOCX）
 - CV 改写规则：只调整措辞和技能排序，不添加虚构经历或技能
 - Cover Letter：四段式结构，英文不超过 400 词
 - PDF 主题：通过 theme-factory skill 选择，同 session 内复用
@@ -60,8 +60,9 @@
 | Stepstone 数据来源 | mcp-stepstone HTTP SSE server（本地） | 第二职缺源，覆盖 DE 主要城市 |
 | CV 解析 | PyMuPDF | 轻量，无需 LibreOffice |
 | PDF 生成 | fpdf2（pure Python） | Windows 无 GTK/Pango，WeasyPrint 不可用；fpdf2 零外部依赖 |
-| 搜索状态 | output/search_history.json | 可读，无需数据库 |
-| 中间文件 | output/temp/raw_results_<batch_id>.json | 不用 /tmp，可调试；temp/ 隔离中间文件 |
+| Cover Letter 生成 | `gen_cover_letter.py`（fpdf2 + python-docx） | 单脚本同时输出 PDF + DOCX，共享 `parse_cover_letter()` 解析器 |
+| 搜索状态 | `users/{uid}/output/search_history.json` | 可读，无需数据库 |
+| 中间文件 | `users/{uid}/output/temp/raw_results_<batch_id>.json` | 不用 /tmp，可调试；temp/ 隔离中间文件 |
 | 预评分 vs 精确分 | 两阶段 | 预评分快速排序，精确分在 Phase 3A |
 | Sub-agent 并行 | 最多 3 个 | 避免界面卡顿 |
 | CV 验证 | PostToolUse hook | 100% 拦截，优于 CLAUDE.md 指令 |
@@ -87,32 +88,76 @@ server.py 以全局变量 `_current_user`（默认 `leon`）管理当前活跃�
 
 ## 文件结构
 
+> 项目根目录：`D:\JobIt\1_generate_linkedin_cv\`（2026-06 扁平化，消除原 GitHub 下载产生的双层嵌套）
+
 ```
-1_generate_linkedin_cv/
-  users.json                        ← 全用户注册表（id + name）
+/                                       ← 项目根目录
+  .claude/                              ← Claude Code 配置（唯一）
+    agents/                             ← 11 个 subagent（Orchestrator、cv-writer 等）
+    skills/                             ← 7 个 skill（theme-factory、eval-criteria 等）
+    hooks/                              ← validate-cv.py（CV 写入拦截）、notify.sh
+    agent-memory/                       ← subagent 持久记忆（cv-parser、cv-writer、progress-writer）
+    settings.json / settings.local.json ← 权限白名单
+  config/
+    ats_field_map.yml                   ← ATS 字段映射表
+  dashboard/
+    index.html                          ← gen_job_tracker_html.py 生成的 live HTML（server 直接服务）
+    logo.png
+  graphify-out/                         ← 知识图谱输出（只读参考）
+  memory/
+    progress.json                       ← 结构化状态快照（session 结束覆盖写入）
+    notes.md                            ← 自由格式 session 笔记（追加，最新在上）
+  scripts/
+    templates/
+      index.html                        ← dashboard 的 Jinja2 模板源
+    tests/
+      test_core.py                      ← 核心逻辑单元测试
+    archive/                            ← 已归档旧脚本（不参与主流程）
+    server.py                           ← HTTP 服务器（port 8080）
+    gen_job_tracker_html.py             ← 生成 dashboard/index.html
+    gen_cover_letter.py                 ← cover_letter_draft.md → cover_letter.pdf + cover_letter.docx
+    generate_summary.py                 ← 生成 job_summary.md
+    linkedin_search.py                  ← LinkedIn MCP 搜索封装
+    run_phase2_search.py                ← Phase 2 主搜索流程
+    run_phase2_search_stepstone.py      ← Stepstone 搜索变体
+    search_state.py                     ← 去重状态管理、batch 索引
+    refetch_details.py                  ← 补抓 LinkedIn JD 详情
+    refetch_stepstone_details.py        ← 补抓 Stepstone JD 详情
+    parse_cv.py                         ← CV PDF → JSON 解析
+    common.py                           ← 共享工具函数
+    check.py                            ← 启动 sanity check
   users/
-    {uid}/                          ← 每用户独立工作区
-      config.json                   ← 该用户的 keyword groups + skill_taxonomy
-      my_cv/                        ← 该用户的 CV PDF 文件
-      scripts/                      ← symlink → ../../scripts/（共享）
-      graphify-out/                 ← symlink → ../../graphify-out/（共享）
-      SPEC.md                       ← hardlink → ../../SPEC.md（共享）
-      output/
-        temp/                       ← 所有中间文件
-          _phase2_temp.json         LinkedIn 原始搜索结果
-          _phase2_temp_stepstone.json  Stepstone 原始搜索结果
-          _phase2_temp_merged.json  合并后待保存
-          raw_results_<batch_id>.json  保存的批次数据
-        search_history.json         ← 去重状态 + batch 索引（持久）
-        cv_parsed_<group_id>.json   ← CV 解析缓存（持久）
-        job_summary.md              ← 汇总表（持久）
-        <group_id>_<company>_<title>_<YYYYMMDD>/   每职缺输出文件夹
+    {uid}/                              ← 每用户独立工作区
+      config.json                       ← keyword groups + skill_taxonomy + job_search 参数
+      my_cv/                            ← CV PDF 文件（.gitignore 排除）
+      memory/                           ← 用户级备用记忆（.gitignore 排除）
+      interview-prep/
+        story-bank.md                   ← 故事库（面试准备素材）
+      output/                           ← 所有输出（.gitignore 排除）
+        temp/                           ← 中间文件（session 内临时）
+          _phase2_temp.json             LinkedIn 原始搜索结果
+          _phase2_temp_stepstone.json   Stepstone 原始搜索结果
+          _phase2_temp_merged.json      合并后待保存
+          raw_results_<batch_id>.json   已保存批次数据
+        search_history.json             ← 去重状态 + batch 索引（持久）
+        cv_parsed_<group_id>.json       ← CV 解析缓存（持久）
+        job_summary.md                  ← 职缺汇总表（持久）
+        <group_id>_<company>_<title>_<YYYYMMDD>/
           jd_analysis.json
           cv_draft.md / cv_final.pdf
-          cover_letter_draft.md / cover_letter_final.pdf
+          cover_letter_draft.md / cover_letter.pdf / cover_letter.docx
           cv_changes.md / eval_report.json
-  scripts/                          ← 权威脚本目录（所有用户共享）
-  graphify-out/                     ← 知识图谱（所有用户共享）
+  users.json                            ← 全用户注册表（id + name）
+  CLAUDE.md                             ← 启动指引与执行流程（agent 主入口）
+  SPEC.md                               ← 本文件（功能规格与架构决策）
+  UI.md                                 ← Web UI 视觉设计规格
+  PLAN_enhance.md                       ← 技术改进路线图（单元测试、重构计划）
+  PLAN-upgrade.md                       ← 产品升级规划（P0–P3 功能迭代）
+  setup.ps1                             ← Windows 环境初始化（从项目根运行）
+  setup.sh                              ← macOS/Linux 环境初始化（从项目根运行）
+  ARCHIVE_pre_reorganize/               ← 历史归档（重组前文件）
+  ARCHIVE_pre_multiuser/                ← 历史归档（多用户改造前文件）
+  1_generate_linux_cv/                  ← 独立 Linux CV 项目（不共享配置）
 ```
 
 ---
@@ -177,10 +222,10 @@ server.py 以全局变量 `_current_user`（默认 `leon`）管理当前活跃�
 
 | 页面 | 读取来源 | 写入来源 |
 |------|----------|----------|
-| Page 1 Dashboard | `output/job_summary.md` + `output/*/jd_analysis.json` | `output/*/jd_analysis.json`（application_record, user_note） |
-| Page 2 Job Detail | `output/<dir>/jd_analysis.json`（via `/api/jobs`） | `output/<dir>/jd_analysis.json`（user_note） |
-| Page 3 Add Group | — | `config.json` |
-| Page 4 My CVs | `config.json` | `config.json` |
+| Page 1 Dashboard | `users/{uid}/output/job_summary.md` + `users/{uid}/output/*/jd_analysis.json` | `users/{uid}/output/*/jd_analysis.json`（application_record, user_note） |
+| Page 2 Job Detail | `users/{uid}/output/<dir>/jd_analysis.json`（via `/api/jobs`） | `users/{uid}/output/<dir>/jd_analysis.json`（user_note） |
+| Page 3 Add Group | — | `users/{uid}/config.json` |
+| Page 4 My CVs | `users/{uid}/config.json` | `users/{uid}/config.json` |
 
 ---
 
@@ -403,7 +448,7 @@ POST /api/group-save   → { group } → 新增或更新 config.json 中的 grou
 #### `/api/group-stats` 服务端计算逻辑（per group）
 
 ```python
-# 扫描 OUTPUT_DIR，找出以 group_id + "_" 开头的所有文件夹
+# 扫描 users/{uid}/output/，找出以 group_id + "_" 开头的所有文件夹
 # 读取每个文件夹内的 jd_analysis.json：
 #   - 收集 score（新 schema）或 match_score（旧 schema 兼容）→ 计算均值
 #   - 收集所有 missing_skills → Counter 取 top 6 高频词
@@ -451,5 +496,5 @@ Groups 由各用户的 `config.json` 动态加载，通过 `/api/group-stats` �
  - Page 4 My CVs 卡片 Footer：展示该 group 最近 3 次搜索记录
  - 每条格式：`<date> · <new_net> new · <fetched_total> fetched (<sources>)`
    - `new_net = new_total - hidden_low_score - skipped_duplicate`
- - 服务端：读 `output/search_history.json`，按 `batch.group_id` 过滤，按 date 降序取最近 3 条
+ - 服务端：读 `users/{uid}/output/search_history.json`，按 `batch.group_id` 过滤，按 date 降序取最近 3 条
  - 注：旧格式 batch（无 `group_id` 字段）不显示，新搜索后自动累积
