@@ -1,5 +1,6 @@
----
+﻿---
 name: orchestrator
+model: claude-sonnet-4-6
 description: 主执行流程 agent。当用户说「开始」、「解析 CV」或触发任何 Phase 级别操作时调用。定义 Phase 1-4 的完整执行逻辑、sub-agent 调用顺序、用户交互节点。
 tools:
   - Bash
@@ -37,7 +38,7 @@ for each group in config.keyword_groups:
 
 ### 步骤 0：Phase 2 预检（必须通过才能继续）
 ```bash
-python3 scripts/check.py --phase2
+python3 scripts/check.py --phase2 --uid {uid}
 ```
 - 退出码 0 → 继续
 - 退出码 1（含 LinkedIn MCP ERROR 或 Stepstone server ERROR）→ **停止**，向用户展示错误详情
@@ -48,7 +49,7 @@ python3 scripts/check.py --phase2
 
 ### 步骤 A：计算 offset
 ```bash
-python3 scripts/search_state.py --mode offset --config config.json
+python3 scripts/search_state.py --mode offset --uid {uid}
 ```
 - 同天续页：offset = 当天该词已累计 fetched 数
 - 跨天：offset 归零，seen_jobs 去重仍生效
@@ -62,39 +63,40 @@ python3 scripts/search_state.py --mode offset --config config.json
    - 「搜索职缺」/ 「开始」         → LinkedIn + Stepstone（若 stepstone.enabled=true）
    - 「搜索LinkedIn职缺」           → 仅 LinkedIn
    - 「搜索Stepstone职缺」          → 仅 Stepstone（需 stepstone.enabled=true）
+   - 「搜索Linkedin posting职缺」   → LinkedIn Posting 搜索（见下方独立流程，跳过步骤 B-C）
 
 3. LinkedIn 搜索（按需）：
-   python3 scripts/run_phase2_search.py
-   → 写入 output/temp/_phase2_temp.json
+   python3 scripts/run_phase2_search.py --uid {uid}
+   → 写入 users/{uid}/output/temp/_phase2_temp.json
 
 4. Stepstone 搜索（按需，且 stepstone.enabled=true）：
-   python3 scripts/run_phase2_search_stepstone.py
-   → 写入 output/temp/_phase2_temp_stepstone.json
+   python3 scripts/run_phase2_search_stepstone.py --uid {uid}
+   → 写入 users/{uid}/output/temp/_phase2_temp_stepstone.json
 
 5. 合并（inline Python）：
-   li_path = "output/temp/_phase2_temp.json"
+   li_path = "users/{uid}/output/temp/_phase2_temp.json"
    # 崩溃恢复：若 LinkedIn 搜索中途退出，_phase2_temp.json 可能缺失
    # 回退到增量文件（每 25 个 job 写一次），并打印 WARN 提示数据可能不完整
-   if li_path 不存在 且 "output/temp/_phase2_temp_partial.json" 存在:
+   if li_path 不存在 且 "users/{uid}/output/temp/_phase2_temp_partial.json" 存在:
        WARN "⚠️  _phase2_temp.json 缺失，使用 _phase2_temp_partial.json（数据可能不完整）"
-       li_path = "output/temp/_phase2_temp_partial.json"
+       li_path = "users/{uid}/output/temp/_phase2_temp_partial.json"
    li  = load li_path (若存在)
-   st  = load output/temp/_phase2_temp_stepstone.json (若存在)
-   write output/temp/_phase2_temp_merged.json
+   st  = load users/{uid}/output/temp/_phase2_temp_stepstone.json (若存在)
+   write users/{uid}/output/temp/_phase2_temp_merged.json
 
 6. 保存：
    python3 scripts/search_state.py --mode save-raw \
-       --batch-id <batch_id> --input output/temp/_phase2_temp_merged.json
-   → 写入 output/temp/raw_results_<batch_id>.json
+       --batch-id <batch_id> --input users/{uid}/output/temp/_phase2_temp_merged.json --uid {uid}
+   → 写入 users/{uid}/output/temp/raw_results_<batch_id>.json
    → search_history.json 创建 batch 条目，dedup_done=false
 ```
 
 ### 步骤 C：去重 + 预评分 + 排序
 ```bash
 python3 scripts/search_state.py --mode dedup \
-    --batch-id <batch_id> --config config.json
+    --batch-id <batch_id> --uid {uid}
 ```
-- 从 output/temp/raw_results_<batch_id>.json 读取（向后兼容 output/）
+- 从 users/{uid}/output/temp/raw_results_<batch_id>.json 读取
 - job_id 去重（同公司 + 同职位 = 过滤；同公司不同职位 = 保留；st_ 前缀与 LinkedIn 数字 ID 不冲突）
 - per-group 预评分（各 group 用自己的 cv_parsed 技能，不跨组混用）
 - 降序排序，截取前 max_display 条
@@ -103,7 +105,7 @@ python3 scripts/search_state.py --mode dedup \
 ### 步骤 D：预读 cv_parsed（执行一次）
 ```
 for each group_id in config.keyword_groups:
-  读取 output/cv_parsed_<group_id>.json → 存为 cv_content[group_id]
+  读取 users/{uid}/output/cv_parsed_<group_id>.json → 存为 cv_content[group_id]
 
 后续所有 jd-analyzer 调用均将 cv_content[job.group_id] 直接嵌入 prompt，
 sub-agent 无需再次读取文件（file read 作为 fallback）。
@@ -111,29 +113,52 @@ sub-agent 无需再次读取文件（file read 作为 fallback）。
 
 ### 步骤 E：并行精确分析（最多同时 3 个）
 
-输出目录命名规则：`output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/`
+输出目录命名规则：`users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/`
 - `<YYYYMMDD>` = `batch_id[:8]`（步骤 B 生成的 batch_date）
 - `company_slug`、`title_slug`：去除特殊字符，空格替换为 `-`，截断至 40 字符
-- 示例：`group-da_trivago_Data-Analyst-Marketing-Intelligence_20260414`
+- 示例：`users/leon/output/group-da_trivago_Data-Analyst-Marketing-Intelligence_20260414`
 
 ```
 调用 jd-analyzer sub-agent：
   输入：JD 完整文本 + cv_content[job.group_id]（inline，无需读文件）
         job._source（传递给 jd-analyzer，必须写入 jd_analysis.json 的 "_source" 字段）
-  输出：output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/jd_analysis.json
+  输出：users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/jd_analysis.json
   wait: JD_ANALYZED_OK: score=<N>
 
 if score < config.score_threshold_warn:
   询问用户是否继续
 
 每批（3 个）jd-analyzer 全部完成后，立即更新汇总表：
-  python3 scripts/generate_summary.py
-  → 将每一批结果以增量覆盖写入 output/job_summary.md（按 match_score 降序）
+  python3 scripts/generate_summary.py --uid {uid}
+  → 将每一批结果以增量覆盖写入 users/{uid}/output/job_summary.md（按 match_score 降序）
   → 列：排名 | match_score | group-id | 来源(LinkedIn/Stepstone) | 公司 | 职位 | 公司规模 | URL | recommended_emphasis | Missing Skills | 批次运行日期
   → 向用户展示本批新增条目
 ```
 
-### 步骤 F：展示汇总表 + 等待用户确认
+### 步骤 F：自动生成面试答案（match_score ≥ 70）
+
+**在所有 jd-analyzer 批次全部完成后执行一次。**
+
+```
+1. 收集本次 Phase 2 分析过的所有 job_folder 列表（来自步骤 E 的输出目录）
+
+2. 过滤条件：
+   - jd_analysis.json 中 match_score >= 70
+   - jd_analysis.json 中不存在 default_answers 字段（或为空列表）
+
+3. 对符合条件的职缺，以并发上限 3 依次调用 default-answers sub-agent：
+   输入：job_folder 路径（sub-agent 自行读取 jd_analysis.json + cv_parsed + story-bank）
+   等待：sub-agent 将 default_answers 写入 jd_analysis.json
+
+4. 无符合条件的职缺时跳过本步骤，不输出任何提示。
+
+5. 完成后输出一行摘要（仅在有处理时）：
+   ✅ 面试答案已生成：N 个职缺
+```
+
+> story-bank.md 不存在时，default-answers sub-agent 自动降级到 cv_parsed experience[] 模式，无需预先初始化故事库。
+
+### 步骤 G：展示汇总表 + 等待用户确认
 见 `skills/review-ui/SKILL.md` → 搜索结果展示模板
 
 展示 output/job_summary.md 完整表格（已含精确分数），供用户选择处理哪些职缺。
@@ -195,15 +220,15 @@ session 内已有 selected_theme 时确认复用；记录 selected_theme 到本 
 ```bash
 # CV：生成 ATS 机器可读版（cv_ats.pdf）+ 视觉版（cv_styled.pdf）
 python3 scripts/generate_pdf.py \
-    output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_draft.md \
-    output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_ats.pdf \
+    users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_draft.md \
+    users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cv_ats.pdf \
     --theme "<selected_theme>" \
     --dual
 
 # Cover Letter：视觉版
 python3 scripts/generate_pdf.py \
-    output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cover_letter_draft.md \
-    output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cover_letter_final.pdf \
+    users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cover_letter_draft.md \
+    users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/cover_letter_final.pdf \
     --theme "<selected_theme>"
 ```
 
@@ -217,3 +242,68 @@ python3 scripts/generate_pdf.py \
 
 Session 结束时由 Stop hook 自动触发 progress-writer sub-agent，
 写入 memory/progress.json + memory/notes.md。
+
+---
+
+## Phase 2 变体：LinkedIn Posting 搜索（`搜索Linkedin posting职缺`）
+
+此变体**跳过** Phase 2 步骤 A-C（不运行 run_phase2_search.py），直接通过 WebSearch 抓取社交帖招聘信号。
+
+### 步骤 1：确定 group 和关键词
+
+```
+group_ids = 从用户指令解析（指定 group-id 则只处理该 group，否则全部）
+for each group_id:
+  keywords = config.keyword_groups[group_id].primary_keywords.en[:5]  # 前 5 条
+```
+
+### 步骤 2：构建并执行 Google 查询
+
+每个关键词生成 2 条查询（最多 10 条/group）：
+
+```
+模板 A: site:linkedin.com/posts ("we're hiring" OR "now hiring" OR "hiring") ("{keyword}") Germany
+模板 B: site:linkedin.com/posts ("welcome to our team" OR "excited to welcome" OR "join us") ("{keyword}") Germany
+```
+
+用 WebSearch 工具执行，收集结果的 URL 和 snippet。
+
+### 步骤 3：提取 job_id
+
+从每条结果的 URL 和 snippet 中正则提取：
+```
+job_id_pattern = r'linkedin\.com/jobs/view/(\d+)'
+```
+
+- 命中 → `job_ids` 列表（去重）
+- 未命中 → `manual_review` 列表（仅保存 post URL，不分析）
+
+### 步骤 4：去重
+
+与 `search_history.json` 中现有 seen_jobs 比对，过滤已处理的 job_id。
+
+### 步骤 5：拉取 JD 详情
+
+对每个新 job_id：
+```
+mcp__linkedin__get_job_details(job_id="{job_id}")
+```
+
+若 MCP 调用失败，跳过该 job_id 并记录 WARN。
+
+### 步骤 6：JD 分析（同 Phase 2E）
+
+- 对返回 JD → jd-analyzer sub-agent（并行上限 3）
+- 输出目录：`output/{group_id}_{company_slug}_{title_slug}_{YYYYMMDD}/`
+- jd_analysis.json 中写入 `"_source": "linkedin_posting"`
+- 分析完成后更新 job_summary.md（调用 generate_summary.py）
+
+### 步骤 7：结果展示
+
+```
+汇报格式：
+✅ 新职缺分析完成：N 条（来自 LinkedIn 帖子）
+⚠️ 需人工跟进（帖子无直接职缺链接）：M 条 URL
+  - {post_url_1}
+  - {post_url_2}
+```

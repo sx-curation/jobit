@@ -63,7 +63,8 @@ model: claude-haiku-4-5-20251001
     ],
     "pending": []
   },
-  "pending_actions": []
+  "pending_actions": [],
+  "last_theme": "Ocean Depths"
 }
 ```
 
@@ -75,6 +76,7 @@ model: claude-haiku-4-5-20251001
 - `job_pipeline.skipped`：扫描有 `jd_analysis.json` 但无 `cv_final.pdf` 且无 `cv_draft.md` 的目录
 - `job_pipeline.pending`：有 `cv_draft.md` 但还没有 `cv_final.pdf` 的目录（上次未完成）
 - `pending_actions`：若有 pending 职缺，填入「需要继续处理：X 个职缺待审核」
+- `last_theme`：从现有 `memory/progress.json` 读取并原样保留；若文件不存在或字段缺失则省略此字段（不写入 null）
 
 完成后输出：`PROGRESS_JSON_WRITTEN: memory/progress.json`
 

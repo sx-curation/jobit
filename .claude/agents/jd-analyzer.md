@@ -1,5 +1,6 @@
----
+﻿---
 name: jd-analyzer
+model: claude-sonnet-4-6
 description: 在 cv-writer 和 cover-letter 执行之前调用。分析单个职缺的 JD 文本，提取关键词、计算匹配分、解析公司规模。每次只处理一个职缺。
 tools:
   - Read
@@ -25,6 +26,10 @@ tools:
 - **加分技能**（权重 1）：JD 中含「nice to have」「preferred」「plus」「von Vorteil」「wünschenswert」的技能
 - **核心职责**（3-5 条）：职位的核心工作内容
 - **文化关键词**：公司文化、团队氛围相关词汇
+- **语言技能提及**：扫描全文检测是否明文要求或加分提及中文/日语：
+  - `mentioned_chinese = true`：触发词包括 Chinese、Mandarin、中文、普通话、Chinesisch 及其变形；仅指地区（如 "Chinese market"）不触发
+  - `mentioned_japanese = true`：触发词包括 Japanese、日本語、日语、Japanisch 及其变形；仅指地区（如 "Japanese market"）不触发
+  - 未提及 → `false`；JD 文本不可用 → `null`
 
 ### 步骤 2：计算匹配分
 
@@ -159,11 +164,29 @@ tools:
     "jd_culture_signals": {"growth": [], "wlb": [], "team": [], "culture": []},
     "search_executed": false,
     "search_skipped_reason": null
-  }
+  },
+  "mentioned_chinese": false,
+  "mentioned_japanese": false
 }
 ```
 
 `size_raw` 保留原始提取文本，方便 debug。
+
+---
+
+> ⚠️ **输出格式强制约束（必须逐字遵守，不得简化）**
+>
+> 1. `missing_skills` **必须是对象数组**，每项格式：
+>    `{"skill": "技能名", "severity": "hard_blocker|nice_to_have|learnable", "weeks_to_acquire": 整数|null, "adjacent_in_cv": "CV 原文片段"|null, "mitigation": "英文一句话"|null}`
+>    **禁止输出纯字符串**——输出字符串数组是严重错误。
+>
+> 2. `gap_summary` **必须输出**，格式：
+>    `{"hard_blockers": N, "nice_to_have": N, "learnable": N, "blocker_flag": true|false}`
+>    `blocker_flag = hard_blockers > 0`
+>
+> 3. `decision_score` 和 `decision_signals`（含全部7个子维度）**必须输出**，不得省略。
+
+---
 
 ### 步骤 5：计算 decision_score（非技能类评分）
 
@@ -187,7 +210,7 @@ tools:
 - JD 含 `on-site/in-office/vor Ort` + preferred_work_mode 仅含 `remote` → 10
 - 未注明 → 50（中性）
 
-**posting_freshness（权重 0.10）：**（date_posted 距今天数）
+**posting_freshness（权重 0.05）：**（posted_date 距今天数）
 - 0–7 天 → 100；8–30 天 → 80；31–90 天 → 50；>90 天 → 20；无日期 → 50
 
 **compensation_fit（权重 0.10）：**
@@ -223,14 +246,21 @@ decision_score = round(level_fit×0.25 + location_fit×0.20 + work_mode_fit×0.1
 
 ### 步骤 5b：计算 customization_potential（CV 优化潜力）
 
+**⚠️ 必须执行，禁止跳过。top_changes 不得为空数组。**
+
+**cv_parsed 读取（执行前检查）：** 若 orchestrator 未以 inline JSON 传入 cv_parsed，必须先执行：
+`Read output/cv_parsed_<group_id>.json`（group_id 来自当前 job_folder 前缀，如 `group-pdm`）
+
 在 match_score 计算完成后执行：
 
 1. 提取 JD 高频词（出现 ≥3 次的动词/名词短语）
-2. 从 cv_parsed 找 3-5 处措辞调整点（类型：Reframe / Reorder / Quantify / Keyword insertion）
-3. 每条估算 score_boost（1-8 分），必须指向 cv_parsed 中真实存在的段落
+2. 从 cv_parsed 的 experience[].bullets 和 skills[] 找 3-5 处措辞调整点（类型：Reframe / Reorder / Quantify / Keyword insertion）
+3. 每条估算 score_boost（1-8 分），必须指向 cv_parsed 中真实存在的段落，引用原文
 4. `estimated_max_score = match_score + Σ(top 5 score_boost)`，上限 match_score + 25
-5. top_changes 按 score_boost 降序，最多 5 条
+5. top_changes 按 score_boost 降序，最少 1 条，最多 5 条
 6. 将结果写入 `customization_potential` 字段
+
+**兜底**：若 cv_parsed 完全不可读，设 `top_changes=[]`，`estimated_max_score=-1`，并在 `decision_notes` 追加 `"customization_potential skipped: cv_parsed unavailable"`
 
 ### 步骤 6：合法性检测（legitimacy）
 
@@ -262,6 +292,8 @@ repost_freshness 评分：
 
 #### 6c — 公司招聘信号 WebSearch（条件触发）
 
+**⚠️ match_score ≥ 50 且非白名单公司时，必须执行 WebSearch，禁止以任何理由（效率、时间限制等）跳过。**
+
 **触发条件**：`match_score ≥ 50` 且公司名不在白名单：
 
 白名单（默认 stability=80，跳过搜索）：SAP, Siemens, Capgemini, Hapag-Lloyd, Aldi, BMW, Mercedes-Benz, Bosch, Deutsche Bank, Allianz, BASF, Bayer, Volkswagen, DHL, Lufthansa, Zalando, Otto, Beiersdorf, Airbus, Daimler, Continental
@@ -272,12 +304,12 @@ WebSearch: "{company_name}" layoffs 2025
 WebSearch: "{company_name}" hiring freeze 2025
 ```
 
-company_stability 评分：
+执行后将 `hiring_signal.search_executed=true`，并按结果评分：
 - 结果含 layoffs/hiring freeze/Stellenabbau/restructuring → 20（写入 `hiring_signal.verdict="negative"`）
 - 结果含 expanding/new office/growth/we are hiring → 90（写入 `verdict="positive"`）
 - 无相关结果 → 60（写入 `verdict="neutral"`）
-- 白名单公司 → 80，`search_skipped_reason="Whitelisted employer — stability assumed"`
-- **条件不满足（score < 50）** → 60，`search_skipped_reason="match_score < 50"`
+- 白名单公司 → 80，`search_executed=false`，`search_skipped_reason="Whitelisted employer — stability assumed"`
+- **条件不满足（match_score < 50）** → 60，`search_executed=false`，`search_skipped_reason="match_score < 50"`
 
 同一 company 在当次 session 只搜一次（session 级缓存，不跨次持久化）。
 
@@ -292,7 +324,15 @@ legitimacy.score = round(
 verdict：≥75 → HIGH_CONFIDENCE；50-74 → CAUTION；<50 → SUSPICIOUS
 ```
 
-将所有维度分、red_flags（字符串列表）、repost_info、hiring_signal 写入 `legitimacy` 字段。
+**red_flags 生成规则**（以下任一条件成立时追加对应字符串）：
+- `jd_quality < 40` → `"JD 过短或缺乏结构，信息不足"`
+- `company_verifiable < 40` → `"公司无法核实（仅缩写或匿名）"`
+- `requirements_realistic < 50` → `"技能要求数量过多或含矛盾条件"`
+- `repost_info.detected=true` 且 `days_since_first > 30` → `"职位已重复发布 {days_since_first} 天，疑似幽灵职位"`
+- `hiring_signal.verdict="negative"` → `"近期有裁员或招聘冻结信号"`
+- 以上均不满足时：`red_flags = []`（正常情况，不强行填充）
+
+将所有维度分、red_flags、repost_info、hiring_signal 写入 `legitimacy` 字段。
 
 ### 步骤 7：公司画像（company_profile）
 
@@ -344,5 +384,6 @@ JD_ANALYZED_OK: <company>_<title> score=<match_score> company_size=<size | unava
 - 方案 A 仅对 match_score >= 50 的职缺执行，避免浪费请求
 - 不访问任何非 LinkedIn 域名
 - 不修改 cv_parsed 文件
-- `recommended_emphasis` 和 `missing_skills` 的所有条目必须用**英文**书写，即使 JD 是德文。德文技能名称须翻译为英文等价表达
-- `missing_skills` 每条输出前自检：若为德文（含 ä/ö/ü/ß 或德文语序），必须先翻译。对照：Deutsch-Kenntnisse → German language proficiency；Datenanalyse → Data analysis；Kenntnisse in → Knowledge of
+- 以下所有字段的文字内容必须用**英文**书写，即使 JD 是德文或其他语言；德文/中文须翻译为英文等价表达：`matched_skills`、`required_skills`、`bonus_skills`、`core_responsibilities`、`culture_keywords`、`recommended_emphasis`、`missing_skills[].skill`、`missing_skills[].mitigation`
+- `missing_skills` 每条输出前自检：若为德文（含 ä/ö/ü/ß 或德文语序），必须先翻译。对照：Deutsch-Kenntnisse → German language proficiency；Datenanalyse → Data analysis；Kenntnisse in → Knowledge of；Projektmanagement → Project management；Erfahrung → Experience with；Kenntnisse → Knowledge of
+- `core_responsibilities[].responsibility` 和 `required_skills[].skill` 每条输出前同样自检：若含德文字符（ä/ö/ü/ß）或德文语序，必须翻译为英文后才能写入 `responsibility`/`skill` 字段；德文原文写入 `original` 字段

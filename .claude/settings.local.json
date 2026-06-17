@@ -131,7 +131,13 @@
       "Bash(Start-Sleep 2)",
       "Bash(Invoke-RestMethod http://localhost:8080/api/current-user)",
       "PowerShell(Invoke-RestMethod http://localhost:8080/api/users; Start-Process \"http://localhost:8080\")",
-      "PowerShell(Get-ChildItem \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\users\\\\leon\\\\output\" -Recurse -Filter \"jd_analysis.json\" | Select-Object -First 3 | ForEach-Object { Write-Host \"--- $\\($_.FullName\\) ---\"; $j = Get-Content $_.FullName | ConvertFrom-Json; $j.core_responsibilities | ConvertTo-Json -Depth 3 })"
+      "PowerShell(Get-ChildItem \"D:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\\\\users\\\\leon\\\\output\" -Recurse -Filter \"jd_analysis.json\" | Select-Object -First 3 | ForEach-Object { Write-Host \"--- $\\($_.FullName\\) ---\"; $j = Get-Content $_.FullName | ConvertFrom-Json; $j.core_responsibilities | ConvertTo-Json -Depth 3 })",
+      "Skill(run)",
+      "Bash(Get-ChildItem -Path \"d:\\\\JobIt\\\\1_generate_linkedin_cv\\\\1_generate_linkedin_cv\" -Directory)",
+      "Bash(Select-Object Name)",
+      "Bash(pkill -f \"server.py\")",
+      "Bash(cat /tmp/server.log | head -30)",
+      "Read(//tmp/**)"
     ],
     "additionalDirectories": [
       "d:\\JobIt\\1_generate_linkedin_cv"

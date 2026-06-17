@@ -1,6 +1,7 @@
 ---
 name: cv-evaluator
 description: 在 cv-writer 和 cover-letter 都完成后调用。用独立 context 对生成材料做语义级质量评估：检查捏造内容、Cover Letter 字数、JD 关键要求命中率。输出 eval_report.json 供用户审核时参考。
+model: claude-sonnet-4-6
 tools:
   - Read
   - Write

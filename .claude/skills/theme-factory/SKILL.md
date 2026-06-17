@@ -56,3 +56,15 @@ After a preferred theme is selected:
 
 ## Create your Own Theme
 To handle cases where none of the existing themes work for an artifact, create a custom theme. Based on provided inputs, generate a new theme similar to the ones above. Give the theme a similar name describing what the font/color combinations represent. Use any basic description provided to choose appropriate colors/fonts. After generating the theme, show it for review and verification. Following that, apply the theme as described above.
+
+---
+
+## LinkedIn CV Agent 集成（Phase 3C）
+
+当 Orchestrator 在 Phase 3C 调用本 skill 时：
+
+1. 读取 `memory/progress.json` 的 `last_theme` 字段
+   - 存在 → 询问："上次使用 **{last_theme}**，直接沿用？[Y / 输入新主题名]"；用户确认则跳过 showcase
+   - 不存在 → 展示上方 10 个主题名，等待用户选择
+2. 确认后将选择写回：`memory/progress.json` → `last_theme: "<theme_name>"`（只更新此字段）
+3. 将主题名传给 Orchestrator，由 Orchestrator 传入 `generate_pdf.py --theme "<theme_name>"`

@@ -6,7 +6,7 @@
    - **首次 session**（文件不存在）：读 `SPEC.md` 获取架构背景
    - **非首次 session**：跳过 SPEC.md（架构不变，notes.md 已有摘要）
 2. 读 `memory/notes.md` — 上次决策脉络（不存在则跳过）
-3. 读 `users/<user id>/config.json` 和 `users.json` — keyword groups 与 CV 对应关系（source of truth）
+3. 读 `users/<user id>/config.json`和`users.json` — keyword groups 与 CV 对应关系（source of truth）
 4. 运行 sanity check：`python3 scripts/check.py --uid {current_user}`
    - ERROR → 停止，等用户修复
    - WARN  → 展示警告，询问是否继续
@@ -28,12 +28,22 @@
 - 不自动投递
 - 不编造经历（CV 只重新措辞，不添加虚构内容）
 - 输出目录命名：`users/<user id>/output/<group_id>_<company>_<title>_<YYYYMMDD>/`（YYYYMMDD = batch_id 的前 8 位）
-- 中间文件：`users/<user id>/output/temp/raw_results_<batch_id>.json`、`users/<user id>/output/temp/_phase2_temp*.json`（不用 /tmp）
+- 中间文件：`users/<user id>/output/temp/raw_results_<batch_id>.json`、`output/temp/_phase2_temp*.json`（不用 /tmp）
 - jd-analyzer 并行上限：3 个
 
 ---
 
 ## 指令
+
+- 启动指令是
+cd D:\JobIt\1_generate_linkedin_cv\1_generate_linkedin_cv
+python scripts/server.py
+- steptone
+需要先在另一个终端启动 Stepstone server，才能继续搜索：
+
+cd C:\tools\mcp-stepstone
+python -m stepstone_http_server
+
 
 | 指令 | 行为 |
 |------|------|
@@ -45,9 +55,8 @@
 | `搜索Linkedin posting职缺 [group-id]` | 从 LinkedIn 社交帖子搜索招聘信号，提取职缺链接并执行 JD 分析；无 group-id 则搜索所有 group |
 | `搜索中文职缺` | 搜索德国需要中文/普通话的职缺（等同于 `搜索LinkedIn职缺 group-chinese-lang`） |
 | `生成 CV <编号>` | 只为指定职缺执行 Phase 3 |
-| `生成CL <job编号>` | 只生成 cover letter：cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先自动 Bootstrap；已有 cover_letter_draft.md 则跳过 CL 生成直接输出 PDF+DOCX） |
-| `面试准备 <job编号>` | 为指定职缺生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无故事库先自动 Bootstrap） |
-| `初始化故事库` | 从 cv_parsed 重新生成 story-bank.md（执行前自动备份 .bak） |
+| `生成CL <job编号>` | 生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先Bootstrap） |
+| `面试准备 <job编号>` | 自动读取 story-bank 选故事、匹配 JD archetype、生成 cover_letter_draft.md + PDF |
 | `显示全部` | 显示低分隐藏职缺 |
 | `/check` | 单独运行 sanity check |
 | `/check --verbose` | 显示所有通过项 |
@@ -56,42 +65,10 @@
 | `/progress` | memory/notes.md 最近 3 条笔记 |
 | `/reset-history` | 清空 search_history.json（慎用）|
 
-### `生成CL <job编号>` 执行流程
-
-1. 解析参数，按以下优先级定位 job_folder：
-   - **job_id 精确匹配**：参数为纯数字（LinkedIn）或 `st_` 开头（Stepstone）→ 扫描 `users/{uid}/output/*/jd_analysis.json`，找 `job_id` 字段完全一致的目录
-   - **模糊匹配**：参数为公司名或职位关键词 → 在 output 目录名中 case-insensitive 子串匹配，唯一命中则使用，多个命中则列出让用户确认
-   - **行号**：参数为纯数字且无精确 job_id 匹配 → 按当前 job_summary.md 行号（同 `生成 CV` 逻辑）
-2. 检查 `users/{uid}/interview-prep/story-bank.md` 是否存在：
-   - 不存在 → 先调用 interview-prep agent 执行 Bootstrap
-3. 检查 `output/{job_folder}/cover_letter_draft.md` 是否存在：
-   - 不存在 → 调用 cover-letter agent 生成（读 story-bank + jd_analysis）
-   - 已存在 → 跳过，直接进入下一步
-4. 运行 `python scripts/gen_cover_letter.py --job_folder {job_folder} --uid {uid} --format all`
-6. 汇报：三个文件路径 + 文件大小
-
-### `搜索Linkedin posting职缺 [group-id]` 执行流程
-
-完整流程见 `.claude/agents/Orchestrator.md` — Phase 2 LinkedIn Posting 变体。
-
-概要：
-1. 读 `users/{uid}/config.json`，确定目标 group（指定或全部）
-2. 对每个 group，取 `primary_keywords.en` 前 5 条关键词
-3. 每条关键词生成 2 条 Google 查询（共最多 10 条/group）：
-   - `site:linkedin.com/posts ("we're hiring" OR "now hiring" OR "hiring") ("{keyword}") Germany`
-   - `site:linkedin.com/posts ("welcome to our team" OR "excited to welcome" OR "join us") ("{keyword}") Germany`
-4. WebSearch 执行每条查询，收集 snippet + URL
-5. 正则提取 job_id：`linkedin\.com/jobs/view/(\d+)`
-6. 去重（对照 `search_history.json` 的 seen_jobs）
-7. 每个新 job_id → `mcp__linkedin__get_job_details`（LinkedIn MCP）
-8. 返回的 JD → jd-analyzer（并行上限 3，同 Phase 2E，`_source` 写入 `"linkedin_posting"`）
-9. 无 job_id 的帖子 URL → 列入 manual_review 清单（仅展示，不分析）
-10. 展示结果汇总表
-
 ---
 
 ## 上下文管理（自动 compact）
-
+默认英文输出/com
 以下两种情况，**必须**在回复末尾追加 compact 提示块，不得省略：
 
 ### 触发条件 1：Phase 切换
