@@ -57,6 +57,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
   font-size:12px; font-weight:500; border:none; cursor:pointer; background:transparent;
   color:#404850; transition:.15s; white-space:nowrap; }
 .seg-btn.active { background:#fff; color:#005d8f; box-shadow:0 1px 3px rgba(0,0,0,.1); }
+.cvs-tab-active { background:#fff; color:#005d8f; box-shadow:0 1px 4px rgba(0,0,0,.08); }
 
 /* Table scroll wrapper — overflow:auto makes sticky thead top:0 work */
 .table-scroll-wrapper { max-height: calc(100vh - 310px); overflow:auto; border-radius:.75rem .75rem 0 0; }
@@ -120,6 +121,17 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
 .stat-card .stat-label { font-family:'Space Grotesk'; font-size:10px; font-weight:600;
   text-transform:uppercase; letter-spacing:.07em; color:#707881; }
 .stat-card .stat-sub { font-size:11px; color:#9ca3af; margin-top:2px; }
+
+/* Search progress banner */
+.search-banner { background:#EFF6FF; border:1px solid #BFDBFE; border-radius:.75rem;
+  padding:12px 16px; margin-bottom:8px; }
+@keyframes search-bar-pulse {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(400%); }
+}
+.search-bar-track { height:4px; background:#BFDBFE; border-radius:9999px; overflow:hidden; position:relative; }
+.search-bar-fill  { height:100%; width:25%; background:#3B82F6; border-radius:9999px;
+  animation: search-bar-pulse 1.8s ease-in-out infinite; position:absolute; }
 
 /* Detail page */
 .detail-card { background:#fff; border-radius:1rem; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,.07); }
@@ -185,6 +197,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
 .rec-select[data-state="interview"] { background:#EDE9FE; color:#5B21B6; border-color:#5B21B6; }
 .rec-select[data-state="rejected"]  { background:#F3F4F6; color:#9CA3AF; border-color:#D1D5DB; }
 .rec-select[data-state="invalid"]   { background:#F3F4F6; color:#6B7280; border-color:#9CA3AF; }
+.rec-select[data-state="offer"]     { background:#DCFCE7; color:#15803D; border-color:#15803D; }
 
 /* Materials ready badge */
 .mat-badge { display:inline-flex; align-items:center; gap:2px; font-size:10px;
@@ -299,6 +312,22 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <div class="stat-sub" id="stat-orange-sub"></div>
     </div>
   </div>
+  <!-- Funnel row (UX-D2) -->
+  <div id="funnel-row" class="flex items-center gap-3 mb-4 px-1 text-xs text-slate-600"
+    style="display:none;font-family:'Space Grotesk';">
+    <span class="text-slate-400">Pipeline:</span>
+    <span><span class="font-bold text-slate-700" id="fn-total">—</span> seen</span>
+    <span class="text-slate-300 text-base">›</span>
+    <span><span class="font-bold text-blue-600" id="fn-applied">—</span> applied</span>
+    <span class="text-slate-300 text-base">›</span>
+    <span><span class="font-bold text-purple-600" id="fn-interview">—</span> interview</span>
+    <span class="text-slate-300 text-base">›</span>
+    <span><span class="font-bold text-green-600" id="fn-offer">—</span> offer</span>
+    <span class="text-slate-400 ml-2" id="fn-rate"></span>
+  </div>
+  <!-- Search progress banners (1-2 concurrent searches) -->
+  <div id="search-progress-wrap" style="display:none;" class="mb-4"></div>
+
   <!-- Suspicious hidden notice -->
   <div id="suspicious-notice" style="display:none;margin-bottom:4px;font-family:'Space Grotesk',sans-serif;"
     class="text-xs text-amber-600 font-medium">
@@ -315,6 +344,16 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
     <button onclick="document.getElementById('hide-blockers').checked=false;applyFilters();"
       style="background:none;border:none;color:inherit;font-size:inherit;cursor:pointer;margin-left:6px;text-decoration:underline;">
       Show all
+    </button>
+  </div>
+
+  <!-- Gap skill filter badge -->
+  <div id="gap-filter-badge" style="display:none;margin-bottom:8px;font-family:'Space Grotesk',sans-serif;"
+    class="text-xs font-medium text-orange-700">
+    🔍 Missing: <span id="gap-filter-label"></span>
+    <button onclick="clearGapFilter()"
+      style="background:none;border:none;color:inherit;font-size:inherit;cursor:pointer;margin-left:6px;text-decoration:underline;">
+      Clear ✕
     </button>
   </div>
 
@@ -371,11 +410,11 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <label class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold"
         style="font-family:'Space Grotesk'">Analyzed</label>
       <div class="flex gap-1 items-center">
-        <input id="date-from" type="date"
+        <input id="date-from" type="date" lang="en"
           class="border border-gray-200 rounded-lg px-2 py-1.5 text-xs text-slate-600 outline-none focus:border-[#005d8f]"
           oninput="debounceFilters()">
         <span class="text-gray-400 text-xs">–</span>
-        <input id="date-to" type="date"
+        <input id="date-to" type="date" lang="en"
           class="border border-gray-200 rounded-lg px-2 py-1.5 text-xs text-slate-600 outline-none focus:border-[#005d8f]"
           oninput="debounceFilters()">
       </div>
@@ -391,6 +430,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
         <option value="__none__">— Track</option>
         <option value="applied">Applied</option>
         <option value="interview">Interview</option>
+        <option value="offer">Offer</option>
         <option value="rejected">Rejected</option>
         <option value="invalid">Invalid</option>
       </select>
@@ -426,7 +466,7 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <label class="flex items-center gap-1.5 cursor-pointer text-xs font-semibold"
         style="font-family:'Space Grotesk';color:#005d8f;">
         <input type="checkbox" id="lang-advantage" onchange="applyFilters(); saveFilterState();">
-        语言优势
+        Language Advantage
       </label>
     </div>
     <!-- Reset all filters -->
@@ -463,21 +503,18 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <div class="flex flex-col gap-1.5">
         <label class="text-[10px] uppercase tracking-widest text-slate-400 font-semibold"
           style="font-family:'Space Grotesk'">Action</label>
-        <button id="loading-btn" onclick="onLoadingClick()">
-          <span class="material-symbols-outlined" style="font-size:15px;">refresh</span>
-          <span id="loading-btn-text">Search Jobs</span>
-        </button>
-        <div id="search-log-panel" style="display:none; margin-top:8px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;
-                      font-size:11px;color:#64748b;margin-bottom:4px;">
-            <span>Claude Code Output</span>
-            <button onclick="document.getElementById('search-log-panel').style.display='none'"
-                    style="background:none;border:none;cursor:pointer;font-size:14px;color:#94a3b8;">✕</button>
-          </div>
-          <pre id="search-log-pre"
-               style="background:#0f172a;color:#94a3b8;font-size:11px;font-family:monospace;
-                      padding:10px;border-radius:6px;max-height:200px;overflow-y:auto;
-                      white-space:pre-wrap;word-break:break-all;margin:0;"></pre>
+        <div class="flex items-center gap-2">
+          <button id="loading-btn" onclick="onLoadingClick()">
+            <span class="material-symbols-outlined" style="font-size:15px;">refresh</span>
+            <span id="loading-btn-text">Search Jobs</span>
+          </button>
+          <button onclick="openSearchLog(activeGroup||'all')" title="Search Log"
+            style="background:none;border:1.5px solid #cbd5e1;border-radius:8px;cursor:pointer;
+                   color:#64748b;padding:5px 9px;font-size:12px;line-height:1;"
+            onmouseover="this.style.borderColor='#005d8f';this.style.color='#005d8f'"
+            onmouseout="this.style.borderColor='#cbd5e1';this.style.color='#64748b'">
+            <span class="material-symbols-outlined" style="font-size:15px;vertical-align:middle;">terminal</span>
+          </button>
         </div>
       </div>
     </div>
@@ -570,14 +607,38 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
 </div>
 </div>
 
+<!-- CL generation status bar (sits above sticky footer) -->
+<div id="cl-status-bar" style="display:none; position:fixed; bottom:76px; left:0; width:100%; z-index:45; padding:0 24px 6px; pointer-events:none;">
+  <div style="background:#fff; border:1px solid #e5e7eb; border-radius:.75rem; padding:10px 16px;
+              box-shadow:0 -2px 8px rgba(0,0,0,.06); display:flex; align-items:center; gap:10px; pointer-events:auto;">
+    <span id="cl-status-icon" style="font-size:15px; flex-shrink:0;">⏳</span>
+    <div style="flex:1; min-width:0;">
+      <div id="cl-status-text" style="font-family:'Space Grotesk'; font-size:13px; font-weight:600; color:#374151;"></div>
+      <div id="cl-status-log" style="font-family:monospace; font-size:11px; color:#9CA3AF; margin-top:1px;
+                                     white-space:nowrap; overflow:hidden; text-overflow:ellipsis;"></div>
+    </div>
+    <button id="cl-open-btn" onclick="openCLFolder()"
+      style="display:none; padding:6px 14px; background:#005d8f; color:#fff; border:none;
+             border-radius:9999px; font-size:12px; font-weight:700; cursor:pointer;
+             font-family:'Space Grotesk'; white-space:nowrap; flex-shrink:0;">
+      Open Folder
+    </button>
+  </div>
+</div>
+
 <!-- Detail sticky footer -->
 <div id="detail-footer" style="display:none;" class="detail-footer">
+  <button id="gen-cl-btn" onclick="generateCL()"
+    class="flex-1 flex items-center justify-center gap-2 rounded-full px-6 py-3 font-bold text-sm"
+    style="font-family:Manrope; background:#005d8f; color:#fff; border:none; cursor:pointer;">
+    <span class="material-symbols-outlined text-sm">description</span> Generate Cover Letter
+  </button>
   <a id="apply-btn" href="#" target="_blank"
     class="flex-1 flex items-center justify-center gap-2 kinetic-gradient text-white rounded-full px-6 py-3 font-bold text-sm no-underline"
     style="font-family:Manrope;">
     Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
   </a>
-  <button onclick="showPage('dashboard'); document.getElementById('detail-footer').style.display='none';"
+  <button onclick="_resetCLStatus(); showPage('dashboard'); document.getElementById('detail-footer').style.display='none';"
     class="flex-1 flex items-center justify-center gap-2 text-[#005d8f] border-2 border-[#005d8f]/20
            bg-white rounded-full px-6 py-3 font-bold text-sm"
     style="font-family:Manrope;">
@@ -595,12 +656,24 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
       <h1 class="text-2xl font-black text-[#191c1d]" style="font-family:Manrope;">My CVs</h1>
       <p class="text-sm text-slate-500 mt-1">Manage your CV-to-job-group mappings. Each group uses a dedicated CV tailored for a specific career track.</p>
     </div>
-    <button disabled title="Coming soon — Page 3 not yet implemented"
-      class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold opacity-40 cursor-not-allowed"
+    <button onclick="openGroupDrawer(null)"
+      class="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold"
       style="font-family:'Space Grotesk'; background:linear-gradient(135deg,#005d8f,#0077b5); color:#fff;">
       <span class="material-symbols-outlined" style="font-size:16px;">add</span> Add Group
     </button>
   </div>
+
+  <!-- Tab bar -->
+  <div class="flex gap-1 mb-5 bg-slate-100 rounded-xl p-1 w-fit">
+    <button id="tab-groups" onclick="switchCvsTab('groups')"
+      class="cvs-tab cvs-tab-active px-4 py-1.5 rounded-lg text-sm font-semibold"
+      style="font-family:'Space Grotesk';">Groups</button>
+    <button id="tab-settings" onclick="switchCvsTab('settings')"
+      class="cvs-tab px-4 py-1.5 rounded-lg text-sm font-semibold text-slate-500"
+      style="font-family:'Space Grotesk';">Settings</button>
+  </div>
+
+  <div id="cvs-tab-groups">
 
   <!-- Summary bar -->
   <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6" id="cvs-stats-row">
@@ -663,6 +736,130 @@ body { font-family: 'Inter', sans-serif; background: #F8F9FA; color: #191c1d; ma
   <div class="mt-6 px-6 py-4 rounded-xl text-sm text-[#1D4ED8]" style="background:#EFF6FF;">
     <span class="font-bold">Tip:</span> Each group's CV is automatically selected when generating tailored applications. Keep CVs updated to improve match scores.
   </div>
+
+  </div><!-- /cvs-tab-groups -->
+
+  <!-- Settings Tab -->
+  <div id="cvs-tab-settings" style="display:none;">
+  <div class="max-w-[640px] space-y-5">
+
+    <!-- Search Settings -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="font-bold text-base mb-4" style="font-family:Manrope;">Search Settings</h3>
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Location</label>
+          <input id="pref-location" type="text" class="w-full border rounded-lg px-3 py-2 text-sm"
+            placeholder="e.g. Germany, Berlin" />
+          <p class="text-xs text-slate-400 mt-1">Comma-separated</p>
+        </div>
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">
+            Date Range
+            <span id="pref-daterange-val" class="font-mono normal-case text-slate-700 ml-1">14</span> days
+          </label>
+          <input id="pref-daterange" type="range" min="1" max="30" value="14"
+            oninput="document.getElementById('pref-daterange-val').textContent=this.value"
+            class="w-full accent-[#005d8f] mt-2" />
+        </div>
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Max Jobs Displayed</label>
+          <input id="pref-maxdisplay" type="number" min="10" max="200" step="10"
+            class="w-full border rounded-lg px-3 py-2 text-sm" placeholder="30" />
+          <p class="text-xs text-slate-400 mt-1">Per page on dashboard</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Work Preferences -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="font-bold text-base mb-4" style="font-family:Manrope;">Work Preferences</h3>
+      <div class="space-y-4">
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Work Mode</label>
+          <div class="flex gap-3">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="pref-mode-hybrid" class="accent-[#005d8f]" value="hybrid" />
+              <span class="text-sm">Hybrid</span></label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="pref-mode-remote" class="accent-[#005d8f]" value="remote" />
+              <span class="text-sm">Remote</span></label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="pref-mode-onsite" class="accent-[#005d8f]" value="onsite" />
+              <span class="text-sm">Onsite</span></label>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-2">Preferred Level</label>
+          <div class="flex flex-wrap gap-2" id="pref-level-group">
+            <!-- rendered by JS -->
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Salary Expectation (€/mo)</label>
+            <input id="pref-salary" type="number" min="0" step="100"
+              class="w-full border rounded-lg px-3 py-2 text-sm" placeholder="3000" />
+          </div>
+          <div>
+            <label class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-1">Preferred Domains</label>
+            <input id="pref-domains" type="text"
+              class="w-full border rounded-lg px-3 py-2 text-sm" placeholder="SaaS, E-Commerce, FinTech" />
+            <p class="text-xs text-slate-400 mt-1">Comma-separated</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Language Skills -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="font-bold text-base mb-1" style="font-family:Manrope;">Language Skills</h3>
+      <p class="text-xs text-slate-400 mb-4">
+        Enables language-bonus scoring and auto-creates search groups on next search.
+        Removing a language here does <strong>not</strong> delete existing search groups.
+      </p>
+      <div class="grid grid-cols-4 gap-3" id="pref-lang-grid"></div>
+    </div>
+
+    <!-- Job Sources & Automation -->
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h3 class="font-bold text-base mb-4" style="font-family:Manrope;">Job Sources &amp; Automation</h3>
+      <div class="space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-sm font-semibold text-slate-700">Stepstone Search</div>
+            <div class="text-xs text-slate-400">Requires local Stepstone server running</div>
+          </div>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="pref-stepstone" class="accent-[#005d8f]" />
+            <span class="text-sm font-mono text-slate-500" id="pref-stepstone-lbl">Disabled</span>
+          </label>
+        </div>
+        <div class="flex items-center justify-between border-t pt-4">
+          <div>
+            <div class="text-sm font-semibold text-slate-700">Auto-generate Interview Answers</div>
+            <div class="text-xs text-slate-400">For jobs with score ≥ 70 after Phase 2</div>
+          </div>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="pref-autoanswers" class="accent-[#005d8f]" />
+            <span class="text-sm font-mono text-slate-500" id="pref-autoanswers-lbl">On</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Save -->
+    <div class="flex gap-3 pb-8">
+      <button onclick="savePreferences()"
+        class="kinetic-gradient text-white rounded-full px-8 py-2.5 text-sm font-bold"
+        style="font-family:'Space Grotesk';">Save Preferences</button>
+      <button onclick="loadPreferences()"
+        class="border-2 border-slate-200 text-slate-600 rounded-full px-6 py-2.5 text-sm font-bold">
+        Reset</button>
+    </div>
+
+  </div>
+  </div><!-- /cvs-tab-settings -->
 
 </div>
 </div><!-- /page-cvs -->
@@ -739,7 +936,7 @@ let _skillGapVisible = false;
 let SKILL_TAXONOMY = {};
 async function fetchTaxonomy() {
   try {
-    const r = await fetch('/api/taxonomy');
+    const r = await fetch('/api/taxonomy' + _uidQ());
     if (r.ok) SKILL_TAXONOMY = await r.json();
   } catch(e) { /* silent fallback — classifySkill ||[] guards cover missing data */ }
 }
@@ -845,7 +1042,7 @@ function esc(s) {
 async function loadJobs() {
   await fetchTaxonomy();
   try {
-    const resp = await fetch('/api/jobs');
+    const resp = await fetch('/api/jobs' + _uidQ());
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     JOBS = await resp.json();
     hideError();
@@ -964,6 +1161,14 @@ function applyFilters() {
       if (normAr !== filterRecord) return false;
     }
     if (locVal && (j.inferred_location || '') !== locVal) return false;
+    if (_gapSkillFilter) {
+      const match = (j.missing_skills || []).some(s => {
+        const raw = (s && s.skill) || s || '';
+        const {key} = normalizeSkillKey(raw);
+        return key === _gapSkillFilter;
+      });
+      if (!match) return false;
+    }
     const hideSuspicious = document.getElementById('hide-suspicious');
     if (hideSuspicious && hideSuspicious.checked) {
       if ((j.legitimacy_verdict || 'UNKNOWN') === 'SUSPICIOUS') return false;
@@ -1017,6 +1222,12 @@ function applyFilters() {
   saveFilterState();
 }
 
+function fmtShortDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('en-GB', {day:'numeric', month:'short'});
+}
+
 // ── Stats row (dynamic: reflects current filteredJobs) ────────────────────────
 function updateStats() {
   const src = filteredJobs;
@@ -1026,8 +1237,9 @@ function updateStats() {
     const invalid   = all.filter(j => j.application_record === 'invalid').length;
     const interview = all.filter(j => j.application_record === 'interview').length;
     const rejected  = all.filter(j => j.application_record === 'rejected').length;
-    const awaits    = all.length - applied - invalid - interview - rejected;
-    return { total: all.length, applied, invalid, interview, rejected, awaits };
+    const offer     = all.filter(j => j.application_record === 'offer').length;
+    const awaits    = all.length - applied - invalid - interview - rejected - offer;
+    return { total: all.length, applied, invalid, interview, rejected, offer, awaits };
   };
   const g = tier(70, null), y = tier(45, 70), o = tier(30, 45), a = tier(30, null);
 
@@ -1042,6 +1254,12 @@ function updateStats() {
   document.getElementById('stat-yellow-sub').textContent = subText(y);
   document.getElementById('stat-orange-sub').textContent = subText(o);
   updateStatCardHighlight();
+  document.getElementById('fn-total').textContent     = a.total;
+  document.getElementById('fn-applied').textContent   = a.applied;
+  document.getElementById('fn-interview').textContent = a.interview;
+  document.getElementById('fn-offer').textContent     = a.offer || 0;
+  const fnRate = a.applied > 0 ? Math.round(a.interview / a.applied * 100) : 0;
+  document.getElementById('fn-rate').textContent = a.applied > 0 ? `${fnRate}% → interview` : '';
 }
 
 // ── Loading button ────────────────────────────────────────────────────────────
@@ -1056,15 +1274,15 @@ function getCommand() {
     return btn ? btn.textContent.trim() : g;
   })();
   if (g === 'all') {
-    if (s === 'all')       return {display: 'Search Jobs',            clipboard: '搜索职缺'};
-    if (s === 'LinkedIn')  return {display: 'Search LinkedIn',        clipboard: '搜索LinkedIn职缺'};
-    if (s === 'Stepstone') return {display: 'Search Stepstone',       clipboard: '搜索Stepstone职缺'};
+    if (s === 'all')       return {display: 'Search Jobs',            clipboard: 'Search Jobs'};
+    if (s === 'LinkedIn')  return {display: 'Search LinkedIn',        clipboard: 'Search LinkedIn'};
+    if (s === 'Stepstone') return {display: 'Search Stepstone',       clipboard: 'Search Stepstone'};
   } else {
-    if (s === 'all')       return {display: 'Search Jobs — ' + groupLabel,      clipboard: '搜索职缺 ' + g};
-    if (s === 'LinkedIn')  return {display: 'Search LinkedIn — ' + groupLabel,  clipboard: '搜索LinkedIn职缺 ' + g};
-    if (s === 'Stepstone') return {display: 'Search Stepstone — ' + groupLabel, clipboard: '搜索Stepstone职缺 ' + g};
+    if (s === 'all')       return {display: 'Search Jobs — ' + groupLabel,      clipboard: 'Search Jobs ' + g};
+    if (s === 'LinkedIn')  return {display: 'Search LinkedIn — ' + groupLabel,  clipboard: 'Search LinkedIn ' + g};
+    if (s === 'Stepstone') return {display: 'Search Stepstone — ' + groupLabel, clipboard: 'Search Stepstone ' + g};
   }
-  return {display: 'Search Jobs', clipboard: '搜索职缺'};
+  return {display: 'Search Jobs', clipboard: 'Search Jobs'};
 }
 
 function updateLoadingBtnText() {
@@ -1074,14 +1292,14 @@ function updateLoadingBtnText() {
 async function startPolling() {
   if (pollingTimer) clearInterval(pollingTimer);
   try {
-    const r = await fetch('/api/status');
+    const r = await fetch('/api/status' + _uidQ());
     const d = await r.json();
     lastMtime = d.mtime;
   } catch(e) { lastMtime = null; }
   let ticks = 0;
   pollingTimer = setInterval(async () => {
     try {
-      const r = await fetch('/api/status');
+      const r = await fetch('/api/status' + _uidQ());
       const d = await r.json();
       if (lastMtime !== null && d.mtime !== lastMtime) {
         clearInterval(pollingTimer); pollingTimer = null;
@@ -1093,75 +1311,317 @@ async function startPolling() {
   }, 2000);
 }
 
+const MAX_CONCURRENT_SEARCHES = 2;
+
 async function onLoadingClick() {
-  const {clipboard: cmd} = getCommand();
   const btn  = document.getElementById('loading-btn');
   const span = document.getElementById('loading-btn-text');
-  const gid  = filterGroup || 'all';
-
-  // Immediately show feedback so user knows the click registered
+  const gid  = activeGroup || 'all';
   btn.disabled = true;
   span.textContent = '⏳ Connecting…';
-
-  let started = false;
   try {
-    const resp = await fetch('/api/search', {
+    const resp = await fetch('/api/search' + _uidQ(), {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({group_id: gid})
     });
+    const d = await resp.json().catch(() => ({}));
     if (resp.ok) {
-      started = true;
-      console.log('[search] API started:', gid);
+      renderSearchProgress([{group_id: gid, uid: _currentUserId}]);
+      subscribeSearchLog(gid);
     } else if (resp.status === 409) {
-      btn.disabled = false;
-      span.textContent = getCommand().display;
-      alert('A search is already running.');
-      return;
+      resetLoadingBtn();
+      showToast('⚠️ This group is already being searched', 4000);
+    } else if (resp.status === 429) {
+      resetLoadingBtn();
+      const running = (d.searches || []).map(s => s.group_id.replace(/^group-/,'')).join(', ');
+      showToast(`⚠️ ${MAX_CONCURRENT_SEARCHES} searches already running (${running}), please wait`, 6000);
     } else {
-      console.warn('[search] API returned', resp.status, '— falling back to clipboard');
+      resetLoadingBtn();
+      const msg = d.details ? d.details.join('; ') : (d.error || `Server error ${resp.status}`);
+      showToast('⚠️ ' + msg, 6000);
     }
   } catch(e) {
-    console.warn('[search] Server unreachable — falling back to clipboard:', e.message);
+    resetLoadingBtn();
+    showToast('⚠️ Server unreachable: ' + e.message, 6000);
   }
-
-  if (!started) {
-    try { await navigator.clipboard.writeText(cmd); }
-    catch(e) { prompt('Copy this command and paste it into Claude Code:', cmd); }
-    span.textContent = '⏳ Loading…';
-    await startPolling();
-    return;
-  }
-
-  span.textContent = '⏳ Running…';
-  openSearchLog();
-  subscribeSearchLog();
 }
 
-function openSearchLog() {
-  const panel = document.getElementById('search-log-panel');
-  const pre   = document.getElementById('search-log-pre');
-  if (panel) panel.style.display = 'block';
-  if (pre)   pre.textContent = '';
-}
+let _statsTimer = null;
+let _activeEsByGroup = {};   // { 'group-pmo': EventSource, '__all__': EventSource, ... }
+let _currentLogGroup = null; // group_id currently shown in the drawer
 
-function subscribeSearchLog() {
+function openSearchLog(group_id) {
   const pre = document.getElementById('search-log-pre');
-  const es  = new EventSource('/api/search-log');
+  if (pre) pre.textContent = '';
+  const lbl = document.getElementById('search-log-drawer-label');
+  if (lbl) lbl.textContent = group_id && group_id !== 'all'
+    ? '— ' + group_id.replace(/^group-/i, '') : '';
+  document.getElementById('search-log-overlay').style.display = 'block';
+  document.getElementById('search-log-drawer').style.display  = 'flex';
+  _currentLogGroup = group_id;
+  _loadSearchHistory();
+  _loadBatchStats();
+  _startStatsPolling();
+  subscribeSearchLog(group_id && group_id !== 'all' ? group_id : undefined);
+}
+
+function closeSearchLog() {
+  document.getElementById('search-log-overlay').style.display = 'none';
+  document.getElementById('search-log-drawer').style.display  = 'none';
+  if (_statsTimer) { clearInterval(_statsTimer); _statsTimer = null; }
+  const key = (_currentLogGroup && _currentLogGroup !== 'all') ? _currentLogGroup : '__all__';
+  if (_activeEsByGroup[key]) { _activeEsByGroup[key].close(); delete _activeEsByGroup[key]; }
+}
+
+function _startStatsPolling() {
+  if (_statsTimer) clearInterval(_statsTimer);
+  _statsTimer = setInterval(_loadBatchStats, 3000);
+}
+
+function refreshSearchLog() {
+  const pre = document.getElementById('search-log-pre');
+  if (pre) pre.textContent = '';
+  _loadSearchHistory();
+  _loadBatchStats();
+  subscribeSearchLog(_currentLogGroup && _currentLogGroup !== 'all' ? _currentLogGroup : undefined);
+}
+
+function _loadSearchHistory() {
+  fetch('/api/search-history' + _uidQ())
+    .then(r => r.json())
+    .then(records => {
+      const box = document.getElementById('search-log-history');
+      if (!box) return;
+      const last5 = records.slice(-5).reverse();
+      if (!last5.length) {
+        box.innerHTML = '<div style="color:#334155;font-size:10px;">No search history</div>';
+        box.style.display = 'block';
+        return;
+      }
+      const statusDot = s => s === 'completed' ? '#22c55e' : s === 'running' ? '#60a5fa' : s === 'timeout' ? '#f87171' : '#f97316';
+      const fmt = iso => { const d = new Date(iso); return d.toLocaleDateString('en-GB',{month:'short',day:'numeric'}) + ' ' + d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}); };
+      const dur = r => r.finished ? Math.round((new Date(r.finished)-new Date(r.started))/60000)+'m' : '—';
+      box.innerHTML =
+        '<div style="font-weight:600;letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;color:#334155;">Recent Batches</div>' +
+        last5.map(r => `
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;font-size:10px;">
+            <span style="color:${statusDot(r.status)};font-size:8px;">●</span>
+            <span style="color:#94a3b8;min-width:110px;">${r.group_id.replace(/^group-/,'')}</span>
+            <span style="color:#475569;">${fmt(r.started)}</span>
+            <span style="color:#334155;min-width:28px;">${dur(r)}</span>
+            <span style="color:${statusDot(r.status)};">${r.status}</span>
+          </div>`).join('');
+      box.style.display = 'block';
+    })
+    .catch(() => {});
+}
+
+function subscribeSearchLog(group_id) {
+  const key = group_id || '__all__';
+  if (_activeEsByGroup[key]) { _activeEsByGroup[key].close(); }
+
+  const pre = document.getElementById('search-log-pre');
+  const drawerOpen = document.getElementById('search-log-drawer')?.style.display === 'flex';
+  if (pre && drawerOpen) pre.textContent = '⏳ Loading log…';
+
+  const sep = _uidQ() ? '&' : '?';
+  const gParam = group_id ? sep + 'group_id=' + encodeURIComponent(group_id) : '';
+  const es = new EventSource('/api/search-log' + _uidQ() + gParam);
+  _activeEsByGroup[key] = es;
+  let hasContent = false;
+
   es.onmessage = e => {
     const d = JSON.parse(e.data);
     if (d.done) {
-      es.close();
-      resetLoadingBtn();
+      es.close(); delete _activeEsByGroup[key];
+      if (pre && drawerOpen && !hasContent) pre.textContent = '(No log content)';
+      _removeSearchBanner(group_id || 'all');
+      if (!document.querySelectorAll('.search-banner').length) resetLoadingBtn();
       setTimeout(() => loadJobs(), 2000);
       return;
     }
-    if (pre && d.text) {
-      pre.textContent += d.text + '\n';
-      pre.scrollTop = pre.scrollHeight;
+    if (d.text) {
+      if (pre) {
+        if (!hasContent) { pre.textContent = ''; hasContent = true; }
+        const atBottom = pre.scrollHeight - pre.scrollTop - pre.clientHeight < 50;
+        pre.textContent += d.text + '\n';
+        if (atBottom) pre.scrollTop = pre.scrollHeight;
+      }
+      _updateBannerSummary(group_id || 'all', d.text);
     }
   };
-  es.onerror = () => { es.close(); resetLoadingBtn(); };
+  es.onerror = () => {
+    es.close(); delete _activeEsByGroup[key];
+    if (pre && drawerOpen && !hasContent) pre.textContent = '⚠ Log connection failed, click Refresh to retry';
+  };
+}
+
+// ── Search progress banners ───────────────────────────────────────────────────
+
+function renderSearchProgress(searches) {
+  const wrap = document.getElementById('search-progress-wrap');
+  if (!searches || !searches.length) { wrap.style.display = 'none'; return; }
+  wrap.style.display = '';
+  searches.forEach(s => {
+    if (document.getElementById('banner-' + _bannerKey(s.group_id))) return; // already rendered
+    const label = s.group_id === 'all' ? 'All Groups' : s.group_id.replace(/^group-/i, '');
+    const div = document.createElement('div');
+    div.className = 'search-banner';
+    div.id = 'banner-' + _bannerKey(s.group_id);
+    div.innerHTML = `
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-blue-700 font-semibold text-sm" style="font-family:'Space Grotesk'">
+          🔍 Searching <strong>${esc(label)}</strong>
+        </span>
+        <button onclick="toggleGroupLog('${esc(s.group_id)}')"
+          class="text-xs text-blue-500 underline hover:text-blue-700" style="font-family:'Space Grotesk'">
+          View Log
+        </button>
+      </div>
+      <div class="search-bar-track mb-2"><div class="search-bar-fill"></div></div>
+      <div id="summary-${_bannerKey(s.group_id)}" class="text-[11px] text-blue-500 font-mono truncate" style="max-width:100%;"></div>`;
+    wrap.appendChild(div);
+  });
+  // Show running btn state
+  const btn = document.getElementById('loading-btn');
+  if (btn) btn.disabled = true;
+  const span = document.getElementById('loading-btn-text');
+  if (span) span.textContent = '⏳ Running…';
+}
+
+function _bannerKey(group_id) {
+  return (group_id || 'all').replace(/[^a-zA-Z0-9]/g, '-');
+}
+
+function _removeSearchBanner(group_id) {
+  const el = document.getElementById('banner-' + _bannerKey(group_id));
+  if (el) el.remove();
+  const wrap = document.getElementById('search-progress-wrap');
+  if (wrap && !wrap.children.length) wrap.style.display = 'none';
+}
+
+function _updateBannerSummary(group_id, text) {
+  const el = document.getElementById('summary-' + _bannerKey(group_id));
+  if (el && text.trim()) el.textContent = text.trim();
+}
+
+function _loadBatchStats() {
+  fetch('/api/batch-stats' + _uidQ())
+    .then(r => r.json())
+    .then(d => {
+      const box = document.getElementById('search-log-stats');
+      if (!box) return;
+
+      const phaseLabel = {
+        idle: '— Idle', starting: '⏳ Starting…', scraping: '🔍 Scraping keywords',
+        analyzing: '🧠 JD Analysis', pending_analysis: '⚠️ Pending Analysis',
+        completed: '✓ Completed', interrupted: '✗ Interrupted'
+      }[d.phase] || d.phase;
+
+      const phaseColor = {
+        scraping:'#60a5fa', analyzing:'#a78bfa', completed:'#22c55e',
+        pending_analysis:'#fb923c', interrupted:'#f87171', starting:'#94a3b8', idle:'#475569'
+      }[d.phase] || '#64748b';
+
+      const displayGroup = d.active_group_id || d.pending_group_id;
+
+      // Row 1: Group + Phase
+      let html = `<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px;">`;
+      if (displayGroup)
+        html += `<span style="color:#94a3b8;font-size:12px;font-weight:600;">${displayGroup.replace(/^group-/,'')}</span>
+                 <span style="color:#334155;">·</span>`;
+      html += `<span style="background:${phaseColor}18;color:${phaseColor};font-weight:600;font-size:13px;
+                            padding:2px 9px;border-radius:10px;border:1px solid ${phaseColor}40;">${phaseLabel}</span>`;
+      html += `</div>`;
+
+      // Row 2: Stats numbers
+      const parts = [];
+      if (d.cumulative) parts.push(`Found: <b style="color:#94a3b8;">${d.cumulative}</b>`);
+      if (d.high_score != null) parts.push(`Score&gt;50: <b style="color:#22c55e;">${d.high_score}</b>`);
+      parts.push(`Analyzed today: <b style="color:#a78bfa;">${d.analyzed_today ?? 0}</b>`);
+      if (d.total_analyzed > 0) parts.push(`Total: <b style="color:#7dd3fc;">${d.total_analyzed}</b>`);
+      html += `<div style="display:flex;gap:10px;flex-wrap:wrap;color:#64748b;font-size:12px;margin-bottom:5px;">
+        ${parts.map(p=>`<span>${p}</span>`).join('')}</div>`;
+
+      // Row 3: Current keyword
+      if (d.current_kw)
+        html += `<div style="color:#60a5fa;font-size:11px;font-family:monospace;
+                             margin-bottom:5px;word-break:break-all;">${d.current_kw}</div>`;
+
+      // Pending batches warning (up to 5, each with continue button)
+      const pbs = d.pending_batches || (d.pending_batch ? [d.pending_batch] : []);
+      pbs.forEach(pb => {
+        const gid    = pb.group_id || d.pending_group_id;
+        const gLabel = gid ? gid.replace(/^group-/,'') : '?';
+        const notDeduped = !pb.dedup_done;
+        const skippedN   = pb.skipped_analysis || 0;
+        const fetched    = pb.fetched_actual ?? pb.fetched_total ?? '?';
+        const deduped    = pb.skipped_duplicate > 0 ? `Dedup ${pb.skipped_duplicate}` : null;
+        html += `<div style="background:#1c1917;border:1px solid #44403c;border-radius:6px;
+                             padding:8px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:5px;">
+          <span style="color:#fb923c;font-size:11px;font-weight:600;">⚠ ${gLabel}</span>
+          <span style="color:#334155;font-size:10px;">·</span>
+          <span style="color:#78716c;font-size:10px;">Batch ${pb.batch_id || '?'}</span>
+          <span style="color:#334155;font-size:10px;">·</span>
+          <span style="color:#78716c;font-size:10px;">Fetched ${fetched}</span>
+          ${deduped ? `<span style="color:#334155;font-size:10px;">·</span><span style="color:#64748b;font-size:10px;">${deduped}</span>` : ''}
+          ${notDeduped ? '<span style="color:#334155;font-size:10px;">·</span><span style="color:#f87171;font-size:10px;">Not deduped</span>' : ''}
+          ${pb.new_total != null && !notDeduped ? `<span style="color:#334155;font-size:10px;">·</span><span style="color:#94a3b8;font-size:10px;">New ${pb.new_total}</span>` : ''}
+          ${skippedN > 0 ? `<span style="color:#334155;font-size:10px;">·</span><span style="color:#f59e0b;font-size:10px;">Pending ${skippedN}</span>` : ''}
+          ${gid ? `<button onclick="continueAnalysis('${esc(gid)}')"
+            style="margin-left:auto;background:#1e3a5f;border:1px solid #2563eb;color:#60a5fa;
+                   border-radius:4px;padding:4px 12px;font-size:11px;cursor:pointer;font-family:'Space Grotesk';">
+            ↻ Continue Analysis</button>` : ''}
+        </div>`;
+      });
+
+      box.innerHTML = html;
+    })
+    .catch(() => {
+      const box = document.getElementById('search-log-stats');
+      if (box) box.innerHTML = '<span style="color:#475569;">⚠ Failed to load status</span>';
+    });
+}
+
+async function continueAnalysis(group_id) {
+  const btn = event.target;
+  btn.disabled = true; btn.textContent = 'Triggering…';
+  try {
+    const resp = await fetch('/api/search' + _uidQ(), {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({group_id, action: 'analyze'})
+    });
+    const d = await resp.json().catch(() => ({}));
+    if (resp.ok) {
+      btn.textContent = '✓ Triggered';
+      renderSearchProgress([{group_id, uid: _currentUserId}]);
+      subscribeSearchLog(group_id);
+    } else {
+      btn.disabled = false; btn.textContent = '↻ Continue Analysis';
+      showToast('⚠️ ' + (d.details ? d.details.join('; ') : d.error || 'Error'), 5000);
+    }
+  } catch(e) {
+    btn.disabled = false; btn.textContent = '↻ Continue Analysis';
+    showToast('⚠️ ' + e.message, 5000);
+  }
+}
+
+function toggleGroupLog(group_id) {
+  const drawer = document.getElementById('search-log-drawer');
+  if (!drawer) return;
+  const isOpen = drawer.style.display !== 'none' && drawer.style.display !== '';
+  if (isOpen) { closeSearchLog(); return; }
+  openSearchLog(group_id);
+}
+
+function _initSearchProgress() {
+  fetch('/api/search-status' + _uidQ()).then(r => r.json()).then(d => {
+    if (!d.running || !d.searches || !d.searches.length) return;
+    renderSearchProgress(d.searches);
+    // Subscribe SSE for each running search
+    d.searches.forEach(s => subscribeSearchLog(s.group_id));
+  }).catch(() => {});
 }
 
 function resetLoadingBtn() {
@@ -1213,9 +1673,11 @@ function renderTable() {
     const srcIcon = (j.source||'').toLowerCase().includes('linkedin') ? '🔗' : '📄';
 
 
-    // Application record select (5-state)
+    // Application record select (6-state)
     const ar = j.application_record;
     const displayState = (ar === 'success') ? 'applied' : (ar || '');
+    const aaHtml = j.applied_at
+      ? `<div class="text-[9px] text-slate-400 text-center mt-0.5">${fmtShortDate(j.applied_at)}</div>` : '';
     const recHtml = j.jd_path
       ? `<div onclick="event.stopPropagation()">
            <select class="rec-select" data-state="${esc(displayState)}"
@@ -1223,9 +1685,10 @@ function renderTable() {
              <option value=""${!ar?'selected':''}>— Track</option>
              <option value="applied"${(ar==='applied'||ar==='success')?'selected':''}>Applied</option>
              <option value="interview"${ar==='interview'?'selected':''}>Interview</option>
+             <option value="offer"${ar==='offer'?'selected':''}>Offer</option>
              <option value="rejected"${ar==='rejected'?'selected':''}>Rejected</option>
              <option value="invalid"${ar==='invalid'?'selected':''}>Invalid</option>
-               </select>
+           </select>${aaHtml}
          </div>`
       : '';
 
@@ -1368,7 +1831,7 @@ async function setRecord(idx, val) {
 
   const newVal = val || null;
   try {
-    const r = await fetch('/api/record', {
+    const r = await fetch('/api/record' + _uidQ(), {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({jd_path: job.jd_path, record: newVal})
@@ -1438,6 +1901,10 @@ function showPage(name) {
   if (name === 'dashboard') {
     document.getElementById('detail-footer').style.display = 'none';
   }
+  if (name !== 'detail') {
+    const bar = document.getElementById('cl-status-bar');
+    if (bar) bar.style.display = 'none';
+  }
   // Update nav active state
   document.querySelectorAll('nav a[id^="nav-"]').forEach(a => {
     a.className = 'text-slate-500 font-medium text-sm px-3 py-1 rounded-full hover:bg-gray-100';
@@ -1452,8 +1919,30 @@ function navTo(name) {
   if (name === 'analysis') loadSearchAnalysis();
 }
 
+function _checkCLStatus(job) {
+  if (!job || !job.jd_path) return;
+  const jobFolder = job.jd_path.replace('/jd_analysis.json', '');
+  const uid = _currentUserId || 'leon';
+  fetch(`/api/cl-status?job_folder=${encodeURIComponent(jobFolder)}&uid=${encodeURIComponent(uid)}`)
+    .then(r => r.json())
+    .then(d => {
+      // Guard: discard stale response if we've navigated to a different job
+      if (!detailJob || detailJob.jd_path.replace('/jd_analysis.json', '') !== jobFolder) return;
+      if (d.has_cl && d.folder) {
+        _clFolderPath = d.folder;
+        document.getElementById('cl-status-bar').style.display = 'block';
+        document.getElementById('cl-status-icon').textContent = '✅';
+        document.getElementById('cl-status-text').textContent = 'Cover Letter ready';
+        document.getElementById('cl-status-log').textContent = '';
+        document.getElementById('cl-open-btn').style.display = 'block';
+      }
+    })
+    .catch(() => {});
+}
+
 // ── Page 2 — Job Detail ───────────────────────────────────────────────────────
 function showDetail(job) {
+  _resetCLStatus();
   const sc  = scoreColor(job.score);
   const sd  = job.score != null ? Math.round(job.score) : '—';
   const sbg = scoreBg(job.score);
@@ -1781,6 +2270,7 @@ function showDetail(job) {
   document.getElementById('detail-footer').style.display = 'flex';
   showPage('detail');
   window.scrollTo({top:0, behavior:'smooth'});
+  _checkCLStatus(job);
 }
 
 // ── Form Assistant (M3) ───────────────────────────────────────────────────────
@@ -2176,6 +2666,113 @@ function faGenerateDraft() {
   }).catch(e => { if (status) status.textContent = `Request failed: ${e.message}`; });
 }
 
+// ── Generate CL ───────────────────────────────────────────────────────────────
+let _clFolderPath = null;
+
+function _resetCLStatus() {
+  const btn = document.getElementById('gen-cl-btn');
+  if (btn) { btn.disabled = false; btn.style.opacity = '1'; }
+  const bar = document.getElementById('cl-status-bar');
+  if (bar) bar.style.display = 'none';
+  _clFolderPath = null;
+}
+
+function generateCL() {
+  if (!detailJob || !detailJob.jd_path) return;
+  const jobFolder = detailJob.jd_path.replace('/jd_analysis.json', '');
+  const uid = _currentUserId || 'leon';
+
+  const btn       = document.getElementById('gen-cl-btn');
+  const statusBar = document.getElementById('cl-status-bar');
+  const icon      = document.getElementById('cl-status-icon');
+  const text      = document.getElementById('cl-status-text');
+  const log       = document.getElementById('cl-status-log');
+  const openBtn   = document.getElementById('cl-open-btn');
+
+  btn.disabled = true;
+  btn.style.opacity = '0.6';
+  statusBar.style.display = 'block';
+  icon.textContent = '⏳';
+  text.textContent = 'Starting…';
+  log.textContent  = '';
+  openBtn.style.display = 'none';
+  _clFolderPath = null;
+
+  fetch(`/api/generate-cl?uid=${encodeURIComponent(uid)}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({job_folder: jobFolder})
+  }).then(r => {
+    if (!r.ok) {
+      icon.textContent = '❌';
+      text.textContent = `Error ${r.status}`;
+      btn.disabled = false; btn.style.opacity = '1';
+      return;
+    }
+    text.textContent = 'Generating…';
+    const reader = r.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = '';
+    function pump() {
+      reader.read().then(({done, value}) => {
+        if (done) {
+          if (!_clFolderPath) { icon.textContent = '✅'; text.textContent = 'Done'; }
+          btn.disabled = false; btn.style.opacity = '1';
+          return;
+        }
+        buf += decoder.decode(value, {stream: true});
+        const parts = buf.split('\n\n');
+        buf = parts.pop();
+        parts.forEach(part => {
+          const line = part.trim();
+          if (!line.startsWith('data:')) return;
+          try {
+            const ev = JSON.parse(line.slice(5).trim());
+            if (ev.done) {
+              icon.textContent = '✅';
+              text.textContent = 'Cover Letter ready';
+              log.textContent = '';
+              if (ev.folder) { _clFolderPath = ev.folder; openBtn.style.display = 'block'; }
+              btn.disabled = false; btn.style.opacity = '1';
+            } else if (ev.error) {
+              icon.textContent = '❌';
+              text.textContent = 'Error: ' + ev.error;
+              btn.disabled = false; btn.style.opacity = '1';
+            } else if (ev.text) {
+              log.textContent = ev.text;
+            }
+          } catch(e) {}
+        });
+        pump();
+      }).catch(() => {
+        icon.textContent = '❌';
+        text.textContent = 'Connection interrupted';
+        btn.disabled = false; btn.style.opacity = '1';
+      });
+    }
+    pump();
+  }).catch(e => {
+    icon.textContent = '❌';
+    text.textContent = 'Request failed: ' + e.message;
+    btn.disabled = false; btn.style.opacity = '1';
+  });
+}
+
+function openCLFolder() {
+  if (!_clFolderPath) return;
+  const uid = _currentUserId || 'leon';
+  fetch(`/api/open-folder?uid=${encodeURIComponent(uid)}`, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({path: _clFolderPath})
+  }).then(r => r.json()).then(j => {
+    if (j.error) {
+      document.getElementById('cl-status-text').textContent = 'Error: ' + j.error;
+      document.getElementById('cl-status-icon').textContent = '❌';
+    }
+  }).catch(e => console.error('open-folder:', e));
+}
+
 // ── Debounce for score slider ─────────────────────────────────────────────────
 function debounceFilters() {
   clearTimeout(_filterTimer);
@@ -2352,6 +2949,68 @@ function initResizableColumns() {
   });
 }
 
+// ── Skill normalization (mirrors server_jobs.py _lang_key / _tool_cluster_key) ─
+const _LANG_CANON_JS = {
+  'german':'German','deutsch':'German','english':'English','englisch':'English',
+  'french':'French','français':'French','französisch':'French',
+  'spanish':'Spanish','espanol':'Spanish','español':'Spanish',
+  'mandarin':'Mandarin','chinese':'Mandarin','italian':'Italian','italiano':'Italian',
+  'dutch':'Dutch','portuguese':'Portuguese','japanese':'Japanese','korean':'Korean',
+  'arabic':'Arabic','hindi':'Hindi','russian':'Russian','polish':'Polish',
+  'swedish':'Swedish','norwegian':'Norwegian','danish':'Danish','turkish':'Turkish',
+};
+// Pre-sorted longest-first so longer phrases match before shorter ones
+const _LEVEL_CANON_JS = [
+  ['business proficient','C1'],['verhandlungssicher','C1'],['business fluent','C1'],
+  ['native speaker','Native'],['muttersprache','Native'],['native','Native'],
+  ['bilingual','B1+'],['fließend','B1+'],['fluent','B1+'],
+  ['c2','C2'],['c1','C1'],['b2','B2'],['b1','B1'],['a2','A2'],['a1','A1'],
+];
+const _TOOL_CLUSTERS_JS = [
+  ['SAP / ERP',            ['order management software','order management system','order management tool','sage erp','erp system','erp module','erp platform','erp data','erp integration','erp experience','erp','sap']],
+  ['Salesforce / CRM',     ['salesforce','supplier management tool','supplier management system','crm system','crm platform','crm tool','crm software','crm management','crm administration','crm']],
+  ['Marketing Automation / hubspot', ['marketing automation','hubspot','marketo','mailchimp']],
+  ['Analytics Tools / GA4',['google analytics','mixpanel','amplitude','firebase analytics','mobile analytics','ga4']],
+  ['A/B Testing',          ['a/b test','ab test','experimentation framework','experiment strategy','split test']],
+  ['SQL',                  ['sql']],
+  ['Python / R',           ['python','r programming','rstudio']],
+  ['BI / Reporting',       ['power bi','powerbi','bi tool','bi platform','bi solution','tableau','looker studio','looker','google data studio','qlik','metabase','domo']],
+  ['Adobe Creative',       ['adobe creative','adobe','indesign','photoshop','illustrator']],
+  ['Paid Media',           ['google ads','facebook ads','meta ads','linkedin ads','tiktok ads','amazon advertising','sponsored ads','amazon seller central','amazon vendor central']],
+  ['Cloud Platforms',      ['aws','amazon web services','azure','gcp','google cloud platform']],
+  ['CMS',                  ['content management system','cms system','cms platform','cms tool','cms proficiency','wordpress','cms']],
+  ['FMCG / Food Industry', ['food & beverage industry','food and beverage industry','fmcg','food industry']],
+  ['Payments Domain',      ['payments domain','payment domain']],
+];
+function _escRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+function normalizeSkillKey(s) {
+  const sl = s.toLowerCase();
+  // Language
+  let lang = null;
+  for (const [alias, canonical] of Object.entries(_LANG_CANON_JS)) {
+    if (sl.includes(alias)) { lang = canonical; break; }
+  }
+  if (lang !== null) {
+    let level = null;
+    for (const [alias, canonical] of _LEVEL_CANON_JS) {
+      if (sl.includes(alias)) { level = canonical; break; }
+    }
+    level = level || 'B1+';
+    return {key: `lang:${lang}:${level}`, label: `${lang} (${level})`, cat: 'langs'};
+  }
+  // Tool cluster
+  for (const [display, keywords] of _TOOL_CLUSTERS_JS) {
+    const sorted = [...keywords].sort((a,b) => b.length - a.length);
+    for (const kw of sorted) {
+      const hit = kw.length <= 4
+        ? new RegExp('\\b' + _escRe(kw) + '\\b').test(sl)
+        : sl.includes(kw);
+      if (hit) return {key: 'cluster:' + display, label: display, cat: classifySkill(s)};
+    }
+  }
+  return {key: sl.trim(), label: s, cat: classifySkill(s)};
+}
+
 // ── Skill gap panel ───────────────────────────────────────────────────────────
 function toggleSkillGap() {
   _skillGapVisible = !_skillGapVisible;
@@ -2364,10 +3023,11 @@ function updateSkillGap() {
   const freq = {};
   filteredJobs.forEach(j => (j.missing_skills||[]).forEach(item => {
     const s = typeof item === 'object' ? (item.skill || '') : (item || '');
-    const k = s.trim().toLowerCase();
-    if (!k) return;
-    if (!freq[k]) freq[k] = {label: s, count: 0, cat: classifySkill(s)};
-    freq[k].count++;
+    if (!s.trim()) return;
+    const {key, label, cat} = normalizeSkillKey(s);
+    if (!key) return;
+    if (!freq[key]) freq[key] = {label, count: 0, cat};
+    freq[key].count++;
   }));
   const all = Object.values(freq).sort((a,b)=>b.count-a.count).slice(0,20);
   const maxCount = all[0]?.count || 1;
@@ -2384,7 +3044,7 @@ function updateSkillGap() {
     items.forEach(({label: lbl, count}) => {
       const sz = Math.round(11 + (count / maxCount) * 14);
       const pad = Math.round(1 + (count / maxCount) * 3);
-      html += `<span class="miss-tag" title="${count} jobs" style="font-size:${sz}px;padding:${pad}px ${pad+6}px;line-height:1.4;">${esc(lbl)}<sup style="position:absolute;top:-5px;right:-5px;font-size:9px;background:#6B7280;color:#fff;border-radius:999px;padding:0 3px;line-height:14px;min-width:14px;text-align:center;">${count}</sup></span>`;
+      html += `<span class="miss-tag" title="${count} jobs · click to filter" onclick="filterByMissingSkill('${esc(lbl)}')" style="font-size:${sz}px;padding:${pad}px ${pad+6}px;line-height:1.4;cursor:pointer;">${esc(lbl)}<sup style="position:absolute;top:-5px;right:-5px;font-size:9px;background:#6B7280;color:#fff;border-radius:999px;padding:0 3px;line-height:14px;min-width:14px;text-align:center;">${count}</sup></span>`;
     });
     html += `</div></div>`;
   });
@@ -2725,11 +3385,13 @@ function groupInitials(gid) {
   return parts.map(p => p[0] ? p[0].toUpperCase() : '').join('').slice(0,3) || gid.slice(0,2).toUpperCase();
 }
 
+var _cvGroups = [];
 async function loadGroupStats() {
   try {
-    const resp = await fetch('/api/group-stats');
+    const resp = await fetch('/api/group-stats' + _uidQ());
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const groups = await resp.json();
+    _cvGroups = groups;
     renderCVStats(groups);
     renderCVCards(groups);
     initGapGroupSelect(groups);
@@ -2770,7 +3432,7 @@ async function loadGroupSkillGap() {
   const gid = sel.value;
   document.getElementById('gap-cards').innerHTML = '<div class="text-slate-400 text-sm">Loading…</div>';
   try {
-    const resp = await fetch('/api/group_skill_gaps?group_id=' + encodeURIComponent(gid));
+    const resp = await fetch('/api/group_skill_gaps?group_id=' + encodeURIComponent(gid) + _uidQ('&'));
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     _gapData = await resp.json();
     renderGapCards();
@@ -2829,8 +3491,9 @@ function renderGapCards() {
       .map(([k,n]) => k.replace(/_/g,' ') + ' ×' + n)
       .join(', ');
     const catTag = _gapCat === 'All' ? `<span class="text-[9px] text-slate-300 font-mono ml-1">${s.category}</span>` : '';
-    return `<div class="group-card" style="width:200px;min-height:70px;padding:14px 16px;cursor:default;"
-      title="${esc(tooltip)}">
+    return `<div class="group-card" style="width:200px;min-height:70px;padding:14px 16px;cursor:pointer;"
+      onclick="filterByMissingSkill('${esc(s.skill)}')"
+      title="Click to filter jobs requiring ${esc(s.skill)}">
       <div class="flex items-start justify-between gap-2">
         <span class="font-bold text-sm text-[#191c1d]" style="font-family:'Space Grotesk';">${esc(s.skill)}${catTag}</span>
         <span class="text-xs font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap flex-shrink-0 ${badge.cls}">
@@ -2973,9 +3636,10 @@ function renderCVCards(groups) {
           <button onclick="generateJobFamily('${esc(g.group_id)}')"
             class="text-xs font-bold px-3 py-1.5 rounded-full border border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#EDE9FE] transition"
             style="font-family:'Space Grotesk';">✨ Generate</button>
-          <button disabled title="Coming soon"
-            class="text-xs font-bold px-3 py-1.5 rounded-full border border-slate-200 text-slate-300 cursor-not-allowed"
-            style="font-family:'Space Grotesk';">Edit</button>
+          <button onclick="openGroupDrawer('${esc(g.group_id)}')" title="Edit group"
+            class="text-xs font-bold px-3 py-1.5 rounded-full border border-[#005d8f] text-[#005d8f] hover:bg-[#e8f4fb] transition"
+            style="font-family:'Space Grotesk';">
+            <span class="material-symbols-outlined" style="font-size:13px;vertical-align:-2px;">edit</span> Edit</button>
           <div class="dropdown-wrap">
             <button onclick="toggleDropdown('ddrop-${esc(g.group_id)}')"
               class="cv-action-btn text-base font-bold text-slate-500" title="More actions">···</button>
@@ -3010,27 +3674,46 @@ document.addEventListener('click', e => {
 });
 
 function searchGroup(group_id) {
-  const cmd = '搜索职缺 ' + group_id;
-  navigator.clipboard.writeText(cmd).catch(() => prompt('Copy this command:', cmd));
   activeGroup = group_id;
   showPage('dashboard');
   applyFilters();
   updateLoadingBtnText();
-  // Sync segmented control UI (built dynamically, may not exist yet)
   document.querySelectorAll('#group-tabs .seg-btn').forEach(b =>
     b.classList.toggle('active', b.dataset.group === group_id));
+
   const btn  = document.getElementById('loading-btn');
   const span = document.getElementById('loading-btn-text');
   btn.disabled = true;
-  span.textContent = '⏳ Loading…';
-  startPolling();
+  span.textContent = '⏳ Connecting…';
+
+  fetch('/api/search' + _uidQ(), {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({group_id: group_id})
+  }).then(async r => {
+    const d = await r.json().catch(() => ({}));
+    if (r.ok) {
+      renderSearchProgress([{group_id: group_id, uid: _currentUserId}]);
+      subscribeSearchLog(group_id);
+    } else if (r.status === 409) {
+      resetLoadingBtn();
+      showToast('⚠️ This group is already being searched', 4000);
+    } else if (r.status === 429) {
+      resetLoadingBtn();
+      const running = (d.searches || []).map(s => s.group_id.replace(/^group-/,'')).join(', ');
+      showToast(`⚠️ ${MAX_CONCURRENT_SEARCHES} searches already running (${running}), please wait`, 6000);
+    } else {
+      resetLoadingBtn();
+      showToast('⚠️ ' + (d.details ? d.details.join('; ') : (d.error || `Search failed (${r.status})`)), 6000);
+    }
+  }).catch(e => { resetLoadingBtn(); showToast('⚠️ Server unreachable: ' + e.message, 6000); });
 }
 
 async function deleteGroup(group_id) {
   document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
   if (!confirm('Delete group "' + group_id + '"?\nThis cannot be undone.')) return;
   try {
-    const r = await fetch('/api/group-delete', {
+    const r = await fetch('/api/group-delete' + _uidQ(), {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({group_id})
     });
@@ -3043,7 +3726,7 @@ async function deleteGroup(group_id) {
 async function duplicateGroup(group_id) {
   document.querySelectorAll('.dropdown-menu.open').forEach(m => m.classList.remove('open'));
   try {
-    const r = await fetch('/api/group-dup', {
+    const r = await fetch('/api/group-dup' + _uidQ(), {
       method:'POST', headers:{'Content-Type':'application/json'},
       body: JSON.stringify({group_id})
     });
@@ -3058,7 +3741,7 @@ async function saveNote() {
   if (!ta || !detailJob || !detailJob.jd_path) return;
   const note = ta.value;
   try {
-    await fetch('/api/note', {
+    await fetch('/api/note' + _uidQ(), {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({jd_path: detailJob.jd_path, note})
@@ -3079,7 +3762,27 @@ function copyJobId(e, fullId) {
   navigator.clipboard.writeText(fullId).then(() => showToast('Copied: ' + fullId));
 }
 
-function showToast(msg) {
+let _gapSkillFilter = null;      // normalized key used for comparison
+let _gapSkillFilterLabel = null; // display label shown in badge
+
+function filterByMissingSkill(skillLabel) {
+  const {key} = normalizeSkillKey(skillLabel);
+  _gapSkillFilter = key;
+  _gapSkillFilterLabel = skillLabel;
+  showPage('dashboard');
+  applyFilters();
+  document.getElementById('gap-filter-label').textContent = skillLabel;
+  document.getElementById('gap-filter-badge').style.display = '';
+}
+
+function clearGapFilter() {
+  _gapSkillFilter = null;
+  _gapSkillFilterLabel = null;
+  applyFilters();
+  document.getElementById('gap-filter-badge').style.display = 'none';
+}
+
+function showToast(msg, duration) {
   const t = document.createElement('div');
   t.style.cssText = 'position:fixed;bottom:96px;left:50%;transform:translateX(-50%);' +
     'background:#1f2937;color:#fff;padding:10px 20px;border-radius:9999px;font-size:13px;' +
@@ -3087,7 +3790,7 @@ function showToast(msg) {
     'font-family:Inter,sans-serif;';
   t.textContent = msg;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 2500);
+  setTimeout(() => t.remove(), duration || 2500);
 }
 
 // ── Search Analysis ───────────────────────────────────────────────────────────
@@ -3098,7 +3801,7 @@ async function loadSearchAnalysis() {
   document.getElementById('analysis-chart-wrap').innerHTML =
     '<div class="text-slate-400 text-sm text-center py-8">Loading analysis…</div>';
   try {
-    const resp = await fetch('/api/search-analysis');
+    const resp = await fetch('/api/search-analysis' + _uidQ());
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     _analysisData = await resp.json();
     if (_analysisData.error) throw new Error(_analysisData.error);
@@ -3259,8 +3962,20 @@ function _renderAnalysisChart() {
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 var _currentUserId = null;
+
+// Returns ?uid=xxx (or &uid=xxx with sep='&') for all API calls.
+// Returns '' on first load before loadUsers() sets _currentUserId;
+// server falls back to _cur_uid() (global) in that case.
+function _uidQ(sep) {
+  if (!_currentUserId) return '';
+  return (sep || '?') + 'uid=' + encodeURIComponent(_currentUserId);
+}
 var _genGroupId = null, _genResult = null;
 loadJobs();
+fetch('/api/health' + _uidQ()).then(r => r.json()).then(d => {
+  if (!d.claude) showError('⚠️ claude not found in PATH, search unavailable. Check installation and restart server.');
+}).catch(() => {});
+_initSearchProgress();
 </script>
 
 <!-- ─── User switcher + Job family modal ─────────────────────────────────────── -->
@@ -3346,7 +4061,7 @@ async function generateJobFamily(gid) {
   document.getElementById('gen-modal').style.display = 'flex';
   _setGenState('loading', null);
   try {
-    const r = await fetch('/api/generate-job-family', {
+    const r = await fetch('/api/generate-job-family' + _uidQ(), {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify({group_id: gid})
     });
@@ -3365,7 +4080,7 @@ async function acceptJobFamily() {
   var btn = document.getElementById('gen-accept-btn');
   btn.disabled = true;
   try {
-    var r = await fetch('/api/save-job-family', {
+    var r = await fetch('/api/save-job-family' + _uidQ(), {
       method: 'POST', headers: {'Content-Type':'application/json'},
       body: JSON.stringify({group_id: _genGroupId, job_family: _genResult})
     });
@@ -3409,7 +4124,439 @@ function _setGenState(state, data) {
 }
 
 // ── Startup ───────────────────────────────────────────────────────────────────
+// ── Settings Tab ─────────────────────────────────────────────────────────────
+const SUPPORTED_LANGUAGES = [
+  {key:'chinese',    label:'Chinese'},
+  {key:'japanese',   label:'Japanese'},
+  {key:'spanish',    label:'Spanish'},
+  {key:'italian',    label:'Italian'},
+  {key:'french',     label:'French'},
+  {key:'korean',     label:'Korean'},
+  {key:'arabic',     label:'Arabic'},
+  {key:'portuguese', label:'Portuguese'},
+  {key:'persian',    label:'Persian'},
+];
+
+function switchCvsTab(tab) {
+  ['groups','settings'].forEach(t => {
+    document.getElementById('cvs-tab-' + t).style.display = t === tab ? '' : 'none';
+    document.getElementById('tab-' + t).classList.toggle('cvs-tab-active', t === tab);
+    document.getElementById('tab-' + t).classList.toggle('text-slate-500', t !== tab);
+  });
+  if (tab === 'settings') loadPreferences();
+}
+
+async function loadPreferences() {
+  try {
+    const r = await fetch('/api/preferences' + _uidQ());
+    const p = await r.json();
+
+    document.getElementById('pref-location').value = (p.preferred_locations || []).join(', ');
+    document.getElementById('pref-daterange').value = p.date_range_days || 14;
+    document.getElementById('pref-daterange-val').textContent = p.date_range_days || 14;
+    document.getElementById('pref-maxdisplay').value = p.max_display || 30;
+
+    ['hybrid','remote','onsite'].forEach(m => {
+      document.getElementById('pref-mode-' + m).checked = (p.preferred_work_mode || []).includes(m);
+    });
+
+    const activeLevels = (p.preferred_level || '').split(',').map(s => s.trim()).filter(Boolean);
+    const LEVELS = ['entry','junior','associated','experienced','senior','lead','manager'];
+    document.getElementById('pref-level-group').innerHTML = LEVELS.map(lv => `
+      <label class="flex items-center gap-1.5 cursor-pointer border rounded-full px-3 py-1
+                     text-xs font-semibold transition
+                     ${activeLevels.includes(lv) ? 'bg-[#005d8f] text-white border-[#005d8f]' : 'bg-white text-slate-600 border-slate-300 hover:border-[#005d8f]/50'}">
+        <input type="checkbox" class="sr-only level-checkbox" value="${lv}"
+               ${activeLevels.includes(lv) ? 'checked' : ''}
+               onchange="this.closest('label').className=this.checked
+                 ?'flex items-center gap-1.5 cursor-pointer border rounded-full px-3 py-1 text-xs font-semibold transition bg-[#005d8f] text-white border-[#005d8f]'
+                 :'flex items-center gap-1.5 cursor-pointer border rounded-full px-3 py-1 text-xs font-semibold transition bg-white text-slate-600 border-slate-300 hover:border-[#005d8f]/50'" />
+        ${lv.charAt(0).toUpperCase()+lv.slice(1)}
+      </label>`).join('');
+
+    document.getElementById('pref-salary').value = p.salary_expectation_eur_monthly || '';
+    document.getElementById('pref-domains').value = (p.preferred_domains || []).join(', ');
+
+    document.getElementById('pref-lang-grid').innerHTML = SUPPORTED_LANGUAGES.map(l => `
+      <label class="flex items-center gap-2 cursor-pointer bg-slate-50
+                     border rounded-lg px-3 py-2 hover:border-[#005d8f]/40">
+        <input type="checkbox" class="accent-[#005d8f] lang-checkbox"
+               value="${l.key}" ${(p.language_skills||[]).includes(l.key) ? 'checked' : ''} />
+        <span class="text-sm">${l.label}</span>
+      </label>`).join('');
+
+    const ss = document.getElementById('pref-stepstone');
+    ss.checked = !!p.stepstone_enabled;
+    document.getElementById('pref-stepstone-lbl').textContent = ss.checked ? 'Enabled' : 'Disabled';
+    ss.onchange = () => {
+      document.getElementById('pref-stepstone-lbl').textContent = ss.checked ? 'Enabled' : 'Disabled';
+    };
+
+    const aa = document.getElementById('pref-autoanswers');
+    aa.checked = p.auto_default_answers !== false;
+    document.getElementById('pref-autoanswers-lbl').textContent = aa.checked ? 'On' : 'Off';
+    aa.onchange = () => {
+      document.getElementById('pref-autoanswers-lbl').textContent = aa.checked ? 'On' : 'Off';
+    };
+
+  } catch(e) { showToast('Error loading preferences'); }
+}
+
+async function savePreferences() {
+  const locations = document.getElementById('pref-location').value
+    .split(',').map(s => s.trim()).filter(Boolean);
+  const modes = ['hybrid','remote','onsite']
+    .filter(m => document.getElementById('pref-mode-' + m).checked);
+  const langs = [...document.querySelectorAll('.lang-checkbox:checked')].map(el => el.value);
+  const domains = document.getElementById('pref-domains').value
+    .split(',').map(s => s.trim()).filter(Boolean);
+
+  const levels = [...document.querySelectorAll('.level-checkbox:checked')].map(el => el.value);
+
+  const payload = {
+    preferred_locations:            locations,
+    preferred_work_mode:            modes,
+    preferred_level:                levels.join(', '),
+    salary_expectation_eur_monthly: parseInt(document.getElementById('pref-salary').value) || 0,
+    preferred_domains:              domains,
+    language_skills:                langs,
+    stepstone_enabled:              document.getElementById('pref-stepstone').checked,
+    auto_default_answers:           document.getElementById('pref-autoanswers').checked,
+    date_range_days:                parseInt(document.getElementById('pref-daterange').value) || 14,
+    max_display:                    parseInt(document.getElementById('pref-maxdisplay').value) || 30,
+  };
+
+  try {
+    const r = await fetch('/api/preferences' + _uidQ(), {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(payload)
+    });
+    const d = await r.json();
+    if (d.ok) showToast('Preferences saved');
+    else showToast('Error: ' + (d.error || 'unknown'));
+  } catch(e) { showToast('Error: ' + e.message); }
+}
+
+// ── Group Drawer ──────────────────────────────────────────────────────────────
+var _drawerMode = 'add';
+var _drawerOrigGid = null;
+
+function openGroupDrawer(groupId) {
+  _drawerMode = groupId ? 'edit' : 'add';
+  _drawerOrigGid = groupId || null;
+  document.getElementById('drawer-title').textContent =
+    _drawerMode === 'edit' ? 'Edit Group' : 'Add Group';
+
+  const gidInput = document.getElementById('drawer-gid');
+  document.getElementById('gid-hint').textContent =
+    _drawerMode === 'edit' ? '(locked)' : '(auto-derived from label)';
+  document.getElementById('drawer-gen-btn').style.display =
+    _drawerMode === 'edit' ? '' : 'none';
+  document.getElementById('drawer-gen-status').style.display = 'none';
+
+  if (_drawerMode === 'edit') {
+    const g = (_cvGroups || []).find(x => x.group_id === groupId);
+    if (!g) { showToast('Group not found'); return; }
+    gidInput.value = g.group_id;
+    document.getElementById('drawer-label').value = g.group_label || '';
+    document.getElementById('drawer-minscore').value = g.min_score_for_analysis ?? 20;
+    document.getElementById('drawer-minscore-val').textContent = g.min_score_for_analysis ?? 20;
+    document.getElementById('drawer-kw-en').value = (g.primary_keywords?.en || []).join('\n');
+    document.getElementById('drawer-kw-de').value = (g.primary_keywords?.de || []).join('\n');
+    document.getElementById('drawer-cvfile').value = g.cv_file || '';
+    document.getElementById('drawer-jobfamily').value = (g.job_family || []).join('\n');
+  } else {
+    ['drawer-gid','drawer-label','drawer-kw-en','drawer-kw-de','drawer-jobfamily']
+      .forEach(id => document.getElementById(id).value = '');
+    document.getElementById('drawer-minscore').value = 20;
+    document.getElementById('drawer-minscore-val').textContent = '20';
+    document.getElementById('drawer-cvfile').value = '';
+  }
+
+  fetch('/api/cvfiles' + _uidQ()).then(r => r.json()).then(files => {
+    const sel = document.getElementById('drawer-cvfile');
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">— select a CV —</option>' +
+      (files || []).map(f => `<option value="${esc(f)}"${f===cur?' selected':''}>${esc(f)}</option>`).join('');
+    if (cur) sel.value = cur;
+  });
+
+  const labelForSuggestions = _drawerMode === 'edit'
+    ? ((_cvGroups || []).find(x => x.group_id === groupId) || {}).group_label || ''
+    : '';
+  renderKwSuggestions(labelForSuggestions);
+
+  document.getElementById('group-drawer-overlay').style.display = 'block';
+  document.getElementById('group-drawer').style.display = 'block';
+}
+
+function closeGroupDrawer() {
+  document.getElementById('group-drawer-overlay').style.display = 'none';
+  document.getElementById('group-drawer').style.display = 'none';
+}
+
+const KW_PRESETS = {
+  'data':       { en: ['Data Analyst','Business Analyst','BI Analyst','SQL','Python','Tableau','Power BI','Data Engineer'], de: ['Datenanalyst','Business Intelligence','Datenbankentwickler'] },
+  'product':    { en: ['Product Manager','Product Owner','Scrum Master','Agile Coach','UX Researcher'], de: ['Produktmanager','Product Owner','Agile Coach'] },
+  'marketing':  { en: ['Digital Marketing','SEO','Content Marketing','Social Media Manager','Growth Hacker'], de: ['Online Marketing Manager','SEO Manager','Content Manager'] },
+  'finance':    { en: ['Financial Analyst','Controller','FP&A','Accounting','Auditor'], de: ['Buchhalter','Controller','Wirtschaftsprüfer','Finanzbuchhalter'] },
+  'engineering':{ en: ['Software Engineer','Backend Developer','Frontend Developer','Full Stack','DevOps','Cloud Engineer'], de: ['Softwareentwickler','Backend Entwickler','DevOps Engineer'] },
+  'hr':         { en: ['HR Manager','Recruiter','Talent Acquisition','People Operations','HRBP'], de: ['Personalreferent','Recruiter','HR Business Partner'] },
+};
+
+function renderKwSuggestions(label) {
+  const box = document.getElementById('kw-suggestions');
+  if (!box) return;
+  const key = Object.keys(KW_PRESETS).find(k => (label || '').toLowerCase().includes(k));
+  if (!key) { box.style.display = 'none'; return; }
+  const preset = KW_PRESETS[key];
+  const chip = (w, lang) =>
+    `<span onclick="appendKw('${lang}','${w.replace(/'/g,"\\'")}'); this.style.opacity='.4';"
+      class="inline-block cursor-pointer text-[10px] px-2 py-0.5 rounded-full border border-slate-300
+             bg-white text-slate-600 hover:border-[#005d8f] hover:text-[#005d8f] mr-1 mb-1">${w}</span>`;
+  box.innerHTML = `<div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-1">Suggestions</div>
+    <div class="mb-1"><span class="text-[10px] text-slate-400 mr-1">EN</span>${preset.en.map(w=>chip(w,'en')).join('')}</div>
+    <div><span class="text-[10px] text-slate-400 mr-1">DE</span>${preset.de.map(w=>chip(w,'de')).join('')}</div>`;
+  box.style.display = 'block';
+}
+
+function appendKw(lang, word) {
+  const ta = document.getElementById(lang === 'en' ? 'drawer-kw-en' : 'drawer-kw-de');
+  if (!ta) return;
+  const existing = ta.value.split('\n').map(s => s.trim().toLowerCase()).filter(Boolean);
+  if (!existing.includes(word.toLowerCase())) {
+    ta.value = (ta.value.trim() ? ta.value.trim() + '\n' : '') + word;
+  }
+}
+
+function onLabelInput() {
+  if (_drawerMode === 'edit') return;
+  const label = document.getElementById('drawer-label').value.trim();
+  const gid = 'group-' + label.toLowerCase()
+    .replace(/[^a-z0-9\s]/g, '').replace(/\s+/g, '-').slice(0, 30);
+  document.getElementById('drawer-gid').value = gid;
+  renderKwSuggestions(label);
+}
+
+async function drawerGenerateJobFamily() {
+  const gid = document.getElementById('drawer-gid').value.trim();
+  if (!gid) { showToast('Enter a Group Label first'); return; }
+  const status = document.getElementById('drawer-gen-status');
+  const btn = document.getElementById('drawer-gen-btn');
+  btn.disabled = true;
+  status.textContent = 'Generating...'; status.style.display = 'block';
+  try {
+    const r = await fetch('/api/generate-job-family' + _uidQ(), {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({group_id: gid,
+        label: document.getElementById('drawer-label').value,
+        keywords_en: document.getElementById('drawer-kw-en').value.split('\n').filter(Boolean)})
+    });
+    const d = await r.json();
+    if (d.ok && d.result) {
+      document.getElementById('drawer-jobfamily').value = (d.result.job_family || []).join('\n');
+      status.textContent = '✓ Generated';
+    } else {
+      status.textContent = 'Error: ' + (d.error || 'unknown');
+    }
+  } catch(e) { status.textContent = 'Error: ' + e.message; }
+  btn.disabled = false;
+}
+
+async function saveGroupDrawer() {
+  const gid   = document.getElementById('drawer-gid').value.trim();
+  const label = document.getElementById('drawer-label').value.trim();
+  const cv    = document.getElementById('drawer-cvfile').value;
+  if (!gid || !label) { showToast('Group Label is required'); return; }
+  if (!cv) { showToast('CV File is required'); return; }
+
+  const kwEn = document.getElementById('drawer-kw-en').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  if (!kwEn.length) { showToast('At least one EN keyword required'); return; }
+  const kwDe = document.getElementById('drawer-kw-de').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const jf   = document.getElementById('drawer-jobfamily').value.split('\n').map(s=>s.trim()).filter(Boolean);
+
+  const grp = {
+    group_id:               gid,
+    group_label:            label,
+    cv_file:                cv,
+    min_score_for_analysis: parseInt(document.getElementById('drawer-minscore').value) || 20,
+    primary_keywords:       { en: kwEn, ...(kwDe.length ? {de: kwDe} : {}) },
+    ...(jf.length ? {job_family: jf} : {})
+  };
+
+  const endpoint = _drawerMode === 'edit' ? '/api/group-update' : '/api/group-save';
+  const btn = document.getElementById('drawer-save-btn');
+  btn.disabled = true; btn.textContent = 'Saving...';
+  try {
+    const r = await fetch(endpoint + _uidQ(), {
+      method: 'POST', headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({group: grp})
+    });
+    const d = await r.json();
+    if (d.ok) {
+      showToast(_drawerMode === 'edit' ? 'Group updated' : 'Group created');
+      closeGroupDrawer();
+      loadGroupStats();
+    } else {
+      showToast('Error: ' + (d.error || 'unknown'));
+    }
+  } catch(e) { showToast('Error: ' + e.message); }
+  btn.disabled = false; btn.textContent = 'Save Group';
+}
+
 loadUsers();
 </script>
+
+<!-- ═══ GROUP DRAWER ═══ -->
+<div id="group-drawer-overlay" onclick="closeGroupDrawer()"
+  style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;"></div>
+
+<div id="group-drawer"
+  style="display:none;position:fixed;top:0;right:0;width:480px;height:100%;
+         background:#fff;z-index:201;overflow-y:auto;box-shadow:-4px 0 24px rgba(0,0,0,.12);
+         padding:32px 28px;box-sizing:border-box;">
+
+  <div class="flex items-center justify-between mb-6">
+    <h2 id="drawer-title" class="text-xl font-black" style="font-family:Manrope;">Add Group</h2>
+    <button onclick="closeGroupDrawer()" class="text-slate-400 hover:text-slate-700">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+      Group ID <span id="gid-hint" class="normal-case font-normal text-slate-400">(auto-derived from label)</span>
+    </label>
+    <input id="drawer-gid" readonly
+      class="w-full border rounded-lg px-3 py-2 text-sm font-mono bg-slate-50 text-slate-400"
+      placeholder="group-..." />
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+      Group Label <span class="text-red-400">*</span>
+    </label>
+    <input id="drawer-label" oninput="onLabelInput()"
+      class="w-full border rounded-lg px-3 py-2 text-sm"
+      placeholder="e.g. Digital Analytics" />
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+      CV File <span class="text-red-400">*</span>
+    </label>
+    <select id="drawer-cvfile"
+      class="w-full border rounded-lg px-3 py-2 text-sm bg-white">
+      <option value="">— select a CV —</option>
+    </select>
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+      Min Score for Analysis
+      <span id="drawer-minscore-val" class="font-mono normal-case text-slate-700 ml-2">20</span>
+    </label>
+    <input id="drawer-minscore" type="range" min="0" max="100" value="20"
+      oninput="document.getElementById('drawer-minscore-val').textContent=this.value"
+      class="w-full accent-[#005d8f]" />
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+      Primary Keywords — EN <span class="text-red-400">*</span>
+      <span class="normal-case font-normal text-slate-400">(one per line)</span>
+    </label>
+    <textarea id="drawer-kw-en" rows="4"
+      class="w-full border rounded-lg px-3 py-2 text-sm font-mono resize-y"
+      placeholder="Data Analyst&#10;Marketing Analyst"></textarea>
+    <div id="kw-suggestions" style="display:none;"
+      class="mt-2 p-2 rounded-lg bg-slate-50 border border-slate-200"></div>
+  </div>
+
+  <div class="mb-4">
+    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
+      Primary Keywords — DE
+      <span class="normal-case font-normal text-slate-400">(one per line)</span>
+    </label>
+    <textarea id="drawer-kw-de" rows="3"
+      class="w-full border rounded-lg px-3 py-2 text-sm font-mono resize-y"
+      placeholder="Datenanalyst&#10;Marketinganalyst"></textarea>
+  </div>
+
+  <div class="mb-6">
+    <div class="flex items-center justify-between mb-1">
+      <label class="block text-xs font-bold uppercase tracking-wider text-slate-500">
+        Job Family Titles
+        <span class="normal-case font-normal text-slate-400">(one per line)</span>
+      </label>
+      <button id="drawer-gen-btn" onclick="drawerGenerateJobFamily()"
+        class="text-xs text-[#005d8f] font-semibold hover:underline flex items-center gap-1">
+        <span class="material-symbols-outlined" style="font-size:14px;">auto_awesome</span>
+        AI Generate
+      </button>
+    </div>
+    <textarea id="drawer-jobfamily" rows="3"
+      class="w-full border rounded-lg px-3 py-2 text-sm font-mono resize-y"
+      placeholder="Digital Analyst&#10;Web Analyst"></textarea>
+    <p id="drawer-gen-status" class="text-xs text-slate-400 mt-1" style="display:none;"></p>
+  </div>
+
+  <div class="flex gap-3">
+    <button id="drawer-save-btn" onclick="saveGroupDrawer()"
+      class="flex-1 kinetic-gradient text-white rounded-full py-2.5 text-sm font-bold"
+      style="font-family:'Space Grotesk';">Save Group</button>
+    <button onclick="closeGroupDrawer()"
+      class="px-5 py-2.5 border-2 border-slate-200 text-slate-600 rounded-full text-sm font-bold">
+      Cancel</button>
+  </div>
+</div>
+
+<!-- ═══ SEARCH LOG DRAWER ═══ -->
+<div id="search-log-overlay" onclick="closeSearchLog()"
+  style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:200;"></div>
+
+<div id="search-log-drawer"
+  style="display:none;position:fixed;top:0;right:0;width:600px;height:100%;
+         background:#0f172a;z-index:201;flex-direction:column;
+         box-shadow:-6px 0 32px rgba(0,0,0,.5);">
+  <!-- Header -->
+  <div style="flex-shrink:0;height:52px;display:flex;justify-content:space-between;align-items:center;
+              padding:0 20px;border-bottom:1px solid #1e293b;box-sizing:border-box;">
+    <div style="font-family:'Space Grotesk';color:#64748b;font-size:11px;font-weight:600;
+                text-transform:uppercase;letter-spacing:.06em;">
+      Claude Code Output
+      <span id="search-log-drawer-label" style="color:#475569;font-weight:400;
+            text-transform:none;letter-spacing:0;margin-left:8px;"></span>
+    </div>
+    <div style="display:flex;align-items:center;gap:6px;">
+      <button onclick="refreshSearchLog()" title="Refresh Log"
+        style="background:none;border:1px solid #1e293b;cursor:pointer;color:#475569;font-size:12px;
+               padding:3px 8px;border-radius:4px;font-family:'Space Grotesk';"
+        onmouseover="this.style.color='#94a3b8';this.style.borderColor='#334155'"
+        onmouseout="this.style.color='#475569';this.style.borderColor='#1e293b'">↻ Refresh</button>
+      <button onclick="closeSearchLog()"
+        style="background:none;border:none;cursor:pointer;color:#475569;font-size:20px;
+               line-height:1;padding:4px 6px;border-radius:4px;"
+        onmouseover="this.style.color='#94a3b8'" onmouseout="this.style.color='#475569'">✕</button>
+    </div>
+  </div>
+  <!-- Recent batch history -->
+  <div id="search-log-history"
+    style="flex-shrink:0;display:none;padding:10px 20px;border-bottom:1px solid #1e293b;
+           font-family:'Space Grotesk';font-size:10px;color:#475569;"></div>
+  <!-- Live batch stats -->
+  <div id="search-log-stats"
+    style="flex-shrink:0;padding:10px 20px;border-bottom:1px solid #1e293b;
+           font-family:'Space Grotesk';font-size:10px;color:#475569;">
+    <span>⏳ Loading…</span>
+  </div>
+  <!-- Live log -->
+  <pre id="search-log-pre"
+       style="flex:1;min-height:0;margin:0;
+              color:#94a3b8;font-size:11px;font-family:'Fira Code',monospace;
+              padding:14px 18px;white-space:pre-wrap;word-break:break-all;
+              overflow-y:auto;"></pre>
+</div>
+
 </body>
 </html>

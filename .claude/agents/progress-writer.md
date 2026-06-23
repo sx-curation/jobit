@@ -5,7 +5,7 @@ tools:
   - Read
   - Write
 memory: project
-model: claude-haiku-4-5-20251001
+model: claude-haiku-4-5
 ---
 
 你是专门记录专案进度的 agent。每次调用时写入两个文件，各有不同职责。

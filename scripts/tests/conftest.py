@@ -7,6 +7,7 @@ import pytest
 
 # Allow `import server` from the scripts/ parent directory
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+import server_jobs  # noqa: E402 — must be imported before server so the module exists
 
 # server.py wraps sys.stdout/stderr with io.TextIOWrapper at import time.
 # The wrapper takes ownership of the underlying buffer; when it's GC'd it would
@@ -62,8 +63,10 @@ def patch_paths(monkeypatch, tmp_path, uid):
     }), encoding='utf-8')
 
     monkeypatch.setattr(server, 'USERS_DIR', users_dir)
+    # server_jobs.py has its own USERS_DIR used by parse_jobs, compute_group_stats, etc.
+    monkeypatch.setattr(server_jobs, 'USERS_DIR', users_dir)
 
-    # Reset job cache between tests
+    # Reset job cache between tests (server._jobs_cache is same object as server_jobs._jobs_cache)
     server._jobs_cache.clear()
     server._jobs_cache_mtime.clear()
 

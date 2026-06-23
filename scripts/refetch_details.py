@@ -119,6 +119,30 @@ def parse_job_posting(text: str, job_id: str) -> dict:
     }
 
 
+_RATE_LIMIT_SIGNALS = [
+    "429", "rate limit", "too many requests",
+    "slow down", "throttle", "quota exceeded",
+    "please try again", "temporarily unavailable",
+]
+
+
+def _extract_text(resp: dict) -> str:
+    """Pull the raw_text / error string out of an MCP response for rate-limit detection."""
+    result = resp.get("result", {})
+    sc = result.get("structuredContent", {})
+    if sc.get("raw_text"):
+        return sc["raw_text"]
+    content = result.get("content", [])
+    if content:
+        return content[0].get("text", "")
+    return str(resp.get("error", ""))
+
+
+def _is_rate_limited_resp(resp: dict) -> bool:
+    msg = _extract_text(resp).lower()
+    return any(s in msg for s in _RATE_LIMIT_SIGNALS)
+
+
 def get_details_batch(job_ids: list[str], batch_num: int, timeout=120) -> dict[str, dict]:
     """Fetch details for a batch of job_ids. Returns {job_id: parsed_dict}."""
     results = {}
@@ -135,6 +159,18 @@ def get_details_batch(job_ids: list[str], batch_num: int, timeout=120) -> dict[s
                 "params": {"name": "get_job_details", "arguments": {"job_id": jid}},
             }
             resp = send_recv(proc, req, timeout=timeout)
+            # Backoff retry on rate-limit signal
+            if resp and _is_rate_limited_resp(resp):
+                for attempt in range(1, 3):
+                    wait = 5 * (2 ** attempt)  # 10s, 20s
+                    print(f"  [RATE LIMIT] get_job_details {jid} attempt {attempt}, "
+                          f"retry in {wait}s…", file=sys.stderr, flush=True)
+                    time.sleep(wait)
+                    msg_id += 100  # avoid ID collision
+                    req["id"] = msg_id
+                    resp = send_recv(proc, req, timeout=timeout)
+                    if not _is_rate_limited_resp(resp or {}):
+                        break
             if not resp or "result" not in resp:
                 print(f"  [WARN] no response for job {jid}", file=sys.stderr)
                 continue

@@ -36,6 +36,84 @@ for each group in config.keyword_groups:
 
 ## Phase 2：增量搜索 + 去重 + JD 精确分析
 
+### 步骤 -1：语言搜索组自动同步
+
+```
+读取 preferences.language_skills（不存在或为空 → 跳过本步骤）。
+
+内置语言组模板（触发词已预设，group_id 格式：group-{lang}-lang）：
+
+  chinese  → group_id: "group-chinese-lang"
+             group_label: "China Business & Chinese Language Roles"
+             min_score_for_analysis: 0, max_display: 60
+             primary_keywords.en: ["China Desk", "Mandarin Chinese", "Chinese Speaking",
+                                   "China market", "Sino-German", "Chinese Language"]
+             primary_keywords.de: ["Chinesisch fließend", "Mandarin fließend",
+                                   "Chinesisch Muttersprache", "Sprachkenntnisse Chinesisch"]
+
+  japanese → group_id: "group-japanese-lang"
+             group_label: "Japan Business & Japanese Language Roles"
+             min_score_for_analysis: 0, max_display: 60
+             primary_keywords.en: ["Japanese Speaking", "Japanese Fluent", "Japan Business",
+                                   "Japanese Language", "Nihongo"]
+             primary_keywords.de: ["Japanisch fließend", "Japanischkenntnisse",
+                                   "Japanisch Muttersprache"]
+
+  spanish  → group_id: "group-spanish-lang"
+             group_label: "Spain Business & Spanish Language Roles"
+             min_score_for_analysis: 0, max_display: 60
+             primary_keywords.en: ["Spanish Speaking", "Spanish Fluent", "Español",
+                                   "Spanish Language", "LATAM market"]
+             primary_keywords.de: ["Spanisch fließend", "Spanischkenntnisse",
+                                   "Spanisch Muttersprache"]
+             primary_keywords.es: ["Español nativo", "Habla español"]
+
+  italian  → group_id: "group-italian-lang"
+             group_label: "Italy Business & Italian Language Roles"
+             min_score_for_analysis: 0, max_display: 60
+             primary_keywords.en: ["Italian Speaking", "Italian Fluent", "Italian Language"]
+             primary_keywords.de: ["Italienisch fließend", "Italienischkenntnisse",
+                                   "Italienisch Muttersprache"]
+             primary_keywords.it: ["Madrelingua italiano", "Italiano nativo"]
+
+  french   → group_id: "group-french-lang"
+             group_label: "France Business & French Language Roles"
+             min_score_for_analysis: 0, max_display: 60
+             primary_keywords.en: ["French Speaking", "French Fluent", "French Language"]
+             primary_keywords.de: ["Französisch fließend", "Französischkenntnisse"]
+             primary_keywords.fr: ["Français natif", "Langue maternelle française"]
+
+  persian  → group_id: "group-persian-lang"
+             group_label: "Iran Business & Persian/Farsi Language Roles"
+             min_score_for_analysis: 0, max_display: 60
+             primary_keywords.de_lang_prof: ["Muttersprachler Persisch", "Persisch Muttersprachler",
+                                             "Dolmetscher Persisch", "Übersetzer Persisch",
+                                             "Sprachlehrer Persisch", "Lehrkraft Persisch"]
+             primary_keywords.de_market: ["Account Manager Iran", "Vertrieb Iran",
+                                          "Business Development Iran", "Naher Osten Persisch", "Markt Iran"]
+             primary_keywords.en_lang_prof: ["Farsi native speaker", "Persian native speaker",
+                                             "Farsi interpreter", "Persian interpreter",
+                                             "Persian teacher Germany", "Farsi tutor"]
+             NOTE: Generic keywords ("Persian Speaking", "Farsi fließend" etc.) produce LinkedIn
+                   noise — they match tag metadata but 0% of returned JDs mention Persian in body text.
+                   Use explicit language-profession or market-oriented phrases instead.
+
+for each lang in language_skills:
+  group_id = f"group-{lang}-lang"
+  if group_id 已在 config.keyword_groups 中 → 跳过（用户已自定义）
+  else if lang 不在内置模板中 → WARN "语言 '{lang}' 无内置模板，跳过自动建组" → 继续
+  else:
+    生成模板 group 对象
+    cv_file = config.keyword_groups[0].cv_file（若 keyword_groups 非空）
+              否则 cv_file = null
+    写入 config.json keyword_groups 末尾，附加 "_auto_generated": true
+    输出："✅ 已自动创建搜索组 {group_id}
+          （cv_file 默认为 {cv_file}，如需调整请修改 config.json）"
+```
+
+> 注：`_auto_generated: true` 字段仅供 check.py 识别，不影响搜索逻辑。
+> 用户可直接在 config.json 中修改或删除自动创建的组，删除后下次搜索不会重新创建。
+
 ### 步骤 0：Phase 2 预检（必须通过才能继续）
 ```bash
 python3 scripts/check.py --phase2 --uid {uid}
@@ -102,13 +180,13 @@ python3 scripts/search_state.py --mode dedup \
 - 降序排序，截取前 max_display 条
 - search_history.json 更新：dedup_done=true
 
-### 步骤 D：预读 cv_parsed（执行一次）
+### 步骤 D：预读 cv_parsed（Phase 3 复用，执行一次）
 ```
 for each group_id in config.keyword_groups:
   读取 users/{uid}/output/cv_parsed_<group_id>.json → 存为 cv_content[group_id]
 
-后续所有 jd-analyzer 调用均将 cv_content[job.group_id] 直接嵌入 prompt，
-sub-agent 无需再次读取文件（file read 作为 fallback）。
+cv_content 供 Phase 3（cv-writer、cover-letter）直接复用，无需重新读取文件。
+jd 分析（步骤 E）由 run_jd_analysis.py 独立读取 cv_parsed，不依赖此处。
 ```
 
 ### 步骤 E：并行精确分析（最多同时 3 个）
@@ -119,18 +197,31 @@ sub-agent 无需再次读取文件（file read 作为 fallback）。
 - 示例：`users/leon/output/group-da_trivago_Data-Analyst-Marketing-Intelligence_20260414`
 
 ```
-调用 jd-analyzer sub-agent：
-  输入：JD 完整文本 + cv_content[job.group_id]（inline，无需读文件）
-        job._source（传递给 jd-analyzer，必须写入 jd_analysis.json 的 "_source" 字段）
-  输出：users/{uid}/output/<group_id>_<company_slug>_<title_slug>_<YYYYMMDD>/jd_analysis.json
-  wait: JD_ANALYZED_OK: score=<N>
+对每批（最多 3 个 job）：
+
+  阶段 E1 — 写 JD 文本文件（并行，每 job 一次）：
+    用 Write 工具将 JD 原文写入：
+    users/{uid}/output/<job_folder>/jd_text.txt
+    （纯 JD 文本，无需添加 header；_source 通过 --source 参数传入脚本）
+
+  阶段 E2 — 调用分析脚本（最多 3 个并行 Bash 调用）：
+    python3 scripts/run_jd_analysis.py \
+      --uid {uid} \
+      --group_id {job.group_id} \
+      --job_folder {job_folder} \
+      --source {job._source}
+
+    等待每个脚本输出 JD_ANALYZED_OK: score=<N>
+    若退出码非 0，向用户展示 stderr 错误后继续下一个 job
 
 if score < config.score_threshold_warn:
   询问用户是否继续
 
-每批（3 个）jd-analyzer 全部完成后，立即更新汇总表：
+每批（3 个）全部完成后，立即更新汇总表：
   python3 scripts/generate_summary.py --uid {uid}
   → 将每一批结果以增量覆盖写入 users/{uid}/output/job_summary.md（按 match_score 降序）
+  注：server 同时暴露 POST /api/refresh-summary?uid={uid} 供 dashboard UI 手动触发刷新，
+      与本 CLI 路径等价，服务不同触发场景（UI 刷新 vs agent 流程），两者并存是有意设计。
   → 列：排名 | match_score | group-id | 来源(LinkedIn/Stepstone) | 公司 | 职位 | 公司规模 | URL | recommended_emphasis | Missing Skills | 批次运行日期
   → 向用户展示本批新增条目
 ```
@@ -140,6 +231,10 @@ if score < config.score_threshold_warn:
 **在所有 jd-analyzer 批次全部完成后执行一次。**
 
 ```
+0. 检查开关（config.json）：
+   auto_default_answers = config.get("auto_default_answers", true)
+   若 auto_default_answers == false → 跳过整个步骤 F，不输出任何提示。
+
 1. 收集本次 Phase 2 分析过的所有 job_folder 列表（来自步骤 E 的输出目录）
 
 2. 过滤条件：
@@ -156,7 +251,7 @@ if score < config.score_threshold_warn:
    ✅ 面试答案已生成：N 个职缺
 ```
 
-> story-bank.md 不存在时，default-answers sub-agent 自动降级到 cv_parsed experience[] 模式，无需预先初始化故事库。
+> story-bank.md 不存在时，default-answers sub-agent 自动降级到 cv_parsed experience[] 模式，**并在 jd_analysis.json 中写入 `"default_answers_source": "cv_parsed_fallback"`**，以便后续识别降级情况；正常使用 story-bank 时写入 `"default_answers_source": "story_bank"`。
 
 ### 步骤 G：展示汇总表 + 等待用户确认
 见 `skills/review-ui/SKILL.md` → 搜索结果展示模板
@@ -172,6 +267,24 @@ if score < config.score_threshold_warn:
 **规则：每个职缺只能使用其 group 对应的 CV（从 dedup 结果的 cv_file / cv_parsed 字段读取）**
 
 cv_content[group_id] 已在 Phase 2 步骤 D 预读，Phase 3 直接复用，无需重新读取文件。
+
+### 前置校验：cv-group 绑定断言（进入步骤 A 前必须通过）
+
+```
+for each job in selected_jobs:
+  expected_group = job._folder.split('_')[0]   # 输出目录名前缀
+  actual_group   = jd_analysis.json 中的 _group_id 字段（可能为 null/缺失）
+
+  if actual_group 字段缺失或为 null:
+    跳过本次断言（兼容旧版 jd_analysis.json，_group_id 由较新版本 jd-analyzer 写入）
+
+  elif expected_group != actual_group:
+    ABORT: "⛔ cv-group 断言失败：{job.company}_{job.title}
+           目录前缀 {expected_group} 与 jd_analysis._group_id {actual_group} 不一致。
+           请检查该 job 的 jd_analysis.json 是否被手动修改，禁止继续生成。"
+```
+
+> 若某职缺断言失败，**仅跳过该职缺**，其余职缺正常处理。向用户展示断言失败列表后继续。
 
 ### 步骤 A：批量并行生成（每批最多 3 个职缺）
 
@@ -276,11 +389,12 @@ job_id_pattern = r'linkedin\.com/jobs/view/(\d+)'
 ```
 
 - 命中 → `job_ids` 列表（去重）
-- 未命中 → `manual_review` 列表（仅保存 post URL，不分析）
+- 未命中 → `manual_review` 列表（post URL 待人工跟进）
 
 ### 步骤 4：去重
 
-与 `search_history.json` 中现有 seen_jobs 比对，过滤已处理的 job_id。
+- **job_id 去重**：与 `search_history.json` 中现有 `seen_jobs` 比对，过滤已处理的 job_id。
+- **manual_review URL 去重**：从 `search_history.json` 所有 batch 的 `manual_review_urls` 字段汇总已知 URL，从当前 `manual_review` 列表中剔除重复项，避免重复展示。
 
 ### 步骤 5：拉取 JD 详情
 
@@ -298,6 +412,18 @@ mcp__linkedin__get_job_details(job_id="{job_id}")
 - jd_analysis.json 中写入 `"_source": "linkedin_posting"`
 - 分析完成后更新 job_summary.md（调用 generate_summary.py）
 
+### 步骤 6.5：持久化 manual_review_urls
+
+若 `manual_review` 列表非空，调用 search_state 的 helper 将这批 URL 写入当前 batch 条目，避免重复展示：
+
+```python
+# 在 Orchestrator 完成 JD 分析后执行（Python 调用）
+import search_state
+search_state.append_manual_review_urls(batch_id, manual_review)
+```
+
+> `append_manual_review_urls` 已做幂等去重：重复调用不会产生重复条目。
+
 ### 步骤 7：结果展示
 
 ```
@@ -307,3 +433,33 @@ mcp__linkedin__get_job_details(job_id="{job_id}")
   - {post_url_1}
   - {post_url_2}
 ```
+
+
+---
+
+## 精确分析模式（`精确分析 [group-id]`）
+
+当 orchestrator 收到 `精确分析 group-xxx` 指令时，**跳过 Phase 2 步骤 A–D**，直接执行步骤 E 对孤儿 folder 进行精确分析。
+
+### 执行流程
+
+1. 确定 group_id（从指令解析）
+2. 扫描 `users/{uid}/output/` 目录，找出：
+   - 文件夹名以 `{group_id}_` 开头
+   - 包含 `jd_text.txt`
+   - **不**包含 `jd_analysis.json`
+   → 这些即为"孤儿文件夹"（orphaned folders）
+3. 若无孤儿文件夹 → 输出 `✅ 无待分析职缺，精确分析已是最新` 并结束
+4. 有孤儿文件夹 → 执行 Phase 2E（步骤 E2，每批最多 3 个并行）：
+   ```
+   python3 scripts/run_jd_analysis.py `
+     --uid {uid} `
+     --group_id {group_id} `
+     --job_folder {folder_name} `
+     --source linkedin
+   ```
+5. 全部完成后调用：
+   ```bash
+   python3 scripts/generate_summary.py --uid {uid}
+   ```
+6. 汇报：`✅ 精确分析完成：N 个职缺`

@@ -8,12 +8,15 @@ All tests use the `patch_paths` fixture (conftest.py) which redirects
 server.USERS_DIR to a temporary directory so no real user data is touched.
 """
 import json
+import sys
+import types
 from pathlib import Path
 
 import pytest
 
 # server is imported at conftest load time (with stdout restored) — just reference it
 import server  # noqa: F401 (conftest already patched sys.stdout; this is a safe re-import)
+import server_jobs  # noqa: E402
 
 # ── Helpers ────────────────────────────────────────────────────────────────────
 
@@ -292,3 +295,278 @@ class TestParseJobs:
         dup_jobs = [j for j in jobs if j['company'] == 'DupCorp']
         assert len(dup_jobs) == 2
         assert all(j['remark'] == 'multiple source' for j in dup_jobs)
+
+
+# ── TestParseRelativeDate ─────────────────────────────────────────────────────
+
+class TestParseRelativeDate:
+    def test_days_ago(self):
+        assert server._parse_relative_date('3 days ago') == 3
+
+    def test_weeks_ago(self):
+        assert server._parse_relative_date('2 weeks ago') == 14
+
+    def test_hours_ago(self):
+        assert server._parse_relative_date('5 hours ago') == 0
+
+    def test_months_ago(self):
+        assert server._parse_relative_date('1 month ago') == 30
+
+    def test_returns_none_on_unrecognized(self):
+        assert server._parse_relative_date('recently') is None
+        assert server._parse_relative_date('') is None
+
+
+# ── TestInferLocation ─────────────────────────────────────────────────────────
+
+class TestInferLocation:
+    def test_location_from_stepstone_url(self):
+        job = {'url': 'https://www.stepstone.de/en/stellenangebote--Senior-Dev--Berlin--123.html', 'location': ''}
+        assert server.infer_location(job) == 'Berlin'
+
+    def test_fallback_to_location_field(self):
+        job = {'url': 'https://linkedin.com/jobs/view/123', 'location': 'Frankfurt'}
+        assert server.infer_location(job) == 'Frankfurt'
+
+    def test_returns_empty_on_missing(self):
+        job = {'url': '', 'location': ''}
+        assert server.infer_location(job) == ''
+
+    def test_umlaut_slug_mapped(self):
+        job = {'url': 'https://www.stepstone.de/en/stellenangebote--Data-Analyst--Muenchen--456.html', 'location': ''}
+        assert server.infer_location(job) == 'München'
+
+
+# ── TestToStrList ─────────────────────────────────────────────────────────────
+
+class TestToStrList:
+    def test_none_input(self):
+        assert server._to_str_list(None) == []
+
+    def test_string_list(self):
+        assert server._to_str_list(['Python', 'SQL']) == ['Python', 'SQL']
+
+    def test_dict_list_with_skill_key(self):
+        result = server._to_str_list([{'skill': 'Kubernetes'}])
+        assert result == ['Kubernetes']
+
+    def test_dict_list_with_responsibility_key(self):
+        result = server._to_str_list([{'responsibility': 'Lead team'}])
+        assert result == ['Lead team']
+
+    def test_mixed_types(self):
+        result = server._to_str_list(['Python', {'skill': 'SQL'}, {'gap': 'Spark'}])
+        assert result == ['Python', 'SQL', 'Spark']
+
+    def test_filters_empty_strings(self):
+        result = server._to_str_list([{'skill': ''}, 'valid'])
+        assert result == ['valid']
+
+
+# ── TestComputeGroupStats ─────────────────────────────────────────────────────
+
+class TestComputeGroupStats:
+    """Baseline tests for compute_group_stats() — established before server.py split."""
+
+    def _write_jd_analysis(self, output_dir: Path, folder: str, data: dict) -> Path:
+        d = output_dir / folder
+        d.mkdir(parents=True, exist_ok=True)
+        p = d / 'jd_analysis.json'
+        p.write_text(json.dumps(data), encoding='utf-8')
+        return p
+
+    def _write_history(self, output_dir: Path, history: dict):
+        (output_dir / 'search_history.json').write_text(
+            json.dumps(history), encoding='utf-8'
+        )
+
+    def test_returns_one_entry_per_group(self, patch_paths):
+        uid, _ = patch_paths
+        result = server.compute_group_stats(uid)
+        assert len(result) == 1
+        assert result[0]['group_id'] == 'group-test'
+
+    def test_empty_output_dir_gives_zero_job_count(self, patch_paths):
+        uid, _ = patch_paths
+        result = server.compute_group_stats(uid)
+        assert result[0]['job_count'] == 0
+        assert result[0]['avg_score'] is None
+
+    def test_job_count_and_avg_score(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        self._write_jd_analysis(out, 'group-test_A_Dev_20260101', {'match_score': 80})
+        self._write_jd_analysis(out, 'group-test_B_Dev_20260101', {'match_score': 60})
+
+        result = server.compute_group_stats(uid)
+        g = result[0]
+        assert g['job_count'] == 2
+        assert g['avg_score'] == 70.0
+
+    def test_top_missing_skills_aggregated(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        self._write_jd_analysis(out, 'group-test_A_Dev_20260101',
+            {'missing_skills': ['Python', 'SQL']})
+        self._write_jd_analysis(out, 'group-test_B_Dev_20260101',
+            {'missing_skills': ['Python', 'Tableau']})
+
+        result = server.compute_group_stats(uid)
+        skills = {s['skill']: s['count'] for s in result[0]['top_missing_skills']}
+        assert skills['Python'] == 2
+        assert skills['SQL'] == 1
+        assert skills['Tableau'] == 1
+
+    def test_missing_skills_as_dicts(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        self._write_jd_analysis(out, 'group-test_A_Dev_20260101',
+            {'missing_skills': [{'skill': 'Kubernetes'}, {'skill': 'Terraform'}]})
+
+        result = server.compute_group_stats(uid)
+        skills = [s['skill'] for s in result[0]['top_missing_skills']]
+        assert 'Kubernetes' in skills
+        assert 'Terraform' in skills
+
+    def test_top_matched_skills_aggregated(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        self._write_jd_analysis(out, 'group-test_A_Dev_20260101',
+            {'matched_skills': ['Python', 'SQL']})
+        self._write_jd_analysis(out, 'group-test_B_Dev_20260101',
+            {'matched_skills': ['Python']})
+
+        result = server.compute_group_stats(uid)
+        skills = {s['skill']: s['count'] for s in result[0]['top_matched_skills']}
+        assert skills['Python'] == 2
+        assert skills['SQL'] == 1
+
+    def test_is_active_true_for_recent_jd(self, patch_paths):
+        uid, ud = patch_paths
+        self._write_jd_analysis(ud / 'output', 'group-test_A_Dev_20260101',
+            {'match_score': 75})
+        result = server.compute_group_stats(uid)
+        assert result[0]['is_active'] is True
+
+    def test_search_timeline_from_history(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        self._write_history(out, {
+            'batches': [
+                {
+                    'batch_id': '20260101_001',
+                    'group_id': 'group-test',
+                    'date': '2026-01-01',
+                    'new_total': 5,
+                    'hidden_low_score': 1,
+                    'skipped_duplicate': 1,
+                    'fetched_total': 10,
+                    'fetched_per_source': {'linkedin': 10},
+                }
+            ],
+            'seen_jobs': {},
+        })
+
+        result = server.compute_group_stats(uid)
+        timeline = result[0]['search_timeline']
+        assert len(timeline) == 1
+        assert timeline[0]['date'] == '2026-01-01'
+        assert timeline[0]['fetched_total'] == 10
+        assert timeline[0]['new_net'] == 3  # 5 - 1 - 1
+        assert 'linkedin: 10' in timeline[0]['sources']
+
+    def test_folders_not_in_group_excluded(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        self._write_jd_analysis(out, 'group-other_X_Dev_20260101', {'match_score': 90})
+
+        result = server.compute_group_stats(uid)
+        assert result[0]['job_count'] == 0  # group-other_ doesn't match group-test_
+
+    def test_corrupted_jd_skipped_gracefully(self, patch_paths):
+        uid, ud = patch_paths
+        out = ud / 'output'
+        d = out / 'group-test_A_Dev_20260101'
+        d.mkdir(parents=True, exist_ok=True)
+        (d / 'jd_analysis.json').write_text('not valid json', encoding='utf-8')
+
+        result = server.compute_group_stats(uid)
+        assert result[0]['job_count'] == 1  # folder found, but score not parsed
+        assert result[0]['avg_score'] is None
+
+
+# ── TestRefreshSummary ────────────────────────────────────────────────────────
+
+class _H:
+    """Minimal mock HTTP handler for route handler tests."""
+    def __init__(self, body=None):
+        self._body = body or {}
+        self.sent_body   = None
+        self.sent_status = 200
+
+    def _read_json_body(self):
+        return dict(self._body)
+
+    def _send(self, raw, content_type='application/json', status=200):
+        self.sent_body   = json.loads(raw) if isinstance(raw, (str, bytes)) else raw
+        self.sent_status = status
+
+
+def _fake_gs(records=None, markdown=''):
+    """Return a fake generate_summary module."""
+    gs = types.ModuleType('generate_summary')
+    gs.load_all_analyses  = lambda _: list(records) if records is not None else []
+    gs.cross_source_dedup = lambda r: r
+    gs.build_markdown     = lambda r: markdown
+    return gs
+
+
+class TestRefreshSummary:
+
+    def test_empty_analyses_returns_ok_zero(self, patch_paths, monkeypatch):
+        uid, _ = patch_paths
+        monkeypatch.setitem(sys.modules, 'generate_summary', _fake_gs(records=[]))
+        h = _H()
+        result = server_jobs.handle_post('/api/refresh-summary', {}, uid, h)
+        assert result is True
+        assert h.sent_status == 200
+        assert h.sent_body['ok'] is True
+        assert h.sent_body['jobs'] == 0
+        assert 'note' in h.sent_body
+
+    def test_returns_job_count(self, patch_paths, monkeypatch):
+        uid, _ = patch_paths
+        records = [{'job_id': 'j1'}, {'job_id': 'j2'}]
+        monkeypatch.setitem(sys.modules, 'generate_summary', _fake_gs(records=records, markdown='md\n'))
+        h = _H()
+        server_jobs.handle_post('/api/refresh-summary', {}, uid, h)
+        assert h.sent_status == 200
+        assert h.sent_body['ok'] is True
+        assert h.sent_body['jobs'] == 2
+
+    def test_writes_job_summary_md(self, patch_paths, monkeypatch):
+        uid, ud = patch_paths
+        content = '| some | markdown |\n'
+        monkeypatch.setitem(sys.modules, 'generate_summary',
+                            _fake_gs(records=[{'job_id': 'j1'}], markdown=content))
+        h = _H()
+        server_jobs.handle_post('/api/refresh-summary', {}, uid, h)
+        summary = ud / 'output' / 'job_summary.md'
+        assert summary.exists()
+        assert summary.read_text(encoding='utf-8') == content
+
+    def test_invalidates_jobs_cache(self, patch_paths, monkeypatch):
+        uid, _ = patch_paths
+        server._jobs_cache[uid]       = [{'job_id': 'stale'}]
+        server._jobs_cache_mtime[uid] = 0.0
+        monkeypatch.setitem(sys.modules, 'generate_summary',
+                            _fake_gs(records=[{'job_id': 'j1'}], markdown='x\n'))
+        h = _H()
+        server_jobs.handle_post('/api/refresh-summary', {}, uid, h)
+        assert uid not in server._jobs_cache
+        assert uid not in server._jobs_cache_mtime
+
+    def test_unrelated_path_not_handled(self, patch_paths):
+        uid, _ = patch_paths
+        result = server_jobs.handle_post('/api/other-path', {}, uid, _H())
+        assert result is False

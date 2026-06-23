@@ -4,7 +4,7 @@ description: 当需要根据特定职缺的 JD 分析结果，定制修改用户
 tools:
   - Read
   - Write
-model: claude-sonnet-4-6
+model: claude-opus-4-8
 memory: project
 ---
 

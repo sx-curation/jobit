@@ -1,6 +1,6 @@
 ﻿---
 name: cover-letter
-model: claude-sonnet-4-6
+model: claude-opus-4-8
 description: 当需要为特定职缺生成 Cover Letter 时调用。基于 JD 分析和用户 CV（优先读取 story-bank.md），生成不超过 400 字的专业求职信，输出固定 header 格式的 Markdown 文件。
 tools:
   - Read

@@ -1,0 +1,29 @@
+{
+  "_comment": "Source of truth for Claude model assignments. Run 'python3 scripts/sync_models.py' after editing to patch agent frontmatter.",
+  "agents": {
+    "Orchestrator": "claude-sonnet-4-6",
+    "jd-analyzer": "claude-sonnet-4-6",
+    "cv-writer": "claude-opus-4-8",
+    "cover-letter": "claude-opus-4-8",
+    "cv-evaluator": "claude-sonnet-4-6",
+    "default-answers": "claude-sonnet-4-6",
+    "interview-prep": "claude-sonnet-4-6",
+    "form-assistant": "claude-sonnet-4-6",
+    "exp-optimizer": "claude-sonnet-4-6",
+    "cv-parser": "claude-haiku-4-5",
+    "progress-writer": "claude-haiku-4-5",
+    "jd-analyzer-phase1": "claude-sonnet-4-6",
+    "jd-analyzer-phase2": "claude-sonnet-4-6"
+  },
+  "thresholds": {
+    "jd_phase2_min_match_score": 65,
+    "jd_phase2_min_decision_score": 60
+  },
+  "server_endpoints": {
+    "generate_job_family": "claude-haiku-4-5",
+    "optimize_exp": "claude-haiku-4-5",
+    "default_answers_inline": "claude-haiku-4-5",
+    "form_assist": "claude-haiku-4-5",
+    "finetune_answer": "claude-haiku-4-5"
+  }
+}

@@ -13,9 +13,10 @@ search_history.json 的 batch 结构：
     "batch_id": "20240405_001",
     "date": "2024-04-05",
     "raw_results_file": "output/temp/raw_results_20240405_001.json",
-    "dedup_done": false,      ← 步骤 B 写入时为 false，步骤 C 完成后改为 true
+    "dedup_done": false,         ← 步骤 B 写入时为 false，步骤 C 完成后改为 true
     "fetched_total": 200,
     "new_total": 47,
+    "manual_review_urls": [],    ← LinkedIn Posting 变体：无法提取 job_id 的帖子 URL
     ...
   }
 
@@ -75,7 +76,7 @@ def load_history() -> dict:
     return json.loads(HISTORY_PATH.read_text(encoding="utf-8"))
 
 
-def _prune_seen_jobs(h: dict, days: int = 30) -> None:
+def _prune_seen_jobs(h: dict, days: int = 14) -> None:
     cutoff = (date.today() - timedelta(days=days)).isoformat()
     h["seen_jobs"] = {
         jid: v for jid, v in h["seen_jobs"].items()
@@ -303,6 +304,8 @@ def save_raw_results(batch_id: str, raw_results: list[dict]) -> Path:
             "skipped_duplicate":    None,
             "hidden_low_score":     None,
             "job_ids":              [],
+            # LinkedIn Posting 变体：无法提取 job_id 的帖子 URL（步骤 Phase 2 Posting 写入）
+            "manual_review_urls":   [],
         })
 
     # 写入原始结果文件（统一写入 output/temp/），原子写防崩溃截断
@@ -315,6 +318,23 @@ def save_raw_results(batch_id: str, raw_results: list[dict]) -> Path:
     save_history(h)
 
     return out_path
+
+
+def append_manual_review_urls(batch_id: str, urls: list) -> None:
+    """Append LinkedIn Posting manual-review URLs (no extractable job_id) to the batch entry.
+    Deduplicates against already-stored URLs so repeated calls are idempotent.
+    """
+    if not urls:
+        return
+    h = load_history()
+    batch = get_batch(h, batch_id)
+    if batch is None:
+        return
+    existing = set(batch.get("manual_review_urls") or [])
+    added = [u for u in urls if u not in existing]
+    if added:
+        batch.setdefault("manual_review_urls", []).extend(added)
+        save_history(h)
 
 
 # ─────────────────────────────────────────────

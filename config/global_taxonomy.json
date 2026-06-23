@@ -1,0 +1,66 @@
+{
+  "tools": [
+    "sql", "python", "r programming", "rstudio", "excel", "powerbi", "power bi",
+    "tableau", "looker studio", "google data studio", "qlik", "domo", "alteryx",
+    "metabase", "mixpanel", "amplitude", "segment", "databricks", "spark",
+    "airflow", "dbt", "pandas", "numpy", "scikit", "bigquery", "snowflake",
+    "redshift", "postgresql", "mysql", "mongodb", "oracle",
+    "google analytics", "ga4", "google ads", "google tag manager",
+    "facebook ads", "meta ads", "linkedin ads", "tiktok ads",
+    "hubspot", "salesforce", "marketo", "mailchimp", "semrush", "ahrefs", "adobe",
+    "marketing automation", "jira", "confluence", "notion", "asana", "linear",
+    "miro", "figma", "sketch", "aws", "azure", "gcp", "docker", "kubernetes",
+    "terraform", "github", "gitlab", "javascript", "typescript", "java", "kotlin",
+    "swift", "react", "vue", "angular", "nodejs", "node.js", "django", "flask",
+    "spring", "selenium", "pytest", "jest", "rest api", "graphql", "etl",
+    "data pipeline", "power automate", "postman", "bi tool", "crm", "erp", "sap",
+    "zendesk", "spreadsheet", "powerpoint", "google sheets", "ms office", "ms excel",
+    "machine learning", "deep learning", "nlp", "data science",
+    "a/b test", "ab test", "product analytics", "web analytics", "data visualization"
+  ],
+  "academic": [
+    "bachelor", "master", "phd", "mba", "bsc", "msc", "degree", "diploma",
+    "studium", "hochschule", "abschluss", "studiengang", "betriebswirt",
+    "wirtschafts", "economics", "business administration", "computer science",
+    "engineering", "mathematics", "accounting", "psychology", "sociology",
+    "information systems", "quantitative methods"
+  ],
+  "cert": [
+    "pmp", "prince2", "scrum master", "csm", "cspo", "certified", "safe agilist",
+    "aws certified", "aws practitioner", "aws solutions", "google certified",
+    "google professional", "facebook blueprint", "hubspot certified",
+    "salesforce certified", "cfa", "cpa", "six sigma", "lean", "itil", "togaf",
+    "cissp", "cism", "comptia", "okr certified", "product owner certified", "cppo",
+    "pl-300", "az-900", "dp-900", "az-104", "dp-203"
+  ],
+  "langs": [
+    "german", "deutsch", "english", "englisch", "french", "français", "französisch",
+    "spanish", "espanol", "español", "mandarin", "chinese", "italian", "italiano",
+    "dutch", "portuguese", "japanese", "korean", "arabic", "hindi", "russian",
+    "polish", "swedish", "norwegian", "danish", "turkish",
+    "muttersprache", "native speaker", "fließend", "verhandlungssicher",
+    "c1", "c2", "b2", "b1", "a2", "a1", "fluent", "bilingual",
+    "business proficient", "business fluent"
+  ],
+  "domain": [
+    "saas", "b2b", "b2c", "ecommerce", "e-commerce", "fintech", "healthtech",
+    "martech", "adtech", "b2b saas", "enterprise software", "cloud computing",
+    "platform", "marketplace", "product management", "product strategy",
+    "go-to-market", "gtm", "product-led", "plg", "product discovery",
+    "feature prioritization", "product owner", "roadmap", "okr", "kpi",
+    "stakeholder management", "cross-functional", "portfolio management",
+    "risk management", "compliance", "vendor management", "supply chain",
+    "digital marketing", "performance marketing", "seo", "sem", "paid media",
+    "content strategy", "brand management", "brand strategy", "market research",
+    "competitive analysis", "campaign management", "media planning",
+    "marketing analytics", "attribution", "customer journey", "customer lifecycle",
+    "customer success", "growth hacking", "revenue operations", "sales enablement",
+    "account management", "p&l", "pricing strategy", "monetization", "subscription",
+    "churn", "retention", "acquisition", "conversion", "funnel", "pipeline",
+    "cohort", "clv", "ltv", "nps", "net promoter", "financial modeling",
+    "financial analysis", "agile", "scrum", "kanban", "sprint", "backlog",
+    "design thinking", "ux research", "user research", "data-driven",
+    "partnership", "channel", "ecosystem", "business development",
+    "product launch", "market entry"
+  ]
+}

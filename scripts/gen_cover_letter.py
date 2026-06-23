@@ -13,7 +13,9 @@ gen_cover_letter.py — cover_letter_draft.md → cover_letter.pdf / .docx / bot
 """
 
 import argparse
+import json
 import sys
+from datetime import date
 from pathlib import Path
 
 PROJECT_DIR = Path(__file__).resolve().parent.parent
@@ -93,6 +95,15 @@ def parse_cover_letter(md_text: str) -> dict:
 
 # ── PDF ────────────────────────────────────────────────────────────────────────
 
+def _rm_typo_dashes(text: str) -> str:
+    """Remove em-dash and en-dash from DOCX output; keep regular hyphens."""
+    text = text.replace('—', ',')  # em-dash
+    text = text.replace('–', ',')  # en-dash
+    while ',,' in text:
+        text = text.replace(',,', ',')
+    return text
+
+
 def _sanitize(text: str) -> str:
     """Replace characters that fpdf core fonts can't handle."""
     replacements = {
@@ -125,7 +136,20 @@ def _sanitize(text: str) -> str:
     return text.encode("latin-1", errors="replace").decode("latin-1")
 
 
-def generate_pdf(md_path: Path, pdf_path: Path) -> None:
+def _build_header_from_cv(cv: dict) -> list[str]:
+    """Build a header line list from cv_parsed when the md has no header block."""
+    name     = cv.get("name", "").strip()
+    location = cv.get("location", "").strip()
+    email    = cv.get("email", "").strip()
+    phone    = cv.get("phone", "").strip()
+    linkedin = cv.get("linkedin", "").strip()
+    date_str = date.today().strftime("%d %B %Y")
+    line2 = " | ".join(x for x in [location, email, phone] if x)
+    line3 = " | ".join(x for x in [linkedin, date_str] if x)
+    return [h for h in [name, line2, line3] if h]
+
+
+def generate_pdf(md_path: Path, pdf_path: Path, cv_info: dict | None = None) -> None:
     from fpdf import FPDF, XPos, YPos
 
     class _PDF(FPDF):
@@ -159,6 +183,8 @@ def generate_pdf(md_path: Path, pdf_path: Path) -> None:
             self.cell(0, 6, name, new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     sections = parse_cover_letter(md_path.read_text(encoding="utf-8"))
+    if not sections["header"] and cv_info:
+        sections["header"] = _build_header_from_cv(cv_info)
     pdf = _PDF()
     pdf.add_page()
     pdf.header_block([_sanitize(l) for l in sections["header"]])
@@ -172,7 +198,7 @@ def generate_pdf(md_path: Path, pdf_path: Path) -> None:
 
 # ── DOCX ───────────────────────────────────────────────────────────────────────
 
-def generate_docx(md_path: Path, docx_path: Path) -> None:
+def generate_docx(md_path: Path, docx_path: Path, cv_info: dict | None = None) -> None:
     from docx import Document
     from docx.shared import Pt, Mm, RGBColor
     from docx.enum.text import WD_LINE_SPACING
@@ -210,6 +236,8 @@ def generate_docx(md_path: Path, docx_path: Path) -> None:
         pPr.append(pBdr)
 
     sections = parse_cover_letter(md_path.read_text(encoding="utf-8"))
+    if not sections["header"] and cv_info:
+        sections["header"] = _build_header_from_cv(cv_info)
     doc = Document()
 
     sec = doc.sections[0]
@@ -223,24 +251,24 @@ def generate_docx(md_path: Path, docx_path: Path) -> None:
 
     if sections["header"]:
         name_para = doc.add_paragraph()
-        _set_font(name_para.add_run(sections["header"][0]), bold=True, size_pt=13)
+        _set_font(name_para.add_run(_rm_typo_dashes(sections["header"][0])), bold=True, size_pt=13)
         _set_para_spacing(name_para, after_pt=2)
         for line in sections["header"][1:]:
             p = doc.add_paragraph()
-            _set_font(p.add_run(line), size_pt=9, color=(80, 80, 80))
+            _set_font(p.add_run(_rm_typo_dashes(line)), size_pt=9, color=(80, 80, 80))
             _set_para_spacing(p, after_pt=1)
 
     _add_hr(doc)
 
     for para_text in sections["paragraphs"]:
         p = doc.add_paragraph()
-        _set_font(p.add_run(para_text), size_pt=10.5, color=(40, 40, 40))
+        _set_font(p.add_run(_rm_typo_dashes(para_text)), size_pt=10.5, color=(40, 40, 40))
         _set_para_spacing(p, after_pt=6)
 
     if sections["closing"]:
         doc.add_paragraph()
         p = doc.add_paragraph()
-        _set_font(p.add_run(sections["closing"]), size_pt=10.5)
+        _set_font(p.add_run(_rm_typo_dashes(sections["closing"])), size_pt=10.5)
         _set_para_spacing(p, before_pt=4, after_pt=0)
 
     doc.save(str(docx_path))
@@ -271,10 +299,24 @@ def main():
             print(f"ERROR: cover letter not found at {md_path}", file=sys.stderr)
             sys.exit(1)
 
+    # Load cv_parsed for header fallback (for non-standard md formats)
+    group_id = args.job_folder.split('_')[0]
+    cv_info: dict | None = None
+    for candidate in [
+        USERS_DIR / args.uid / "output" / f"cv_parsed_{group_id}.json",
+        *sorted((USERS_DIR / args.uid / "output").glob("cv_parsed_*.json")),
+    ]:
+        if Path(candidate).exists():
+            try:
+                cv_info = json.loads(Path(candidate).read_text(encoding="utf-8"))
+            except Exception:
+                pass
+            break
+
     if args.format in ("pdf", "all"):
-        generate_pdf(md_path, job_dir / "cover_letter.pdf")
+        generate_pdf(md_path, job_dir / "cover_letter.pdf", cv_info=cv_info)
     if args.format in ("docx", "all"):
-        generate_docx(md_path, job_dir / "cover_letter.docx")
+        generate_docx(md_path, job_dir / "cover_letter.docx", cv_info=cv_info)
 
 
 if __name__ == "__main__":

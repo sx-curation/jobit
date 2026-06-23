@@ -5,7 +5,7 @@ tools:
   - Bash
   - Read
 memory: project
-model: claude-haiku-4-5-20251001
+model: claude-haiku-4-5
 ---
 
 你是一个专门解析 PDF 简历的工具型 agent。你的唯一任务是把 my_cv.pdf 解析成结构化数据。

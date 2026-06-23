@@ -1,6 +1,36 @@
 {
   "job_search": {
-    "keyword_groups": []
+    "keyword_groups": [],
+    "location": "Germany",
+    "date_range_days": 14,
+    "max_jobs_per_keyword": 2,
+    "max_display": 10,
+    "score_threshold_warn": 30,
+    "min_score_for_analysis": 20
   },
-  "skill_taxonomy": {}
+  "skill_taxonomy": {},
+  "cv_language": "English",
+  "your_name": "Amy",
+  "your_email": "",
+  "stepstone": {
+    "enabled": false,
+    "server_url": "http://127.0.0.1:8000/mcp"
+  },
+  "preferences": {
+    "preferred_level": "entry, junior, associated, experienced",
+    "preferred_locations": [
+      "Germany",
+      "Remote"
+    ],
+    "preferred_work_mode": [
+      "hybrid",
+      "remote"
+    ],
+    "salary_expectation_eur_monthly": 3000,
+    "preferred_domains": [],
+    "language_skills": [
+      "spanish"
+    ]
+  },
+  "auto_default_answers": true
 }

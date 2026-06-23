@@ -27,7 +27,7 @@ tools:
   - detected_group 为 null 或不匹配 → 使用所有故事
   - 优先选 R 字段有量化数字（非「结果未量化」）的故事
 
-- **不存在** → 降级模式：使用 cv_parsed experience[] 原文，行为与旧版相同
+- **不存在** → 降级模式：使用 cv_parsed experience[] 原文，行为与旧版相同；写入 jd_analysis.json 时同步写入 `"default_answers_source": "cv_parsed_fallback"`
 
 ### 步骤 3：生成 5 条回答
 
@@ -62,6 +62,7 @@ tools:
 ### 步骤 4：写入并输出
 
 - 将结果写入 `output/{job_folder}/jd_analysis.json` 的 `default_answers` 字段（保留其他字段）
+- 同时写入 `"default_answers_source"` 字段：story-bank 存在时为 `"story_bank"`，降级模式时为 `"cv_parsed_fallback"`
 - stdout 输出纯 JSON（无其他文字）：
 
 ```json

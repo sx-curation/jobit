@@ -325,8 +325,8 @@ async def search_group_zip(
     else:
         seen_kws: set[str] = set()
         keywords: list[str] = []
-        for lang in ("en", "de"):
-            for kw in group["primary_keywords"].get(lang, []):
+        for lang_kws in group["primary_keywords"].values():
+            for kw in lang_kws:
                 if kw not in seen_kws:
                     seen_kws.add(kw)
                     keywords.append(kw)
@@ -491,11 +491,14 @@ async def run_all(config: dict, group_id: str | None = None) -> list[dict]:
         high_score_count = sum(1 for j in group_jobs if quick_score(j, cv_skills) > SCORE_THRESHOLD)
         print(f"  Group {gid}: {high_score_count} jobs with score > {SCORE_THRESHOLD}")
 
-        # ── Phase B: fallback to job_family.en if below threshold ────────────
+        # ── Phase B: fallback to job_family (all language keys) ─────────────
         if high_score_count < FALLBACK_THRESHOLD:
-            fb_keywords = list(dict.fromkeys(group.get("job_family", {}).get("en", [])))
+            fb_keywords = list(dict.fromkeys(
+                kw for lang_kws in group.get("job_family", {}).values()
+                for kw in lang_kws
+            ))
             print(f"  [FALLBACK] {gid}: {high_score_count} < {FALLBACK_THRESHOLD} → "
-                  f"searching {len(fb_keywords)} job_family.en keywords")
+                  f"searching {len(fb_keywords)} job_family keywords")
 
             for zip_entry in zip_codes:
                 try:

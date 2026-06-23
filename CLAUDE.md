@@ -44,6 +44,7 @@
 | `搜索Stepstone职缺 [group-id]` | 仅 Stepstone 搜索（需 stepstone.enabled=true） |
 | `搜索Linkedin posting职缺 [group-id]` | 从 LinkedIn 社交帖子搜索招聘信号，提取职缺链接并执行 JD 分析；无 group-id 则搜索所有 group |
 | `搜索中文职缺` | 搜索德国需要中文/普通话的职缺（等同于 `搜索LinkedIn职缺 group-chinese-lang`） |
+| `精确分析 [group-id]` | 对该 group 下有 jd_text.txt 但无 jd_analysis.json 的 folder 执行 Phase 2E（跳过搜索和去重） |
 | `生成 CV <编号>` | 只为指定职缺执行 Phase 3 |
 | `生成CL <job编号>` | 只生成 cover letter：cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无 story-bank 先自动 Bootstrap；已有 cover_letter_draft.md 则跳过 CL 生成直接输出 PDF+DOCX） |
 | `面试准备 <job编号>` | 为指定职缺生成 cover_letter_draft.md + cover_letter.pdf + cover_letter.docx（如无故事库先自动 Bootstrap） |

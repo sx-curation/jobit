@@ -43,6 +43,10 @@ CONFIG_PATH:  Path = None  # type: ignore
 PROGRESS_LOG: Path = None  # type: ignore
 PARTIAL_SAVE: Path = None  # type: ignore
 
+# Per-user LinkedIn MCP base dir — set in main() to ~/.linkedin-mcp/users/{uid}.
+# Falls back to ~/.linkedin-mcp (shared) when not set.
+_MCP_BASE: Path | None = None
+
 _progress_lock = threading.Lock()
 _seen_lock     = threading.Lock()
 
@@ -51,8 +55,14 @@ _seen_lock     = threading.Lock()
 # MCP helpers
 # ─────────────────────────────────────────────
 
+def _get_mcp_base() -> Path:
+    return _MCP_BASE or (Path.home() / ".linkedin-mcp")
+
+
 def make_proc():
-    return make_mcp_proc()
+    """Spawn an MCP process using the per-user profile directory."""
+    profile_dir = str(_get_mcp_base() / "profile")
+    return make_mcp_proc(user_data_dir=profile_dir)
 
 
 def initialize_proc(proc, timeout=15):
@@ -74,25 +84,51 @@ def initialize_proc(proc, timeout=15):
     return True
 
 
-def call_tool(proc, tool_name: str, args: dict, msg_id: int = 2, timeout=60) -> dict:
-    req = {
-        "jsonrpc": "2.0", "id": msg_id, "method": "tools/call",
-        "params": {"name": tool_name, "arguments": args},
-    }
-    resp = send_recv(proc, req, timeout=timeout)
-    if not resp:
-        return {"error": f"{tool_name} timed out"}
-    if "error" in resp:
-        return {"error": resp["error"]}
-    result = resp.get("result", {})
-    if "structuredContent" in result:
-        return result["structuredContent"]
-    if "content" in result and result["content"]:
-        try:
-            return json.loads(result["content"][0]["text"])
-        except Exception:
-            return {"raw_text": result["content"][0].get("text", "")}
-    return result
+# Strings that indicate LinkedIn / MCP is rate-limiting us.
+# Checked against the lower-cased raw_text / error fields returned by call_tool().
+_RATE_LIMIT_SIGNALS = [
+    "429", "rate limit", "too many requests",
+    "slow down", "throttle", "quota exceeded",
+    "please try again", "temporarily unavailable",
+]
+
+
+def _is_rate_limited(result: dict) -> bool:
+    msg = (result.get("raw_text", "") + str(result.get("error", ""))).lower()
+    if _NO_SESSION_MSG.lower() in msg:
+        return False  # session error, not a rate limit — handle separately
+    return any(s in msg for s in _RATE_LIMIT_SIGNALS)
+
+
+def call_tool(proc, tool_name: str, args: dict, msg_id: int = 2,
+              timeout=60, max_retries=3) -> dict:
+    for attempt in range(max_retries):
+        req = {
+            "jsonrpc": "2.0", "id": msg_id, "method": "tools/call",
+            "params": {"name": tool_name, "arguments": args},
+        }
+        resp = send_recv(proc, req, timeout=timeout)
+        if not resp:
+            return {"error": f"{tool_name} timed out"}
+        if "error" in resp:
+            return {"error": resp["error"]}
+        result = resp.get("result", {})
+        if "structuredContent" in result:
+            return result["structuredContent"]
+        if "content" in result and result["content"]:
+            try:
+                parsed = json.loads(result["content"][0]["text"])
+            except Exception:
+                parsed = {"raw_text": result["content"][0].get("text", "")}
+            if _is_rate_limited(parsed) and attempt < max_retries - 1:
+                wait = 5 * (2 ** attempt)  # 5s, 10s
+                print(f"  [RATE LIMIT] {tool_name} attempt {attempt + 1}/{max_retries}, "
+                      f"retry in {wait}s…", file=sys.stderr, flush=True)
+                time.sleep(wait)
+                continue
+            return parsed
+        return result
+    return {"error": f"{tool_name} rate limited after {max_retries} retries"}
 
 
 def kill_proc(proc):
@@ -188,16 +224,29 @@ def _log_progress(kw: str, found: int, cumulative: int) -> None:
 # 搜索单个关键词（供并行调用）
 # ─────────────────────────────────────────────
 
-_COOKIES_PATH   = Path.home() / ".linkedin-mcp" / "profile" / "Default" / "Network" / "Cookies"
-_PORTABLE_COOKIES = Path.home() / ".linkedin-mcp" / "cookies.json"
-_SOURCE_STATE     = Path.home() / ".linkedin-mcp" / "source-state.json"
-_NO_SESSION_MSG   = "No valid LinkedIn session was found"
-_LOGIN_WAIT_S     = 300  # max seconds to wait for user to log in
+_NO_SESSION_MSG = "No valid LinkedIn session"  # matches both "was found" and "is available yet"
+_LOGIN_WAIT_S   = 300  # max seconds to wait for user to log in
+
+# Backup cookies file set once in main() before any searches run.
+_COOKIES_BACKUP: Path | None = None
 
 
 def _portable_auth_ready() -> bool:
     """True once the MCP login task has written the portable auth files."""
-    return _PORTABLE_COOKIES.exists() and _SOURCE_STATE.exists()
+    base = _get_mcp_base()
+    return (base / "cookies.json").exists() and (base / "source-state.json").exists()
+
+
+def _restore_cookies_if_needed() -> None:
+    """Restore cookies.json from backup before each keyword search so every
+    sequential MCP process gets a fresh copy to import."""
+    if _COOKIES_BACKUP is None or not _COOKIES_BACKUP.exists():
+        return
+    target = _get_mcp_base() / "cookies.json"
+    if not target.exists():
+        import shutil
+        shutil.copy2(_COOKIES_BACKUP, target)
+        print("[SESSION] cookies.json 已从备份恢复", flush=True)
 
 
 def _wait_for_login() -> bool:
@@ -212,14 +261,17 @@ def _wait_for_login() -> bool:
         "        登录完成后脚本将自动继续（最多等待 5 分钟）…",
         flush=True,
     )
+    cookies_path = _get_mcp_base() / "profile" / "Default" / "Network" / "Cookies"
     deadline = time.monotonic() + _LOGIN_WAIT_S
     while time.monotonic() < deadline:
         if _portable_auth_ready():
-            print("[LOGIN] 便携式 session 已写入，继续搜索…", flush=True)
-            time.sleep(1)
+            print("[LOGIN] 便携式 session 已写入，等待 MCP 导入（45s）…", flush=True)
+            # Give MCP server time to import cookies.json into the Playwright
+            # browser context before we retry search_jobs.
+            time.sleep(45)
             return True
         # Fallback: Chromium Cookies updated (older MCP versions)
-        if _COOKIES_PATH.exists():
+        if cookies_path.exists():
             time.sleep(5)  # give MCP time to export portable cookies
             if _portable_auth_ready():
                 print("[LOGIN] Session 已保存，继续搜索…", flush=True)
@@ -232,10 +284,16 @@ def _wait_for_login() -> bool:
 def search_keyword(keywords: str, location: str, date_posted="past_month",
                    max_pages=1, timeout=60) -> list[str]:
     """
-    返回 job_ids 列表。
-    若 MCP 报 'No valid LinkedIn session'，保持同一进程存活等 login task 写入
-    portable auth files，再在同一进程内重试（不杀进程，不新建进程）。
+    返回 job_ids 列表。两种 session 失效情境分别处理：
+
+    Case A — mid-session expiry（auth 文件存在但 LinkedIn 已拒绝）：
+      清除旧 auth 文件 → 新建 proc → 重新触发浏览器登入。
+
+    Case B — 首次登入或无 auth 文件：
+      保持同一 proc 存活，MCP login task 在该 proc 内写入
+      portable auth files 后再重试。
     """
+    _restore_cookies_if_needed()
     proc = make_proc()
     try:
         if not initialize_proc(proc, timeout=15):
@@ -249,11 +307,37 @@ def search_keyword(keywords: str, location: str, date_posted="past_month",
             "max_pages": max_pages,
         }, timeout=timeout)
 
-        # Login required: keep the SAME proc alive while waiting —
-        # the MCP's async login task runs inside this proc and writes
-        # portable auth files only after user completes login in the browser.
-        # Detect login-needed: explicit message OR any raw_text error with no portable auth
         raw_text = result.get("raw_text", "")
+
+        # ── Case A: mid-session expiry ────────────────────────────────────────
+        # Auth files exist (stale) but LinkedIn already rejected the session.
+        # Clearing them lets the new proc trigger a fresh browser login instead
+        # of silently importing the invalid cookies.
+        if _NO_SESSION_MSG in raw_text and _portable_auth_ready():
+            for fname in ["cookies.json", "source-state.json"]:
+                (_get_mcp_base() / fname).unlink(missing_ok=True)
+            if _COOKIES_BACKUP is not None:
+                try:
+                    _COOKIES_BACKUP.unlink(missing_ok=True)
+                except Exception:
+                    pass
+            print("[SESSION] 检测到 session 中途过期，已清除旧 auth，重新触发登入…",
+                  flush=True)
+            kill_proc(proc)
+            proc = make_proc()
+            if not initialize_proc(proc, timeout=15):
+                return []
+            result = call_tool(proc, "search_jobs", {
+                "keywords": keywords,
+                "location": location,
+                "date_posted": date_posted,
+                "max_pages": max_pages,
+            }, timeout=timeout)
+            raw_text = result.get("raw_text", "")
+
+        # ── Case B: first-time login or post-expiry re-login ─────────────────
+        # Keep the SAME proc alive — MCP login task runs inside it and writes
+        # portable auth files only after the user completes browser login.
         login_needed = (
             _NO_SESSION_MSG in raw_text
             or (raw_text and not _portable_auth_ready())
@@ -448,7 +532,7 @@ def get_job_details_batch(job_ids: list[str], timeout=120) -> list[dict]:
 # ─────────────────────────────────────────────
 
 def main():
-    global OUTPUT_DIR, TEMP_DIR, CONFIG_PATH, PROGRESS_LOG, PARTIAL_SAVE
+    global OUTPUT_DIR, TEMP_DIR, CONFIG_PATH, PROGRESS_LOG, PARTIAL_SAVE, _MCP_BASE, _COOKIES_BACKUP
     parser = argparse.ArgumentParser()
     parser.add_argument("--uid",    default="leon", help="用户 ID（对应 users/{uid}/ 目录）")
     parser.add_argument("--group", help="只搜索指定 group_id（如 group-da）")
@@ -463,7 +547,16 @@ def main():
     CONFIG_PATH  = _base / "config.json"
     PROGRESS_LOG = TEMP_DIR / "_search_progress.log"
     PARTIAL_SAVE = TEMP_DIR / "_phase2_temp_partial.json"
+    _MCP_BASE    = Path.home() / ".linkedin-mcp" / "users" / args.uid
     init_paths(args.uid)
+
+    # Backup cookies.json so each sequential keyword search can restore it.
+    import shutil
+    _cookies = _MCP_BASE / "cookies.json"
+    if _cookies.exists():
+        _COOKIES_BACKUP = _MCP_BASE / "cookies.json.bak"
+        shutil.copy2(_cookies, _COOKIES_BACKUP)
+        print(f"[SESSION] cookies.json 已备份 → {_COOKIES_BACKUP.name}", flush=True)
 
     if not acquire_lock():
         print("[ERROR] 另一个搜索进程正在运行，退出。", file=sys.stderr)
@@ -512,9 +605,9 @@ def _run(args):
     seen_job_ids: dict[str, bool] = {}   # jid → has_valid_detail (True=有效, False=needs_refetch)
     total_fetched = 0  # running count for progress logging
 
-    # max_workers=1: linkedin-scraper-mcp uses a shared profile directory (~/.linkedin-mcp/profile).
-    # Concurrent MCP processes race on Cookies file → PermissionError → invalid-state-* accumulation.
-    # Keep serial until MCP supports per-process isolation or we add a file lock.
+    # max_workers=3: each MCP process gets an isolated per-user profile dir
+    # (~/.linkedin-mcp/users/{uid}/profile), so concurrent instances no longer
+    # race on the same Cookies file.
     for group in groups:
         gid    = group["group_id"]
         glabel = group["group_label"]
@@ -522,9 +615,11 @@ def _run(args):
         group_seen_ids: set[str] = set()
         cv_skills = load_cv_skills(str(OUTPUT_DIR / f"cv_parsed_{gid}.json"))
 
-        # ── Phase A: primary keywords (EN + DE) ──────────────────────────────
-        primary_kws = [kw for lang in ("en", "de")
-                       for kw in group["primary_keywords"].get(lang, [])]
+        # ── Phase A: primary keywords (all language keys) ────────────────────
+        primary_kws = list(dict.fromkeys(
+            kw for lang_kws in group["primary_keywords"].values()
+            for kw in lang_kws
+        ))
         print(f"\nGroup: {glabel} ({gid}) — {len(primary_kws)} primary keywords")
         print("=" * 60)
 
@@ -612,11 +707,14 @@ def _run(args):
         )
         print(f"  [incremental save] {len(all_jobs_with_details)} jobs → {PARTIAL_SAVE}")
 
-        # ── Phase B: fallback to job_family.en if below threshold ────────────
+        # ── Phase B: fallback to job_family (all language keys) ─────────────
         if high_score_count < FALLBACK_THRESHOLD:
-            fallback_kws = list(dict.fromkeys(group.get("job_family", {}).get("en", [])))
+            fallback_kws = list(dict.fromkeys(
+                kw for lang_kws in group.get("job_family", {}).values()
+                for kw in lang_kws
+            ))
             print(f"  [FALLBACK] {gid}: {high_score_count} < {FALLBACK_THRESHOLD} → "
-                  f"searching {len(fallback_kws)} job_family.en keywords")
+                  f"searching {len(fallback_kws)} job_family keywords")
 
             fallback_entries: list[dict] = []
 

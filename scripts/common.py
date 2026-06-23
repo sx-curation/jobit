@@ -52,7 +52,7 @@ def _stdout_reader_loop(stdout, q: queue.Queue) -> None:
     q.put(None)
 
 
-def make_mcp_proc() -> subprocess.Popen:
+def make_mcp_proc(user_data_dir: str | None = None) -> subprocess.Popen:
     """
     Spawn linkedin-scraper-mcp with a background reader thread.
 
@@ -61,7 +61,15 @@ def make_mcp_proc() -> subprocess.Popen:
       waiting for stderr to be consumed.
     - P0-1 readline() hang: stdout lines are drained by a daemon thread into a
       Queue, so send_recv() can honour its timeout even when MCP is silent.
+
+    Pass user_data_dir to isolate the Chromium profile per user; the value is
+    forwarded via LINKEDIN_MCP_USER_DATA_DIR so concurrent MCP instances do not
+    race on the same Cookies file.
     """
+    env = None
+    if user_data_dir:
+        env = {**os.environ, "LINKEDIN_MCP_USER_DATA_DIR": user_data_dir}
+
     proc = subprocess.Popen(
         [UVX, "linkedin-scraper-mcp"],
         stdin=subprocess.PIPE,
@@ -71,6 +79,7 @@ def make_mcp_proc() -> subprocess.Popen:
         encoding="utf-8",
         errors="replace",
         bufsize=1,
+        env=env,
     )
     proc._line_queue: queue.Queue = queue.Queue()
     proc._reader = threading.Thread(

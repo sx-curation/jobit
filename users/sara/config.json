@@ -1,0 +1,208 @@
+{
+  "your_name": "Sara Moshtaghi",
+  "your_email": "sara_moshtaghi@yahoo.com",
+  "cv_language": "English",
+  "job_search": {
+    "keyword_groups": [
+      {
+        "group_id": "group-academic",
+        "group_label": "Academic & Teaching",
+        "cv_file": "my_cv/Sara Moshtaghi-teaching.pdf",
+        "primary_keywords": {
+          "en": [
+            "University Lecturer",
+            "Adjunct Lecturer",
+            "Course Coordinator",
+            "Academic Coordinator",
+            "Study Programme Coordinator",
+            "Academic Advisor",
+            "Teaching Assistant",
+            "Wissenschaftliche Mitarbeiterin"
+          ],
+          "de": [
+            "Lehrbeauftragte",
+            "Wissenschaftliche Mitarbeiterin",
+            "Studienkoordinatorin",
+            "Akademische Koordinatorin",
+            "Lehrkoordinatorin",
+            "Dozentin"
+          ]
+        },
+        "job_family": {
+          "en": [
+            "University Lecturer",
+            "Adjunct Lecturer",
+            "Academic Coordinator",
+            "Study Programme Coordinator",
+            "Student Affairs Coordinator",
+            "Academic Advisor",
+            "Curriculum Developer",
+            "Education Programme Manager",
+            "Research Associate",
+            "Teaching Fellow",
+            "STEM Education Specialist",
+            "E-Learning Coordinator"
+          ],
+          "de": [
+            "Lehrbeauftragte",
+            "Wissenschaftliche Mitarbeiterin",
+            "Studiengangskoordinatorin",
+            "Studienberaterin",
+            "Lehrkoordinatorin",
+            "Dozentin (Hochschule)",
+            "Akademische Mitarbeiterin",
+            "Referentin Lehre und Studium",
+            "Bildungskoordinatorin",
+            "MINT-Bildungsspezialistin"
+          ]
+        },
+        "min_score_for_analysis": 20
+      },
+      {
+        "group_id": "group-innovation",
+        "group_label": "Innovation Hub & Operations Officer",
+        "cv_file": "my_cv/Sara Moshtaghi-admin.pdf",
+        "primary_keywords": {
+          "en": [
+            "Innovation Manager",
+            "Innovation Coordinator",
+            "Program Officer",
+            "Project Coordinator",
+            "Operations Coordinator",
+            "Business Development Officer",
+            "Startup Ecosystem Manager",
+            "Partnership Coordinator"
+          ],
+          "de": [
+            "Innovationsmanagerin",
+            "Projektkoordinatorin",
+            "Programm-Managerin",
+            "Referentin Innovation",
+            "Koordinatorin Startup-Ökosystem",
+            "Business Development Manager"
+          ]
+        },
+        "job_family": {
+          "en": [
+            "Innovation Manager",
+            "Innovation Coordinator",
+            "Program Officer",
+            "Project Coordinator",
+            "Operations Coordinator",
+            "Business Development Officer",
+            "Startup Ecosystem Coordinator",
+            "Partnership Manager",
+            "Community Manager (Innovation)",
+            "Entrepreneurship Programme Manager",
+            "Organizational Development Specialist",
+            "Strategy & Operations Manager",
+            "Hub Manager",
+            "Incubator / Accelerator Coordinator",
+            "Event and Programme Coordinator"
+          ],
+          "de": [
+            "Innovationsmanagerin",
+            "Projektkoordinatorin",
+            "Referentin Innovationsmanagement",
+            "Programm-Managerin",
+            "Koordinatorin Startup-Ökosystem",
+            "Business Development Managerin",
+            "Netzwerkkoordinatorin",
+            "Organisationsentwicklungsspezialistin",
+            "Veranstaltungs- und Programmkoordinatorin",
+            "Community Managerin (Innovation)",
+            "Gründungsberaterin",
+            "Referentin Unternehmertum und Innovation",
+            "Hub Managerin"
+          ]
+        },
+        "min_score_for_analysis": 20
+      },
+      {
+        "group_id": "group-persian-lang",
+        "group_label": "Iran Business & Persian/Farsi Language Roles",
+        "cv_file": "my_cv/Sara Moshtaghi-teaching.pdf",
+        "primary_keywords": {
+          "de_lang_prof": [
+            "Muttersprachler Persisch",
+            "Persisch Muttersprachler",
+            "Dolmetscher Persisch",
+            "Übersetzer Persisch",
+            "Sprachlehrer Persisch",
+            "Lehrkraft Persisch"
+          ],
+          "de_market": [
+            "Account Manager Iran",
+            "Vertrieb Iran",
+            "Business Development Iran",
+            "Naher Osten Persisch",
+            "Markt Iran"
+          ],
+          "en_lang_prof": [
+            "Farsi native speaker",
+            "Persian native speaker",
+            "Farsi interpreter",
+            "Persian interpreter",
+            "Persian teacher Germany",
+            "Farsi tutor"
+          ]
+        },
+        "job_family": {
+          "en": [
+            "Persian interpreter",
+            "Farsi interpreter",
+            "Persian translator",
+            "Persian teacher",
+            "Persian tutor",
+            "Account Manager Iran",
+            "Business Development Iran"
+          ],
+          "de": [
+            "Dolmetscher Persisch",
+            "Übersetzer Persisch",
+            "Sprachlehrer Persisch",
+            "Lehrkraft Persisch Farsi",
+            "Account Manager Iran",
+            "Vertrieb Iran"
+          ]
+        },
+        "min_score_for_analysis": 0,
+        "max_display": 60,
+        "_auto_generated": true
+      }
+    ],
+    "location": "Germany",
+    "date_range_days": 14,
+    "max_jobs_per_keyword": 2,
+    "max_display": 30,
+    "score_threshold_warn": 30,
+    "min_score_for_analysis": 20
+  },
+  "skill_taxonomy": {},
+  "auto_default_answers": false,
+  "preferences": {
+    "preferred_locations": [
+      "Frankfurt",
+      "Mainz",
+      "Wiesbaden"
+    ],
+    "preferred_work_mode": [
+      "hybrid",
+      "remote",
+      "onsite"
+    ],
+    "salary_expectation_eur_monthly": 4000,
+    "preferred_domains": [
+      "Innovation Hubs",
+      "Academic Administration"
+    ],
+    "preferred_level": "entry, junior, associated",
+    "language_skills": [
+      "arabic",
+      "persian"
+    ]
+  },
+  "stepstone": {
+    "enabled": false
+  }
+}
