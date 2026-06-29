@@ -1,0 +1,5 @@
+# Large binaries / installers — never commit these
+Microsoft VS Code/
+node.exe
+node-v*.msi
+Git-*.exe
